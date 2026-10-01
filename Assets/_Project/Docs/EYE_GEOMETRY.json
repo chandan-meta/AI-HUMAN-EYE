@@ -1,0 +1,579 @@
+[
+  {
+    "name": "Blue_Vain1",
+    "parent": "Fitnessman",
+    "center": [
+      0.010392255149781704,
+      -0.07523461431264877,
+      1.7949786186218262
+    ],
+    "materials": [
+      "Blue_Vain"
+    ]
+  },
+  {
+    "name": "Blue_Vain1.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05535511672496796,
+      -0.07291097939014435,
+      1.7917677164077759
+    ],
+    "materials": [
+      "Blue_Vain"
+    ]
+  },
+  {
+    "name": "Blue_Vain2",
+    "parent": "Fitnessman",
+    "center": [
+      0.02270679920911789,
+      -0.07560842484235764,
+      1.7955657243728638
+    ],
+    "materials": [
+      "Blue_Vain"
+    ]
+  },
+  {
+    "name": "Blue_Vain2.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.043040573596954346,
+      -0.073284812271595,
+      1.7923545837402344
+    ],
+    "materials": [
+      "Blue_Vain"
+    ]
+  },
+  {
+    "name": "Choroid1",
+    "parent": "Fitnessman",
+    "center": [
+      -0.0497206375002861,
+      -0.08741318434476852,
+      1.7924185991287231
+    ],
+    "materials": [
+      "Choroid_Dif"
+    ]
+  },
+  {
+    "name": "Choroid1.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.016026729717850685,
+      -0.08973680436611176,
+      1.795629858970642
+    ],
+    "materials": [
+      "Choroid_Dif"
+    ]
+  },
+  {
+    "name": "Cornea2",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05018201842904091,
+      -0.10173242539167404,
+      1.7924333810806274
+    ],
+    "materials": [
+      "Cornea"
+    ]
+  },
+  {
+    "name": "Cornea2.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.015565342269837856,
+      -0.10405605286359787,
+      1.7956442832946777
+    ],
+    "materials": [
+      "Cornea"
+    ]
+  },
+  {
+    "name": "Cornea3",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05018968880176544,
+      -0.10216575115919113,
+      1.7924333810806274
+    ],
+    "materials": [
+      "Aqueous_Humor"
+    ]
+  },
+  {
+    "name": "Cornea3.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.015557670034468174,
+      -0.10448937118053436,
+      1.7956446409225464
+    ],
+    "materials": [
+      "Aqueous_Humor"
+    ]
+  },
+  {
+    "name": "Eye_Ball_Full1",
+    "parent": "Fitnessman",
+    "center": [
+      -0.04972057417035103,
+      -0.07650231570005417,
+      1.7924195528030396
+    ],
+    "materials": [
+      "Eye_Inner_Diff",
+      "Eye_Diff"
+    ]
+  },
+  {
+    "name": "Eye_Ball_Full1.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.016026798635721207,
+      -0.078825943171978,
+      1.7956308126449585
+    ],
+    "materials": [
+      "Eye_Inner_Diff",
+      "Eye_Diff"
+    ]
+  },
+  {
+    "name": "FitnessMan_01_fM_body_GEO",
+    "parent": "Fitnessman",
+    "center": [
+      0.041205309331417084,
+      -0.06844069808721542,
+      0.9635801315307617
+    ],
+    "materials": [
+      "FM_Body_Diff"
+    ]
+  },
+  {
+    "name": "FitnessMan_01_fM_shorts_GEO",
+    "parent": "Fitnessman",
+    "center": [
+      0.03135012462735176,
+      -0.025844065472483635,
+      0.8902817964553833
+    ],
+    "materials": [
+      "FM_Shorts_Diff2"
+    ]
+  },
+  {
+    "name": "FitnessMan_01_fM_sneakers_GEO",
+    "parent": "Fitnessman",
+    "center": [
+      0.024862634018063545,
+      -0.08030299097299576,
+      0.07317131012678146
+    ],
+    "materials": [
+      "FM_Snekers_Diff"
+    ]
+  },
+  {
+    "name": "FitnessMan_01_polySurface1",
+    "parent": "Fitnessman",
+    "center": [
+      0.014876763336360455,
+      -0.09255366027355194,
+      1.7242426872253418
+    ],
+    "materials": [
+      "FitnessMan_01_gums_MTL",
+      "FitnessMan_01_teeth_MTL"
+    ]
+  },
+  {
+    "name": "FM_Hair",
+    "parent": "Fitnessman",
+    "center": [
+      0.010384802706539631,
+      -0.01738130860030651,
+      1.81826651096344
+    ],
+    "materials": [
+      "FM_Hairs"
+    ]
+  },
+  {
+    "name": "Full_Muscle_01",
+    "parent": "Fitnessman",
+    "center": [
+      0.005962762515991926,
+      -0.07681116461753845,
+      1.7948598861694336
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_01.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05978460609912872,
+      -0.07448755204677582,
+      1.7916488647460938
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_02",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05034010857343674,
+      -0.07482004910707474,
+      1.8029431104660034
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_02.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.015407259576022625,
+      -0.07714366912841797,
+      1.8061542510986328
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_03",
+    "parent": "Fitnessman",
+    "center": [
+      -0.04882882907986641,
+      -0.07487670332193375,
+      1.7819230556488037
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_03.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.016918549314141273,
+      -0.07720032334327698,
+      1.785133957862854
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_04",
+    "parent": "Fitnessman",
+    "center": [
+      -0.0385684110224247,
+      -0.07514817267656326,
+      1.7931700944900513
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Full_Muscle_04.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.027178961783647537,
+      -0.07747180014848709,
+      1.7963809967041016
+    ],
+    "materials": [
+      "Muscle_Full_Diff"
+    ]
+  },
+  {
+    "name": "Iris",
+    "parent": "Fitnessman",
+    "center": [
+      -0.050193801522254944,
+      -0.10052026808261871,
+      1.7924352884292603
+    ],
+    "materials": [
+      "Iris2"
+    ]
+  },
+  {
+    "name": "Iris.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.015553569421172142,
+      -0.10284389555454254,
+      1.7956463098526
+    ],
+    "materials": [
+      "Iris2"
+    ]
+  },
+  {
+    "name": "Left_Eye_Grp",
+    "parent": "Fitnessman",
+    "center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "materials": []
+  },
+  {
+    "name": "Lense1",
+    "parent": "Fitnessman",
+    "center": [
+      0.01562136597931385,
+      -0.10158004611730576,
+      1.7956587076187134
+    ],
+    "materials": [
+      "Lense",
+      "Pupil1"
+    ]
+  },
+  {
+    "name": "Lense1.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.050126008689403534,
+      -0.09925641864538193,
+      1.792447805404663
+    ],
+    "materials": [
+      "Lense",
+      "Pupil1"
+    ]
+  },
+  {
+    "name": "polySurface19",
+    "parent": "Fitnessman",
+    "center": [
+      0.015975400805473328,
+      -0.10520367324352264,
+      1.7994076013565063
+    ],
+    "materials": [
+      "FM_Eyelashes_Diff1"
+    ]
+  },
+  {
+    "name": "polySurface20",
+    "parent": "Fitnessman",
+    "center": [
+      0.016558682546019554,
+      -0.10248538851737976,
+      1.7901504039764404
+    ],
+    "materials": [
+      "FM_Eyelashes_Diff1"
+    ]
+  },
+  {
+    "name": "polySurface21",
+    "parent": "Fitnessman",
+    "center": [
+      -0.051724955439567566,
+      -0.10243591666221619,
+      1.7965466976165771
+    ],
+    "materials": [
+      "FM_Eyelashes_Diff1"
+    ]
+  },
+  {
+    "name": "polySurface22",
+    "parent": "Fitnessman",
+    "center": [
+      -0.051533788442611694,
+      -0.09991619735956192,
+      1.786260962486267
+    ],
+    "materials": [
+      "FM_Eyelashes_Diff1"
+    ]
+  },
+  {
+    "name": "Pupil",
+    "parent": "Fitnessman",
+    "center": [
+      0.015559873543679714,
+      -0.10254411399364471,
+      1.7956464290618896
+    ],
+    "materials": [
+      "Eye_Diff"
+    ]
+  },
+  {
+    "name": "Pupil.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.05018749460577965,
+      -0.10022048652172089,
+      1.7924355268478394
+    ],
+    "materials": [
+      "Eye_Diff"
+    ]
+  },
+  {
+    "name": "Red_Vain5",
+    "parent": "Fitnessman",
+    "center": [
+      0.010274026542901993,
+      -0.07530302554368973,
+      1.795449137687683
+    ],
+    "materials": [
+      "Red_Vain"
+    ]
+  },
+  {
+    "name": "Red_Vain5.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.055473342537879944,
+      -0.0729794129729271,
+      1.7922379970550537
+    ],
+    "materials": [
+      "Red_Vain"
+    ]
+  },
+  {
+    "name": "Red_Vain6",
+    "parent": "Fitnessman",
+    "center": [
+      -0.043077778071165085,
+      -0.07338962703943253,
+      1.7924506664276123
+    ],
+    "materials": [
+      "Red_Vain"
+    ]
+  },
+  {
+    "name": "Red_Vain6.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.0226695965975523,
+      -0.07571326196193695,
+      1.7956619262695312
+    ],
+    "materials": [
+      "Red_Vain"
+    ]
+  },
+  {
+    "name": "Retina1",
+    "parent": "Fitnessman",
+    "center": [
+      -0.04972132667899132,
+      -0.07472671568393707,
+      1.7924185991287231
+    ],
+    "materials": [
+      "Retina_Diff"
+    ]
+  },
+  {
+    "name": "Retina1.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.016026031225919724,
+      -0.0770503431558609,
+      1.7956295013427734
+    ],
+    "materials": [
+      "Retina_Diff"
+    ]
+  },
+  {
+    "name": "Right_Eye_Grp",
+    "parent": "Fitnessman",
+    "center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "materials": []
+  },
+  {
+    "name": "Suspensery_Ligements2",
+    "parent": "Fitnessman",
+    "center": [
+      -0.050133999437093735,
+      -0.0990617498755455,
+      1.7924959659576416
+    ],
+    "materials": [
+      "Suspensery_Ligements"
+    ]
+  },
+  {
+    "name": "Suspensery_Ligements2.001",
+    "parent": "Fitnessman",
+    "center": [
+      0.015613369643688202,
+      -0.10138536244630814,
+      1.7957072257995605
+    ],
+    "materials": [
+      "Suspensery_Ligements"
+    ]
+  },
+  {
+    "name": "Tshirt",
+    "parent": "Fitnessman",
+    "center": [
+      0.0019465109799057245,
+      0.028620580211281776,
+      1.2897653579711914
+    ],
+    "materials": [
+      "Tshirt1"
+    ]
+  },
+  {
+    "name": "Vitreous",
+    "parent": "Fitnessman",
+    "center": [
+      0.016032418236136436,
+      -0.08879690617322922,
+      1.7956297397613525
+    ],
+    "materials": [
+      "Vitreous_Humor"
+    ]
+  },
+  {
+    "name": "Vitreous.001",
+    "parent": "Fitnessman",
+    "center": [
+      -0.04971494898200035,
+      -0.08647329360246658,
+      1.7924184799194336
+    ],
+    "materials": [
+      "Vitreous_Humor"
+    ]
+  }
+]

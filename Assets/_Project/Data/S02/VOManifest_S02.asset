@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d96e98a7ea08e44b96176866ea3177, type: 3}
+  m_Name: VOManifest_S02
+  m_EditorClassIdentifier: Assembly-CSharp::VisionLab.VOManifest
+  lines:
+  - id: 1
+    text: Hey! I'm Niko. | Your Vision Investigator Officer.
+    clip: {fileID: 8300000, guid: 771693d74284463459e72ac053d5ece5, type: 3}
+  - id: 2
+    text: So you want to know how light becomes sight?
+    clip: {fileID: 8300000, guid: 287d7e6a0aff0724eb0a7addcecd47f7, type: 3}
+  - id: 3
+    text: Then watching from out here won't help.
+    clip: {fileID: 8300000, guid: f726855c665995f448f23e719f20a986, type: 3}
+  - id: 4
+    text: We need to go inside | somewhere humans can't.
+    clip: {fileID: 8300000, guid: 8885190f43e494c438835138818edea2, type: 3}
+  - id: 5
+    text: Click on the SCAN button.
+    clip: {fileID: 8300000, guid: f9d0b76b77bb6a34f938e7bfe705786f, type: 3}
+  - id: 6
+    text: There.
+    clip: {fileID: 8300000, guid: 19d3e0866c16e304daddcf41553db595, type: 3}
+  - id: 7
+    text: Your first destination.
+    clip: {fileID: 8300000, guid: 7c847ca071c35104baeda3fdb0b91b22, type: 3}
+  - id: 8
+    text: Here it is. | The human eye.
+    clip: {fileID: 8300000, guid: a4edb01dadbf93c4fa2c50385094695c, type: 3}
+  - id: 9
+    text: It has several parts, and each one has an important job.
+    clip: {fileID: 8300000, guid: 6adf36ad7a86cc94f8c07b06c1929097, type: 3}
+  - id: 10
+    text: Click or ask Niko about each part to explore what it does.
+    clip: {fileID: 8300000, guid: 4c21a1854653f94448dbf04500e2f6cd, type: 3}
+  - id: 11
+    text: This tough white outer layer is called the sclera. | It protects the eye
+      and helps maintain its shape.
+    clip: {fileID: 8300000, guid: 4eb5f6ab6738bc544984700aafef2e21, type: 3}
+  - id: 12
+    text: This transparent, curved layer at the front is the cornea. | It protects
+      the eye and bends incoming light.
+    clip: {fileID: 8300000, guid: 0fb2e9356bf32c64da2bd5b89fabd4b2, type: 3}
+  - id: 13
+    text: This coloured part is the iris. | It controls the size of the pupil.
+    clip: {fileID: 8300000, guid: 45ef5b297bd08f1419bade9f0351ecb7, type: 3}
+  - id: 14
+    text: This opening is the pupil. | Light enters the eye through it.
+    clip: {fileID: 8300000, guid: 71f564f9db3f29b4893d668fa5f43c3c, type: 3}
+  - id: 15
+    text: We've seen the parts we can see from the outside. | Now, let's look inside.
+    clip: {fileID: 8300000, guid: d42283ecc32fc89438a2b79014e47816, type: 3}
+  - id: 16
+    text: Click on the Inside View button to see how the eye looks from the inside.
+    clip: {fileID: 8300000, guid: f3b2db470ea26d04eaae882cc29f2076, type: 3}
+  - id: 17
+    text: "Go ahead \u2014 the SCAN button is right there."
+    clip: {fileID: 8300000, guid: 1044e0ba324384b4fb43ba9e0a67f082, type: 3}
+  - id: 18
+    text: Try one of the glowing parts. Any order you like.
+    clip: {fileID: 8300000, guid: 7d7ead5e838b3774d9f5f50d00fa8680, type: 3}
+  - id: 19
+    text: "Still curious about that one? Here's another way to think about it\u2026"
+    clip: {fileID: 8300000, guid: 338f6632b21d63647b968f5b56090a9c, type: 3}
+  - id: 20
+    text: "Good question \u2014 let's stick with the outside of the eye for now.
+      Pick a glowing part and I'll explain it."
+    clip: {fileID: 8300000, guid: abd9ec8fa3240f141b714dde1ec5a5b1, type: 3}
