@@ -1,0 +1,796 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0738127deb25c44eb9a2e573bdf1e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.QuestionBank
+  items:
+  - id: ext_iris_role
+    topic: external_structures
+    chapter: Scene02
+    level: 0
+    mode: 1
+    prompt: Which part controls the size of the pupil?
+    options:
+    - text: Iris
+      partId: iris
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Cornea
+      partId: cornea
+      misconception: cornea-controls-pupil
+      correct: 0
+      feedback: The cornea is the clear front layer that bends light.
+    - text: Sclera
+      partId: sclera
+      misconception: sclera-controls-pupil
+      correct: 0
+      feedback: The sclera is the tough white outer layer.
+    - text: Pupil
+      partId: pupil
+      misconception: pupil-controls-itself
+      correct: 0
+      feedback: "The pupil is the opening itself \u2014 something around it changes
+        its size."
+    hints:
+    - Look at the coloured ring at the front of the eye.
+    - Compare the opening (the pupil) with the coloured ring around it. Which one
+      can change the opening?
+    - Listen to Niko's explanation of the iris again.
+    demo: replayCue:S02_L13
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 the iris controls the size of the pupil."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: ext_cornea_job
+    topic: external_structures
+    chapter: Scene02
+    level: 1
+    mode: 1
+    prompt: Which transparent, curved layer at the front protects the eye and bends
+      incoming light?
+    options:
+    - text: Cornea
+      partId: cornea
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Iris
+      partId: iris
+      misconception: iris-bends-light
+      correct: 0
+      feedback: The iris is coloured, not transparent.
+    - text: Sclera
+      partId: sclera
+      misconception: 
+      correct: 0
+      feedback: The sclera is white and tough, not transparent.
+    - text: Pupil
+      partId: pupil
+      misconception: pupil-is-a-layer
+      correct: 0
+      feedback: The pupil is an opening, not a layer.
+    hints:
+    - Look for the clear, curved surface at the very front.
+    - The iris is coloured and the sclera is white. Which front layer is transparent?
+    - Listen to Niko's explanation of the cornea again.
+    demo: replayCue:S02_L12
+    trialAfterAnswer: 0
+    correctFeedback: "Right \u2014 the cornea protects the eye and bends incoming
+      light."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: ext_sclera_shape
+    topic: external_structures
+    chapter: Scene02
+    level: 0
+    mode: 0
+    prompt: What does the sclera do?
+    options:
+    - text: It protects the eye and helps maintain its shape
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: It controls the size of the pupil
+      partId: 
+      misconception: sclera-controls-pupil
+      correct: 0
+      feedback: That's the job of the iris.
+    - text: It is the opening light enters through
+      partId: 
+      misconception: sclera-is-opening
+      correct: 0
+      feedback: That describes the pupil.
+    hints:
+    - Think about the tough white outer layer.
+    - One choice describes the iris and one describes the pupil. Which is left?
+    - Listen to Niko's explanation of the sclera again.
+    demo: replayCue:S02_L11
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 it protects the eye and helps maintain its shape."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: ext_pupil_opening
+    topic: external_structures
+    chapter: Scene02
+    level: 0
+    mode: 1
+    prompt: Tap the opening that light enters the eye through.
+    options:
+    - text: Pupil
+      partId: pupil
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Iris
+      partId: iris
+      misconception: 
+      correct: 0
+      feedback: The iris is the coloured ring around the opening.
+    - text: Cornea
+      partId: cornea
+      misconception: 
+      correct: 0
+      feedback: The cornea covers the front; light passes through it before the opening.
+    hints:
+    - Look at the centre of the coloured ring.
+    - The iris is the ring; the pupil is the gap in the middle.
+    - Listen to Niko's explanation of the pupil again.
+    demo: replayCue:S02_L14
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 light enters the eye through the pupil."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: int_aqueous
+    topic: internal_structures
+    chapter: Scene03
+    level: 0
+    mode: 1
+    prompt: Which space between the cornea and the lens contains a clear fluid?
+    options:
+    - text: Aqueous humour
+      partId: aqueous
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Vitreous humour
+      partId: vitreous
+      misconception: aqueous-vitreous-swap
+      correct: 0
+      feedback: The vitreous humour fills the space behind the lens.
+    - text: Crystalline lens
+      partId: lens
+      misconception: 
+      correct: 0
+      feedback: The lens is the flexible, biconvex structure, not a fluid.
+    hints:
+    - Look at the front of the eye, between the cornea and the lens.
+    - The vitreous humour is behind the lens; which fluid is in front of it?
+    - Listen to Niko's explanation of the aqueous humour again.
+    demo: replayCue:S03_L02
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 that's the aqueous humour."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: int_vitreous
+    topic: internal_structures
+    chapter: Scene03
+    level: 1
+    mode: 0
+    prompt: What does the vitreous humour help to do?
+    options:
+    - text: Maintain the shape of the eye
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Change shape to focus light
+      partId: 
+      misconception: vitreous-focuses
+      correct: 0
+      feedback: That's the crystalline lens.
+    - text: Supply oxygen and nutrients
+      partId: 
+      misconception: vitreous-nourishes
+      correct: 0
+      feedback: That's the choroid, the layer rich in blood vessels.
+    hints:
+    - Think about the large jelly-filled space behind the lens.
+    - Changing shape to focus is the lens's job, and supplying oxygen is the choroid's.
+      What's left?
+    - Listen to Niko's explanation again.
+    demo: replayCue:S03_L08
+    trialAfterAnswer: 0
+    correctFeedback: "Right \u2014 it helps maintain the shape of the eye."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: int_choroid
+    topic: internal_structures
+    chapter: Scene03
+    level: 1
+    mode: 1
+    prompt: Which layer is rich in blood vessels and supplies the eye with oxygen
+      and nutrients?
+    options:
+    - text: Choroid
+      partId: choroid
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Retina
+      partId: retina
+      misconception: retina-is-vascular
+      correct: 0
+      feedback: The retina contains light-sensitive cells. The blood-vessel layer
+        is behind it.
+    - text: Vitreous humour
+      partId: vitreous
+      misconception: 
+      correct: 0
+      feedback: The vitreous humour is clear jelly.
+    hints:
+    - Look just behind the retina.
+    - The retina detects light; the layer behind it has the blood vessels.
+    - Listen to Niko's explanation of the choroid again.
+    demo: replayCue:S03_L11
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 the choroid, just behind the retina."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: int_retina
+    topic: internal_structures
+    chapter: Scene03
+    level: 0
+    mode: 1
+    prompt: Which inner layer at the back contains light-sensitive cells?
+    options:
+    - text: Retina
+      partId: retina
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Choroid
+      partId: choroid
+      misconception: 
+      correct: 0
+      feedback: The choroid is behind the retina and supplies it.
+    - text: Crystalline lens
+      partId: lens
+      misconception: lens-detects-light
+      correct: 0
+      feedback: The lens focuses light; it doesn't detect it.
+    hints:
+    - Look at the inner layer at the back of the eye.
+    - The choroid has blood vessels; which layer in front of it detects light?
+    - Listen to Niko's explanation of the retina again.
+    demo: replayCue:S03_L10
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 the retina contains light-sensitive cells."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: nerve_tap
+    topic: optic_nerve
+    chapter: Scene04
+    level: 0
+    mode: 1
+    prompt: Tap the structure that carries information from the retina to the brain.
+    options:
+    - text: Optic nerve
+      partId: optic_nerve
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Retina
+      partId: retina
+      misconception: 
+      correct: 0
+      feedback: The retina detects the light; something else carries the information
+        away.
+    - text: Brain
+      partId: brain
+      misconception: 
+      correct: 0
+      feedback: The brain receives the information at the end of the route.
+    hints:
+    - Look at what leaves the back of the eye.
+    - The retina detects light and the brain processes it. What connects them?
+    - Watch the route traced again.
+    demo: traceNerve
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 the optic nerve carries visual information to the
+      brain."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: nerve_carries
+    topic: optic_nerve
+    chapter: Scene09
+    level: 0
+    mode: 0
+    prompt: What carries information from the retina to the brain?
+    options:
+    - text: The optic nerve
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The crystalline lens
+      partId: 
+      misconception: lens-to-brain
+      correct: 0
+      feedback: The lens focuses light inside the eye.
+    - text: The choroid
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The choroid supplies oxygen and nutrients.
+    hints:
+    - Think about the bundle leaving the back of the eye.
+    - The lens focuses and the choroid supplies nutrients. Which one connects eye
+      and brain?
+    - Watch the route traced again.
+    demo: traceNerve
+    trialAfterAnswer: 0
+    correctFeedback: "Right \u2014 the optic nerve."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: nerve_signals
+    topic: optic_nerve
+    chapter: Scene09
+    level: 1
+    mode: 0
+    prompt: What travels along the optic nerve to the brain?
+    options:
+    - text: Electrical signals carrying visual information
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The image itself, like a photograph
+      partId: 
+      misconception: image-travels
+      correct: 0
+      feedback: "The image isn't sent like a photograph \u2014 the nerve carries
+        signals with the information."
+    - text: Light rays
+      partId: 
+      misconception: light-travels-to-brain
+      correct: 0
+      feedback: Light reaches the retina, where it is converted into electrical signals.
+    hints:
+    - Think about what the photoreceptors turn light into.
+    - Light stops at the retina. What does it become there?
+    - Watch the signals travel again.
+    demo: traceNerve
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 electrical signals carrying the visual information."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: pupil_predict
+    topic: pupil_response
+    chapter: Scene05
+    level: 2
+    mode: 0
+    prompt: 'Prediction (then we''ll test it): if the light becomes brighter, what
+      will the pupil do?'
+    options:
+    - text: Become smaller
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Become larger
+      partId: 
+      misconception: pupil-dilates-in-bright
+      correct: 0
+      feedback: In the trial the pupil became smaller in brighter light.
+    - text: Stay the same size
+      partId: 
+      misconception: pupil-fixed
+      correct: 0
+      feedback: In the trial the pupil changed size.
+    hints:
+    - Remember what you saw when you raised the brightness.
+    - In dim light the pupil became larger. What about bright light?
+    - Watch the trial again.
+    demo: pupilTrial
+    trialAfterAnswer: 1
+    correctFeedback: 'Your prediction matched: in bright light the pupil becomes
+      smaller.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: pupil_bright
+    topic: pupil_response
+    chapter: Scene05
+    level: 0
+    mode: 0
+    prompt: What happens to the pupil in brighter light?
+    options:
+    - text: It becomes smaller
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: It becomes larger
+      partId: 
+      misconception: pupil-dilates-in-bright
+      correct: 0
+      feedback: That happens in dimmer light.
+    - text: It disappears
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The pupil gets smaller but it is still an opening.
+    hints:
+    - Think back to the brightness experiment.
+    - In dimmer light it became larger. Bright light is the opposite.
+    - Watch the pupil respond again.
+    demo: pupilTrial
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 it becomes smaller."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: pupil_iris_role
+    topic: pupil_response
+    chapter: Scene05
+    level: 1
+    mode: 0
+    prompt: By controlling the size of the pupil, what does the iris regulate?
+    options:
+    - text: How much light enters the eye
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: How much the light bends
+      partId: 
+      misconception: iris-bends
+      correct: 0
+      feedback: The cornea and lens bend light.
+    - text: Which cells detect the light
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The retina's cells detect light.
+    hints:
+    - Think about what passes through the pupil.
+    - Bending light is the cornea and lens; detecting light is the retina. What does
+      the opening's size change?
+    - Listen to Niko's line about the iris again.
+    demo: replayCue:S05_L08
+    trialAfterAnswer: 0
+    correctFeedback: "Right \u2014 how much light enters the eye."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: acc_near
+    topic: accommodation
+    chapter: Scene06
+    level: 0
+    mode: 0
+    prompt: How does the lens change for a nearby object?
+    options:
+    - text: It becomes more curved
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: It becomes less curved
+      partId: 
+      misconception: near-flatter
+      correct: 0
+      feedback: That happens for a distant object.
+    - text: It doesn't change
+      partId: 
+      misconception: lens-rigid
+      correct: 0
+      feedback: The lens changes shape to focus at different distances.
+    hints:
+    - Remember the Near demonstration.
+    - For a distant object the lens became less curved. Near is the opposite.
+    - Watch the near and distant demonstrations again.
+    demo: replayAccommodation
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 it becomes more curved so the light can be focused
+      correctly."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: acc_distant
+    topic: accommodation
+    chapter: Scene06
+    level: 2
+    mode: 0
+    prompt: 'Prediction: an object moves far away. What will the lens do?'
+    options:
+    - text: Become less curved
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Become more curved
+      partId: 
+      misconception: far-rounder
+      correct: 0
+      feedback: That is what happens for a nearby object.
+    - text: Stay exactly the same
+      partId: 
+      misconception: lens-rigid
+      correct: 0
+      feedback: The lens keeps adjusting to the distance.
+    hints:
+    - Think about the Distant demonstration.
+    - Near made the lens more curved; far is the opposite.
+    - Watch the demonstrations again.
+    demo: replayAccommodation
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 for a distant object the lens becomes less curved."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: acc_name
+    topic: accommodation
+    chapter: Scene06
+    level: 1
+    mode: 0
+    prompt: What is the continuous adjustment of the lens to focus objects at different
+      distances called?
+    options:
+    - text: Accommodation
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Changing the pupil size
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: That's the iris's job, controlled by brightness.
+    - text: Bending light at the cornea
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The cornea bends light but doesn't change shape.
+    hints:
+    - Niko named it at the end of the lens demonstration.
+    - Changing pupil size and bending light at the cornea are different processes.
+    - Listen to Niko's line again.
+    demo: replayCue:S06_L04
+    trialAfterAnswer: 0
+    correctFeedback: "Correct \u2014 accommodation."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: img_orientation
+    topic: inverted_image
+    chapter: Scene07
+    level: 0
+    mode: 0
+    prompt: What kind of image does the lens form on the retina?
+    options:
+    - text: A real, inverted image
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: An upright image, like a photograph
+      partId: 
+      misconception: upright-retinal-image
+      correct: 0
+      feedback: 'Compare the stem: in the retinal image it points down.'
+    - text: No image at all
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The rays meet to form an image on the retina.
+    hints:
+    - Look at the image where the rays meet the retina.
+    - Compare the apple's stem in the image with the real apple.
+    - Watch the image form again.
+    demo: replayImage
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 a real, inverted image."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: img_perception
+    topic: inverted_image
+    chapter: Scene09
+    level: 1
+    mode: 0
+    prompt: The image on the retina is inverted. What does Niko say produces our
+      visual experience?
+    options:
+    - text: The brain processing the information carried by the signals
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The lens turning the image back the right way
+      partId: 
+      misconception: lens-reinverts
+      correct: 0
+      feedback: The lens is what forms the inverted image.
+    - text: A photograph of the retinal image sent to the brain
+      partId: 
+      misconception: photograph-to-brain
+      correct: 0
+      feedback: Niko said our visual experience is not simply a photograph of the
+        retinal image.
+    hints:
+    - Think about where the signals go.
+    - The lens forms the inverted image. What happens to the information afterwards?
+    - Listen to Niko's explanation again.
+    demo: replayCue:S09_L04
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 the brain processes the information carried by the
+      signals."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: rc_dim
+    topic: rods_cones
+    chapter: Scene08
+    level: 0
+    mode: 1
+    prompt: Which photoreceptors help us see in dim conditions?
+    options:
+    - text: Rods
+      partId: rods
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Cones
+      partId: cones
+      misconception: cones-for-dim
+      correct: 0
+      feedback: Cones work best in brighter light.
+    hints:
+    - Remember the tall, rod-shaped cells.
+    - Cones work best in brighter light. Which cells are the opposite?
+    - Listen to Niko's explanation of rods again.
+    demo: replayCue:S08_L02
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 rods are especially sensitive to low levels of light."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: rc_colour
+    topic: rods_cones
+    chapter: Scene08
+    level: 0
+    mode: 1
+    prompt: Which cells allow us to see colours and fine details?
+    options:
+    - text: Cones
+      partId: cones
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Rods
+      partId: rods
+      misconception: rods-see-colour
+      correct: 0
+      feedback: Rods mainly provide information about brightness rather than colour.
+    hints:
+    - Remember the cone-shaped cells.
+    - Rods mainly provide information about brightness rather than colour.
+    - Listen to Niko's explanation of cones again.
+    demo: replayCue:S08_L04
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 cones."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: rc_predict
+    topic: rods_cones
+    chapter: Scene08
+    level: 2
+    mode: 0
+    prompt: 'Prediction: in very dim light, which photoreceptors will respond better?'
+    options:
+    - text: Rods
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Cones
+      partId: 
+      misconception: cones-for-dim
+      correct: 0
+      feedback: Cones work best in brighter light.
+    hints:
+    - Think about which cells are sensitive to low light.
+    - Cones work best in brighter light.
+    - Compare the cells in dim light again.
+    demo: replayCue:S08_L02
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 rods respond well to low levels of light."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: path_after_retina
+    topic: complete_pathway
+    chapter: Scene10
+    level: 1
+    mode: 0
+    prompt: When light reaches the photoreceptors, what happens next?
+    options:
+    - text: It is converted into electrical signals
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: It travels as light to the brain
+      partId: 
+      misconception: light-travels-to-brain
+      correct: 0
+      feedback: Light stops at the retina; signals travel on.
+    - text: It is stored as a picture in the eye
+      partId: 
+      misconception: image-stored
+      correct: 0
+      feedback: The information is carried away as signals.
+    hints:
+    - Think about what the photoreceptors do with light.
+    - Light doesn't travel to the brain as light.
+    - Listen to Niko's line again.
+    demo: replayCue:S08_L05
+    trialAfterAnswer: 0
+    correctFeedback: "Yes \u2014 it is converted into electrical signals."
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: rebuild_journey
+    topic: complete_pathway
+    chapter: Scene10
+    level: 1
+    mode: 2
+    prompt: "Rebuild the journey: tap the stages in the order light and signals travel.
+      (Sclera and choroid were taught too \u2014 decide whether they belong on this
+      path.)"
+    options:
+    - text: Light from the object
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: The journey starts with light from the (lit) object reaching the
+        eye.
+    - text: Cornea
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: First, the light passes through the cornea, which bends it.
+    - text: Aqueous humour
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: After the cornea, the light travels through the aqueous humour.
+    - text: Pupil
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: The light then enters through the pupil.
+    - text: Crystalline lens
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: After the pupil, the light reaches the crystalline lens.
+    - text: Vitreous humour
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: After the lens, the light passes through the vitreous humour.
+    - text: Retina (photoreceptors)
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: The light reaches the retina, where photoreceptors detect it.
+    - text: Optic nerve
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: Electrical signals leave the eye through the optic nerve.
+    - text: Brain
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: The brain receives and processes the signals.
+    - text: Sclera
+      partId: 
+      misconception: sclera-in-light-path
+      correct: 0
+      feedback: The sclera protects the eye and keeps its shape, but light doesn't
+        pass through it on this journey.
+    - text: Choroid
+      partId: 
+      misconception: choroid-in-light-path
+      correct: 0
+      feedback: The choroid supplies oxygen and nutrients; light doesn't travel through
+        it to reach the photoreceptors.
+    hints:
+    - Start with where the light comes from.
+    - Light passes the front structures before the lens, and signals only start at
+      the retina.
+    - Watch the journey replay again.
+    demo: journey
+    trialAfterAnswer: 0
+    correctFeedback: You rebuilt the whole journey, from light reaching the eye to
+      the brain processing the information.
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"

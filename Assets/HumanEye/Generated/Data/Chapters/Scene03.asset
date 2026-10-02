@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene03
+  title: Inside the Eye
+  checkpoint: Closed eye at the hero point in the Scene 2 orientation; Niko beside
+    it; camera S02_EyeHero.
+  topics:
+  - internal_structures
+  steps:
+  - kind: 2
+    key: corneaClear
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S03_InsideHero
+    arg: 
+    value: 2.6
+    async: 1
+    note: 
+  - kind: 2
+    key: turnToSide
+    arg: 
+    value: 2.6
+    async: 0
+    note: 
+  - kind: 2
+    key: cutaway
+    arg: open
+    value: 1.8
+    async: 0
+    note: 
+  - kind: 2
+    key: niko
+    arg: Snap
+    value: 1.5
+    async: 0
+    note: 
+  - kind: 2
+    key: sequence
+    arg: aqueous,lens,vitreous,retina,choroid
+    value: 0.55
+    async: 0
+    note: 
+  - kind: 1
+    key: S03_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 4
+    key: 
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 6
+    key: topic:internal_structures
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S03_InsideHero
+    arg: 
+    value: 1.2
+    async: 0
+    note: 
+  - kind: 1
+    key: S03_L12
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore:
+  - partId: aqueous
+    label: Aqueous humour
+    steps:
+    - kind: 1
+      key: S03_L02
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 1
+      key: S03_L03
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.6
+      async: 0
+      note: 
+  - partId: lens
+    label: Crystalline lens
+    steps:
+    - kind: 1
+      key: S03_L04
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 0
+      key: S03_Lens_Close
+      arg: 
+      value: 1.2
+      async: 0
+      note: 
+    - kind: 1
+      key: S03_L05
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 2
+      key: lensFlex
+      arg: 
+      value: 0
+      async: 1
+      note: 
+    - kind: 1
+      key: S03_L06
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 0
+      key: S03_Part_lens
+      arg: 
+      value: 1.2
+      async: 0
+      note: 
+  - partId: vitreous
+    label: Vitreous humour
+    steps:
+    - kind: 0
+      key: S03_Vitreous_Back
+      arg: 
+      value: 2.2
+      async: 1
+      note: 
+    - kind: 1
+      key: S03_L07
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 1
+      key: S03_L08
+      arg: 
+      value: 0
+      async: 0
+      note: 
+  - partId: retina
+    label: Retina
+    steps:
+    - kind: 1
+      key: S03_L09
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 0
+      key: S03_Retina_Close
+      arg: 
+      value: 1.2
+      async: 0
+      note: 
+    - kind: 2
+      key: retinaDetail
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 1
+      key: S03_L10
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 0
+      key: S03_Choroid_Deep
+      arg: 
+      value: 1.4
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.8
+      async: 0
+      note: 
+  - partId: choroid
+    label: Choroid
+    steps:
+    - kind: 0
+      key: S03_Choroid_Deep
+      arg: 
+      value: 1.4
+      async: 0
+      note: 
+    - kind: 1
+      key: S03_L11
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.6
+      async: 0
+      note: 

@@ -1,0 +1,218 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="Hud.uss" />
+    <ui:VisualElement name="root" class="root" picking-mode="Ignore">
+        <ui:VisualElement name="labels-layer" class="labels-layer" picking-mode="Ignore" />
+        <ui:VisualElement name="safe" class="safe" picking-mode="Ignore">
+
+            <ui:VisualElement name="topbar" class="topbar" picking-mode="Ignore">
+                <ui:VisualElement class="title-block panel">
+                    <ui:Label name="chapter-title" text="Observatory of Vision" class="chapter-title" />
+                    <ui:VisualElement name="progress" class="progress" />
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement name="top-buttons" class="top-buttons" picking-mode="Ignore">
+                    <ui:Button name="btn-ask" text="Ask Niko" class="btn btn-accent" />
+                    <ui:Button name="btn-replay-expl" text="Replay explanation" class="btn" />
+                    <ui:Button name="btn-pause" text="Pause" class="btn" />
+                    <ui:Button name="btn-help" text="Help" class="btn" />
+                    <ui:Button name="btn-review" text="Review" class="btn" />
+                    <ui:Button name="btn-settings" text="Settings" class="btn" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Label name="prompt-banner" class="prompt-banner panel" />
+            <ui:Label name="lens-state" class="lens-state panel" />
+
+            <ui:VisualElement name="middle" class="middle" picking-mode="Ignore">
+                <ui:VisualElement name="part-list" class="part-list panel">
+                    <ui:Label text="Parts" class="panel-title" />
+                    <ui:VisualElement name="part-buttons" />
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement name="view-controls" class="view-controls panel">
+                    <ui:Label text="View" class="panel-title" />
+                    <ui:Button name="view-left" text="◀ Turn" class="btn small" />
+                    <ui:Button name="view-right" text="Turn ▶" class="btn small" />
+                    <ui:Button name="view-in" text="Zoom +" class="btn small" />
+                    <ui:Button name="view-out" text="Zoom −" class="btn small" />
+                    <ui:Button name="view-reset" text="Reset view" class="btn small" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="insets" class="insets" picking-mode="Ignore">
+                <ui:VisualElement name="inset-retina" class="inset panel">
+                    <ui:VisualElement name="inset-retina-image" class="inset-image retina-bg" />
+                    <ui:Label text="Image on the retina: real, inverted" class="inset-caption" />
+                </ui:VisualElement>
+                <ui:VisualElement name="inset-perception" class="inset panel">
+                    <ui:VisualElement name="inset-perception-image" class="inset-image" />
+                    <ui:Label text="Visual perception: what we see" class="inset-caption" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="journey" class="journey panel" />
+
+            <ui:VisualElement name="bottom" class="bottom" picking-mode="Ignore">
+                <ui:VisualElement name="sim-panel" class="sim-panel panel">
+                    <ui:Label name="sim-title" class="panel-title" />
+                    <ui:VisualElement name="sim-brightness" class="row-wrap">
+                        <ui:Button name="sim-dim-preset" text="Dim" class="btn" />
+                        <ui:Button name="sim-minus" text="−" class="btn square" />
+                        <ui:Slider name="sim-brightness-slider" low-value="0" high-value="1" class="slider" />
+                        <ui:Button name="sim-plus" text="+" class="btn square" />
+                        <ui:Button name="sim-bright-preset" text="Bright" class="btn" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sim-distance" class="row-wrap">
+                        <ui:Button name="sim-near" text="Near object" class="btn" />
+                        <ui:Button name="sim-distant" text="Distant object" class="btn" />
+                        <ui:Slider name="sim-distance-slider" low-value="0" high-value="1" class="slider" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="sim-photo" class="row-wrap">
+                        <ui:Button name="sim-light-dim" text="Dim light" class="btn" />
+                        <ui:Button name="sim-light-bright" text="Bright light" class="btn" />
+                        <ui:Label name="sim-response" class="readout" />
+                    </ui:VisualElement>
+                    <ui:Label name="sim-note" class="note" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="subtitle-panel" class="subtitle-panel panel">
+                    <ui:Label name="speaker" class="speaker" />
+                    <ui:Label name="subtitle-text" class="subtitle-text" />
+                    <ui:Button name="btn-read-continue" text="Continue" class="btn btn-accent" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="action-row" class="action-row" picking-mode="Ignore">
+                    <ui:Button name="btn-free-continue" text="Continue ▶" class="btn btn-accent big" />
+                    <ui:VisualElement name="abilities" class="abilities panel">
+                        <ui:Button name="ab-SCAN" text="SCAN" class="btn ability" />
+                        <ui:Button name="ab-INSIDE" text="INSIDE" class="btn ability" />
+                        <ui:Button name="ab-SIMULATE" text="SIMULATE" class="btn ability" />
+                        <ui:Button name="ab-TRACE" text="TRACE" class="btn ability" />
+                        <ui:Button name="ab-FREEZE" text="FREEZE" class="btn ability" />
+                        <ui:Button name="ab-REPLAY" text="REPLAY" class="btn ability" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="activity" class="modal-layer" picking-mode="Ignore">
+            <ui:VisualElement class="card panel">
+                <ui:Label name="act-title" class="card-title" />
+                <ui:Label name="act-tag" class="tag" />
+                <ui:Label name="act-prompt" class="card-text" />
+                <ui:VisualElement name="act-slots" class="row-wrap" />
+                <ui:VisualElement name="act-options" class="row-wrap" />
+                <ui:Label name="act-tap-hint" text="Tap the structure on the model or in the Parts list." class="note" />
+                <ui:Label name="act-feedback" class="feedback" />
+                <ui:Label name="act-hint" class="hint" />
+                <ui:VisualElement name="act-buttons" class="row-wrap" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="ask-panel" class="side-panel panel">
+            <ui:VisualElement class="row">
+                <ui:Label text="Ask Niko" class="card-title" />
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:Button name="ask-close" text="Close" class="btn small" />
+            </ui:VisualElement>
+            <ui:Label text="Local guide: curated answers from this investigation. Works offline. Not a generative AI." class="tag" />
+            <ui:VisualElement name="ask-suggestions" class="row-wrap" />
+            <ui:VisualElement class="row">
+                <ui:TextField name="ask-input" max-length="200" class="ask-input" />
+                <ui:Button name="ask-submit" text="Ask" class="btn btn-accent" />
+            </ui:VisualElement>
+            <ui:Label name="ask-question" class="note" />
+            <ui:Label name="ask-answer" class="card-text" />
+            <ui:Label name="ask-source" class="tag" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="help-panel" class="modal-layer">
+            <ui:VisualElement class="card panel">
+                <ui:Label text="How to investigate" class="card-title" />
+                <ui:Label class="card-text" text="• Click or tap glowing parts, their labels, or the Parts list to explore them.&#10;• Drag on the model to turn it; use the View buttons or mouse wheel to zoom. Nothing needs two fingers.&#10;• Niko's abilities: SCAN identifies structures, INSIDE moves inside the eye, SIMULATE changes brightness or distance, TRACE follows light or signals, FREEZE stops the biology mid-action, REPLAY repeats a demonstration.&#10;• Replay explanation repeats Niko's last line. Pause stops everything; menus keep working.&#10;• Ask Niko answers questions about what you've explored so far." />
+                <ui:Label text="Credits &amp; licences" class="panel-title" />
+                <ui:Label class="note" text="Anatomy models (skull, brain): Z-Anatomy – The libre 3D atlas of anatomy, CC BY-SA 4.0, derived from BodyParts3D © The Database Center for Life Science, CC BY-SA 2.1 Japan. Apple, distant tree and studio HDRI: Poly Haven (CC0). Sound effects: Kenney (CC0). Font: Atkinson Hyperlegible © 2020 Braille Institute of America, Inc., SIL Open Font License 1.1. Human figure: supplied project asset (licence to be confirmed). Narration: provisional synthetic speech. Eye, Niko, observatory and music: created for this module." />
+                <ui:Button name="help-close" text="Close" class="btn btn-accent" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="settings-panel" class="modal-layer">
+            <ui:ScrollView class="card panel">
+                <ui:Label text="Settings" class="card-title" />
+                <ui:Toggle name="set-subtitles" label="Subtitles" />
+                <ui:VisualElement class="row-wrap">
+                    <ui:Label text="Subtitle size" class="setting-label" />
+                    <ui:Button name="set-size-0" text="S" class="btn square" />
+                    <ui:Button name="set-size-1" text="M" class="btn square" />
+                    <ui:Button name="set-size-2" text="L" class="btn square" />
+                    <ui:Button name="set-size-3" text="XL" class="btn square" />
+                </ui:VisualElement>
+                <ui:Slider name="set-narration" label="Narration volume" low-value="0" high-value="1" />
+                <ui:Slider name="set-music" label="Music volume" low-value="0" high-value="1" />
+                <ui:Slider name="set-sfx" label="Effects volume" low-value="0" high-value="1" />
+                <ui:Toggle name="set-reduced" label="Reduced motion (short fades instead of long camera travel)" />
+                <ui:Toggle name="set-skip-camera" label="Skip camera travel" />
+                <ui:Toggle name="set-wait" label="Wait for me to tap Continue after each line" />
+                <ui:Toggle name="set-labels" label="Show structure labels" />
+                <ui:VisualElement class="row-wrap">
+                    <ui:Label text="Quality" class="setting-label" />
+                    <ui:Button name="set-q-auto" text="Auto" class="btn" />
+                    <ui:Button name="set-q-pc" text="PC" class="btn" />
+                    <ui:Button name="set-q-tablet" text="Tablet" class="btn" />
+                </ui:VisualElement>
+                <ui:Label name="set-info" class="note" />
+                <ui:VisualElement class="row-wrap">
+                    <ui:Button name="set-reset" text="Reset all progress" class="btn btn-danger" />
+                    <ui:Button name="settings-close" text="Close" class="btn btn-accent" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="review-panel" class="modal-layer">
+            <ui:ScrollView class="card panel">
+                <ui:Label text="Review: your discoveries" class="card-title" />
+                <ui:Label text="Seen = explained to you. Secure = answered two different questions correctly without help. Practice items are optional additions." class="tag" />
+                <ui:VisualElement name="review-topics" />
+                <ui:Label name="review-stamps" class="card-text" />
+                <ui:VisualElement class="row-wrap">
+                    <ui:Button name="review-restart" text="Restart this scene" class="btn" />
+                    <ui:Button name="review-close" text="Close" class="btn btn-accent" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="pause-overlay" class="modal-layer dim">
+            <ui:VisualElement class="card panel">
+                <ui:Label text="Paused" class="card-title" />
+                <ui:Label text="Narration, camera and the demonstration are stopped exactly where they were." class="card-text" />
+                <ui:VisualElement class="row-wrap">
+                    <ui:Button name="pause-resume" text="Resume" class="btn btn-accent big" />
+                    <ui:Button name="pause-restart" text="Restart this scene" class="btn" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="fade" class="fade" picking-mode="Ignore" />
+        <ui:VisualElement name="end-menu" class="modal-layer black">
+            <ui:VisualElement class="card panel">
+                <ui:Button name="end-replay" text="Replay the investigation" class="btn btn-accent big" />
+                <ui:Button name="end-review" text="Review discoveries" class="btn big" />
+                <ui:Button name="end-exit" text="Exit" class="btn big" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="start-screen" class="modal-layer start">
+            <ui:VisualElement class="card panel start-card">
+                <ui:Label text="Observatory of Vision" class="start-title" />
+                <ui:Label text="A Human Eye investigation with Niko, your Vision Investigator Officer." class="card-text" />
+                <ui:Label name="start-notice" class="note" />
+                <ui:Button name="start-begin" text="Start" class="btn btn-accent big" />
+                <ui:Button name="start-continue" text="Continue" class="btn big" />
+                <ui:Button name="start-settings" text="Settings" class="btn" />
+                <ui:Label text="Sound on recommended. Narration is provisional synthetic speech until final recordings are added; every line is also shown as text." class="note" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:Label name="toast" class="toast panel" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

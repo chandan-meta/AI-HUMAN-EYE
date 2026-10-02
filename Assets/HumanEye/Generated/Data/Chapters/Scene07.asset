@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene07
+  title: Image Forms on the Retina
+  checkpoint: Cutaway eye; apple at 6 eye-radii with the lens matched; light through
+    the lens; no image yet; camera S06_Vitreous.
+  topics:
+  - inverted_image
+  steps:
+  - kind: 0
+    key: S07_Vitreous
+    arg: 
+    value: 2.5
+    async: 1
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 5
+    value: 2.5
+    async: 0
+    note: 
+  - kind: 2
+    key: imageForm
+    arg: 
+    value: 1.5
+    async: 1
+    note: 
+  - kind: 1
+    key: S07_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S07_Retina
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 2
+    key: imageInset
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S07_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 7
+    key: inspectImage
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S07_RetinaCloser
+    arg: 
+    value: 1.8
+    async: 0
+    note: 
+  - kind: 1
+    key: S07_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore: []

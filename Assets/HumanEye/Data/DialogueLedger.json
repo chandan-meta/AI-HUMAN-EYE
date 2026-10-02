@@ -1,0 +1,1130 @@
+{
+ "source": "Docs/Storyboard/HUMAN EYE.docx",
+ "cues": [
+  {
+   "id": "S02_L01",
+   "scene": "Scene02",
+   "sequence": 1,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Hey! I’m Niko. Your Vision Investigator Officer.",
+   "filename": "01_hey_im_niko_your",
+   "audio": "Assets/HumanEye/Audio/VO/01_hey_im_niko_your.wav",
+   "segments": [
+    "Hey! I’m Niko. Your Vision Investigator Officer."
+   ],
+   "visualCue": "Niko materialises and waves; medium shot",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 74
+  },
+  {
+   "id": "S02_L02",
+   "scene": "Scene02",
+   "sequence": 2,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "So you want to know how light becomes sight?",
+   "filename": "02_so_you_want_to",
+   "audio": "Assets/HumanEye/Audio/VO/02_so_you_want_to.wav",
+   "segments": [
+    "So you want to know how light becomes sight?"
+   ],
+   "visualCue": "Niko gestures toward the starlight beam",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 75
+  },
+  {
+   "id": "S02_L03",
+   "scene": "Scene02",
+   "sequence": 3,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Then watching from out here won't help.",
+   "filename": "03_then_watching_from_out",
+   "audio": "Assets/HumanEye/Audio/VO/03_then_watching_from_out.wav",
+   "segments": [
+    "Then watching from out here won't help."
+   ],
+   "visualCue": "Niko turns toward the subdued display; human figure appears after this line",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 76
+  },
+  {
+   "id": "S02_L04",
+   "scene": "Scene02",
+   "sequence": 4,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "We need to go inside somewhere humans can't.",
+   "filename": "04_we_need_to_go",
+   "audio": "Assets/HumanEye/Audio/VO/04_we_need_to_go.wav",
+   "segments": [
+    "We need to go inside somewhere humans can't."
+   ],
+   "visualCue": "Wide: Niko and the revealed human",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 79
+  },
+  {
+   "id": "S02_L05",
+   "scene": "Scene02",
+   "sequence": 5,
+   "speaker": "Niko",
+   "type": "PromptVO",
+   "layer": "StoryboardCore",
+   "text": "Click on the SCAN button.",
+   "filename": "05_click_on_the_scan",
+   "audio": "Assets/HumanEye/Audio/VO/05_click_on_the_scan.wav",
+   "segments": [
+    "Click on the SCAN button."
+   ],
+   "visualCue": "Niko raises his hand; SCAN button pulses",
+   "completionEvent": "audio_complete_then_scan_pressed",
+   "docxParagraph": 81
+  },
+  {
+   "id": "S02_L06",
+   "scene": "Scene02",
+   "sequence": 6,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "There.",
+   "filename": "06_there",
+   "audio": "Assets/HumanEye/Audio/VO/06_there.wav",
+   "segments": [
+    "There."
+   ],
+   "visualCue": "One eye illuminates as the line starts",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 90
+  },
+  {
+   "id": "S02_L07",
+   "scene": "Scene02",
+   "sequence": 7,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Your first destination.",
+   "filename": "07_your_first_destination",
+   "audio": "Assets/HumanEye/Audio/VO/07_your_first_destination.wav",
+   "segments": [
+    "Your first destination."
+   ],
+   "visualCue": "Anatomical close-up of the eye inside the skull",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 93
+  },
+  {
+   "id": "S02_L08",
+   "scene": "Scene02",
+   "sequence": 8,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Here it is. The human eye.",
+   "filename": "08_here_it_is_the",
+   "audio": "Assets/HumanEye/Audio/VO/08_here_it_is_the.wav",
+   "segments": [
+    "Here it is. The human eye."
+   ],
+   "visualCue": "Enlarged eye in front of learner, slow rotation",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 101
+  },
+  {
+   "id": "S02_L09",
+   "scene": "Scene02",
+   "sequence": 9,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It has several parts, and each one has an important job.",
+   "filename": "09_it_has_several_parts",
+   "audio": "Assets/HumanEye/Audio/VO/09_it_has_several_parts.wav",
+   "segments": [
+    "It has several parts, and each one has an important job."
+   ],
+   "visualCue": "Niko gestures toward the eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 104
+  },
+  {
+   "id": "S02_L10",
+   "scene": "Scene02",
+   "sequence": 10,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Click or ask Niko about each part to explore what it does.",
+   "filename": "10_click_or_ask_niko",
+   "audio": "Assets/HumanEye/Audio/VO/10_click_or_ask_niko.wav",
+   "segments": [
+    "Click or ask Niko about each part to explore what it does."
+   ],
+   "visualCue": "After Niko's snap: sclera, cornea, iris, pupil highlight in turn",
+   "completionEvent": "audio_complete_then_exploration",
+   "docxParagraph": 107
+  },
+  {
+   "id": "S02_L11",
+   "scene": "Scene02",
+   "sequence": 11,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This tough white outer layer is called the sclera. It protects the eye and helps maintain its shape.",
+   "filename": "11_this_tough_white_outer",
+   "audio": "Assets/HumanEye/Audio/VO/11_this_tough_white_outer.wav",
+   "segments": [
+    "This tough white outer layer is called the sclera.",
+    "It protects the eye and helps maintain its shape."
+   ],
+   "visualCue": "Close-up of sclera; other parts translucent",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 117
+  },
+  {
+   "id": "S02_L12",
+   "scene": "Scene02",
+   "sequence": 12,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This transparent, curved layer at the front is the cornea. It protects the eye and bends incoming light.",
+   "filename": "12_this_transparent_curved_layer",
+   "audio": "Assets/HumanEye/Audio/VO/12_this_transparent_curved_layer.wav",
+   "segments": [
+    "This transparent, curved layer at the front is the cornea.",
+    "It protects the eye and bends incoming light."
+   ],
+   "visualCue": "Close-up of cornea profile; other parts translucent",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 125
+  },
+  {
+   "id": "S02_L13",
+   "scene": "Scene02",
+   "sequence": 13,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This coloured part is the iris. It controls the size of the pupil.",
+   "filename": "13_this_coloured_part_is",
+   "audio": "Assets/HumanEye/Audio/VO/13_this_coloured_part_is.wav",
+   "segments": [
+    "This coloured part is the iris. It controls the size of the pupil."
+   ],
+   "visualCue": "Front close-up of iris; other parts translucent",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 133
+  },
+  {
+   "id": "S02_L14",
+   "scene": "Scene02",
+   "sequence": 14,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This opening is the pupil. Light enters the eye through it.",
+   "filename": "14_this_opening_is_the",
+   "audio": "Assets/HumanEye/Audio/VO/14_this_opening_is_the.wav",
+   "segments": [
+    "This opening is the pupil. Light enters the eye through it."
+   ],
+   "visualCue": "Pupil rim highlighted as an opening; camera pulls back",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 139
+  },
+  {
+   "id": "S02_L15",
+   "scene": "Scene02",
+   "sequence": 15,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "We’ve seen the parts we can see from the outside. Now, let’s look inside.",
+   "filename": "15_weve_seen_the_parts",
+   "audio": "Assets/HumanEye/Audio/VO/15_weve_seen_the_parts.wav",
+   "segments": [
+    "We’ve seen the parts we can see from the outside. Now, let’s look inside."
+   ],
+   "visualCue": "Complete eye; Niko gestures",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 143
+  },
+  {
+   "id": "S02_L16",
+   "scene": "Scene02",
+   "sequence": 16,
+   "speaker": "Niko",
+   "type": "PromptVO",
+   "layer": "StoryboardCore",
+   "text": "Click on the Inside View button to see how the eye looks from the inside.",
+   "filename": "16_click_on_the_inside",
+   "audio": "Assets/HumanEye/Audio/VO/16_click_on_the_inside.wav",
+   "segments": [
+    "Click on the Inside View button to see how the eye looks from the inside."
+   ],
+   "visualCue": "Inside View button enabled",
+   "completionEvent": "audio_complete_then_inside_pressed",
+   "docxParagraph": 144
+  },
+  {
+   "id": "S03_L01",
+   "scene": "Scene03",
+   "sequence": 17,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Click or ask Niko about each part to explore what it does.",
+   "filename": "17_click_or_ask_niko",
+   "audio": "Assets/HumanEye/Audio/VO/17_click_or_ask_niko.wav",
+   "segments": [
+    "Click or ask Niko about each part to explore what it does."
+   ],
+   "visualCue": "Cutaway eye; internal parts highlight in turn",
+   "completionEvent": "audio_complete_then_exploration",
+   "docxParagraph": 150
+  },
+  {
+   "id": "S03_L02",
+   "scene": "Scene03",
+   "sequence": 18,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This space between the cornea and the lens contains a clear fluid called aqueous humour.",
+   "filename": "18_this_space_between_the",
+   "audio": "Assets/HumanEye/Audio/VO/18_this_space_between_the.wav",
+   "segments": [
+    "This space between the cornea and the lens contains a clear fluid called aqueous humour."
+   ],
+   "visualCue": "Aqueous region highlighted, camera closer",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 161
+  },
+  {
+   "id": "S03_L03",
+   "scene": "Scene03",
+   "sequence": 19,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It helps nourish the front parts of the eye and helps maintain pressure inside the eye.",
+   "filename": "19_it_helps_nourish_the",
+   "audio": "Assets/HumanEye/Audio/VO/19_it_helps_nourish_the.wav",
+   "segments": [
+    "It helps nourish the front parts of the eye and helps maintain pressure inside the eye."
+   ],
+   "visualCue": "Hold on aqueous region",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 163
+  },
+  {
+   "id": "S03_L04",
+   "scene": "Scene03",
+   "sequence": 20,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Behind the pupil is the eye’s natural crystalline lens.",
+   "filename": "20_behind_the_pupil_is",
+   "audio": "Assets/HumanEye/Audio/VO/20_behind_the_pupil_is.wav",
+   "segments": [
+    "Behind the pupil is the eye’s natural crystalline lens."
+   ],
+   "visualCue": "Lens highlighted, camera closer",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 169
+  },
+  {
+   "id": "S03_L05",
+   "scene": "Scene03",
+   "sequence": 21,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It is transparent, flexible and biconvex, meaning it bulges outward on both sides.",
+   "filename": "21_it_is_transparent_flexible",
+   "audio": "Assets/HumanEye/Audio/VO/21_it_is_transparent_flexible.wav",
+   "segments": [
+    "It is transparent, flexible and biconvex, meaning it bulges outward on both sides."
+   ],
+   "visualCue": "Lens close-up, biconvex profile",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 172
+  },
+  {
+   "id": "S03_L06",
+   "scene": "Scene03",
+   "sequence": 22,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It can change its shape to help focus light from objects at different distances.",
+   "filename": "22_it_can_change_its",
+   "audio": "Assets/HumanEye/Audio/VO/22_it_can_change_its.wav",
+   "segments": [
+    "It can change its shape to help focus light from objects at different distances."
+   ],
+   "visualCue": "Lens changes shape slightly; view widens",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 175
+  },
+  {
+   "id": "S03_L07",
+   "scene": "Scene03",
+   "sequence": 23,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Most of the space behind the lens is filled with a clear, jelly-like substance called vitreous humour.",
+   "filename": "23_most_of_the_space",
+   "audio": "Assets/HumanEye/Audio/VO/23_most_of_the_space.wav",
+   "segments": [
+    "Most of the space behind the lens is filled with a clear, jelly-like substance called vitreous humour."
+   ],
+   "visualCue": "Camera moves through vitreous toward the back",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 182
+  },
+  {
+   "id": "S03_L08",
+   "scene": "Scene03",
+   "sequence": 24,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It helps maintain the shape of the eye.",
+   "filename": "24_it_helps_maintain_the",
+   "audio": "Assets/HumanEye/Audio/VO/24_it_helps_maintain_the.wav",
+   "segments": [
+    "It helps maintain the shape of the eye."
+   ],
+   "visualCue": "Hold on vitreous region",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 184
+  },
+  {
+   "id": "S03_L09",
+   "scene": "Scene03",
+   "sequence": 25,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This inner layer at the back is the retina.",
+   "filename": "25_this_inner_layer_at",
+   "audio": "Assets/HumanEye/Audio/VO/25_this_inner_layer_at.wav",
+   "segments": [
+    "This inner layer at the back is the retina."
+   ],
+   "visualCue": "Camera very close to retinal surface",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 190
+  },
+  {
+   "id": "S03_L10",
+   "scene": "Scene03",
+   "sequence": 26,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It contains light-sensitive cells that detect light.",
+   "filename": "26_it_contains_lightsensitive_cells",
+   "audio": "Assets/HumanEye/Audio/VO/26_it_contains_lightsensitive_cells.wav",
+   "segments": [
+    "It contains light-sensitive cells that detect light."
+   ],
+   "visualCue": "Retinal detail; camera moves slightly deeper",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 193
+  },
+  {
+   "id": "S03_L11",
+   "scene": "Scene03",
+   "sequence": 27,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Behind the retina is the choroid, a layer rich in blood vessels that supplies the eye with oxygen and nutrients.",
+   "filename": "27_behind_the_retina_is",
+   "audio": "Assets/HumanEye/Audio/VO/27_behind_the_retina_is.wav",
+   "segments": [
+    "Behind the retina is the choroid, a layer rich in blood vessels that supplies the eye with oxygen and nutrients."
+   ],
+   "visualCue": "Choroid highlighted behind retina",
+   "completionEvent": "audio_complete_marks_part",
+   "docxParagraph": 199
+  },
+  {
+   "id": "S03_L12",
+   "scene": "Scene03",
+   "sequence": 28,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Now we’ve explored the main structures of the eye.",
+   "filename": "28_now_weve_explored_the",
+   "audio": "Assets/HumanEye/Audio/VO/28_now_weve_explored_the.wav",
+   "segments": [
+    "Now we’ve explored the main structures of the eye."
+   ],
+   "visualCue": "Complete cutaway eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 202
+  },
+  {
+   "id": "S04_L01",
+   "scene": "Scene04",
+   "sequence": 29,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "But there’s something important we haven’t explored yet.",
+   "filename": "29_but_theres_something_important",
+   "audio": "Assets/HumanEye/Audio/VO/29_but_theres_something_important.wav",
+   "segments": [
+    "But there’s something important we haven’t explored yet."
+   ],
+   "visualCue": "Camera begins moving toward the back of the eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 209
+  },
+  {
+   "id": "S04_L02",
+   "scene": "Scene04",
+   "sequence": 30,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "We know that the retina detects light…",
+   "filename": "30_we_know_that_the",
+   "audio": "Assets/HumanEye/Audio/VO/30_we_know_that_the.wav",
+   "segments": [
+    "We know that the retina detects light…"
+   ],
+   "visualCue": "Back of the eye comes closer",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 212
+  },
+  {
+   "id": "S04_L03",
+   "scene": "Scene04",
+   "sequence": 31,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "…but how does that information reach the brain?",
+   "filename": "31_but_how_does_that",
+   "audio": "Assets/HumanEye/Audio/VO/31_but_how_does_that.wav",
+   "segments": [
+    "…but how does that information reach the brain?"
+   ],
+   "visualCue": "Nerve bundle extends into view",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 215
+  },
+  {
+   "id": "S04_L04",
+   "scene": "Scene04",
+   "sequence": 32,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Let’s follow it.",
+   "filename": "32_lets_follow_it",
+   "audio": "Assets/HumanEye/Audio/VO/32_lets_follow_it.wav",
+   "segments": [
+    "Let’s follow it."
+   ],
+   "visualCue": "Bundle highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 218
+  },
+  {
+   "id": "S04_L05",
+   "scene": "Scene04",
+   "sequence": 33,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This bundle is the optic nerve.",
+   "filename": "33_this_bundle_is_the",
+   "audio": "Assets/HumanEye/Audio/VO/33_this_bundle_is_the.wav",
+   "segments": [
+    "This bundle is the optic nerve."
+   ],
+   "visualCue": "Close on optic nerve leaving the eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 224
+  },
+  {
+   "id": "S04_L06",
+   "scene": "Scene04",
+   "sequence": 34,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It carries visual information from the retina to the brain.",
+   "filename": "34_it_carries_visual_information",
+   "audio": "Assets/HumanEye/Audio/VO/34_it_carries_visual_information.wav",
+   "segments": [
+    "It carries visual information from the retina to the brain."
+   ],
+   "visualCue": "Camera follows nerve toward the brain",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 227
+  },
+  {
+   "id": "S04_L07",
+   "scene": "Scene04",
+   "sequence": 35,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The brain receives and processes this information so that we can see.",
+   "filename": "35_the_brain_receives_and",
+   "audio": "Assets/HumanEye/Audio/VO/35_the_brain_receives_and.wav",
+   "segments": [
+    "The brain receives and processes this information so that we can see."
+   ],
+   "visualCue": "Visual processing area at back of brain highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 231
+  },
+  {
+   "id": "S04_L08",
+   "scene": "Scene04",
+   "sequence": 36,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "So the eye and brain are connected through the optic nerve.",
+   "filename": "36_so_the_eye_and",
+   "audio": "Assets/HumanEye/Audio/VO/36_so_the_eye_and.wav",
+   "segments": [
+    "So the eye and brain are connected through the optic nerve."
+   ],
+   "visualCue": "Wide: eye, optic nerve and brain together",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 234
+  },
+  {
+   "id": "S05_L01",
+   "scene": "Scene05",
+   "sequence": 37,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "We've been looking at the eye. Now let’s follow what happens when you look at an object.",
+   "filename": "37_weve_been_looking_at",
+   "audio": "Assets/HumanEye/Audio/VO/37_weve_been_looking_at.wav",
+   "segments": [
+    "We've been looking at the eye. Now let’s follow what happens when you look at an object."
+   ],
+   "visualCue": "Illuminated apple and eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 242
+  },
+  {
+   "id": "S05_L02",
+   "scene": "Scene05",
+   "sequence": 38,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Vision begins when light from an object reaches the eye.",
+   "filename": "38_vision_begins_when_light",
+   "audio": "Assets/HumanEye/Audio/VO/38_vision_begins_when_light.wav",
+   "segments": [
+    "Vision begins when light from an object reaches the eye."
+   ],
+   "visualCue": "Light travels from the object to the eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 245
+  },
+  {
+   "id": "S05_L03",
+   "scene": "Scene05",
+   "sequence": 39,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "First, the light passes through the cornea, which bends it.",
+   "filename": "39_first_the_light_passes",
+   "audio": "Assets/HumanEye/Audio/VO/39_first_the_light_passes.wav",
+   "segments": [
+    "First, the light passes through the cornea, which bends it."
+   ],
+   "visualCue": "Rays bend at the cornea",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 248
+  },
+  {
+   "id": "S05_L04",
+   "scene": "Scene05",
+   "sequence": 40,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "It then travels through the aqueous humour and enters through the pupil.",
+   "filename": "40_it_then_travels_through",
+   "audio": "Assets/HumanEye/Audio/VO/40_it_then_travels_through.wav",
+   "segments": [
+    "It then travels through the aqueous humour and enters through the pupil."
+   ],
+   "visualCue": "Rays through aqueous and pupil",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 251
+  },
+  {
+   "id": "S05_L05",
+   "scene": "Scene05",
+   "sequence": 41,
+   "speaker": "Niko",
+   "type": "PromptVO",
+   "layer": "StoryboardCore",
+   "text": "Change the brightness and observe what happens to the pupil.",
+   "filename": "41_change_the_brightness_and",
+   "audio": "Assets/HumanEye/Audio/VO/41_change_the_brightness_and.wav",
+   "segments": [
+    "Change the brightness and observe what happens to the pupil."
+   ],
+   "visualCue": "Brightness controls enabled",
+   "completionEvent": "audio_complete_then_brightness",
+   "docxParagraph": 256
+  },
+  {
+   "id": "S05_L06",
+   "scene": "Scene05",
+   "sequence": 42,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "In bright light, the pupil becomes smaller.",
+   "filename": "42_in_bright_light_the",
+   "audio": "Assets/HumanEye/Audio/VO/42_in_bright_light_the.wav",
+   "segments": [
+    "In bright light, the pupil becomes smaller."
+   ],
+   "visualCue": "Pupil has constricted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 260
+  },
+  {
+   "id": "S05_L07",
+   "scene": "Scene05",
+   "sequence": 43,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "In dimmer light, the pupil becomes larger.",
+   "filename": "43_in_dimmer_light_the",
+   "audio": "Assets/HumanEye/Audio/VO/43_in_dimmer_light_the.wav",
+   "segments": [
+    "In dimmer light, the pupil becomes larger."
+   ],
+   "visualCue": "Pupil has dilated",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 264
+  },
+  {
+   "id": "S05_L08",
+   "scene": "Scene05",
+   "sequence": 44,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The iris controls the size of the pupil and therefore regulates how much light enters the eye.",
+   "filename": "44_the_iris_controls_the",
+   "audio": "Assets/HumanEye/Audio/VO/44_the_iris_controls_the.wav",
+   "segments": [
+    "The iris controls the size of the pupil and therefore regulates how much light enters the eye."
+   ],
+   "visualCue": "Iris highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 266
+  },
+  {
+   "id": "S06_L01",
+   "scene": "Scene06",
+   "sequence": 45,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "After passing through the pupil, the light reaches the eye’s crystalline lens.",
+   "filename": "45_after_passing_through_the",
+   "audio": "Assets/HumanEye/Audio/VO/45_after_passing_through_the.wav",
+   "segments": [
+    "After passing through the pupil, the light reaches the eye’s crystalline lens."
+   ],
+   "visualCue": "Lens close-up; rays bend through lens",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 273
+  },
+  {
+   "id": "S06_L02",
+   "scene": "Scene06",
+   "sequence": 46,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "For a nearby object, the lens becomes more curved so that the light can be focused correctly.",
+   "filename": "46_for_a_nearby_object",
+   "audio": "Assets/HumanEye/Audio/VO/46_for_a_nearby_object.wav",
+   "segments": [
+    "For a nearby object, the lens becomes more curved so that the light can be focused correctly."
+   ],
+   "visualCue": "Near object; lens more curved",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 280
+  },
+  {
+   "id": "S06_L03",
+   "scene": "Scene06",
+   "sequence": 47,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "For a distant object, the lens becomes less curved.",
+   "filename": "47_for_a_distant_object",
+   "audio": "Assets/HumanEye/Audio/VO/47_for_a_distant_object.wav",
+   "segments": [
+    "For a distant object, the lens becomes less curved."
+   ],
+   "visualCue": "Distant object; lens less curved",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 285
+  },
+  {
+   "id": "S06_L04",
+   "scene": "Scene06",
+   "sequence": 48,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "This continuous adjustment of the lens to focus objects at different distances is called accommodation.",
+   "filename": "48_this_continuous_adjustment_of",
+   "audio": "Assets/HumanEye/Audio/VO/48_this_continuous_adjustment_of.wav",
+   "segments": [
+    "This continuous adjustment of the lens to focus objects at different distances is called accommodation."
+   ],
+   "visualCue": "Pull back: light continues through vitreous",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 287
+  },
+  {
+   "id": "S07_L01",
+   "scene": "Scene07",
+   "sequence": 49,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "After passing through the lens and vitreous humour, the light reaches the retina.",
+   "filename": "49_after_passing_through_the",
+   "audio": "Assets/HumanEye/Audio/VO/49_after_passing_through_the.wav",
+   "segments": [
+    "After passing through the lens and vitreous humour, the light reaches the retina."
+   ],
+   "visualCue": "Rays converge on the retina",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 294
+  },
+  {
+   "id": "S07_L02",
+   "scene": "Scene07",
+   "sequence": 50,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The lens forms a real, inverted image of the object on the retina.",
+   "filename": "50_the_lens_forms_a",
+   "audio": "Assets/HumanEye/Audio/VO/50_the_lens_forms_a.wav",
+   "segments": [
+    "The lens forms a real, inverted image of the object on the retina."
+   ],
+   "visualCue": "Inverted retinal image shown clearly",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 297
+  },
+  {
+   "id": "S07_L03",
+   "scene": "Scene07",
+   "sequence": 51,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "But what exactly detects this light on the retina?",
+   "filename": "51_but_what_exactly_detects",
+   "audio": "Assets/HumanEye/Audio/VO/51_but_what_exactly_detects.wav",
+   "segments": [
+    "But what exactly detects this light on the retina?"
+   ],
+   "visualCue": "Camera closer to retinal surface",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 300
+  },
+  {
+   "id": "S08_L01",
+   "scene": "Scene08",
+   "sequence": 52,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The retina contains light-sensitive cells called photoreceptors.",
+   "filename": "52_the_retina_contains_lightsensitive",
+   "audio": "Assets/HumanEye/Audio/VO/52_the_retina_contains_lightsensitive.wav",
+   "segments": [
+    "The retina contains light-sensitive cells called photoreceptors."
+   ],
+   "visualCue": "Magnified retina; photoreceptors visible",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 305
+  },
+  {
+   "id": "S08_L02",
+   "scene": "Scene08",
+   "sequence": 53,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Rods are especially sensitive to low levels of light and help us see in dim conditions.",
+   "filename": "53_rods_are_especially_sensitive",
+   "audio": "Assets/HumanEye/Audio/VO/53_rods_are_especially_sensitive.wav",
+   "segments": [
+    "Rods are especially sensitive to low levels of light and help us see in dim conditions."
+   ],
+   "visualCue": "Rods highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 310
+  },
+  {
+   "id": "S08_L03",
+   "scene": "Scene08",
+   "sequence": 54,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "They mainly provide information about brightness rather than colour.",
+   "filename": "54_they_mainly_provide_information",
+   "audio": "Assets/HumanEye/Audio/VO/54_they_mainly_provide_information.wav",
+   "segments": [
+    "They mainly provide information about brightness rather than colour."
+   ],
+   "visualCue": "Rods remain highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 312
+  },
+  {
+   "id": "S08_L04",
+   "scene": "Scene08",
+   "sequence": 55,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Cones work best in brighter light and allow us to see colours and fine details.",
+   "filename": "55_cones_work_best_in",
+   "audio": "Assets/HumanEye/Audio/VO/55_cones_work_best_in.wav",
+   "segments": [
+    "Cones work best in brighter light and allow us to see colours and fine details."
+   ],
+   "visualCue": "Cones highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 317
+  },
+  {
+   "id": "S08_L05",
+   "scene": "Scene08",
+   "sequence": 56,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "When light reaches these cells, it is converted into electrical signals.",
+   "filename": "56_when_light_reaches_these",
+   "audio": "Assets/HumanEye/Audio/VO/56_when_light_reaches_these.wav",
+   "segments": [
+    "When light reaches these cells, it is converted into electrical signals."
+   ],
+   "visualCue": "Light reaches cells; electrical response",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 322
+  },
+  {
+   "id": "S08_L06",
+   "scene": "Scene08",
+   "sequence": 57,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "These signals are passed through the retina toward the optic nerve.",
+   "filename": "57_these_signals_are_passed",
+   "audio": "Assets/HumanEye/Audio/VO/57_these_signals_are_passed.wav",
+   "segments": [
+    "These signals are passed through the retina toward the optic nerve."
+   ],
+   "visualCue": "Signals pass through retinal cells toward optic nerve",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 325
+  },
+  {
+   "id": "S09_L01",
+   "scene": "Scene09",
+   "sequence": 58,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The electrical signals leave the eye through the optic nerve.",
+   "filename": "58_the_electrical_signals_leave",
+   "audio": "Assets/HumanEye/Audio/VO/58_the_electrical_signals_leave.wav",
+   "segments": [
+    "The electrical signals leave the eye through the optic nerve."
+   ],
+   "visualCue": "Signals leave retina into optic nerve",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 332
+  },
+  {
+   "id": "S09_L02",
+   "scene": "Scene09",
+   "sequence": 59,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The optic nerve carries this visual information to the brain.",
+   "filename": "59_the_optic_nerve_carries",
+   "audio": "Assets/HumanEye/Audio/VO/59_the_optic_nerve_carries.wav",
+   "segments": [
+    "The optic nerve carries this visual information to the brain."
+   ],
+   "visualCue": "Camera follows nerve to brain",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 335
+  },
+  {
+   "id": "S09_L03",
+   "scene": "Scene09",
+   "sequence": 60,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "The brain receives and processes these signals to produce our visual perception.",
+   "filename": "60_the_brain_receives_and",
+   "audio": "Assets/HumanEye/Audio/VO/60_the_brain_receives_and.wav",
+   "segments": [
+    "The brain receives and processes these signals to produce our visual perception."
+   ],
+   "visualCue": "Visual processing area highlighted",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 339
+  },
+  {
+   "id": "S09_L04",
+   "scene": "Scene09",
+   "sequence": 61,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Although the image formed on the retina is inverted, our visual experience is not simply a photograph of that retinal image. The brain processes the information carried by the signals.",
+   "filename": "61_although_the_image_formed",
+   "audio": "Assets/HumanEye/Audio/VO/61_although_the_image_formed.wav",
+   "segments": [
+    "Although the image formed on the retina is inverted, our visual experience is not simply a photograph of that retinal image.",
+    "The brain processes the information carried by the signals."
+   ],
+   "visualCue": "Original object shown clearly; retinal image and perception as separate views",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 342
+  },
+  {
+   "id": "S10_L01",
+   "scene": "Scene10",
+   "sequence": 62,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "So seeing is a complete process.",
+   "filename": "62_so_seeing_is_a",
+   "audio": "Assets/HumanEye/Audio/VO/62_so_seeing_is_a.wav",
+   "segments": [
+    "So seeing is a complete process."
+   ],
+   "visualCue": "Pull back to complete eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 347
+  },
+  {
+   "id": "S10_L02",
+   "scene": "Scene10",
+   "sequence": 63,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Now you’ve followed the journey from the moment light enters the eye to the moment the brain processes the information.",
+   "filename": "63_now_youve_followed_the",
+   "audio": "Assets/HumanEye/Audio/VO/63_now_youve_followed_the.wav",
+   "segments": [
+    "Now you’ve followed the journey from the moment light enters the eye to the moment the brain processes the information."
+   ],
+   "visualCue": "Complete eye, nerve and brain",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 348
+  },
+  {
+   "id": "S11_L01",
+   "scene": "Scene11",
+   "sequence": 64,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Your eyes are constantly responding to the world around you—even when you’re not thinking about it.",
+   "filename": "64_your_eyes_are_constantly",
+   "audio": "Assets/HumanEye/Audio/VO/64_your_eyes_are_constantly.wav",
+   "segments": [
+    "Your eyes are constantly responding to the world around you—even when you’re not thinking about it."
+   ],
+   "visualCue": "Complete eye",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 351
+  },
+  {
+   "id": "S11_L02",
+   "scene": "Scene11",
+   "sequence": 65,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "So here’s something to think about…what happens when the eye cannot focus light properly?",
+   "filename": "65_so_heres_something_to",
+   "audio": "Assets/HumanEye/Audio/VO/65_so_heres_something_to.wav",
+   "segments": [
+    "So here’s something to think about…what happens when the eye cannot focus light properly?"
+   ],
+   "visualCue": "Then distant object slightly blurred, near object clear",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 352
+  },
+  {
+   "id": "S11_L03",
+   "scene": "Scene11",
+   "sequence": 66,
+   "speaker": "Niko",
+   "type": "Core",
+   "layer": "StoryboardCore",
+   "text": "Why might some things look blurry, even when your eyes are working?",
+   "filename": "66_why_might_some_things",
+   "audio": "Assets/HumanEye/Audio/VO/66_why_might_some_things.wav",
+   "segments": [
+    "Why might some things look blurry, even when your eyes are working?"
+   ],
+   "visualCue": "Blurred object fades; eye fades; cut to black",
+   "completionEvent": "audio_complete",
+   "docxParagraph": 354
+  }
+ ]
+}

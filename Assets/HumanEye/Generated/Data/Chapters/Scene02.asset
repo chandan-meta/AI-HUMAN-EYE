@@ -1,0 +1,322 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene02
+  title: Meet Niko
+  checkpoint: Observatory establishing view; display subdued with a faint human silhouette;
+    Niko hidden; the selected eye in its socket; nothing explored.
+  topics:
+  - external_structures
+  steps:
+  - kind: 0
+    key: S02_EstablishB
+    arg: 
+    value: 6
+    async: 0
+    note: 
+  - kind: 2
+    key: nikoAppear
+    arg: 
+    value: 1.2
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_NikoMedium
+    arg: 
+    value: 1.8
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: nikoLook
+    arg: human
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_DisplayWide
+    arg: 
+    value: 1.8
+    async: 1
+    note: 
+  - kind: 2
+    key: humanReveal
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L04
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: niko
+    arg: RaiseHand
+    value: 30
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L05
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: scan
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_ScanFront
+    arg: 
+    value: 1.2
+    async: 0
+    note: 
+  - kind: 2
+    key: scan
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: illuminate
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L06
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_EyeInSkull
+    arg: 
+    value: 2
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L07
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 5
+    key: 
+    arg: 
+    value: 1.5
+    async: 0
+    note: 
+  - kind: 2
+    key: nikoLook
+    arg: eye
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_PinchNiko
+    arg: 
+    value: 1
+    async: 0
+    note: 
+  - kind: 2
+    key: pinch
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_EyeHero
+    arg: 
+    value: 2.4
+    async: 1
+    note: 
+  - kind: 2
+    key: enlarge
+    arg: 
+    value: 2.4
+    async: 0
+    note: 
+  - kind: 2
+    key: nikoMove
+    arg: EyeLeft
+    value: 1.4
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L08
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: niko
+    arg: Present
+    value: 2
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L09
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: niko
+    arg: Snap
+    value: 1.5
+    async: 0
+    note: 
+  - kind: 2
+    key: sequence
+    arg: sclera,cornea,iris,pupil
+    value: 0.6
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L10
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 4
+    key: 
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 6
+    key: topic:external_structures
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_EyeHero
+    arg: 
+    value: 1
+    async: 0
+    note: 
+  - kind: 2
+    key: niko
+    arg: Present
+    value: 2
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L15
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L16
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: inside
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: sfx
+    arg: unlock
+    value: 0
+    async: 0
+    note: 
+  explore:
+  - partId: sclera
+    label: Sclera
+    steps:
+    - kind: 1
+      key: S02_L11
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.8
+      async: 0
+      note: 
+  - partId: cornea
+    label: Cornea
+    steps:
+    - kind: 1
+      key: S02_L12
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.8
+      async: 0
+      note: 
+  - partId: iris
+    label: Iris
+    steps:
+    - kind: 1
+      key: S02_L13
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.8
+      async: 0
+      note: 
+  - partId: pupil
+    label: Pupil
+    steps:
+    - kind: 1
+      key: S02_L14
+      arg: 
+      value: 0
+      async: 0
+      note: 
+    - kind: 5
+      key: 
+      arg: 
+      value: 0.8
+      async: 0
+      note: 

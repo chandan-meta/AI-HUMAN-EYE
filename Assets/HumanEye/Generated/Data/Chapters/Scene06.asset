@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene06
+  title: The Lens Focuses the Light
+  checkpoint: Cutaway eye; apple at medium distance with the lens matched; light
+    reaching the pupil; camera S05_AqueousPupil.
+  topics:
+  - accommodation
+  steps:
+  - kind: 0
+    key: S06_LensClose
+    arg: 
+    value: 2
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: lens
+    value: 0.6
+    async: 0
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 4
+    value: 2.5
+    async: 1
+    note: 
+  - kind: 1
+    key: S06_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: lens
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: distanceControls
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: near
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S06_NearWide
+    arg: 
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: nearDemo
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S06_LensClose
+    arg: 
+    value: 1.4
+    async: 0
+    note: 
+  - kind: 1
+    key: S06_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: distant
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S06_FarView
+    arg: 
+    value: 1.6
+    async: 1
+    note: 
+  - kind: 2
+    key: distantDemo
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 5
+    key: 
+    arg: 
+    value: 1
+    async: 0
+    note: 
+  - kind: 0
+    key: S06_LensClose
+    arg: 
+    value: 1.4
+    async: 0
+    note: 
+  - kind: 1
+    key: S06_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S06_L04
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S06_Vitreous
+    arg: 
+    value: 2.2
+    async: 0
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 5
+    value: 2.5
+    async: 0
+    note: 
+  - kind: 6
+    key: topic:accommodation
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 7
+    key: distance
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore: []

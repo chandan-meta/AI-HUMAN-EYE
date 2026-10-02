@@ -1,0 +1,67 @@
+filename,text
+01_hey_im_niko_your,Hey! I’m Niko. Your Vision Investigator Officer.
+02_so_you_want_to,So you want to know how light becomes sight?
+03_then_watching_from_out,Then watching from out here won't help.
+04_we_need_to_go,We need to go inside somewhere humans can't.
+05_click_on_the_scan,Click on the SCAN button.
+06_there,There.
+07_your_first_destination,Your first destination.
+08_here_it_is_the,Here it is. The human eye.
+09_it_has_several_parts,"It has several parts, and each one has an important job."
+10_click_or_ask_niko,Click or ask Niko about each part to explore what it does.
+11_this_tough_white_outer,This tough white outer layer is called the sclera. It protects the eye and helps maintain its shape.
+12_this_transparent_curved_layer,"This transparent, curved layer at the front is the cornea. It protects the eye and bends incoming light."
+13_this_coloured_part_is,This coloured part is the iris. It controls the size of the pupil.
+14_this_opening_is_the,This opening is the pupil. Light enters the eye through it.
+15_weve_seen_the_parts,"We’ve seen the parts we can see from the outside. Now, let’s look inside."
+16_click_on_the_inside,Click on the Inside View button to see how the eye looks from the inside.
+17_click_or_ask_niko,Click or ask Niko about each part to explore what it does.
+18_this_space_between_the,This space between the cornea and the lens contains a clear fluid called aqueous humour.
+19_it_helps_nourish_the,It helps nourish the front parts of the eye and helps maintain pressure inside the eye.
+20_behind_the_pupil_is,Behind the pupil is the eye’s natural crystalline lens.
+21_it_is_transparent_flexible,"It is transparent, flexible and biconvex, meaning it bulges outward on both sides."
+22_it_can_change_its,It can change its shape to help focus light from objects at different distances.
+23_most_of_the_space,"Most of the space behind the lens is filled with a clear, jelly-like substance called vitreous humour."
+24_it_helps_maintain_the,It helps maintain the shape of the eye.
+25_this_inner_layer_at,This inner layer at the back is the retina.
+26_it_contains_lightsensitive_cells,It contains light-sensitive cells that detect light.
+27_behind_the_retina_is,"Behind the retina is the choroid, a layer rich in blood vessels that supplies the eye with oxygen and nutrients."
+28_now_weve_explored_the,Now we’ve explored the main structures of the eye.
+29_but_theres_something_important,But there’s something important we haven’t explored yet.
+30_we_know_that_the,We know that the retina detects light…
+31_but_how_does_that,…but how does that information reach the brain?
+32_lets_follow_it,Let’s follow it.
+33_this_bundle_is_the,This bundle is the optic nerve.
+34_it_carries_visual_information,It carries visual information from the retina to the brain.
+35_the_brain_receives_and,The brain receives and processes this information so that we can see.
+36_so_the_eye_and,So the eye and brain are connected through the optic nerve.
+37_weve_been_looking_at,We've been looking at the eye. Now let’s follow what happens when you look at an object.
+38_vision_begins_when_light,Vision begins when light from an object reaches the eye.
+39_first_the_light_passes,"First, the light passes through the cornea, which bends it."
+40_it_then_travels_through,It then travels through the aqueous humour and enters through the pupil.
+41_change_the_brightness_and,Change the brightness and observe what happens to the pupil.
+42_in_bright_light_the,"In bright light, the pupil becomes smaller."
+43_in_dimmer_light_the,"In dimmer light, the pupil becomes larger."
+44_the_iris_controls_the,The iris controls the size of the pupil and therefore regulates how much light enters the eye.
+45_after_passing_through_the,"After passing through the pupil, the light reaches the eye’s crystalline lens."
+46_for_a_nearby_object,"For a nearby object, the lens becomes more curved so that the light can be focused correctly."
+47_for_a_distant_object,"For a distant object, the lens becomes less curved."
+48_this_continuous_adjustment_of,This continuous adjustment of the lens to focus objects at different distances is called accommodation.
+49_after_passing_through_the,"After passing through the lens and vitreous humour, the light reaches the retina."
+50_the_lens_forms_a,"The lens forms a real, inverted image of the object on the retina."
+51_but_what_exactly_detects,But what exactly detects this light on the retina?
+52_the_retina_contains_lightsensitive,The retina contains light-sensitive cells called photoreceptors.
+53_rods_are_especially_sensitive,Rods are especially sensitive to low levels of light and help us see in dim conditions.
+54_they_mainly_provide_information,They mainly provide information about brightness rather than colour.
+55_cones_work_best_in,Cones work best in brighter light and allow us to see colours and fine details.
+56_when_light_reaches_these,"When light reaches these cells, it is converted into electrical signals."
+57_these_signals_are_passed,These signals are passed through the retina toward the optic nerve.
+58_the_electrical_signals_leave,The electrical signals leave the eye through the optic nerve.
+59_the_optic_nerve_carries,The optic nerve carries this visual information to the brain.
+60_the_brain_receives_and,The brain receives and processes these signals to produce our visual perception.
+61_although_the_image_formed,"Although the image formed on the retina is inverted, our visual experience is not simply a photograph of that retinal image. The brain processes the information carried by the signals."
+62_so_seeing_is_a,So seeing is a complete process.
+63_now_youve_followed_the,Now you’ve followed the journey from the moment light enters the eye to the moment the brain processes the information.
+64_your_eyes_are_constantly,Your eyes are constantly responding to the world around you—even when you’re not thinking about it.
+65_so_heres_something_to,So here’s something to think about…what happens when the eye cannot focus light properly?
+66_why_might_some_things,"Why might some things look blurry, even when your eyes are working?"

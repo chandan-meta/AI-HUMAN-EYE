@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene04
+  title: How Is the Eye Connected to the Brain?
+  checkpoint: Cutaway eye at the cut point; only the nerve stub visible; brain hidden;
+    camera S03_InsideHero.
+  topics:
+  - optic_nerve
+  steps:
+  - kind: 0
+    key: S04_EyeRear
+    arg: 
+    value: 3
+    async: 1
+    note: 
+  - kind: 1
+    key: S04_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S04_EyeRearClose
+    arg: 
+    value: 2
+    async: 1
+    note: 
+  - kind: 1
+    key: S04_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: nerveReveal
+    arg: 
+    value: 2.5
+    async: 1
+    note: 
+  - kind: 1
+    key: S04_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: optic_nerve
+    value: 0.8
+    async: 0
+    note: 
+  - kind: 1
+    key: S04_L04
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S04_NerveClose
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 1
+    key: S04_L05
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: brainReveal
+    arg: 
+    value: 1.6
+    async: 1
+    note: 
+  - kind: 0
+    key: S04_NerveMid
+    arg: 
+    value: 2.6
+    async: 1
+    note: 
+  - kind: 1
+    key: S04_L06
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S04_BrainClose
+    arg: 
+    value: 2.2
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: visual_area
+    value: 0.9
+    async: 0
+    note: 
+  - kind: 1
+    key: S04_L07
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: optic_nerve,visual_area
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S04_Wide
+    arg: 
+    value: 2.4
+    async: 0
+    note: 
+  - kind: 1
+    key: S04_L08
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 6
+    key: item:nerve_tap
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 7
+    key: routeTrace
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore: []

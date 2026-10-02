@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/HumanEye/Scenes/HumanEye_Observatory.unity
+    guid: 565c94aa46544704881ba934ab4a6a52
+  - enabled: 0
     path: Assets/_Project/Scenes/Core_VisionLab.unity
     guid: ae49db745c43de94f9174a365ddf329a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/S02_MeetNiko.unity
     guid: 3b661cb6db61e0d44803b0461add1074
   m_configObjects:

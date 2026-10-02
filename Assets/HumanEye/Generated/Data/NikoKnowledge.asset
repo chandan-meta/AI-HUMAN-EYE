@@ -1,0 +1,359 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce0dbb4064cc4d4ca14eff203c2ae90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.NikoKnowledge
+  intents:
+  - id: act_replay_demo
+    kind: 2
+    pattern: \breplay (the )?(demo|demonstration)\b
+    target: REPLAY
+    cues: []
+    availableFromChapter: 0
+    supplemental: Replaying the demonstration.
+    notYet: 
+  - id: act_replay
+    kind: 2
+    pattern: \b(replay|repeat|again|say that|one more time)\b
+    target: replay
+    cues: []
+    availableFromChapter: 0
+    supplemental: Here it is again.
+    notYet: 
+  - id: act_brighter
+    kind: 2
+    pattern: \b(brighter|more light|lighter|bright)\b
+    target: brighter
+    cues: []
+    availableFromChapter: 0
+    supplemental: "Making it brighter \u2014 watch the pupil."
+    notYet: 
+  - id: act_dimmer
+    kind: 2
+    pattern: \b(dimmer|darker|less light|dim)\b
+    target: dimmer
+    cues: []
+    availableFromChapter: 0
+    supplemental: "Making it dimmer \u2014 watch the pupil."
+    notYet: 
+  - id: act_near
+    kind: 2
+    pattern: \b(near|closer|nearby)\b
+    target: near
+    cues: []
+    availableFromChapter: 0
+    supplemental: Bringing the object closer.
+    notYet: 
+  - id: act_far
+    kind: 2
+    pattern: \b(far|distant|further|farther)\b
+    target: distant
+    cues: []
+    availableFromChapter: 0
+    supplemental: Moving the object far away.
+    notYet: 
+  - id: act_freeze
+    kind: 2
+    pattern: \b(freeze|unfreeze|hold it)\b
+    target: FREEZE
+    cues: []
+    availableFromChapter: 0
+    supplemental: Freezing the biology mid-action.
+    notYet: 
+  - id: act_trace
+    kind: 2
+    pattern: \b(trace|follow)\b
+    target: TRACE
+    cues: []
+    availableFromChapter: 0
+    supplemental: Tracing the route.
+    notYet: 
+  - id: act_scan
+    kind: 2
+    pattern: \b(scan|labels?)\b
+    target: SCAN
+    cues: []
+    availableFromChapter: 0
+    supplemental: "Scanning \u2014 identifying the structures."
+    notYet: 
+  - id: act_inside
+    kind: 2
+    pattern: \binside\b
+    target: INSIDE
+    cues: []
+    availableFromChapter: 0
+    supplemental: Moving inside the eye.
+    notYet: 
+  - id: act_simulate
+    kind: 2
+    pattern: \bsimulat
+    target: SIMULATE
+    cues: []
+    availableFromChapter: 0
+    supplemental: Opening the simulation controls.
+    notYet: 
+  - id: act_reset
+    kind: 2
+    pattern: \b(reset (the )?view|zoom out)\b
+    target: resetView
+    cues: []
+    availableFromChapter: 0
+    supplemental: Resetting the view.
+    notYet: 
+  - id: open_blur
+    kind: 3
+    pattern: \b(blurry|blur|blurred|can ?t focus|cannot focus|focus properly)\b
+    target: 
+    cues: []
+    availableFromChapter: 0
+    supplemental: "That's the big question to think about! You've seen how the lens
+      focuses light onto the retina \u2014 keep wondering what could change that.
+      I'm not going to give away the answer."
+    notYet: 
+  - id: c_seeing
+    kind: 1
+    pattern: \b(how (do|does) (we|you|i) see|light becomes? sight|how .*seeing work|complete
+      process|whole journey)\b
+    target: 
+    cues:
+    - S10_L01
+    - S10_L02
+    availableFromChapter: 0
+    supplemental: 
+    notYet: "That's the whole investigation! Keep following the light \u2014 we'll
+      put it all together at the end."
+  - id: c_pupil_light
+    kind: 1
+    pattern: \bpupil\b.*\b(bright|dim|small|smaller|larger|bigger|light|size|change)\b|\b(bright|dim)\b.*\bpupil\b
+    target: pupil
+    cues:
+    - S05_L06
+    - S05_L07
+    - S05_L08
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll test how the pupil responds to light when we follow light into
+      the eye.
+  - id: c_accommodation
+    kind: 1
+    pattern: \baccommodation\b|\blens\b.*\b(near|far|distant|curved|shape|focus)\b|\bfocus\b
+    target: lens
+    cues:
+    - S06_L02
+    - S06_L03
+    - S06_L04
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll see how the lens focuses light when we follow light into the eye.
+  - id: c_inverted
+    kind: 1
+    pattern: \b(upside down|inverted|flipped|flip)\b
+    target: 
+    cues:
+    - S07_L02
+    - S09_L04
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll see what kind of image forms inside the eye later on.
+  - id: c_signals
+    kind: 1
+    pattern: \b(electrical|signals?|electric)\b
+    target: 
+    cues:
+    - S08_L05
+    - S08_L06
+    - S09_L01
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll find out what happens after light reaches the retina.
+  - id: c_photoreceptors
+    kind: 1
+    pattern: \bphotoreceptors?\b|light.sensitive
+    target: 
+    cues:
+    - S03_L10
+    - S08_L01
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll look closely at the cells that detect light later on.
+  - id: c_brain
+    kind: 1
+    pattern: \bbrain\b|\bvisual (processing )?area\b|\bperception\b
+    target: visual_area
+    cues:
+    - S04_L07
+    - S09_L03
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll follow the information all the way to the brain soon.
+  - id: p_sclera
+    kind: 0
+    pattern: \bsclera\b|\bwhite (outer )?(layer|part)\b
+    target: sclera
+    cues:
+    - S02_L11
+    availableFromChapter: 0
+    supplemental: Let's look at the sclera.
+    notYet: 
+  - id: p_cornea
+    kind: 0
+    pattern: \bcornea\b|\bclear (front )?(layer|window|part)\b|\bfront layer\b
+    target: cornea
+    cues:
+    - S02_L12
+    availableFromChapter: 0
+    supplemental: Let's look at the cornea.
+    notYet: 
+  - id: p_iris
+    kind: 0
+    pattern: \biris\b|\bcolou?r(ed)? (part|ring)\b
+    target: iris
+    cues:
+    - S02_L13
+    availableFromChapter: 0
+    supplemental: Let's look at the iris.
+    notYet: 
+  - id: p_pupil
+    kind: 0
+    pattern: \bpupil\b|\bopening\b|\bblack (dot|circle|hole)\b
+    target: pupil
+    cues:
+    - S02_L14
+    availableFromChapter: 0
+    supplemental: Let's look at the pupil.
+    notYet: 
+  - id: p_aqueous
+    kind: 0
+    pattern: \baqueous\b|\bfluid\b
+    target: aqueous
+    cues:
+    - S03_L02
+    - S03_L03
+    availableFromChapter: 0
+    supplemental: Let's look at the aqueous humour.
+    notYet: We'll find the aqueous humour when we look inside the eye.
+  - id: p_lens
+    kind: 0
+    pattern: \blens\b|\bcrystalline\b
+    target: lens
+    cues:
+    - S03_L04
+    - S03_L05
+    - S03_L06
+    availableFromChapter: 0
+    supplemental: Let's look at the crystalline lens.
+    notYet: We'll meet the lens when we look inside the eye.
+  - id: p_vitreous
+    kind: 0
+    pattern: \bvitreous\b|\bjelly\b
+    target: vitreous
+    cues:
+    - S03_L07
+    - S03_L08
+    availableFromChapter: 0
+    supplemental: Let's look at the vitreous humour.
+    notYet: We'll find the vitreous humour when we look inside the eye.
+  - id: p_retina
+    kind: 0
+    pattern: \bretina\b
+    target: retina
+    cues:
+    - S03_L09
+    - S03_L10
+    availableFromChapter: 0
+    supplemental: Let's look at the retina.
+    notYet: We'll reach the retina when we look inside the eye.
+  - id: p_choroid
+    kind: 0
+    pattern: \bchoroid\b|\bblood vessels?\b
+    target: choroid
+    cues:
+    - S03_L11
+    availableFromChapter: 0
+    supplemental: Let's look at the choroid.
+    notYet: We'll reach the choroid when we look inside the eye.
+  - id: p_nerve
+    kind: 0
+    pattern: \boptic\b|\bnerve\b|\bbundle\b
+    target: optic_nerve
+    cues:
+    - S04_L05
+    - S04_L06
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll find out how the eye connects to the brain soon.
+  - id: p_rods
+    kind: 0
+    pattern: \brods?\b
+    target: rods
+    cues:
+    - S08_L02
+    - S08_L03
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll zoom into the retina to meet the light-sensitive cells later.
+  - id: p_cones
+    kind: 0
+    pattern: \bcones?\b
+    target: cones
+    cues:
+    - S08_L04
+    availableFromChapter: 0
+    supplemental: 
+    notYet: We'll zoom into the retina to meet the light-sensitive cells later.
+  - id: g_niko
+    kind: 5
+    pattern: \b(who are you|your name|niko|what can you do)\b
+    target: 
+    cues: []
+    availableFromChapter: 0
+    supplemental: I'm Niko, your Vision Investigator Officer! I can SCAN structures,
+      go INSIDE the eye, SIMULATE brightness and distance, TRACE light or signals,
+      FREEZE the biology and REPLAY demonstrations.
+    notYet: 
+  - id: g_hello
+    kind: 5
+    pattern: \b(hi|hello|hey|thanks|thank you)\b
+    target: 
+    cues: []
+    availableFromChapter: 0
+    supplemental: Hello, investigator! Ask me about any part you've explored.
+    notYet: 
+  - id: h_help
+    kind: 4
+    pattern: \b(help|how do i|what do i do|stuck)\b
+    target: 
+    cues: []
+    availableFromChapter: 0
+    supplemental: Tap the glowing parts, their labels or the Parts list to explore.
+      My ability buttons are along the bottom, and you can ask me about anything
+      you've explored so far.
+    notYet: 
+  suggestions:
+  - '*|What can you do?'
+  - Scene02|What does the iris do?
+  - Scene02|Show me the cornea
+  - Scene03|What is the vitreous humour?
+  - Scene03|Where is the retina?
+  - Scene04|What is the optic nerve?
+  - Scene05|Make it brighter
+  - Scene05|Why does the pupil change size?
+  - Scene06|How does the lens focus near objects?
+  - Scene07|Why is the image upside down?
+  - Scene08|What do rods do?
+  - Scene09|How does the brain see?
+  - Scene10|How does seeing work?
+  - Scene11|Why might things look blurry?
+  - '*|Replay that'
+  fallback: "I can only answer questions about what we're investigating in this observatory
+    \u2014 the parts of the eye, light, the lens, the retina, signals and the brain.
+    Try one of the suggestions!"

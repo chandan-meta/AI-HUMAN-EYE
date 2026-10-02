@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene11
+  title: Final Curiosity
+  checkpoint: Cutaway eye closing to the complete eye; near apple and a distant tree
+    placed; no blur; camera S10_Complete.
+  topics: []
+  steps:
+  - kind: 2
+    key: closeEye
+    arg: 
+    value: 1.4
+    async: 0
+    note: 
+  - kind: 0
+    key: S11_Eye
+    arg: 
+    value: 2
+    async: 0
+    note: 
+  - kind: 1
+    key: S11_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S11_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: blurDemo
+    arg: 
+    value: 3.5
+    async: 0
+    note: 
+  - kind: 1
+    key: S11_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: fadeBlurred
+    arg: 
+    value: 2.5
+    async: 0
+    note: 
+  - kind: 2
+    key: eyeFade
+    arg: 
+    value: 3
+    async: 0
+    note: 
+  - kind: 2
+    key: cutToBlack
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 5
+    key: 
+    arg: 
+    value: 2.5
+    async: 0
+    note: 
+  explore: []

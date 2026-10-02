@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene05
+  title: Light Enters the Eye
+  checkpoint: Cutaway eye, nerve and brain; no object yet; pupil at default size;
+    brightness 50%; camera S05_ObjectWide.
+  topics:
+  - pupil_response
+  steps:
+  - kind: 2
+    key: objectAppear
+    arg: 
+    value: 1.2
+    async: 0
+    note: 
+  - kind: 1
+    key: S05_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 1
+    value: 3
+    async: 1
+    note: 
+  - kind: 0
+    key: S05_FollowLight
+    arg: 
+    value: 3
+    async: 1
+    note: 
+  - kind: 1
+    key: S05_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S05_Cornea
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: cornea
+    value: 0.8
+    async: 0
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 1.5
+    value: 1.2
+    async: 1
+    note: 
+  - kind: 1
+    key: S05_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: cornea
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S05_AqueousPupil
+    arg: 
+    value: 1.4
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: aqueous
+    value: 0.7
+    async: 0
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 2
+    value: 1.5
+    async: 1
+    note: 
+  - kind: 1
+    key: S05_L04
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: aqueous
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: pupilView
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: brightnessLive
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S05_L05
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: brighter
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: pupilSettle
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S05_L06
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 3
+    key: dimmer
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: pupilSettle
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S05_L07
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: iris
+    value: 0.8
+    async: 0
+    note: 
+  - kind: 1
+    key: S05_L08
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: iris
+    value: 0
+    async: 0
+    note: 
+  - kind: 6
+    key: item:pupil_predict
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 7
+    key: brightness
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore: []

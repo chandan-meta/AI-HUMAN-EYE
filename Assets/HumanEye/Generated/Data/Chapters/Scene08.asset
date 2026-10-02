@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0aff2f1b9cd4f545b8c75bbe5610b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
+  id: Scene08
+  title: Photoreceptors Detect Light
+  checkpoint: Image on the retina (end of Scene 7); magnified retina prepared with
+    light and signals off.
+  topics:
+  - rods_cones
+  steps:
+  - kind: 2
+    key: intoRetina
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
+    arg: scan
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S08_L01
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: rods
+    value: 0.85
+    async: 0
+    note: 
+  - kind: 0
+    key: S08_Rods
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 1
+    key: S08_L02
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S08_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: rods
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: cones
+    value: 0.85
+    async: 0
+    note: 
+  - kind: 0
+    key: S08_Cones
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 1
+    key: S08_L04
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: glow
+    arg: cones
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S08_MicroWide
+    arg: 
+    value: 1.6
+    async: 0
+    note: 
+  - kind: 2
+    key: microLight
+    arg: 0.6
+    value: 1
+    async: 0
+    note: 
+  - kind: 5
+    key: 
+    arg: 
+    value: 1.2
+    async: 0
+    note: 
+  - kind: 1
+    key: S08_L05
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: microSignals
+    arg: 
+    value: 1
+    async: 0
+    note: 
+  - kind: 0
+    key: S08_Signals
+    arg: 
+    value: 2
+    async: 1
+    note: 
+  - kind: 1
+    key: S08_L06
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
+    key: S08_PullBack
+    arg: 
+    value: 2.5
+    async: 0
+    note: 
+  - kind: 5
+    key: 
+    arg: 
+    value: 1.5
+    async: 0
+    note: 
+  - kind: 6
+    key: topic:rods_cones
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 7
+    key: photoreceptors
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  explore: []
