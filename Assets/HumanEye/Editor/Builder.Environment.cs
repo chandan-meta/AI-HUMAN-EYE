@@ -22,7 +22,7 @@ namespace HumanEye.EditorTools
         static readonly List<Renderer> beams = new();
 
         static Mesh Disc(string name, float radius, int seg = 96) =>
-            SaveMesh(Lathe.Revolve(new List<Vector2[]> { Lathe.Line(new Vector2(0, 0), new Vector2(radius, 0), 4) }, 0, 360, seg), name);
+            SaveMesh(Lathe.Revolve(new List<Vector2[]> { Lathe.Line(new Vector2(radius, 0), new Vector2(0, 0), 4) }, 0, 360, seg), name);
 
         static Mesh Ring(string name, float radius, float tube, int seg = 96)
         {
@@ -44,10 +44,12 @@ namespace HumanEye.EditorTools
         {
             beams.Clear();
             env = new GameObject("Observatory of Vision").transform;
-            var floor = Lit("Floor", new Color(.035f, .05f, .075f), .82f, .1f);
+            var floor = Lit("Floor", new Color(.045f, .065f, .085f), .88f, .55f);
             var metal = Lit("BrushedMetal", new Color(.32f, .36f, .42f), .62f, .85f);
-            var brass = Lit("Brass", new Color(.55f, .42f, .22f), .55f, .9f);
-            var domeMat = Lit("Dome", new Color(.02f, .03f, .055f), .25f);
+            var brass = Lit("Brass", new Color(.62f, .42f, .18f), .78f, .85f);
+            var sky = ProceduralTextures.ObservatorySky();
+            var domeMat = Lit("Dome", Color.white, .1f, baseMap: sky, emission: Color.white);
+            domeMat.SetTexture("_EmissionMap", sky);
             var glass = Anatomy("DisplayGlass", new Color(.75f, .9f, 1f, 1), m => { m.SetFloat("_Gloss", .95f); m.SetFloat("_Specular", 1); m.SetFloat("_Rim", .6f); m.SetFloat("_Alpha", .22f); m.SetFloat("_SrcBlend", 5); m.SetFloat("_DstBlend", 10); m.SetFloat("_ZWrite", 0); m.renderQueue = 3010; });
             var soft = ProceduralTextures.Soft();
             var accent = Glow("AccentLine", new Color(.15f, .75f, .95f, .55f), soft, 1.2f);
@@ -58,6 +60,9 @@ namespace HumanEye.EditorTools
             plinth.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.On;
             Obj("Plinth Ring", env, Ring("PlinthRing", 1.47f, .018f), Glow("DisplayRing", new Color(.2f, .85f, 1f, .9f), soft, 2), new Vector3(0, .15f, 2));
             Obj("Eye Display Ring", env, Ring("EyeDisplayRing", .62f, .01f), Glow("EyeRingGlow", new Color(.2f, .85f, 1f, .45f), soft, 1.5f), new Vector3(0, .9f, .6f));
+            Obj("Eye Plinth Base", env, Cylinder("EyePlinthBase", .73f, .12f), metal, new Vector3(0, .65f, .6f), Upright);
+            Obj("Eye Plinth Rim", env, Cylinder("EyePlinthRim", .72f, .035f), brass, new Vector3(0, .77f, .6f), Upright);
+            Obj("Eye Plinth Top", env, Cylinder("EyePlinthTop", .67f, .09f), floor, new Vector3(0, .805f, .6f), Upright);
 
             // Dome (inner surface) with meridian ribs and a star field; an oculus lets the starlight in.
             var domeProfile = new List<Vector2[]> { Lathe.Arc(0, DomeRadius, 90, 9, 40), Lathe.Arc(0, DomeRadius - .3f, 9, 90, 40) };
@@ -73,14 +78,27 @@ namespace HumanEye.EditorTools
                     float phi = Mathf.Lerp(90, 10, k / 24f) * Mathf.Deg2Rad, r = (DomeRadius - .35f) * Mathf.Sin(phi);
                     path.Add(new Vector3(Mathf.Cos(a) * r, (DomeRadius - .35f) * Mathf.Cos(phi), Mathf.Sin(a) * r));
                 }
-                Obj("Rib" + i, env, SaveMesh(Lathe.Tube(path, .06f, 6), "Rib" + i), brass);
+                Obj("Rib" + i, env, SaveMesh(Lathe.Tube(path, .11f, 8), "Rib" + i), brass);
             }
-            Obj("Stars", env, SaveMesh(Stars(1400, DomeRadius - .6f), "Stars"), Glow("Star", new Color(.75f, .88f, 1f, .9f), soft, 1.4f));
+            var warm = Lit("WarmFixtures", new Color(1, .72f, .35f), .4f, emission: new Color(3, 1.6f, .55f));
+            var fixture = Cylinder("WallFixture", .055f, .65f, 12);
+            for (int i = 0; i < 16; i++)
+            {
+                float a = i * Mathf.PI * 2 / 16;
+                foreach (float y in new[] { .6f, 3.3f, 6.0f })
+                {
+                    float r = Mathf.Sqrt((DomeRadius - .7f) * (DomeRadius - .7f) - y * y);
+                    Obj("Warm wall fixture", env, fixture, warm, new Vector3(Mathf.Cos(a) * r, y, Mathf.Sin(a) * r), Upright);
+                }
+            }
+            Obj("Lower Gallery Rail", env, Ring("GalleryRail", 15.1f, .09f), brass, new Vector3(0, 1.1f, 0));
+            Obj("Window Rail", env, Ring("WindowRail", 14.9f, .065f), brass, new Vector3(0, 3.5f, 0));
+            Obj("Stars", env, SaveMesh(Stars(2400, DomeRadius - .6f), "Stars"), Glow("Star", new Color(.75f, .88f, 1f, .9f), soft, 1.4f));
 
             // Giant starlight beam through an aperture ring and a lens, focusing toward the floor behind the display.
             var top = new Vector3(-4.5f, 15.2f, 9); var bottom = new Vector3(3.5f, 0, 7.5f);
             var noise = ProceduralTextures.BeamNoise();
-            var beamMat = Glow("Starlight", new Color(.55f, .78f, 1f, .32f), noise, .9f, new Vector2(0, -.08f), 1.6f, 1);
+            var beamMat = Glow("Starlight", new Color(.55f, .78f, 1f, .1f), noise, .9f, new Vector2(0, -.08f), 1.6f, 1);
             Beam("Starlight Beam", top, Vector3.Lerp(top, bottom, .62f), 1.25f, 1.05f, beamMat);
             Beam("Focused Beam", Vector3.Lerp(top, bottom, .62f), bottom, 1.0f, .25f, beamMat);
             var apertureAt = Vector3.Lerp(top, bottom, .38f); var lensAt = Vector3.Lerp(top, bottom, .62f);
@@ -134,12 +152,28 @@ namespace HumanEye.EditorTools
 
             stage.observatory = env.gameObject; stage.keyLight = keyLight; stage.displayLight = displayLight;
             stage.post = post; stage.blurVolume = blur; stage.beamRenderers = beams.ToArray();
+            // One room capture on load, not a six-camera render every frame.
+            var reflection = new GameObject("Observatory Reflection").AddComponent<ReflectionProbe>();
+            reflection.transform.SetParent(env); reflection.transform.position = new Vector3(0, 2, 0);
+            reflection.mode = ReflectionProbeMode.Realtime; reflection.refreshMode = ReflectionProbeRefreshMode.OnAwake;
+            reflection.timeSlicingMode = ReflectionProbeTimeSlicingMode.AllFacesAtOnce;
+            reflection.resolution = 128; reflection.size = new Vector3(32, 18, 32);
+            reflection.boxProjection = true; reflection.intensity = .8f;
         }
 
         static VolumeProfile SaveProfile(VolumeProfile p, string name)
         {
             var path = Gen + "Data/" + name + ".asset";
-            if (AssetDatabase.LoadAssetAtPath<VolumeProfile>(path)) AssetDatabase.DeleteAsset(path);   // owned asset: recreate with sub-components
+            var existing = AssetDatabase.LoadAssetAtPath<VolumeProfile>(path);
+            if (existing)
+            {
+                foreach (var old in existing.components.ToArray()) Object.DestroyImmediate(old, true);
+                existing.components.Clear();
+                foreach (var c in p.components) { AssetDatabase.AddObjectToAsset(c, existing); existing.components.Add(c); }
+                p.components.Clear(); Object.DestroyImmediate(p);
+                EditorUtility.SetDirty(existing);
+                return existing;
+            }
             AssetDatabase.CreateAsset(p, path);
             foreach (var c in p.components) AssetDatabase.AddObjectToAsset(c, p);
             return p;
@@ -158,9 +192,9 @@ namespace HumanEye.EditorTools
         {
             var ps = new GameObject("Beam Dust", typeof(ParticleSystem)).GetComponent<ParticleSystem>();
             ps.transform.SetParent(env); ps.transform.SetPositionAndRotation(centre, Quaternion.LookRotation(axis));
-            var main = ps.main; main.startLifetime = 9; main.startSize = new ParticleSystem.MinMaxCurve(.015f, .04f); main.startSpeed = .04f;
-            main.maxParticles = 900; main.startColor = new Color(.7f, .85f, 1f, .5f); main.prewarm = true; main.loop = true; main.useUnscaledTime = false;
-            var em = ps.emission; em.rateOverTime = 90;
+            var main = ps.main; main.startLifetime = 9; main.startSize = new ParticleSystem.MinMaxCurve(.006f, .015f); main.startSpeed = .04f;
+            main.maxParticles = 180; main.startColor = new Color(.7f, .85f, 1f, .5f); main.prewarm = true; main.loop = true; main.useUnscaledTime = false;
+            var em = ps.emission; em.rateOverTime = 20;
             var sh = ps.shape; sh.shapeType = ParticleSystemShapeType.Box; sh.scale = new Vector3(1.6f, 1.6f, length);
             var col = ps.colorOverLifetime; col.enabled = true;
             var g = new Gradient(); g.SetKeys(new[] { new GradientColorKey(Color.white, 0), new GradientColorKey(Color.white, 1) }, new[] { new GradientAlphaKey(0, 0), new GradientAlphaKey(1, .3f), new GradientAlphaKey(0, 1) });
@@ -175,10 +209,10 @@ namespace HumanEye.EditorTools
             var v = new List<Vector3>(); var uv = new List<Vector2>(); var t = new List<int>(); var col = new List<Color>();
             for (int i = 0; i < count; i++)
             {
-                float y = .15f + .85f * (float)rnd.NextDouble(), a = (float)rnd.NextDouble() * Mathf.PI * 2, r = Mathf.Sqrt(1 - y * y);
+                float y = .015f + .985f * (float)rnd.NextDouble(), a = (float)rnd.NextDouble() * Mathf.PI * 2, r = Mathf.Sqrt(1 - y * y);
                 var p = new Vector3(Mathf.Cos(a) * r, y, Mathf.Sin(a) * r) * radius;
                 var n = -p.normalized; var u = Vector3.Cross(n, Vector3.up).normalized; var w = Vector3.Cross(n, u);
-                float s = .03f + .07f * Mathf.Pow((float)rnd.NextDouble(), 3);
+                float s = .012f + .027f * Mathf.Pow((float)rnd.NextDouble(), 3);
                 int b = v.Count;
                 v.Add(p + (-u - w) * s); v.Add(p + (u - w) * s); v.Add(p + (u + w) * s); v.Add(p + (-u + w) * s);
                 uv.Add(new Vector2(0, 0)); uv.Add(new Vector2(1, 0)); uv.Add(new Vector2(1, 1)); uv.Add(new Vector2(0, 1));

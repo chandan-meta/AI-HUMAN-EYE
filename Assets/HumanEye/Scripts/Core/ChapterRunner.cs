@@ -39,6 +39,11 @@ namespace HumanEye
 
         public void Begin(int chapterIndex) { Started = true; pendingChapter = Mathf.Clamp(chapterIndex, 0, chapters.Length - 1); }
         public void RestartChapter() { if (Index >= 0) pendingChapter = Index; }
+        public void ReturnToMenu()
+        {
+            SetPaused(false); Cancel(); pendingChapter = -1; Index = -1; Started = false; AskHold = false;
+            State = LessonState.Entering; stage.ShowMenu(); Changed?.Invoke();
+        }
 
         void StartChapter(int i)
         {
@@ -152,6 +157,7 @@ namespace HumanEye
         public bool RequestPart(string partId, out string reason)
         {
             reason = null;
+            if (Clock.Paused) { reason = "Resume the investigation to explore a part."; return false; }
             var e = ExploreSet == null ? null : Array.Find(ExploreSet, x => x.partId == partId);
             if (e == null) { reason = ExploreSet == null ? "Parts can be explored once Niko invites you to." : "That structure isn't part of this exploration."; return false; }
             if (State != LessonState.Exploring || Focused != null || pendingPart != null) { reason = "Niko is still explaining — try again in a moment."; return false; }
@@ -161,7 +167,7 @@ namespace HumanEye
 
         public bool Press(string key)
         {
-            if (Awaiting != key || pressed != null) return false;
+            if (Clock.Paused || Awaiting != key || pressed != null) return false;
             pressed = key; return true;
         }
 

@@ -64,6 +64,7 @@ namespace HumanEye.EditorTools
             var eyeMesh = Ellipsoid("Niko_Eye", .028f, .042f, 16);
             rig.eyeL = Obj("Eye L", head, eyeMesh, glow, new Vector3(.072f, .03f, .256f), Upright).transform;
             rig.eyeR = Obj("Eye R", head, eyeMesh, glow, new Vector3(-.072f, .03f, .256f), Upright).transform;
+            rig.eyeL.localScale = rig.eyeR.localScale = new Vector3(1, .25f, 1);
             var smilePath = new List<Vector3>();
             for (int i = 0; i <= 16; i++) { float a = Mathf.Lerp(-55, 55, i / 16f) * Mathf.Deg2Rad; smilePath.Add(new Vector3(Mathf.Sin(a) * .06f, -Mathf.Cos(a) * .028f, 0)); }
             rig.smile = Obj("Smile", head, SaveMesh(Lathe.Tube(smilePath, .007f, 8), "Niko_Smile"), glow, new Vector3(0, -.04f, .252f)).transform;
@@ -72,13 +73,15 @@ namespace HumanEye.EditorTools
                 Obj("Ear", head, Cylinder("Niko_Ear", .065f, .05f, 24), white, new Vector3(.2f * side, 0, 0), Quaternion.Euler(0, 90 * side, 0));
                 Obj("Ear Light", head, Ring("Niko_EarRing", .045f, .009f, 24), glow, new Vector3(.277f * side, 0, 0), Quaternion.Euler(0, 0, 90));
             }
-            var upper = Capsule("Niko_UpperArm", .047f, .21f); var fore = Capsule("Niko_Forearm", .043f, .19f);
+            var upper = Capsule("Niko_UpperArm", .057f, .21f); var fore = Capsule("Niko_Forearm", .053f, .19f);
             var palm = Ellipsoid("Niko_Palm", .05f, .045f, 16); var digit = Capsule("Niko_Digit", .014f, .06f);
             Transform Arm(string side, float x, out Transform elbow, out Transform hand)
             {
                 var shoulder = Obj("Shoulder " + side, floater, pos: new Vector3(x, .63f, 0)).transform;
+                Obj("Shoulder joint", shoulder, Ellipsoid("Niko_Joint", .058f, .058f), visor);
                 Obj("Upper Arm", shoulder, upper, white, Vector3.zero, Down);
                 elbow = Obj("Elbow", shoulder, pos: new Vector3(0, -.2f, 0)).transform;
+                Obj("Elbow joint", elbow, Ellipsoid("Niko_Elbow", .049f, .049f), visor);
                 Obj("Forearm", elbow, fore, white, Vector3.zero, Down);
                 hand = Obj("Hand", elbow, pos: new Vector3(0, -.2f, 0)).transform;
                 Obj("Palm", hand, palm, white, new Vector3(0, -.035f, 0), Upright);
@@ -101,7 +104,8 @@ namespace HumanEye.EditorTools
             var anchors = new List<Transform>
             {
                 A("Intro", new Vector3(-1.3f, .38f, .8f), cam - new Vector3(-1.3f, 0, .8f)),
-                A("EyeLeft", new Vector3(-1.4f, .42f, 1.05f), new Vector3(.5f, 0, -1)),
+                A("EyeLeft", new Vector3(-.9f, .18f, .75f), new Vector3(.35f, 0, -1)),
+                A("Menu", new Vector3(-2.65f, .08f, .5f), new Vector3(.25f, 0, -1)),
                 A("Optics", new Vector3(1.05f, .02f, -.45f), new Vector3(-.35f, 0, -1)),
                 A("Eleven", new Vector3(1.55f, .25f, -.15f), new Vector3(-.4f, 0, -1)),
                 A("Brain", new Vector3(.95f, .25f, -.75f), new Vector3(-.2f, 0, -1)),

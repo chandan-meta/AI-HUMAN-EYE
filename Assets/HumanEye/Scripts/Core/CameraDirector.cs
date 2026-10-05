@@ -18,6 +18,17 @@ namespace HumanEye
 
         Dictionary<string, CinemachineCamera> byName;
         readonly Dictionary<CinemachineCamera, float> baseFov = new();
+        float aspectScale = 1;
+
+        // Keep the authored horizontal safe area on 4:3 tablets; 16:9 shots are unchanged.
+        static float Fit(float fov, float scale) => 2 * Mathf.Atan(Mathf.Tan(fov * Mathf.Deg2Rad * .5f) * scale) * Mathf.Rad2Deg;
+        void LateUpdate()
+        {
+            float next = Mathf.Max(1, (16f / 9) / (Screen.width / (float)Mathf.Max(1, Screen.height)));
+            if (Mathf.Approximately(next, aspectScale)) return;
+            foreach (var s in shots) { var lens = s.Lens; lens.FieldOfView = Fit(lens.FieldOfView, next / aspectScale); s.Lens = lens; }
+            aspectScale = next;
+        }
 
         void Awake()
         {
@@ -59,7 +70,7 @@ namespace HumanEye
         {
             if (!Active) return;
             var lens = Active.Lens;
-            var b = baseFov[Active];
+            var b = Fit(baseFov[Active], aspectScale);
             lens.FieldOfView = Mathf.Clamp(lens.FieldOfView + delta, b * .55f, b * 1.25f);
             Active.Lens = lens;
         }
@@ -68,7 +79,7 @@ namespace HumanEye
         {
             cam ??= Active;
             if (!cam) return;
-            var lens = cam.Lens; lens.FieldOfView = baseFov[cam]; cam.Lens = lens;
+            var lens = cam.Lens; lens.FieldOfView = Fit(baseFov[cam], aspectScale); cam.Lens = lens;
         }
 
         void OnDestroy() => CinemachineCore.UniformDeltaTimeOverride = -1;

@@ -10,13 +10,12 @@ using UnityEngine.InputSystem.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace HumanEye.EditorTools
 {
-    /// Tools > Human Eye > Build Module. Reproducibly generates the launch scene, data, meshes, materials and UI wiring.
-    /// It only writes inside Assets/HumanEye/Generated, Assets/HumanEye/Scenes and (once, if missing) Assets/HumanEye/Data;
+    /// Explicit full regeneration (replaces manual scene and Canvas edits). Reproducibly generates the launch scene, data, meshes, materials and UI wiring.
+    /// Writes generated assets, the launch scene, the Canvas prefab and module data;
     /// existing generated assets are updated in place, so GUIDs and references stay stable across re-runs.
     public static partial class Builder
     {
@@ -28,10 +27,11 @@ namespace HumanEye.EditorTools
         static Transform shotRoot;
         static Shader anatomyShader, glowShader;
 
-        [MenuItem("Tools/Human Eye/Build Module", priority = 1)]
+        [MenuItem("Tools/Human Eye/Authoring/Regenerate entire module (replaces manual edits)", priority = 1)]
         public static void BuildMenu()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            if (!EditorUtility.DisplayDialog("Replace authored scene?", "This regenerates the scene, Canvas prefab and generated assets, replacing manual edits. Normal player builds do not require this. Back up your work first.", "Regenerate", "Cancel")) return;
             Build();
             EditorUtility.DisplayDialog("Human Eye", "Module built:\n" + ScenePath + "\n\nPress Play, or run Tools > Human Eye > Validate Module.", "OK");
         }
@@ -233,11 +233,8 @@ namespace HumanEye.EditorTools
             shotRoot = new GameObject("Shots (cue sheet cameras)").transform;
 
             var uiGo = new GameObject("HUD");
-            var doc = uiGo.AddComponent<UIDocument>();
-            doc.panelSettings = PanelSettingsAsset();
-            doc.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(Root + "UI/Hud.uxml");
             hud = uiGo.AddComponent<Hud>();
-            hud.document = doc; hud.font = AssetDatabase.LoadAssetAtPath<Font>(Root + "ThirdParty/Fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.ttf");
+            hud.font = AssetDatabase.LoadAssetAtPath<Font>(Root + "ThirdParty/Fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.ttf");
             new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
 
             runner.chapters = chapters; runner.narrator = narrator; runner.cameras = cams; runner.stage = stage; runner.audioDirector = audio; runner.activities = activities;
@@ -247,21 +244,8 @@ namespace HumanEye.EditorTools
             guide.knowledge = knowledge; guide.runner = runner; guide.stage = stage; guide.narrator = narrator; guide.dialogue = dialogue;
             pointer.cam = cam; pointer.runner = runner; pointer.stage = stage; pointer.hud = hud; pointer.pickMask = LayerMask.GetMask(PickLayer);
             hud.runner = runner; hud.stage = stage; hud.narrator = narrator; hud.guide = guide; hud.activities = activities; hud.cams = cams; hud.mainCamera = cam;
+            CanvasAuthoring.Create(hud);
             boot.config = config; boot.hud = hud; boot.runner = runner; boot.narrator = narrator; boot.cams = cams; boot.stage = stage;
-        }
-
-        static PanelSettings PanelSettingsAsset()
-        {
-            var themePath = Root + "UI/Theme.tss";
-            if (!File.Exists(themePath)) { File.WriteAllText(themePath, "@import url(\"unity-theme://default\");\n"); AssetDatabase.ImportAsset(themePath); }
-            var p = ScriptableObject.CreateInstance<PanelSettings>();
-            p.themeStyleSheet = AssetDatabase.LoadAssetAtPath<ThemeStyleSheet>(themePath);
-            p.scaleMode = PanelScaleMode.ScaleWithScreenSize;
-            p.referenceResolution = new Vector2Int(1600, 900);
-            p.screenMatchMode = PanelScreenMatchMode.MatchWidthOrHeight;
-            p.match = .5f;
-            p.sortingOrder = 10;
-            return Upsert(p, Gen + "UI/HudPanel.asset");
         }
 
         // ---------------- cameras ----------------

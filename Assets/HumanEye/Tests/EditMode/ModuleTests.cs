@@ -222,5 +222,15 @@ namespace HumanEye.Tests
             var r = Validator.Run();
             Assert.IsEmpty(r.errors, string.Join("\n", r.errors));
         }
+
+        [Test] public void ObservatoryFloorFacesTheCameraAboveIt()
+        {
+            var floor = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Mesh>("Assets/HumanEye/Generated/Meshes/FloorDisc.asset");
+            Assert.IsNotNull(floor, "Build Module must generate the floor");
+            var rotation = UnityEngine.Quaternion.Euler(-90, 0, 0);
+            foreach (var normal in floor.normals)
+                Assert.Greater(UnityEngine.Vector3.Dot(rotation * normal, UnityEngine.Vector3.up), .99f,
+                    "A downward floor is culled from the learning camera and appears black");
+        }
     }
 }

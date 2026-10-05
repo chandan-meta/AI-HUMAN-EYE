@@ -1,5 +1,7 @@
 # Human Eye — Observatory of Vision (Storyboard Scenes 2–11)
 
+> Authoring update, 3 October 2026: the live HUD is now a saved native Canvas prefab with editable Hierarchy objects. See [Scene authoring](SCENE_AUTHORING.md). UI Toolkit and earlier visual/device results below describe the pre-conversion version; they are not validation of the new Canvas. Full-scene regeneration replaces manual edits and is not needed to build the saved scene.
+
 A playable Unity learning module. Niko, the Vision Investigator Officer, guides a learner through the eye, from the first scan to the final curiosity, with click/tap interaction throughout. It starts directly at Scene 2 (no park, friends, book or portal).
 
 ## Requirements

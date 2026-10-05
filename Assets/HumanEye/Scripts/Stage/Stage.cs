@@ -23,7 +23,9 @@ namespace HumanEye
         [Header("Eye")]
         public EyeModel eye;
         public EyeModel otherEye;
-        public Transform eyeRig, heroPoint, cutPoint;
+        public Transform eyeRig, heroPoint, cutPoint, menuPoint;
+        public float menuNikoScale = 1.35f;
+        Vector3 authoredNikoScale;
 
         [Header("Cast")]
         public HumanDisplay human;
@@ -54,14 +56,21 @@ namespace HumanEye
         Quaternion orbit = Quaternion.identity;
         float keyIntensity, displayIntensity;
         string currentHint;
+        Routine demo;
+        string demoShot;
+        float orbitYaw, orbitPitch;
+        ParticleSystem[] ambientParticles;
+        public bool DemoBusy => demo != null && demo.Running;
 
         public IEnumerable<string> ActionNames => actions.Keys;
         public bool Short => SaveSystem.Data.settings.reducedMotion || SaveSystem.Data.settings.skipCameraMotion;
 
         void Awake()
         {
+            authoredNikoScale = niko.transform.localScale;
             keyIntensity = keyLight.intensity; displayIntensity = displayLight.intensity;
             appleBaseScale = appleRoot.localScale.x;
+            ambientParticles = observatory.GetComponentsInChildren<ParticleSystem>(true);
             EnsureActions();
         }
 
@@ -124,6 +133,8 @@ namespace HumanEye
         /// Restores the documented start state of a chapter: materials, pupil, lens, object distance, cast, cameras, UI.
         public void Enter(ChapterDefinition c)
         {
+            demo = null; orbitYaw = orbitPitch = 0;
+            brightnessLive = false;
             guide.Invalidate();
             signals.StopAll();
             ShowHint(null, 0);
@@ -137,13 +148,14 @@ namespace HumanEye
             eye.SetNerveReveal(1);
             otherEye.gameObject.SetActive(false);
             human.ResetVisual(false);
-            niko.gameObject.SetActive(true); niko.transform.localScale = Vector3.one; niko.lookTarget = lookCamera; niko.gestureTarget = eye.transform;
+            niko.gameObject.SetActive(true); niko.transform.localScale = authoredNikoScale; niko.lookTarget = lookCamera; niko.gestureTarget = eye.transform;
             micro.gameObject.SetActive(false);
             brainRoot.gameObject.SetActive(false);
             appleRoot.gameObject.SetActive(false); treeRoot.gameObject.SetActive(false); pedestal.gameObject.SetActive(false);
             rays.reach = 0; rays.showImage = false; rays.showLamp = false; rays.gameObject.SetActive(false);
             Brightness = .5f; rays.brightness = .5f;
             keyLight.intensity = keyIntensity; displayLight.intensity = displayIntensity;
+            RenderSettings.ambientIntensity = 1;
             observatory.SetActive(true);
             SetBlur(0);
             SetEyeFade(1);
@@ -155,6 +167,34 @@ namespace HumanEye
                 case "Scene03": PlaceEye(heroPoint); eye.SetCutInstant(false); eye.SetNerveReveal(.12f); niko.Place(Anchor("EyeLeft")); cams.Snap("S02_EyeHero"); break;
                 default: PlaceEye(cutPoint); eye.SetCutInstant(true); EnterLater(c.id); break;
             }
+        }
+
+        public void ShowMenu()
+        {
+            Enter(runner.chapters[2]);
+            eye.SetCutInstant(false); eye.SetNerveReveal(.12f); PlaceEye(heroPoint);
+            if (menuPoint) PlaceEye(menuPoint);
+            brainRoot.gameObject.SetActive(true);
+            human.gameObject.SetActive(false); appleRoot.gameObject.SetActive(false); lampRoot.gameObject.SetActive(false);
+            pedestal.gameObject.SetActive(false); rays.gameObject.SetActive(false); signals.StopAll();
+            niko.Place(Anchor("Menu"));
+            niko.transform.localScale = authoredNikoScale * menuNikoScale;
+            cams.Snap(cams.Has("Menu") ? "Menu" : "S04_Wide");
+            hud.HideInsets(); hud.labels.Clear();
+        }
+
+        void RunDemo(IEnumerator routine)
+        {
+            if (DemoBusy) return;
+            demoShot = cams.Active ? cams.Active.name : null;
+            demo = runner.RunSide(routine);
+        }
+
+        void StopDemo()
+        {
+            if (!DemoBusy) return;
+            demo.Cancel(); demo = null; signals.StopAll();
+            if (demoShot != null) cams.Snap(demoShot);
         }
 
         void PlaceEye(Transform point)
@@ -180,6 +220,7 @@ namespace HumanEye
 
         public IEnumerator FocusPart(string id)
         {
+            orbitYaw = orbitPitch = 0;
             foreach (var p in AllParts()) p.Selectable = false;
             hud.labels.Clear();
             sfx.Play("select");
@@ -261,19 +302,23 @@ namespace HumanEye
 
         public void Orbit(Vector2 delta)
         {
-            if (runner.Chapter == null) return;
+            if (runner.Chapter == null || Clock.Paused || !LessonRules.Orbit(runner.State) || runner.Focused != null) return;
             if (runner.Chapter.id is "Scene02" or "Scene03")
             {
                 spin = false;
-                eye.transform.localRotation = Quaternion.AngleAxis(-delta.x * .25f, eyeRig.InverseTransformDirection(Vector3.up)) * eye.transform.localRotation;
-                eye.transform.localRotation = Quaternion.AngleAxis(delta.y * .2f, eyeRig.InverseTransformDirection(cams.brain.transform.right)) * eye.transform.localRotation;
+                orbitYaw = Mathf.Clamp(orbitYaw - delta.x * .25f, -40, 40);
+                orbitPitch = Mathf.Clamp(orbitPitch + delta.y * .2f, -25, 25);
+                eye.transform.localRotation = Quaternion.AngleAxis(orbitYaw, eyeRig.InverseTransformDirection(Vector3.up)) *
+                    Quaternion.AngleAxis(orbitPitch, eyeRig.InverseTransformDirection(cams.brain.transform.right));
             }
         }
 
-        public void Zoom(float delta) => cams.Zoom(delta);
+        public void Zoom(float delta) { if (!Clock.Paused && LessonRules.Orbit(runner.State) && runner.Focused == null) cams.Zoom(delta); }
 
         public void ResetView()
         {
+            if (Clock.Paused) return;
+            spin = false; orbitYaw = orbitPitch = 0;
             cams.ResetZoom();
             runner.RunSide(Routine.Tween(.6f, t => eye.transform.localRotation = Quaternion.Slerp(eye.transform.localRotation, Quaternion.identity, t)));
         }
@@ -281,6 +326,12 @@ namespace HumanEye
         void Update()
         {
             if (spin) { swayTime += Clock.VizDelta; eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Sin(swayTime * .35f) * (Short ? 8 : 28), eyeRig.InverseTransformDirection(Vector3.up)); }
+            foreach (var particles in ambientParticles)
+            {
+                if (Short) { if (!particles.isStopped) particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); }
+                else if (Clock.Paused || Clock.Frozen) { if (particles.isPlaying) particles.Pause(); }
+                else if (!particles.isPlaying) particles.Play();
+            }
         }
 
         // ---------- labels ----------
@@ -330,6 +381,9 @@ namespace HumanEye
         public bool Ability(string ability, out string reason)
         {
             reason = null;
+            if (Clock.Paused) { reason = "Resume the investigation to use this tool."; return false; }
+            if (activities.Card != null) { reason = "Finish or skip the optional question first."; return false; }
+            if (DemoBusy && ability is "TRACE" or "REPLAY" or "INSIDE") { reason = "The demonstration is playing. You can freeze it or wait for it to finish."; return false; }
             var s = runner.State; var c = runner.Chapter?.id;
             bool free = runner.FreeMode != null || s == LessonState.Exploring || s == LessonState.AwaitingAction;
             switch (ability)
@@ -378,11 +432,11 @@ namespace HumanEye
             switch (ability)
             {
                 case "SCAN": if (!runner.Press("scan")) ToggleLabels(); break;
-                case "INSIDE": if (!runner.Press("inside")) runner.RunSide(cams.MoveTo(InsideShot(runner.Chapter.id), 1.2f)); break;
+                case "INSIDE": if (!runner.Press("inside")) RunDemo(cams.MoveTo(InsideShot(runner.Chapter.id), 1.2f)); break;
                 case "SIMULATE": Simulation = Simulation == null ? SimulationFor(runner.Chapter.id) : null; hud.Refresh(); break;
-                case "TRACE": runner.RunSide(Trace(TraceRoute(runner.Chapter.id))); break;
+                case "TRACE": Clock.Frozen = false; RunDemo(Trace(TraceRoute(runner.Chapter.id))); break;
                 case "FREEZE": runner.SetFrozen(!Clock.Frozen); hud.Toast(Clock.Frozen ? "Frozen: the biology is paused. Menus still work." : "Unfrozen."); break;
-                case "REPLAY": Clock.Frozen = false; runner.RunSide(Run(ReplayFor(runner.Chapter.id), "replay", 0)); break;
+                case "REPLAY": Clock.Frozen = false; RunDemo(Run(ReplayFor(runner.Chapter.id), "replay", 0)); break;
             }
         }
 

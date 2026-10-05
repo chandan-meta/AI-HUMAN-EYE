@@ -78,6 +78,8 @@ namespace HumanEye
         public bool Control(string id, out string reason)
         {
             reason = null;
+            if (Clock.Paused) { reason = "Resume to change the demonstration."; return false; }
+            if (DemoBusy) { reason = "Wait for the current demonstration to finish."; return false; }
             switch (id)
             {
                 case "brighter": case "presetBright":
@@ -111,8 +113,8 @@ namespace HumanEye
                 case "dimmer": SetBrightness(Brightness - .15f); break;
                 case "presetBright": SetBrightness(.95f); break;
                 case "presetDim": SetBrightness(.08f); break;
-                case "near": if (!runner.Press("near")) runner.RunSide(NearDemo(true)); break;
-                case "distant": if (!runner.Press("distant")) runner.RunSide(DistantDemo()); break;
+                case "near": if (!runner.Press("near")) RunDemo(NearDemo(true)); break;
+                case "distant": if (!runner.Press("distant")) RunDemo(DistantDemo()); break;
                 case "distanceSlider": SetObjectDistance(Mathf.Lerp(rays.nearDistance, rays.farDistance, value)); break;
                 case "lightDim": micro.SetLight(true, .1f); break;
                 case "lightBright": micro.SetLight(true, .95f); break;

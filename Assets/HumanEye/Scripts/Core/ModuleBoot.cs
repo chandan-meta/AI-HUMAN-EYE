@@ -29,9 +29,10 @@ namespace HumanEye
 
         void Start()
         {
+            stage.ShowMenu();
             hud.ShowStart();
             hud.Refresh();
-            if (Array.Exists(Environment.GetCommandLineArgs(), a => a == "-heAutopilot")) gameObject.AddComponent<AutoPilot>();
+            if (Debug.isDebugBuild && Array.Exists(Environment.GetCommandLineArgs(), a => a == "-heAutopilot")) gameObject.AddComponent<AutoPilot>();
 #if UNITY_EDITOR
             // Editor-only chapter preview (Tools > Human Eye > Preview Chapter); never compiled into players.
             int preview = UnityEditor.EditorPrefs.GetInt("HumanEye.Preview", -1);

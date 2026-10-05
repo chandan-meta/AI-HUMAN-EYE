@@ -1,5 +1,7 @@
 # Human Eye module (Scenes 2–11) — progress log
 
+> Authoring update, 3 October 2026: the live HUD is now a saved native Canvas prefab with editable Hierarchy objects. See [Scene authoring](SCENE_AUTHORING.md). UI Toolkit and earlier visual/device results below describe the pre-conversion version; they are not validation of the new Canvas. Full-scene regeneration replaces manual edits and is not needed to build the saved scene.
+
 Branch `feat/s02-meet-niko`. Started 2 October 2026.
 
 ## Decisions (keep)

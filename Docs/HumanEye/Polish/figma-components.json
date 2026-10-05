@@ -1,0 +1,113 @@
+{
+  "createdNodeIds": [
+    "6:12",
+    "6:2",
+    "6:13",
+    "6:3",
+    "6:14",
+    "6:4",
+    "6:15",
+    "6:5",
+    "6:16",
+    "6:6",
+    "6:17",
+    "6:7",
+    "6:18",
+    "6:8",
+    "6:19",
+    "6:9",
+    "6:20",
+    "6:10",
+    "6:21",
+    "6:11",
+    "6:22",
+    "6:23",
+    "6:24",
+    "6:25",
+    "I6:25;6:13",
+    "6:27",
+    "6:28",
+    "6:29",
+    "I6:29;6:14",
+    "6:31",
+    "6:32",
+    "6:33",
+    "I6:33;6:15",
+    "6:35",
+    "6:36",
+    "6:37",
+    "I6:37;6:16",
+    "6:39",
+    "6:40",
+    "6:41",
+    "I6:41;6:17",
+    "6:43",
+    "6:44",
+    "6:45",
+    "I6:45;6:18",
+    "6:47",
+    "6:48",
+    "6:49",
+    "I6:49;6:19",
+    "6:51",
+    "6:52",
+    "6:53",
+    "I6:53;6:20",
+    "6:55",
+    "6:56",
+    "6:57",
+    "I6:57;6:21",
+    "6:59",
+    "6:60",
+    "6:61",
+    "I6:61;6:22",
+    "6:63",
+    "6:64"
+  ],
+  "buttonSet": "6:12",
+  "variants": [
+    {
+      "id": "6:2",
+      "name": "Style=Primary, State=Default"
+    },
+    {
+      "id": "6:3",
+      "name": "Style=Primary, State=Pressed"
+    },
+    {
+      "id": "6:4",
+      "name": "Style=Primary, State=Focus"
+    },
+    {
+      "id": "6:5",
+      "name": "Style=Primary, State=Disabled"
+    },
+    {
+      "id": "6:6",
+      "name": "Style=Primary, State=Selected"
+    },
+    {
+      "id": "6:7",
+      "name": "Style=Secondary, State=Default"
+    },
+    {
+      "id": "6:8",
+      "name": "Style=Secondary, State=Pressed"
+    },
+    {
+      "id": "6:9",
+      "name": "Style=Secondary, State=Focus"
+    },
+    {
+      "id": "6:10",
+      "name": "Style=Secondary, State=Disabled"
+    },
+    {
+      "id": "6:11",
+      "name": "Style=Secondary, State=Selected"
+    }
+  ],
+  "screenPage": "6:64",
+  "review": "6:23",
+  "labelProp": "Label#6:0"
+}

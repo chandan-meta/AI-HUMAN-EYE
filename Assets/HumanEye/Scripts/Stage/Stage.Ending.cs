@@ -82,7 +82,7 @@ namespace HumanEye
                 case "photoreceptors": Simulation = on ? "photoreceptors" : null; micro.rods.Selectable = micro.cones.Selectable = on; break;
                 case "inspectImage": if (on) ShowLabels("scan"); break;
             }
-            if (!on) { hud.labels.Clear(); Clock.Frozen = false; }
+            if (!on) { StopDemo(); hud.labels.Clear(); Clock.Frozen = false; }
             hud.Refresh();
         }
 

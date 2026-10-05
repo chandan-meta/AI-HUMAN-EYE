@@ -54,7 +54,7 @@ namespace HumanEye
 
         void Update()
         {
-            var dt = Time.unscaledDeltaTime * 4;   // UI feedback: deliberately not frozen by FREEZE
+            var dt = Clock.Paused ? 0 : Time.unscaledDeltaTime * 4;   // FREEZE permits selection; Pause holds material transitions.
             alpha = Mathf.MoveTowards(alpha, alphaTarget, dt);
             glow = Mathf.MoveTowards(glow, glowTarget, dt);
             cut = Mathf.MoveTowards(cut, cutTarget, dt * .6f);

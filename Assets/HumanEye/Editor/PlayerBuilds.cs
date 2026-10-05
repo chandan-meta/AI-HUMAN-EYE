@@ -14,6 +14,7 @@ namespace HumanEye.EditorTools
     {
         [MenuItem("Tools/Human Eye/Build Player/Windows", priority = 40)] public static void Windows() => Run(BuildTarget.StandaloneWindows64, "Builds/HumanEye/Windows/HumanEye.exe");
         [MenuItem("Tools/Human Eye/Build Player/Android (tablet)", priority = 41)] public static void Android() => Run(BuildTarget.Android, "Builds/HumanEye/Android/HumanEye.apk");
+        public static void RebuildWindows() { Builder.Build(); Windows(); }
 
         static void Run(BuildTarget target, string path)
         {

@@ -31,6 +31,8 @@ namespace HumanEye
     public static class SaveSystem
     {
         public const string Key = "HumanEye.Progress.v1", CorruptKey = "HumanEye.Progress.corrupt";
+        // Development walkthroughs must never overwrite a learner's real progress.
+        static string StorageKey => Debug.isDebugBuild && Array.Exists(Environment.GetCommandLineArgs(), a => a == "-heAutopilot") ? Key + ".QA" : Key;
         public static ProgressData Data { get; private set; } = new();
         /// Set when a save could not be read; the HUD shows it once.
         public static string Notice;
@@ -38,9 +40,9 @@ namespace HumanEye
 
         public static void Load()
         {
-            var json = PlayerPrefs.GetString(Key, "");
+            var json = PlayerPrefs.GetString(StorageKey, "");
             Data = Parse(json, out Notice);
-            if (Notice != null) PlayerPrefs.SetString(CorruptKey, json);
+            if (Notice != null) PlayerPrefs.SetString(StorageKey == Key ? CorruptKey : CorruptKey + ".QA", json);
         }
 
         public static ProgressData Parse(string json, out string notice)
@@ -64,7 +66,7 @@ namespace HumanEye
 
         public static void Save()
         {
-            PlayerPrefs.SetString(Key, JsonUtility.ToJson(Data));
+            PlayerPrefs.SetString(StorageKey, JsonUtility.ToJson(Data));
             PlayerPrefs.Save();
             Changed?.Invoke();
         }

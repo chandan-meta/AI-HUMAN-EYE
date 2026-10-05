@@ -14,6 +14,7 @@ namespace HumanEye.EditorTools
             var nerve = EyeGeometry.NervePath(cutFrame.InverseTransformPoint(BrainEntry)).Select(p => cutFrame.TransformPoint(p)).ToList();
             Vector3 N(float t) => nerve[Mathf.Clamp(Mathf.RoundToInt(t * (nerve.Count - 1)), 0, nerve.Count - 1)];
             var vis = visualCentreWorld;
+            Shot("Menu", null, new Vector3(.3f, 2.15f, -5.6f), new Vector3(.3f, 1.55f, .7f), 42);
 
             // Scene 2 — establishing wide, medium on Niko, the display, scan, anatomical close-up, hero eye.
             Shot("S02_EstablishA", null, new Vector3(0, 2.7f, -10.5f), new Vector3(0, 2.6f, 3), 44);
@@ -21,16 +22,16 @@ namespace HumanEye.EditorTools
             Shot("S02_NikoMedium", null, new Vector3(-.95f, 1.3f, -1.5f), new Vector3(-1.25f, 1.05f, .8f), 36);
             Shot("S02_DisplayWide", null, new Vector3(-.45f, 1.55f, -3.7f), new Vector3(-.4f, 1.15f, 1.7f), 40);
             Shot("S02_ScanFront", null, new Vector3(0, 1.2f, -2.8f), new Vector3(0, 1.0f, 2), 44);
-            Shot("S02_EyeInSkull", null, head + new Vector3(.16f, .05f, -.5f), head + new Vector3(.03f, -.005f, 0), 26);
+            Shot("S02_EyeInSkull", null, head + new Vector3(.12f, .04f, -.8f), head + new Vector3(.03f, -.005f, 0), 32);
             Shot("S02_PinchNiko", null, new Vector3(-.85f, 1.35f, -1.05f), new Vector3(-1.25f, 1.2f, .8f), 34);
-            Shot("S02_EyeHero", null, new Vector3(-.35f, 1.55f, -1.9f), new Vector3(-.3f, 1.47f, .6f), 31);
+            Shot("S02_EyeHero", null, new Vector3(-.3f, 1.7f, -2.6f), new Vector3(-.25f, 1.35f, .6f), 36);
             Shot("S02_Part_sclera", e, new Vector3(1.6f, .55f, 1.6f), new Vector3(.55f, .2f, .5f), 30);
             Shot("S02_Part_cornea", e, new Vector3(1.9f, .2f, 1.05f), new Vector3(.1f, .05f, .95f), 27);
             Shot("S02_Part_iris", e, new Vector3(.3f, .18f, 2.7f), new Vector3(0, 0, .8f), 24);
             Shot("S02_Part_pupil", e, new Vector3(.12f, .06f, 2.5f), new Vector3(0, 0, .8f), 20);   // the opening framed inside the iris
 
             // Scene 3 — cut view (camera on the cut side, -X of the eye).
-            Shot("S03_InsideHero", null, new Vector3(-.1f, 1.56f, -1.95f), new Vector3(0, 1.48f, .6f), 32);
+            Shot("S03_InsideHero", null, new Vector3(-.25f, 1.7f, -2.5f), new Vector3(-.2f, 1.35f, .6f), 36);
             Shot("S03_Part_aqueous", e, new Vector3(-1.35f, .22f, 1.0f), new Vector3(0, .1f, .88f), 25);
             Shot("S03_Part_lens", e, new Vector3(-2.7f, .12f, .62f), new Vector3(0, 0, .6f), 30);
             Shot("S03_Lens_Close", e, new Vector3(-2.25f, 0, .66f), new Vector3(0, -.1f, .65f), 28);   // lens sits above the subtitle band

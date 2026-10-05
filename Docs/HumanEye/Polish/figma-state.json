@@ -1,0 +1,35 @@
+{
+  "fileKey": "U4QDtnkYPFaBZBUVYIL4Dg",
+  "scope": "Native Unity UI library and screens",
+  "step": "foundations",
+  "mutatedNodeIds": [
+    "0:1"
+  ],
+  "collections": [
+    "VariableCollectionId:2:2",
+    "VariableCollectionId:2:3"
+  ],
+  "variables": {
+    "surface": "VariableID:2:5",
+    "raised": "VariableID:2:7",
+    "border": "VariableID:2:9",
+    "accent": "VariableID:2:11",
+    "text": "VariableID:2:13",
+    "muted": "VariableID:2:15",
+    "primary": "VariableID:2:17",
+    "focus": "VariableID:2:19",
+    "success": "VariableID:2:21",
+    "disabled": "VariableID:2:23",
+    "gap": "VariableID:2:24",
+    "padding": "VariableID:2:25",
+    "radius": "VariableID:2:26",
+    "hit": "VariableID:2:27"
+  },
+  "styles": {
+    "Title": "S:33d52902720ddc21b56479d5b4006b8af4b18210,",
+    "Heading": "S:83e7208431e13e514d6676768a7c4891b68cc05a,",
+    "Body": "S:d33c40c753e4046a3e77905b73b31badd2dbd635,",
+    "Button": "S:2c673f8e48f1934792cd3e5e48a1bcb29b922a88,",
+    "Caption": "S:e52c14d2f5f4f12a4465272506304700b0855be4,"
+  }
+}

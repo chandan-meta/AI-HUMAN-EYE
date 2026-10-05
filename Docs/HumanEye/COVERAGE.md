@@ -1,5 +1,7 @@
 # Source-to-implementation coverage checklist
 
+> Authoring update, 3 October 2026: the live HUD is now a saved native Canvas prefab with editable Hierarchy objects. See [Scene authoring](SCENE_AUTHORING.md). UI Toolkit and earlier visual/device results below describe the pre-conversion version; they are not validation of the new Canvas. Full-scene regeneration replaces manual edits and is not needed to build the saved scene.
+
 Legend:
 - **✔ implemented**: built, and exercised by the automated walkthrough/tests.
 - **◐ implemented, needs human/device review**: built but not yet reviewed by a person or on a device.

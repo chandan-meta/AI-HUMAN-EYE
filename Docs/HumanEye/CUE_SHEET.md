@@ -27,13 +27,13 @@ Checkpoint (restart/resume state): Observatory establishing view; display subdue
 | 15 | Do |  |  |  |  | scan | Pause, Help, Settings | Action complete |
 | 16 | Do |  |  |  |  | illuminate | Pause, Help, Settings | Action complete |
 | 17 | Say |  |  |  | S02_L06: “There.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 18 | Shot | Selected eye inside the skull (anatomical position) · close-up | S02_ScanFront → S02_EyeInSkull (0.11,2.00,1.48 · yaw 345 pitch 6 · 26°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
+| 18 | Shot | Selected eye inside the skull (anatomical position) · medium | S02_ScanFront → S02_EyeInSkull (0.07,1.99,1.18 · yaw 354 pitch 3 · 32°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
 | 19 | Say |  |  |  | S02_L07: “Your first destination.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 20 | Hold |  |  |  |  |  | Pause, Help, Settings | 1.5 s inspection hold |
 | 21 | Do |  |  |  |  | nikoLook(eye) | Pause, Help, Settings | Action complete |
 | 22 | Shot | Niko's pinch gesture · medium | S02_EyeInSkull → S02_PinchNiko (-0.85,1.35,-1.05 · yaw 348 pitch 5 · 34°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
 | 23 | Do |  |  |  |  | pinch | Pause, Help, Settings | Action complete |
-| 24 | Shot | Enlarged complete eye · medium | S02_PinchNiko → S02_EyeHero (-0.35,1.55,-1.90 · yaw 1 pitch 2 · 31°) | Ease-in-out blend 2.4 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 24 | Shot | Enlarged complete eye · medium | S02_PinchNiko → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 2.4 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 25 | Do |  |  |  |  | enlarge | Pause, Help, Settings | Action complete |
 | 26 | Do |  |  |  |  | nikoMove(EyeLeft) | Pause, Help, Settings | Action complete |
 | 27 | Say |  |  |  | S02_L08: “Here it is. The human eye.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
@@ -56,7 +56,7 @@ Checkpoint (restart/resume state): Observatory establishing view; display subdue
 |   40 | Say |  |  |  | S02_L14: “This opening is the pupil. Light enters the eye through it.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 |   41 | Hold |  |  |  |  |  | Pause, Help, Settings | 0.8 s inspection hold |
 | 42 | Offer |  |  |  |  | topic:external_structures | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
-| 43 | Shot | Enlarged complete eye · medium | S02_EyeHero → S02_EyeHero (-0.35,1.55,-1.90 · yaw 1 pitch 2 · 31°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
+| 43 | Shot | Enlarged complete eye · medium | S02_EyeHero → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
 | 44 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
 | 45 | Say |  |  |  | S02_L15: “We’ve seen the parts we can see from the outside. Now, let’s look inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 46 | Say |  |  |  | S02_L16 [PROMPT VO]: “Click on the Inside View button to see how the eye looks from the inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
@@ -70,7 +70,7 @@ Checkpoint (restart/resume state): Closed eye at the hero point in the Scene 2 o
 | # | Step | Subject · framing | Start → end camera pose | Transition | Dialogue | Animation / visual cue | Permitted input | Exit condition |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Do |  |  |  |  | corneaClear | Pause, Help, Settings | Action complete |
-| 2 | Shot | Complete cutaway eye · medium | checkpoint → S03_InsideHero (-0.10,1.56,-1.95 · yaw 2 pitch 2 · 32°) | Ease-in-out blend 2.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 2 | Shot | Complete cutaway eye · medium | checkpoint → S03_InsideHero (-0.25,1.70,-2.50 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 2.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 3 | Do |  |  |  |  | turnToSide | Pause, Help, Settings | Action complete |
 | 4 | Do |  |  |  |  | cutaway(open) | Pause, Help, Settings | Action complete |
 | 5 | Do |  |  |  |  | niko(Snap) | Pause, Help, Settings | Action complete |
@@ -104,7 +104,7 @@ Checkpoint (restart/resume state): Closed eye at the hero point in the Scene 2 o
 |   28 | Say |  |  |  | S03_L11: “Behind the retina is the choroid, a layer rich in blood vessels that supplies the eye with oxygen and nutrients.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 |   29 | Hold |  |  |  |  |  | Pause, Help, Settings | 0.6 s inspection hold |
 | 30 | Offer |  |  |  |  | topic:internal_structures | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
-| 31 | Shot | Complete cutaway eye · medium | S03_Choroid_Deep → S03_InsideHero (-0.10,1.56,-1.95 · yaw 2 pitch 2 · 32°) | Ease-in-out blend 1.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.2 s; short fade when reduced motion) |
+| 31 | Shot | Complete cutaway eye · medium | S03_Choroid_Deep → S03_InsideHero (-0.25,1.70,-2.50 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 1.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.2 s; short fade when reduced motion) |
 | 32 | Say |  |  |  | S03_L12: “Now we’ve explored the main structures of the eye.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 
 ## Scene04 — How Is the Eye Connected to the Brain?

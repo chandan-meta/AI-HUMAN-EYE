@@ -51,6 +51,7 @@ Shader "HumanEye/Anatomy"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             TEXTURE2D(_BaseMap); SAMPLER(sampler_BaseMap);
             TEXTURE2D(_DetailMap); SAMPLER(sampler_DetailMap);
@@ -98,12 +99,21 @@ Shader "HumanEye/Anatomy"
                 float3 env = GlossyEnvironmentReflection(reflect(-v, n), 1 - _Gloss, 1) * _Specular;
                 float3 col = albedo * (light.color * diffuse + SampleSH(n)) + light.color * spec + env * (_F0 + (1 - _F0) * fres)
                            + _RimColor.rgb * fres * _Rim + _Emission.rgb;
+                #ifdef _ADDITIONAL_LIGHTS
+                for (uint j = 0; j < GetAdditionalLightsCount(); j++)
+                {
+                    Light fill = GetAdditionalLight(j, i.positionWS);
+                    float d = saturate((dot(n, fill.direction) + _Wrap) / (1 + _Wrap));
+                    float s = pow(saturate(dot(n, normalize(fill.direction + v))), lerp(8, 256, _Gloss)) * _Specular;
+                    col += (albedo * d + s) * fill.color * fill.distanceAttenuation * fill.shadowAttenuation;
+                }
+                #endif
                 col *= lerp(1, 0.05, _InteriorDark * _HE_InteriorDark);
                 // Selection reads as a restrained cyan rim, not a tint over the structure.
                 float glow = _Highlight * lerp(pow(fres, 0.7), 1, _HighlightTint) * (0.85 + 0.15 * sin(_HE_VizTime * 4));
-                col += _HighlightColor.rgb * glow * 1.6;
+                col += _HighlightColor.rgb * glow * .7;
                 float a = _BaseColor.a * _Alpha;
-                if (a < 0.999) a = saturate(a + fres * 0.25 * a + _Highlight * 0.2);
+                if (a < 0.999) a = saturate(a + fres * 0.25 * a + _Highlight * fres * .06);
                 return half4(col, a);
             }
             ENDHLSL

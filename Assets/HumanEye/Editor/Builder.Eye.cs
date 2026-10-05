@@ -43,10 +43,10 @@ namespace HumanEye.EditorTools
                     m.SetFloat("_DetailSpan", 1.75f); m.SetFloat("_DetailStrength", .32f); m.SetFloat("_Gloss", .62f); m.SetFloat("_Specular", .35f); m.SetFloat("_Wrap", .55f); m.SetFloat("_Rim", .08f); m.SetFloat("_Cull", 0);
                 }),
                 ["cornea"] = Anatomy("Eye_Cornea", new Color(.3f, .34f, .36f), m => Glass(m, .97f, .9f, .45f)),   // dark albedo: clear glass reads through highlights, not a milky film
-                ["iris"] = Anatomy("Eye_Iris", Color.white, m => { m.SetTexture("_BaseMap", iris); m.SetFloat("_Gloss", .35f); m.SetFloat("_Specular", .2f); m.SetFloat("_Wrap", .35f); m.SetFloat("_Cull", 0); }),
+                ["iris"] = Anatomy("Eye_Iris", Color.white, m => { m.SetTexture("_BaseMap", iris); m.SetFloat("_Gloss", .55f); m.SetFloat("_Specular", .2f); m.SetFloat("_Wrap", .65f); m.SetFloat("_Cull", 0); m.SetColor("_Emission", new Color(.015f, .035f, .05f)); }),
                 ["pupil"] = Anatomy("Eye_PupilRim", new Color(.03f, .025f, .02f), m => { m.SetFloat("_Gloss", .3f); m.SetFloat("_Cull", 0); }),
                 ["aqueous"] = Anatomy("Eye_Aqueous", new Color(.55f, .85f, 1f), m => { Glass(m, .9f, .3f, .2f); m.SetFloat("_InteriorDark", 1); }),
-                ["lens"] = Anatomy("Eye_Lens", new Color(.9f, .95f, .97f), m => { Glass(m, .97f, 1, .55f); m.SetFloat("_InteriorDark", 1); m.SetFloat("_HighlightTint", .35f); }),
+                ["lens"] = Anatomy("Eye_Lens", new Color(.42f, .55f, .62f), m => { Glass(m, .97f, .65f, .22f); m.SetFloat("_InteriorDark", 1); m.SetFloat("_HighlightTint", .05f); }),
                 ["vitreous"] = Anatomy("Eye_Vitreous", new Color(.78f, .88f, .92f), m => { Glass(m, .5f, .2f, .15f); m.SetFloat("_InteriorDark", 1); }),
                 ["retina"] = Anatomy("Eye_Retina", new Color(.86f, .36f, .16f), m =>
                 {
@@ -88,6 +88,7 @@ namespace HumanEye.EditorTools
             heroEye = EyeModel("Eye", rig, specs, mats, nerveEnd, true);
             var other = EyeModel("Other Eye (scan only)", null, specs, mats, nerveEnd, false);
             stage.eye = heroEye; stage.otherEye = other; stage.eyeRig = rig;
+            stage.menuPoint = Obj("Menu Eye Point", null, pos: new Vector3(0, 2.3f, .6f), rot: HeroRotation, scale: Vector3.one * .65f).transform;
             stage.heroPoint = Obj("Hero Point", null, pos: EyeCentre, rot: HeroRotation, scale: Vector3.one * EyeRadius).transform;
             stage.cutPoint = Obj("Cut Point", null, pos: EyeCentre, rot: CutRotation, scale: Vector3.one * EyeRadius).transform;
         }

@@ -11,7 +11,7 @@ namespace HumanEye
     /// It presses the same public actions the HUD buttons call, logs every state/cue change with real timestamps,
     /// samples frame times and captures screenshots. It does not simulate physical mouse/touch hit-testing.
     /// Flags: -heCapture <dir>  -heFast <factor>  -heChapter <index>  -heReduced
-    public class AutoPilot : MonoBehaviour
+    public partial class AutoPilot : MonoBehaviour
     {
         ChapterRunner runner; Stage stage; Narrator narrator; ActivityController activities; Hud hud; CameraDirector cams; NikoGuide guide;
         string dir; StreamWriter log;
@@ -38,12 +38,15 @@ namespace HumanEye
         {
             runner = FindFirstObjectByType<ChapterRunner>(); stage = runner.stage; narrator = runner.narrator;
             activities = runner.activities; hud = stage.hud; cams = runner.cameras; guide = stage.guide;
-            dir = Arg("-heCapture", Path.Combine(Application.dataPath, "..", "Builds", "Checks", DateTime.Now.ToString("yyyyMMdd_HHmmss")));
+            dir = Path.GetFullPath(Arg("-heCapture", Path.Combine(Application.dataPath, "..", "Builds", "Checks", DateTime.Now.ToString("yyyyMMdd_HHmmss"))));
             Directory.CreateDirectory(dir);
             Done = false;
+            PointerFailures = 0;
             SaveSystem.ResetProgress(true);   // walkthrough evidence always starts from a first run
+            hud.ShowStart(); // Reset the displayed resume label as well as the data.
             Clock.FastForward = FastOverride ?? float.Parse(Arg("-heFast", "1"), System.Globalization.CultureInfo.InvariantCulture);
             SaveSystem.Data.settings.reducedMotion = Environment.GetCommandLineArgs().Contains("-heReduced");   // explicit both ways: settings persist in PlayerPrefs
+            SaveSystem.Data.settings.waitForContinue = false;
             log = new StreamWriter(Path.Combine(dir, "walkthrough.log")) { AutoFlush = true };
             // Render/memory counters exist in Development players and the Editor (0 elsewhere).
             drawCalls = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count");
@@ -63,11 +66,16 @@ namespace HumanEye
         /// Captures the next rendered frame and waits for it, so the action that follows can't change what's captured.
         IEnumerator Capture(string name)
         {
+            // Batch Editor uses a 640x480 Game view; the full layout audit runs in the
+            // standalone player at the supported 1024x768+ sizes. Explicit clicks still run here.
+            if (!Application.isEditor || Screen.width >= 1024) AuditPointers(name);
             if (!CapturesEnabled) yield break;
             var file = Path.Combine(dir, $"{++shots:000}_{name}.png");
             if (Application.isBatchMode) { yield return null; RenderToFile(file); yield return null; }   // batch editor: camera only, no UI overlay (WaitForEndOfFrame never fires in batch mode)
+            else if (Environment.GetCommandLineArgs().Contains("-heOffscreen")) yield return CaptureOffscreen(file);
             else { yield return new WaitForEndOfFrame(); ScreenCapture.CaptureScreenshot(file); yield return null; yield return new WaitForEndOfFrame(); }
             Log("capture", file);
+            if (Environment.GetCommandLineArgs().Contains("-hePolish")) AuditLayout(name);
         }
 
         static void RenderToFile(string file)
@@ -103,7 +111,7 @@ namespace HumanEye
 
         void Update()
         {
-            if (!runner) return;
+            if (!runner || log == null || Done) return;
             frameSum += Time.unscaledDeltaTime; frames++; worst = Mathf.Max(worst, Time.unscaledDeltaTime);
             drawSum += drawCalls.LastValue; setPassSum += setPass.LastValue; triSum += triangles.LastValue; mainSum += mainThread.LastValue * 1e-6;
             drawMax = System.Math.Max(drawMax, drawCalls.LastValue); memMax = System.Math.Max(memMax, systemMemory.LastValue);
@@ -124,8 +132,9 @@ namespace HumanEye
         {
             yield return Real(1.5f);
             yield return Capture("start_screen");
+            if (Environment.GetCommandLineArgs().Contains("-hePolish")) yield return CheckMenuUI();
             int chapter = int.Parse(Arg("-heChapter", "0"));
-            hud.StartModule(chapter);
+            if (chapter == 0) yield return ClickUI("start-begin"); else hud.StartModule(chapter);
             Log("action", "Start pressed");
             int stopAfter = int.Parse(Arg("-heStop", "99"));
             while (true)
@@ -139,9 +148,10 @@ namespace HumanEye
                 if (runner.State == LessonState.Complete)
                 {
                     yield return Real(3); yield return Capture("end_menu");
+                    if (Stress && !savedChecked) { yield return CheckSavedCompletion(); continue; }
                     Summary = $"completed={string.Join(",", SaveSystem.Data.completedChapters)} cues={SaveSystem.Data.cues.Count} evidence={SaveSystem.Data.evidence.Count}";
                     Log("done", Summary);
-                    log.Close(); yield return Real(1); Exit(0); yield break;
+                    Done = true; yield return Real(1); log.Close(); Exit(0); yield break;
                 }
                 if (cams.Active && cams.Active.name != lastShot)
                 {
@@ -180,12 +190,13 @@ namespace HumanEye
 
         IEnumerator Await(string key)
         {
+            if (Stress && !flowChecked) yield return CheckFlowUI();
             yield return Real(1.2f);
             yield return Capture("await_" + key);
             switch (key)
             {
-                case "scan": stage.UseAbility("SCAN"); break;
-                case "inside": stage.UseAbility("INSIDE"); break;
+                case "scan": yield return ClickUI("ab-SCAN"); break;
+                case "inside": yield return ClickUI("ab-INSIDE"); break;
                 case "brighter": stage.UseControl("dimmer"); Log("check", "dimmer during 'brighter' was refused (reason toast)"); stage.UseControl("presetBright"); break;
                 case "dimmer": stage.UseControl("presetDim"); break;
                 case "near": stage.UseControl("near"); break;
@@ -198,6 +209,7 @@ namespace HumanEye
 
         IEnumerator Free(string mode)
         {
+            if (Stress && !demoChecked && mode == "routeTrace") { yield return CheckDemoStress(); yield break; }
             Log("free", mode);
             yield return Real(1.5f);
             yield return Capture("free_" + mode);

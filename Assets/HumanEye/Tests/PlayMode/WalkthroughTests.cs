@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,9 @@ namespace HumanEye.Tests
         {
             SceneManager.LoadScene("HumanEye_Observatory");
             yield return null; yield return null;
+            var hud = Object.FindFirstObjectByType<Hud>();
+            var authored = hud.canvas.GetComponentsInChildren<RectTransform>(true).Select(t => t.GetInstanceID()).ToArray();
+            Assert.Greater(authored.Length, 300, "UI must be authored in the saved scene before gameplay");
             AutoPilot.FastOverride = 6; AutoPilot.ExitWhenDone = false; AutoPilot.CapturesEnabled = false;
             Object.FindFirstObjectByType<ModuleBoot>().gameObject.AddComponent<AutoPilot>();
             var runner = Object.FindFirstObjectByType<ChapterRunner>();
@@ -29,8 +33,10 @@ namespace HumanEye.Tests
             Assert.IsTrue(AutoPilot.Done, "walkthrough did not finish in time; state " + runner.State + " in " + runner.Chapter?.id);
             Assert.AreEqual(LessonState.Complete, runner.State);
             Assert.AreEqual(10, SaveSystem.Data.completedChapters.Count, AutoPilot.Summary);
+            Assert.AreEqual(0, AutoPilot.PointerFailures, "Every active control must be reachable by an EventSystem pointer raycast");
             Assert.AreEqual(66, SaveSystem.Data.cues.Count, "every StoryboardCore cue completed exactly once: " + AutoPilot.Summary);
             Assert.Greater(SaveSystem.Data.evidence.Count, 0, "adaptive activities recorded evidence");
+            CollectionAssert.AreEquivalent(authored, hud.canvas.GetComponentsInChildren<RectTransform>(true).Select(t => t.GetInstanceID()).ToArray(), "Gameplay must reuse exactly the saved Canvas objects");
             Assert.AreEqual(1f, Time.timeScale, "pause/freeze never touch timeScale");
         }
     }

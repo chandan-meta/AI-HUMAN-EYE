@@ -29,6 +29,24 @@ namespace HumanEye.EditorTools
         static float Hash(int x, int seed) { unchecked { uint h = (uint)(x * 374761393 + seed * 668265263); h = (h ^ (h >> 13)) * 1274126177; return (h ^ (h >> 16)) / (float)uint.MaxValue; } }
         static float Noise1(float x, int seed) { int i = Mathf.FloorToInt(x); float f = x - i; f = f * f * (3 - 2 * f); return Mathf.Lerp(Hash(i, seed), Hash(i + 1, seed), f); }
 
+        /// Subtle seamless nebula behind the separate star geometry; project-owned and deterministic.
+        public static Texture2D ObservatorySky()
+        {
+            const int w = 1024, h = 512;
+            var pixels = new Color[w * h];
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                {
+                    float u = x / (float)w, v = y / (float)h;
+                    float a = u * Mathf.PI * 2, nx = 4 + Mathf.Cos(a) * 2, ny = 4 + Mathf.Sin(a) * 2;
+                    float noise = Mathf.PerlinNoise(nx + v * 4, ny) * .6f + Mathf.PerlinNoise(nx * 4, ny * 4 + v * 15) * .3f + Mathf.PerlinNoise(nx * 16, ny * 16 + v * 60) * .1f;
+                    float band = Mathf.Exp(-Mathf.Pow((v - .25f - .14f * Mathf.Sin(a * 2)) / .15f, 2));
+                    float cloud = Mathf.Pow(Mathf.Clamp01((noise - .25f) * 2.2f), .7f) * band;
+                    pixels[y * w + x] = Color.Lerp(new Color(.008f, .014f, .033f), new Color(.17f, .27f, .45f), cloud);
+                }
+            return Save("ObservatorySky", pixels, w, h, true, TextureWrapMode.Repeat);
+        }
+
         /// Polar iris map: u = angle around the pupil, v = 0 at the pupil margin → 1 at the iris root.
         public static Texture2D Iris()
         {

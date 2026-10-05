@@ -190,6 +190,8 @@ namespace HumanEye.EditorTools
                 foreach (var f in mb.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
                 {
                     if (allowNull.Contains(f.Name)) continue;
+                    // Plain text state slots have no glass surface; buttons and progress dots do.
+                    if (mb is HudState state && f.Name == nameof(HudState.surface) && state.target is UnityEngine.UI.Text && !state.GetComponent<GlassPanel>()) continue;
                     var v = f.GetValue(mb);
                     if (typeof(Object).IsAssignableFrom(f.FieldType) && !(Object)v) { r.errors.Add($"Missing reference {mb.GetType().Name}.{f.Name} on {mb.name}"); nulls++; }
                     if (f.FieldType.IsArray && typeof(Object).IsAssignableFrom(f.FieldType.GetElementType()) && v is Array arr)
