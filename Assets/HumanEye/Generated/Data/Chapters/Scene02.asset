@@ -146,12 +146,6 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 0
-    key: S02_PinchNiko
-    arg: 
-    value: 1
-    async: 0
-    note: 
   - kind: 2
     key: pinch
     arg: 

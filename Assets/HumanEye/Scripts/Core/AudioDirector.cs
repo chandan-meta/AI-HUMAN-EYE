@@ -29,10 +29,10 @@ namespace HumanEye
         void Update()
         {
             var s = SaveSystem.Data.settings;
-            narrator.voice.volume = s.narration;
-            sfx.volume = s.sfx;
+            narrator.voice.volume = s.muted ? 0 : s.narration;
+            sfx.volume = s.muted ? 0 : s.sfx;
             duck = Mathf.MoveTowards(duck, narrator.Busy ? .4f : 1, Time.unscaledDeltaTime * 1.5f);
-            music.volume = s.music * duck * musicGain;
+            music.volume = s.muted ? 0 : s.music * duck * musicGain;
         }
     }
 }

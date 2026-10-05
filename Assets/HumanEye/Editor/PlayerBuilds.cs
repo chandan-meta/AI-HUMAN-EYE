@@ -28,6 +28,8 @@ namespace HumanEye.EditorTools
                 options = dev ? BuildOptions.Development : BuildOptions.None,
             });
             var s = report.summary;
+            if (s.result == BuildResult.Succeeded && target == BuildTarget.StandaloneWindows64)
+                File.Copy("Docs/HumanEye/THIRD_PARTY_NOTICES.md", Path.Combine(Path.GetDirectoryName(path), "THIRD_PARTY_NOTICES.md"), true);
             var line = $"{DateTime.UtcNow:u} {target} {s.result} size={s.totalSize / 1048576f:0.0}MB time={s.totalTime} errors={s.totalErrors} warnings={s.totalWarnings} -> {path}";
             File.AppendAllText("Logs/he_player_builds.txt", line + Environment.NewLine);
             Debug.Log("HUMAN_EYE_PLAYER " + line);

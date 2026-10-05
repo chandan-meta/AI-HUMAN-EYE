@@ -36,7 +36,7 @@ namespace HumanEye
 
         void Update()
         {
-            if (!runner.Started) return;
+            if (!runner.Started || (stage.navigation && stage.navigation.Active) || Clock.Paused) { held = false; pinch = 0; return; }
             var p = point.ReadValue<Vector2>();
             bool canOrbit = LessonRules.Orbit(runner.State) && !Clock.Paused;
             if (Pinching(canOrbit)) return;
@@ -48,7 +48,7 @@ namespace HumanEye
             if (held && press.IsPressed())
             {
                 if (!blocked && !dragging && (p - origin).magnitude > Slop) dragging = true;
-                if (dragging && canOrbit) stage.Orbit(p - last);
+                if (!blocked && dragging && canOrbit) stage.Orbit(p - last);
                 last = p;
             }
             if (held && press.WasReleasedThisFrame())
@@ -65,7 +65,8 @@ namespace HumanEye
             var ts = Touchscreen.current;
             if (ts == null || !ts.touches[1].isInProgress || !ts.touches[0].isInProgress) { pinch = 0; return false; }
             float d = Vector2.Distance(ts.touches[0].position.ReadValue(), ts.touches[1].position.ReadValue());
-            if (pinch > 0 && canOrbit && !hud.IsOverUI(ts.touches[0].position.ReadValue())) stage.Zoom((pinch - d) * .05f);
+            if (pinch == 0) blocked = held && blocked || hud.IsOverUI(ts.touches[0].startPosition.ReadValue()) || hud.IsOverUI(ts.touches[1].startPosition.ReadValue());
+            if (pinch > 0 && canOrbit && !blocked) stage.Zoom((pinch - d) * .05f);
             pinch = d; held = false; dragging = true;
             return true;
         }

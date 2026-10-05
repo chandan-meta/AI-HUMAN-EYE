@@ -1,6 +1,22 @@
 # Human Eye — project handoff
 
-Updated: 4 October 2026 (Asia/Calcutta). **Polish work is in progress; four-round acceptance and production acceptance are incomplete.**
+User preference: use the Ponytail skill for coding work until explicitly disabled.
+
+## Cinematic entrance update (5 October 2026)
+
+The saved scene now starts at the closed gate and includes a 15-second entrance, human spotlight, face-first scan, collision-backed lab walking with an authored joystick, and staged anatomy controls. Use `CinematicPatch.Apply` / **Tools > Human Eye > Authoring > Apply cinematic entrance (keeps scene edits)** for this patch; do not regenerate the module. The user selected MisterH's Sketchfab eye `f2370371544c4b029123da0b7d7e2457`; CC BY 4.0/downloadability verified and the user-supplied GLB is integrated as the closed-eye exterior. Cutaway and pupil-response teaching retain procedural anatomy. Apply with MisterHEyeImport.Apply; conversion source and original GLB are retained. Current changes, evidence and remaining acceptance work: [cinematic report](Docs/HumanEye/Polish/CINEMATIC_ENTRANCE_2026-10-05.md).
+
+Updated: 5 October 2026 (Asia/Calcutta). **Source implementation is saved and tested; final Windows rebuild and production acceptance remain incomplete.**
+
+## Resume here
+
+- Current branch: `claude/wow-moments`; remote: `https://github.com/chandan-meta/AI-HUMAN-EYE.git`. This handoff accompanies the cinematic entrance and supplied-eye integration commit.
+- Open `Assets/HumanEye/Scenes/HumanEye_Observatory.unity` in Unity 6000.3.0f1. Preserve the authored scene and Canvas; do not run full `Builder.Build` regeneration. The saved scene already contains both patches.
+- Completed: 15-second gate entrance, human spotlight, face-first scan, lab navigation/joystick with collision, layer controls, muted narration captions, environment lighting/material copies, and MisterH's user-supplied eye exterior. Ten chapters and 66 original narration cues remain. The model's CC BY 4.0 attribution is in `Docs/HumanEye/THIRD_PARTY_NOTICES.md` and is copied alongside Windows builds.
+- Verified locally: Edit Mode 25/25; content validator 70/70; Play Mode 2/2 after model integration; final mesh winding/cutaway/pupil-fallback check 1/1. Full standalone walkthroughs at 1600×900 and 1024×768 passed before the final mesh correction. Logs/captures under `Logs` and `Builds/Checks` are ignored local evidence, not pushed artifacts; detailed results are recorded in the cinematic report above.
+- **Next action:** save and close the interactive Unity Editor, then rebuild via `HumanEye.EditorTools.PlayerBuilds.Windows`, or use **Tools > Human Eye > Build Player > Windows** in that Editor. Batch build was prevented when an interactive Editor opened the project at 18:20 local. The current local EXE predates the corrected mesh winding; it is not the final deliverable. After rebuilding, repeat one standalone lesson walkthrough and inspect the imported exterior, cutaway and Scene 5 pupil response.
+- Remaining acceptance: physical-tablet performance and OS multitouch, sustained desktop performance, final artistic review, and existing third-party release gates. Accelerated capture profiling averaged 55.3–58.1 fps on RTX 5060 Ti; the 60 fps desktop target is not yet established by a sustained benchmark.
+- The pre-existing owner edit to `Assets/human brain env/human brain env/human brain env/Materials/Mt8.mat` is preserved locally and excluded from this commit.
 
 This file records the current workspace for the next developer/chat. The attached implementation brief is reference material for continuation; it is not evidence that its requested work has been completed.
 

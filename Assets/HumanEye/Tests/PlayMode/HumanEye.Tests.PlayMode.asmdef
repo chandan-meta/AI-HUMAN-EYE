@@ -3,6 +3,8 @@
     "rootNamespace": "HumanEye.Tests",
     "references": [
         "HumanEye.Runtime",
+        "Unity.Cinemachine",
+        "Unity.RenderPipelines.Core.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

@@ -12,6 +12,7 @@ namespace HumanEye
         public string id, label;
         public Renderer[] main;          // keep half + section caps, or the whole mesh
         public Renderer[] removable;     // cutaway half (eye layers only)
+        public Renderer[] exterior = new Renderer[0]; // optional imported closed-eye surface
         public Collider[] pick;
         [Tooltip("Higher wins when several eligible parts are under the pointer.")] public int priority;
         [Tooltip("Transparent shells/volumes yield to an eligible structure just behind them.")] public bool seeThrough;
@@ -23,16 +24,18 @@ namespace HumanEye
 
         /// Set by the stage: is this part a valid target right now?
         public bool Selectable { get; set; }
+        public bool UseImportedExterior { get; set; } = true;
         public bool Visible => gameObject.activeInHierarchy && Effective > .05f;
         float Effective => baseAlpha * alpha;
 
         float alpha = 1, alphaTarget = 1, glow, glowTarget, cut = 1, cutTarget = 1;
-        readonly Dictionary<Material, Material> mainMats = new(), cutMats = new();
+        readonly Dictionary<Material, Material> mainMats = new(), cutMats = new(), exteriorMats = new();
 
         void Awake()
         {
             foreach (var r in main) r.sharedMaterials = r.sharedMaterials.Select(m => Instance(mainMats, m)).ToArray();
             foreach (var r in removable) r.sharedMaterials = r.sharedMaterials.Select(m => Instance(cutMats, m)).ToArray();
+            foreach (var r in exterior) r.sharedMaterials = r.sharedMaterials.Select(m => Instance(exteriorMats, m)).ToArray();
             Apply();
         }
 
@@ -43,7 +46,7 @@ namespace HumanEye
             return copy;
         }
 
-        void OnDestroy() { foreach (var m in mainMats.Values.Concat(cutMats.Values)) Destroy(m); }
+        void OnDestroy() { foreach (var m in mainMats.Values.Concat(cutMats.Values).Concat(exteriorMats.Values)) Destroy(m); }
 
         public void SetAlpha(float a, bool instant = false) { alphaTarget = a; if (instant) alpha = a; }
         public void SetGlow(float g, bool instant = false) { glowTarget = g; if (instant) glow = g; }
@@ -63,8 +66,11 @@ namespace HumanEye
 
         void Apply()
         {
-            foreach (var m in mainMats.Values) Configure(m, Effective, queueOffset);
-            foreach (var m in cutMats.Values) Configure(m, Effective * cut, queueOffset);
+            float imported = UseImportedExterior && exterior.Length > 0 ? Mathf.SmoothStep(0, 1, cut) : 0;
+            foreach (var m in mainMats.Values) Configure(m, Effective * (1 - imported), queueOffset);
+            foreach (var m in cutMats.Values) Configure(m, Effective * cut * (1 - imported), queueOffset);
+            foreach (var m in exteriorMats.Values) Configure(m, Effective * imported, queueOffset);
+            foreach (var r in exterior) r.enabled = imported > .001f;
             foreach (var r in removable) r.enabled = cut > .01f;
             bool canPick = Selectable && (pickWhenInvisible || Effective > .05f) && gameObject.activeInHierarchy;
             foreach (var c in pick) if (c) c.enabled = canPick;

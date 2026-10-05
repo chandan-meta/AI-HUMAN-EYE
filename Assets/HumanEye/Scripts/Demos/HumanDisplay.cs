@@ -22,7 +22,7 @@ namespace HumanEye
             scanPlane.gameObject.SetActive(false);
         }
 
-        public IEnumerator Reveal(float seconds) => Routine.Tween(seconds, t => { skin.SetAlpha(Mathf.Lerp(.06f, 1, t), true); garment.SetAlpha(Mathf.Lerp(.06f, 1, t), true); });
+        public IEnumerator Reveal(float seconds) => Routine.Tween(seconds, t => { skin.SetAlpha(1, true); garment.SetAlpha(1, true); });
 
         IEnumerator Sweep(float from, float to, float seconds, System.Action<float> during)
         {
@@ -38,20 +38,20 @@ namespace HumanEye
         /// The eyes are separate opaque objects, so both stay visible throughout.
         public IEnumerator Scan(float pace = 1)
         {
-            yield return Sweep(headTop + .05f, footY, 2.4f * pace, t => { skin.SetAlpha(Mathf.Lerp(1, .14f, t), true); muscles.SetAlpha(Mathf.Lerp(0, .9f, t), true); });
-            yield return Sweep(footY, headTop + .05f, 1.6f * pace, t => { muscles.SetAlpha(Mathf.Lerp(.9f, .16f, t), true); skull.SetAlpha(Mathf.Lerp(0, .85f, t), true); });
-            yield return Sweep(headTop + .05f, headY - .25f, 1.4f * pace, t => { skull.SetAlpha(Mathf.Lerp(.85f, .3f, t), true); brain.SetAlpha(Mathf.Lerp(0, 1, t), true); });
+            yield return Sweep(headTop + .05f, headY - .25f, 2.4f * pace, t => { skin.SetAlpha(Mathf.Lerp(1, .14f, t), true); skull.SetAlpha(.3f * t, true); });
+            // Clean educational X-ray: the eye remains anchored in its socket, without exposed muscle or brain.
+            muscles.SetAlpha(0, true); brain.SetAlpha(0, true);
             scanPlane.gameObject.SetActive(false);
         }
 
         /// The whole figure freezes (no motion) and disappears.
         public IEnumerator Dissolve(float seconds)
         {
-            float s0 = skin.Visible ? .14f : 0, m0 = .16f, k0 = .3f;
+            float s0 = skin.Visible ? .14f : 0, m0 = 0, k0 = .3f;
             yield return Routine.Tween(seconds, t =>
             {
                 skin.SetAlpha(s0 * (1 - t), true); muscles.SetAlpha(m0 * (1 - t), true);
-                skull.SetAlpha(k0 * (1 - t), true); brain.SetAlpha(1 - t, true); garment.SetAlpha(1 - t, true);
+                skull.SetAlpha(k0 * (1 - t), true); brain.SetAlpha(0, true); garment.SetAlpha(1 - t, true);
             });
             gameObject.SetActive(false);
         }

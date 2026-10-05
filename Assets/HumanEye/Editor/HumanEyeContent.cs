@@ -37,7 +37,7 @@ namespace HumanEye.EditorTools
                     Shot("S02_ScanFront", 1.2f), Do("scan"),
                     Do("illuminate"), Say("S02_L06"),
                     Shot("S02_EyeInSkull", 2), Say("S02_L07"), Hold(1.5f),
-                    Do("nikoLook", "eye"), Shot("S02_PinchNiko", 1), Do("pinch"),
+                    Do("nikoLook", "eye"), Do("pinch"),
                     Shot("S02_EyeHero", 2.4f, true), Do("enlarge", null, 2.4f), Do("nikoMove", "EyeLeft", 1.4f),
                     Say("S02_L08"),
                     Do("niko", "Present", 2), Say("S02_L09"),

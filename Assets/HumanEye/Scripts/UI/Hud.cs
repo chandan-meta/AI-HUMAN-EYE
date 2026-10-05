@@ -115,6 +115,11 @@ namespace HumanEye
             On("btn-read-continue", narrator.Continue);
             On("btn-free-continue", () => { runner.Continue(); stage.sfx.Play("confirm", .6f); });
             if (Element("btn-skip-intro")) On("btn-skip-intro", stage.SkipIntro);
+            if (Element("btn-lab")) On("btn-lab", () => stage.navigation.Toggle());
+            if (Element("btn-intro-replay")) On("btn-intro-replay", () => runner.Begin(0));
+            if (Element("btn-sound")) On("btn-sound", () => { SaveSystem.Data.settings.muted = !SaveSystem.Data.settings.muted; SaveSystem.Save(); Refresh(); });
+            if (Element("btn-section")) On("btn-section", stage.ToggleSection);
+            if (Element("btn-shell")) On("btn-shell", stage.ToggleShell);
             foreach (var a in Abilities) { var ability = a; On("ab-" + a, () => stage.UseAbility(ability)); }
             On("view-left", () => stage.Orbit(new Vector2(-60, 0))); On("view-right", () => stage.Orbit(new Vector2(60, 0)));
             On("view-in", () => stage.Zoom(-4)); On("view-out", () => stage.Zoom(4)); On("view-reset", stage.ResetView);
@@ -213,7 +218,7 @@ namespace HumanEye
             subtitle.fontSize = new[] { 20, 24, 28, 32 }[Mathf.Clamp(set.subtitleSize, 0, 3)];
 
             var cue = narrator.Current;
-            bool subs = cue != null && (set.subtitles || narrator.MissingAudio || narrator.AwaitingContinue);
+            bool subs = cue != null && (set.subtitles || set.muted || narrator.MissingAudio || narrator.AwaitingContinue);
             Show("subtitle-panel", subs);
             if (subs)
             {
@@ -236,8 +241,10 @@ namespace HumanEye
                 State(b, "unavailable", !ok);
                 State(b, "pulse", ok && pulse == a && runner.Awaiting != null);
                 State(b, "selected", ok && (a == "FREEZE" && Clock.Frozen || a == "SIMULATE" && stage.Simulation != null || a == "SCAN" && stage.LabelsOn));
+                b.gameObject.SetActive(ok);
+                b.interactable = ok;
             }
-            Show("abilities", started);
+            Show("abilities", started && Abilities.Any(a => stage.Ability(a, out _)));
             Show("btn-free-continue", runner.FreeMode != null && activities.Card == null);
             Show("btn-skip-intro", stage.IntroPlaying && !Clock.Paused && !stage.Short);   // the reduced-motion intro is a 1.5 s still: nothing to skip
             Caption(Q<Button>("btn-pause")).text = Clock.Paused ? "Resume" : "Pause";
@@ -260,6 +267,24 @@ namespace HumanEye
             if (runner.State == LessonState.Complete && Element("end-recap")) Q<Label>("end-recap").text = Recap();
             Show("pause-overlay", Clock.Paused && modal == null);
             RefreshActivity();
+            bool walking = stage.navigation && stage.navigation.Active;
+            foreach (var key in new[] { "btn-ask", "btn-replay-expl", "btn-review", "btn-help" }) Show(key, !stage.IntroPlaying);
+            Show("btn-sound", started);
+            Show("btn-section", stage.CanInspectLayers); Show("btn-shell", stage.CanInspectLayers);
+            if (Element("btn-section")) Caption(Q<Button>("btn-section")).text = stage.eye.IsCut ? "Exterior view" : "Cross-section";
+            if (Element("btn-shell")) Caption(Q<Button>("btn-shell")).text = stage.eye.Get("sclera").Visible ? "Hide sclera" : "Show sclera";
+            Show("btn-lab", stage.navigation && stage.navigation.Available && !Clock.Paused);
+            if (Element("btn-lab")) Caption(Q<Button>("btn-lab")).text = walking ? "Return to lesson" : "Explore lab";
+            Show("btn-intro-replay", started && !stage.IntroPlaying && !Clock.Paused && (runner.Awaiting == "scan" || runner.State == LessonState.Exploring));
+            if (Element("btn-sound")) Caption(Q<Button>("btn-sound")).text = set.muted ? "Sound off" : "Sound on";
+            if (stage.IntroPlaying || walking)
+            {
+                Show("abilities", false); Show("view-controls", false); Show("part-list", false);
+                Show("btn-free-continue", false);
+                prompt.text = walking ? "Explore lab · WASD / joystick to walk · Right-drag / touch to look" : stage.IntroCaption;
+                Show("prompt-banner", !string.IsNullOrEmpty(prompt.text));
+            }
+            else if (runner.Awaiting == "scan") Show("view-controls", false);
         }
 
         /// The learner's current objective (also what Ask Niko answers to "what now?"), derived from the live lesson state.

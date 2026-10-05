@@ -50,6 +50,8 @@ namespace HumanEye
         [Header("Intro (cinematic power-up)")]
         public Volume introVolume;          // ColorAdjustments post-exposure; weight 0 outside the intro
         public Light[] roomLights;          // the room's realtime lights, ramped up during the intro
+        public LabEntrance entrance;
+        public LabNavigation navigation;
         float[] roomBase;
 
         public bool LabelsOn { get; private set; }
@@ -139,6 +141,7 @@ namespace HumanEye
         /// Restores the documented start state of a chapter: materials, pupil, lens, object distance, cast, cameras, UI.
         public void Enter(ChapterDefinition c)
         {
+            if (navigation) navigation.Leave();
             demo = null; orbitYaw = orbitPitch = 0;
             brightnessLive = false;
             guide.Invalidate();
@@ -148,6 +151,8 @@ namespace HumanEye
             spin = false; orbit = Quaternion.identity;
             LabelsOn = false; hud.labels.Clear();
             Simulation = null;
+            // The supplied exterior is static; use the animated teaching geometry for the pupil response.
+            foreach (var p in eye.parts) p.UseImportedExterior = c.id != "Scene05";
             foreach (var p in AllParts()) { p.ResetVisual(); p.Selectable = false; }
             eye.SetPupil(EyeGeometry.PupilDefault, true);
             eye.SetAccommodation(.5f, true);
@@ -181,12 +186,18 @@ namespace HumanEye
             Enter(runner.chapters[2]);
             eye.SetCutInstant(false); eye.SetNerveReveal(.12f); PlaceEye(heroPoint);
             if (menuPoint) PlaceEye(menuPoint);
-            brainRoot.gameObject.SetActive(true);
+            brainRoot.gameObject.SetActive(false);
             human.gameObject.SetActive(false); appleRoot.gameObject.SetActive(false); lampRoot.gameObject.SetActive(false);
             pedestal.gameObject.SetActive(false); rays.gameObject.SetActive(false); signals.StopAll();
             niko.Place(Anchor("Menu"));
             niko.transform.localScale = authoredNikoScale * menuNikoScale;
             cams.Snap(cams.Has("Menu") ? "Menu" : "S04_Wide");
+            if (entrance)
+            {
+                entrance.SetGate(0); entrance.SetAccents(0);
+                eyeRig.gameObject.SetActive(false); niko.gameObject.SetActive(false);
+                Room(.12f); cams.Snap("S02_IntroThreshold");
+            }
             hud.HideInsets(); hud.labels.Clear();
         }
 
@@ -325,9 +336,29 @@ namespace HumanEye
         public void ResetView()
         {
             if (Clock.Paused) return;
+            if (navigation && navigation.Active) { navigation.Leave(); return; }
             spin = false; orbitYaw = orbitPitch = 0;
+            if (runner.Chapter?.id is "Scene02" or "Scene03")
+            {
+                eye.SetCutInstant(runner.Chapter.id == "Scene03");
+                RestoreParts();
+                if (runner.ExploreSet != null) ShowLabels("explore");
+            }
             cams.ResetZoom();
             runner.RunSide(Routine.Tween(.6f, t => eye.transform.localRotation = Quaternion.Slerp(eye.transform.localRotation, Quaternion.identity, t)));
+        }
+
+        public bool CanInspectLayers => !Clock.Paused && runner.State == LessonState.Exploring && runner.Focused == null &&
+            runner.Chapter != null && (runner.Chapter.id is "Scene02" or "Scene03") && !(navigation && navigation.Active);
+        public void ToggleSection()
+        {
+            if (!CanInspectLayers) return;
+            eye.SetCutInstant(!eye.IsCut); ShowLabels("explore"); hud.Refresh();
+        }
+        public void ToggleShell()
+        {
+            if (!CanInspectLayers) return;
+            var shell = eye.Get("sclera"); shell.SetAlpha(shell.Visible ? 0 : 1, true); hud.Refresh();
         }
 
         void Update()
@@ -434,11 +465,12 @@ namespace HumanEye
 
         public void UseAbility(string ability)
         {
+            if (navigation && navigation.Active) navigation.Leave();
             if (!Ability(ability, out var reason)) { hud.Toast(reason); sfx.Play("deny", .6f); return; }
             sfx.Play("tap", .6f);
             switch (ability)
             {
-                case "SCAN": if (!runner.Press("scan")) ToggleLabels(); break;
+                case "SCAN": if (runner.Awaiting == "scan") runner.Press("scan"); else ToggleLabels(); break;
                 case "INSIDE": if (!runner.Press("inside")) RunDemo(cams.MoveTo(InsideShot(runner.Chapter.id), 1.2f)); break;
                 case "SIMULATE": Simulation = Simulation == null ? SimulationFor(runner.Chapter.id) : null; hud.Refresh(); break;
                 case "TRACE": Clock.Frozen = false; RunDemo(Trace(TraceRoute(runner.Chapter.id))); break;

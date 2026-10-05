@@ -11,6 +11,7 @@ namespace HumanEye
         public int subtitleSize = 1;            // 0 small .. 3 extra large
         public float narration = 1, music = .35f, sfx = .7f;
         public int quality = -1;                // -1 auto (PC on desktop, Mobile on tablets)
+        public bool muted;
     }
 
     [Serializable] public class CueRecord { public string id, how; }
