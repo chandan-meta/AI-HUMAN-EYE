@@ -330,7 +330,7 @@ MonoBehaviour:
     notYet: 
   - id: h_help
     kind: 4
-    pattern: \b(help|how do i|what do i do|stuck)\b
+    pattern: \b(help|how do i|what do i do|what should i do|what now|what next|hint|stuck|lost)\b
     target: 
     cues: []
     availableFromChapter: 0

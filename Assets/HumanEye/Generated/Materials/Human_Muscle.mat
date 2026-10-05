@@ -35,6 +35,7 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Cull: 2
+    - _Cutoff: 0
     - _DetailSpan: 1.6
     - _DetailStrength: 0
     - _DstBlend: 0

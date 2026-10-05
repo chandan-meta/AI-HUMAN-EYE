@@ -67,6 +67,7 @@ namespace HumanEye
             foreach (var b in hud.canvas.GetComponentsInChildren<Button>())
             {
                 if (!b.IsInteractable()) continue;
+                if (((RectTransform)b.transform).rect.width < 1) continue;   // activated this frame; its layout group has not placed it yet
                 var pointer = PointerAt(b, out var hit);
                 var scroll = b.GetComponentInParent<ScrollRect>();
                 var cam = hud.canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : hud.canvas.worldCamera;

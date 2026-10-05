@@ -47,6 +47,11 @@ namespace HumanEye
         public GameObject observatory;
         public Renderer[] beamRenderers;
 
+        [Header("Intro (cinematic power-up)")]
+        public Volume introVolume;          // ColorAdjustments post-exposure; weight 0 outside the intro
+        public Light[] roomLights;          // the room's realtime lights, ramped up during the intro
+        float[] roomBase;
+
         public bool LabelsOn { get; private set; }
         public string Simulation { get; private set; }  // which SIMULATE panel is showing
         public float Brightness { get; private set; } = .5f;
@@ -70,6 +75,7 @@ namespace HumanEye
             authoredNikoScale = niko.transform.localScale;
             keyIntensity = keyLight.intensity; displayIntensity = displayLight.intensity;
             appleBaseScale = appleRoot.localScale.x;
+            roomBase = roomLights.Select(l => l.intensity).ToArray();
             ambientParticles = observatory.GetComponentsInChildren<ParticleSystem>(true);
             EnsureActions();
         }
@@ -155,6 +161,7 @@ namespace HumanEye
             rays.reach = 0; rays.showImage = false; rays.showLamp = false; rays.gameObject.SetActive(false);
             Brightness = .5f; rays.brightness = .5f;
             keyLight.intensity = keyIntensity; displayLight.intensity = displayIntensity;
+            IntroReset();
             RenderSettings.ambientIntensity = 1;
             observatory.SetActive(true);
             SetBlur(0);
@@ -442,7 +449,7 @@ namespace HumanEye
 
         string InsideShot(string chapter) => chapter switch { "Scene05" or "Scene06" or "Scene07" => "S06_Vitreous", "Scene04" or "Scene09" or "Scene10" => "S03_InsideHero", _ => "S03_InsideHero" };
 
-        static string SimulationFor(string c) => c switch { "Scene05" => "brightness", "Scene06" => "distance", "Scene08" => "photoreceptors", _ => null };
+        string SimulationFor(string c) => runner.FreeMode == "focus" ? "lens" : c switch { "Scene05" => "brightness", "Scene06" => "distance", "Scene08" => "photoreceptors", _ => null };
         static string ReplayFor(string c) => c switch { "Scene04" => "traceNerve", "Scene05" => "replayLight", "Scene06" => "replayAccommodation", "Scene07" => "replayImage", "Scene08" => "replayDetection", "Scene09" => "replaySignals", "Scene10" => "journey", _ => null };
         static string TraceRoute(string c) => c switch { "Scene04" or "Scene09" => "nerve", "Scene05" or "Scene06" or "Scene07" or "Scene10" => "light", "Scene08" => "retina", _ => null };
 
@@ -459,7 +466,7 @@ namespace HumanEye
                     return true;
                 case "near": case "distant":
                     if (runner.Chapter?.id != "Scene06") { reason = "We'll compare near and distant objects when we study the lens."; return false; }
-                    if (runner.FreeMode != "distance") { reason = "Use the Near and Distant buttons to run Niko's demonstration."; return false; }
+                    if (runner.FreeMode != "focus") { reason = "Use the Near and Distant buttons to run Niko's demonstration."; return false; }
                     return true;
                 case "SCAN": case "INSIDE": case "TRACE": case "FREEZE": case "REPLAY": case "SIMULATE":
                     return Ability(action, out reason);
@@ -477,8 +484,7 @@ namespace HumanEye
                 case "replay": hud.ReplayExplanation(); break;
                 case "brighter": SetBrightness(Mathf.Min(1, Brightness + .3f)); break;
                 case "dimmer": SetBrightness(Mathf.Max(0, Brightness - .3f)); break;
-                case "near": SetObjectDistance(rays.nearDistance + .5f); break;
-                case "distant": SetObjectDistance(rays.farDistance - 2); break;
+                case "near": case "distant": Simulation = SimulationFor(runner.Chapter.id); UseControl(action); break;   // moves the object; focusing stays the learner's job
                 case "resetView": ResetView(); break;
                 default: UseAbility(action); break;
             }

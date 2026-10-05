@@ -31,16 +31,22 @@ MonoBehaviour:
     value: 2.5
     async: 0
     note: 
-  - kind: 2
-    key: imageForm
-    arg: 
-    value: 1.5
-    async: 1
-    note: 
   - kind: 1
     key: S07_L01
     arg: 
     value: 0
+    async: 0
+    note: 
+  - kind: 6
+    key: item:img_predict
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: imageForm
+    arg: 
+    value: 1.5
     async: 0
     note: 
   - kind: 0

@@ -25,6 +25,7 @@ Shader "HumanEye/Anatomy"
         _InteriorDark("Darken When Eye Closed", Float) = 0
         _Reveal("Reveal (uv.y)", Range(0,1)) = 1
         _Flow("Flow Stripes", Float) = 0
+        _Cutoff("Alpha Clip (0 = off)", Range(0,1)) = 0
         [HideInInspector] _SrcBlend("Src Blend", Float) = 1
         [HideInInspector] _DstBlend("Dst Blend", Float) = 0
         [HideInInspector] _ZWrite("Z Write", Float) = 1
@@ -37,7 +38,7 @@ Shader "HumanEye/Anatomy"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         CBUFFER_START(UnityPerMaterial)
             float4 _BaseColor, _BaseMap_ST, _DetailColor, _DetailAxis, _HighlightColor, _RimColor, _Emission;
-            float _DetailSpan, _DetailStrength, _Alpha, _Highlight, _HighlightTint, _F0, _Gloss, _Specular, _Wrap, _Rim, _InteriorDark, _Reveal, _Flow;
+            float _DetailSpan, _DetailStrength, _Alpha, _Highlight, _HighlightTint, _F0, _Gloss, _Specular, _Wrap, _Rim, _InteriorDark, _Reveal, _Flow, _Cutoff;
         CBUFFER_END
         ENDHLSL
 
@@ -76,7 +77,9 @@ Shader "HumanEye/Anatomy"
                 float3 n = normalize(i.normalWS);
                 n = IS_FRONT_VFACE(face, n, -n);
                 float3 v = GetWorldSpaceNormalizeViewDir(i.positionWS);
-                float3 albedo = _BaseColor.rgb * SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv * _BaseMap_ST.xy + _BaseMap_ST.zw).rgb;
+                float4 tex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv * _BaseMap_ST.xy + _BaseMap_ST.zw);
+                if (_Cutoff > 0) clip(tex.a - _Cutoff);
+                float3 albedo = _BaseColor.rgb * tex.rgb;
                 if (_DetailStrength > 0)
                 {
                     float3 d = normalize(i.positionOS + 1e-5);

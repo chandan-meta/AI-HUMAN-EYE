@@ -103,10 +103,11 @@ namespace HumanEye
         IEnumerator Perception()
         {
             ShowObject("apple", true); PlaceObject("apple", 7);
-            rays.gameObject.SetActive(false);
+            // The ray rig stays active (rays and lamp beams hidden) because it is what aims the retinal-image camera at the
+            // object every frame; deactivating it left both insets blank on a fresh or resumed Scene 9.
+            rays.gameObject.SetActive(true); rays.reach = 0; rays.showLamp = false; rays.showImage = true;
             yield return cams.MoveTo("S09_Perception", 1.8f);
             hud.ShowInsets(rays.objectCamera.targetTexture, true);
-            rays.objectCamera.enabled = true;
         }
 
         void InspectTapped(AnatomyPart part)

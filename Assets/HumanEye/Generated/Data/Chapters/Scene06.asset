@@ -146,7 +146,7 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 7
-    key: distance
+    key: focus
     arg: 
     value: 0
     async: 0

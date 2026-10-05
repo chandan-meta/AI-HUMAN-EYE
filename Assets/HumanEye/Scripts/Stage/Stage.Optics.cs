@@ -63,8 +63,65 @@ namespace HumanEye
             Brightness = Mathf.Clamp01(b);
         }
 
+        // ---------- Scene 6 focus challenge: the learner shapes the lens; rays, lens mesh and readout share eye.Accommodation ----------
+        int focusRound;
+        bool focusSharp, focusAdvancing;
+        public int FocusRound => focusRound;
+        public string FocusPrompt { get; private set; }
+        public float FocusNeeded => LightRays.RequiredAccommodation(ObjectDistance, rays.nearDistance, rays.farDistance);
+        /// 0 = light meets on the retina, +1 = lens too curved (meets in front), -1 = too flat (meets behind).
+        public int FocusState => Mathf.Abs(eye.Accommodation - FocusNeeded) < .06f ? 0 : eye.Accommodation > FocusNeeded ? 1 : -1;
+
+        void FocusSetup(int round)
+        {
+            focusRound = round; focusSharp = focusAdvancing = false;
+            if (round == 0) { ShowObject("tree", false); ShowObject("apple", true); PlaceObject("apple", 5); eye.SetAccommodation(.15f, true); }
+            if (round == 1) { ShowObject("apple", false); ShowObject("tree", true); PlaceObject("tree", rays.farDistance); }   // keeps the learner's curved lens, so the tree starts out of focus
+            FocusPrompt = round switch
+            {
+                0 => "Focus challenge 1 of 2: the apple is close. Shape the lens until the light meets exactly on the retina.",
+                1 => "Focus challenge 2 of 2: now look at the distant tree. Refocus the lens.",
+                _ => "You focused near and far — that's accommodation. Move the object and refocus, or tap Continue.",
+            };
+            hud.Refresh();
+        }
+
+        void UpdateFocus()
+        {
+            if (Simulation != "lens" || DemoBusy) return;
+            bool sharp = FocusState == 0;
+            eye.Get("lens").SetGlow(sharp ? .6f : 0);
+            if (sharp && !focusSharp && focusRound < 2 && !focusAdvancing) runner.RunSide(FocusSolved());
+            focusSharp = sharp;
+        }
+
+        IEnumerator FocusSolved()
+        {
+            focusAdvancing = true;
+            sfx.Play("discovery", .7f);
+            hud.Toast(FocusNeeded > .5f ? "✓ Sharp! For a near object the lens is more curved." : "✓ Sharp! For a distant object the lens is less curved.");
+            yield return new Wait(1.6f);
+            if (Simulation == "lens") FocusSetup(focusRound + 1);
+        }
+
+        void ShapeLens(float delta) => eye.SetAccommodation(Mathf.Clamp01(eye.accommodationTarget + delta), true);
+
+        public string Readout() => Simulation switch
+        {
+            "brightness" => $"Brightness: {Mathf.RoundToInt(Brightness * 100)}%   Pupil: {(eye.PupilRadius > .2f ? "larger" : eye.PupilRadius < .12f ? "smaller" : "medium")}",
+            "distance" => "Illustrative model — not a clinical optical simulator.",
+            "lens" => FocusState switch
+            {
+                0 => "✓ Sharp: the light meets on the retina.",
+                1 => "Light meets in front of the retina → make the lens flatter.",
+                _ => "Light meets behind the retina → make the lens more curved.",
+            },
+            _ => "",
+        };
+
         void LateUpdate()
         {
+            UpdateFocus();
             if (!brightnessLive) return;
             rays.brightness = Brightness;
             eye.SetPupil(Mathf.Lerp(EyeGeometry.PupilMax * .95f, EyeGeometry.PupilMin * 1.15f, Brightness), false);
@@ -80,6 +137,7 @@ namespace HumanEye
             reason = null;
             if (Clock.Paused) { reason = "Resume to change the demonstration."; return false; }
             if (DemoBusy) { reason = "Wait for the current demonstration to finish."; return false; }
+            if (Simulation == "lens" && id is not ("lightDim" or "lightBright")) return true;
             switch (id)
             {
                 case "brighter": case "presetBright":
@@ -89,13 +147,12 @@ namespace HumanEye
                     if (runner.Awaiting == "brighter") { reason = "First, try increasing the brightness."; return false; }
                     return brightnessLive;
                 case "near":
-                    if (runner.Awaiting == "near" || runner.FreeMode == "distance") return true;
+                    if (runner.Awaiting == "near") return true;
                     reason = runner.Awaiting == "distant" ? "Now try the distant object." : "Available during the lens demonstration."; return false;
                 case "distant":
-                    if (runner.Awaiting == "distant" || runner.FreeMode == "distance") return true;
+                    if (runner.Awaiting == "distant") return true;
                     reason = runner.Awaiting == "near" ? "Try the nearby object first." : "Available during the lens demonstration."; return false;
                 case "distanceSlider":
-                    if (runner.FreeMode == "distance") return true;
                     reason = "The distance slider unlocks after the Near and Distant demonstrations."; return false;
                 case "lightDim": case "lightBright":
                     if (runner.FreeMode == "photoreceptors") return true;
@@ -107,6 +164,22 @@ namespace HumanEye
         public void UseControl(string id, float value = 0)
         {
             if (!Control(id, out var reason)) { hud.Toast(reason); sfx.Play("deny", .6f); return; }
+            if (Simulation == "lens")
+            {
+                // Objects move without the automatic accommodation of the demonstrations: focusing is the learner's job here.
+                switch (id)
+                {
+                    case "dimmer": ShapeLens(-.03f); break;
+                    case "brighter": ShapeLens(.03f); break;
+                    case "presetDim": ShapeLens(-.12f); break;
+                    case "presetBright": ShapeLens(.12f); break;
+                    case "near": ShowObject("tree", false); ShowObject("apple", true); PlaceObject("apple", rays.nearDistance); break;
+                    case "distant": ShowObject("apple", false); ShowObject("tree", true); PlaceObject("tree", rays.farDistance); break;
+                    case "distanceSlider": ShowObject("tree", false); ShowObject("apple", true); PlaceObject("apple", Mathf.Lerp(rays.nearDistance, rays.farDistance, value)); break;
+                }
+                hud.Refresh();
+                return;
+            }
             switch (id)
             {
                 case "brighter": SetBrightness(Brightness + .15f); break;
@@ -124,6 +197,7 @@ namespace HumanEye
 
         public void SetBrightnessFromSlider(float v)
         {
+            if (Simulation == "lens") { if (!Clock.Paused && !DemoBusy) eye.SetAccommodation(v, true); return; }   // the same slider shapes the lens in the focus challenge
             if (!brightnessLive) return;
             if (runner.Awaiting == "brighter" && v < Brightness) v = Brightness;   // only increases count first
             if (runner.Awaiting == "dimmer" && v > Brightness) v = Brightness;
@@ -209,6 +283,7 @@ namespace HumanEye
         // ---------- Scene 7 ----------
         IEnumerator ImageForm(float seconds)
         {
+            if (rays.showImage) yield break;   // already formed by the prediction trial: no second fade-in
             rays.showImage = true;
             var quad = rays.imageQuad.GetComponent<Renderer>();
             yield return Routine.Tween(seconds, t => quad.material.SetFloat("_Alpha", t), true);

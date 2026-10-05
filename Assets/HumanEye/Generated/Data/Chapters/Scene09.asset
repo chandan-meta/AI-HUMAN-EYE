@@ -44,6 +44,18 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 0
+    key: S09_Wide
+    arg: 
+    value: 1.8
+    async: 0
+    note: 
+  - kind: 6
+    key: item:brain_predict
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 0
     key: S04_BrainClose
     arg: 
     value: 2

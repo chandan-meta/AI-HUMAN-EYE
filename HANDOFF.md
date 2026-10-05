@@ -4,7 +4,15 @@ Updated: 4 October 2026 (Asia/Calcutta). **Polish work is in progress; four-roun
 
 This file records the current workspace for the next developer/chat. The attached implementation brief is reference material for continuation; it is not evidence that its requested work has been completed.
 
-## Latest change: pointer-click repair (4 October 2026)
+## Latest change: staged on center_rotator, user models, cinematic intro (5 October 2026, branch `claude/wow-moments`, uncommitted)
+
+The module now plays inside the owner-placed HUMAN BRAIN ENV room: the whole room prefab instance (and its baked Area Light) was translated so the `center_rotator` disc top sits directly under the hero eye, which keeps every shot, anchor, nerve path and light valid. The human figure is the owner's Reallusion "Matt" (static export, 28k body) with the owner's skeleton as the X-ray layer; the Brain Display is the owner's Brain.fbx with a generated visual-area mesh. Scene 2 opens with a skippable 11.5 s cinematic power-up (`Do("intro")`, shots S02_IntroThreshold/Ignite/Crane, project-generated SFX in `Assets/HumanEye/Audio/SFX`). All of it is applied by the idempotent, save-guarded **Tools > Human Eye > Authoring > Stage on center_rotator (keeps scene edits)** (`Assets/HumanEye/Editor/Builder.Display.cs`); never use the full regeneration. Brief: `Docs/HumanEye/MASTER_PROMPT_center_rotator.txt`; evidence: `Docs/HumanEye/Polish/ROTATOR_PASS_2026-10-05.md`. New release gates: licences of Matt (Reallusion EULA), Brain.fbx, the skeleton and the room package (THIRD_PARTY_NOTICES §7).
+
+## Previous change: experience pass (5 October 2026, branch `claude/wow-moments`, uncommitted)
+
+Focus challenge in Scene 6, predictions in Scenes 7 and 9, adaptive challenge items for Secure topics, grounded Ask Niko "what now?", end-card recap, and fixes for untappable tap-part questions, the card covering the model, blank Scene 9 insets and the menu hiding the eye. Scene edits go through `Tools > Human Eye > Authoring > Apply polish patch (keeps scene edits)`; content through `Update content data only (keeps scene)` — never the full regeneration. Details, asset-library findings and test evidence: [WOW_PASS_2026-10-05](Docs/HumanEye/Polish/WOW_PASS_2026-10-05.md). New release gate: the microscope exhibit's licence (THIRD_PARTY_NOTICES §7).
+
+## Previous change: pointer-click repair (4 October 2026)
 
 The user reported SCAN unclickable and a MissingComponentException for btn-home's CanvasRenderer. HudIcon and GlassPanel now explicitly require CanvasRenderer. The repair saves renderers on all graphics without restyling/rebuilding the scene: the prefab went from 481 to 506 saved renderers (25 missing renderers, including Home and icon children). All 565 RectTransforms are retained. Backups and verification logs are in `Logs/pointer-fix`.
 

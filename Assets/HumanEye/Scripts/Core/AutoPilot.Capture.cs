@@ -20,6 +20,10 @@ namespace HumanEye
                 canvas.renderMode = RenderMode.ScreenSpaceCamera; canvas.worldCamera = cam; canvas.planeDistance = .1f;
                 Canvas.ForceUpdateCanvases();
                 yield return null; yield return new WaitForEndOfFrame();
+                // A hidden window does not run the normal camera loop, so render-texture cameras (the retinal image)
+                // would stay blank in captures; render them first so the capture shows what a visible window shows.
+                foreach (var c in Camera.allCameras)
+                    if (c != cam && c.targetTexture) RenderPipeline.SubmitRenderRequest(c, new UniversalRenderPipeline.SingleCameraRequest { destination = c.targetTexture });
                 RenderPipeline.SubmitRenderRequest(cam, new UniversalRenderPipeline.SingleCameraRequest { destination = scene });
                 pixels = Read(scene); File.WriteAllBytes(file, pixels.EncodeToPNG());
             }

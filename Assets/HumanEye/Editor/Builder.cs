@@ -71,6 +71,16 @@ namespace HumanEye.EditorTools
             Debug.Log("HUMAN_EYE_BUILT " + ScenePath);
         }
 
+        /// Content-only update (chapters, questions, Ask Niko, dialogue): assets are upserted in place, so the saved
+        /// scene and its hand-edited Canvas keep their references and are not regenerated.
+        [MenuItem("Tools/Human Eye/Authoring/Update content data only (keeps scene)", priority = 2)]
+        public static void BuildData()
+        {
+            BuildDialogue(); BuildChapters(); BuildQuestions(); BuildKnowledge();
+            AssetDatabase.SaveAssets();
+            Debug.Log("HUMAN_EYE_DATA_BUILT");
+        }
+
         // ---------------- assets ----------------
         public static T Upsert<T>(T fresh, string path) where T : Object
         {

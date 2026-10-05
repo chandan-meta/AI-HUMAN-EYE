@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
   id: Scene02
   title: Meet Niko
-  checkpoint: Observatory establishing view; display subdued with a faint human silhouette;
-    Niko hidden; the selected eye in its socket; nothing explored.
+  checkpoint: Dark room from the door end; the cinematic power-up (skippable) ends
+    on the establishing view with a faint human silhouette on the pedestal; Niko
+    hidden; the selected eye in its socket; nothing explored.
   topics:
   - external_structures
   steps:
-  - kind: 0
-    key: S02_EstablishB
+  - kind: 2
+    key: intro
     arg: 
-    value: 6
+    value: 0
     async: 0
     note: 
   - kind: 2

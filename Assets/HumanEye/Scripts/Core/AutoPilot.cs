@@ -159,6 +159,14 @@ namespace HumanEye
                     yield return Capture(runner.Chapter.id + "_" + lastShot);
                 }
                 if (narrator.AwaitingContinue) narrator.Continue();
+                if (stage.IntroPlaying && Stress && !stage.Short && !introChecked)
+                {
+                    introChecked = true; yield return Real(3); yield return Capture("intro_mid");
+                    if (!stage.IntroPlaying) { Log("check", "intro ended before the skip check (fast-forward); skip not exercised"); continue; }
+                    yield return ClickUI("btn-skip-intro"); yield return Real(.5f);
+                    Log("check", $"intro skip: playing={stage.IntroPlaying} fade={hud.Element("fade").GetComponent<CanvasGroup>().alpha:0.00} shot={cams.Active?.name} key={stage.keyLight.intensity:0.00}");
+                    yield return Capture("intro_skipped");
+                }
                 if (!pausedChecked && runner.Chapter?.id == "Scene03" && narrator.Busy && narrator.Source == NarrationSource.Core)
                 {
                     pausedChecked = true;
@@ -187,6 +195,8 @@ namespace HumanEye
                 yield return null;
             }
         }
+
+        bool introChecked;
 
         IEnumerator Await(string key)
         {
@@ -221,9 +231,16 @@ namespace HumanEye
                     stage.UseControl("presetDim"); yield return Real(3); yield return Capture("brightness_dim");
                     stage.UseControl("presetBright"); yield return Real(3); yield return Capture("brightness_bright");
                     break;
-                case "distance":
-                    stage.UseControl("distanceSlider", 0); yield return Real(3); yield return Capture("distance_near");
-                    stage.UseControl("distanceSlider", 1); yield return Real(3); yield return Capture("distance_far");
+                case "focus":
+                    // Round 1: a wrong (too flat) lens first, then the learner's fix; round 2 refocuses on the distant tree.
+                    stage.SetBrightnessFromSlider(0); yield return Real(1.5f); yield return Capture("focus_blurred");
+                    Log("check", $"focus round 0: flat lens -> state {stage.FocusState} (-1 = light meets behind the retina) readout '{stage.Readout()}'");
+                    guide.Ask("what should I do now?"); Log("ask", $"'what should I do now?' -> '{guide.Answer?.text}'");
+                    stage.SetBrightnessFromSlider(stage.FocusNeeded); yield return Real(1); yield return Capture("focus_sharp_near");
+                    yield return Real(2.5f);
+                    stage.SetBrightnessFromSlider(stage.FocusNeeded); yield return Real(1); yield return Capture("focus_sharp_far");
+                    yield return Real(2.5f);
+                    Log("check", $"focus challenge rounds completed={stage.FocusRound} (2 = both)");
                     stage.UseAbility("REPLAY");
                     for (float t = 0; t < 20 && !(stage.eye.accommodationTarget > .9f && stage.eye.Accommodation > .55f && stage.eye.Accommodation < .92f); t += Time.unscaledDeltaTime) yield return null;
                     stage.UseAbility("FREEZE");   // mid-change: the lens shape and ray focus must hold still
@@ -258,10 +275,10 @@ namespace HumanEye
             yield return Real(1);
             if (activities.Card != card) yield break;
             yield return Capture("activity_" + (activities.Item?.id ?? "offer"));
-            if (card.buttons.Contains("Try it")) { activities.Click(runner.Chapter.id is "Scene02" or "Scene05" or "Scene10" ? "Try it" : "Skip"); Log("activity", "offer " + (card.buttons.Contains("Skip") ? "answered" : "")); yield break; }
             foreach (var b in new[] { "Next", "Continue" }) if (card.buttons.Contains(b)) { activities.Click(b); yield break; }
             var item = activities.Item;
             if (item == null) { activities.Click(card.buttons.LastOrDefault()); yield break; }
+            if (runner.Chapter.id is "Scene03" or "Scene08" && card.buttons.Contains("Skip")) { activities.Click("Skip"); Log("activity", item.id + " skipped (whole check)"); yield break; }
             if (item.mode == QuestionMode.Order)
             {
                 foreach (var o in item.options.Where(o => o.correct)) { activities.Click(o.text); yield return null; }

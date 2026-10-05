@@ -717,6 +717,329 @@ MonoBehaviour:
     trialAfterAnswer: 0
     correctFeedback: "Yes \u2014 it is converted into electrical signals."
     tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: img_predict
+    topic: inverted_image
+    chapter: Scene07
+    level: 2
+    mode: 0
+    prompt: 'Prediction: the light from the apple is about to reach the retina. How
+      will the image there look?'
+    options:
+    - text: Upside down (inverted)
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The right way up, like a photograph
+      partId: 
+      misconception: upright-retinal-image
+      correct: 0
+      feedback: 'Look at the stem: in the image on the retina it points down.'
+    - text: No image, just a spot of light
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The rays meet on the retina and form an image of the apple.
+    hints:
+    - Follow the rays from the top of the apple through the lens.
+    - Rays from the top of the apple cross as they pass through the lens. Where do
+      they end up?
+    - Watch the image form again.
+    demo: replayImage
+    trialAfterAnswer: 1
+    correctFeedback: 'Your prediction matched: the lens forms a real, inverted image
+      on the retina.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: brain_predict
+    topic: optic_nerve
+    chapter: Scene09
+    level: 2
+    mode: 1
+    prompt: 'Prediction: the signals are about to reach the brain. Tap where you
+      think they are processed for vision.'
+    options:
+    - text: Visual area, at the back of the brain
+      partId: visual_area
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Elsewhere in the brain, such as the front
+      partId: brain
+      misconception: vision-at-front
+      correct: 0
+      feedback: Surprisingly, the visual area is at the back of the brain, far from
+        the eyes.
+    - text: In the optic nerve itself
+      partId: optic_nerve
+      misconception: nerve-processes
+      correct: 0
+      feedback: The optic nerve carries the signals; the brain processes them.
+    hints:
+    - Follow the optic nerve all the way into the brain.
+    - The eyes are at the front, but the route ends far from them.
+    - Watch the signals travel again.
+    demo: traceNerve
+    trialAfterAnswer: 1
+    correctFeedback: 'Your prediction matched: visual information is processed in
+      the visual area at the back of the brain.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_ext_torch
+    topic: external_structures
+    chapter: Scene02
+    level: 3
+    mode: 0
+    prompt: 'Challenge: a doctor shines a small torch into a patient''s eye and the
+      black centre shrinks. Which part made it shrink?'
+    options:
+    - text: The iris
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The pupil
+      partId: 
+      misconception: pupil-controls-itself
+      correct: 0
+      feedback: The pupil is the opening that shrank; the iris around it changed
+        its size.
+    - text: The cornea
+      partId: 
+      misconception: cornea-controls-pupil
+      correct: 0
+      feedback: The cornea is the clear front layer; it doesn't change size.
+    hints:
+    - The black centre is the opening.
+    - Something around the opening controls its size.
+    - Listen to Niko's explanation of the iris again.
+    demo: replayCue:S02_L13
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: the iris changed the size of the pupil.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_int_clear
+    topic: internal_structures
+    chapter: Scene03
+    level: 3
+    mode: 0
+    prompt: 'Challenge: an eye doctor looks through the pupil at the retina. Which
+      clear parts inside the eye does the light pass through on the way?'
+    options:
+    - text: Aqueous humour, lens and vitreous humour
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Sclera and choroid
+      partId: 
+      misconception: choroid-in-light-path
+      correct: 0
+      feedback: The sclera is the tough white layer and the choroid holds blood vessels;
+        light doesn't pass through them to the retina.
+    - text: Only the lens
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The lens is clear, but so are the fluids in front of and behind it.
+    hints:
+    - Think about the structures between the cornea and the retina.
+    - The sclera and choroid aren't transparent.
+    - Listen to Niko's explanation again.
+    demo: replayCue:S03_L08
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: the aqueous humour, the lens and the vitreous humour
+      are all transparent.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_nerve_damage
+    topic: optic_nerve
+    chapter: Scene09
+    level: 3
+    mode: 0
+    prompt: 'Challenge: imagine an eye focuses light perfectly, but its optic nerve
+      is damaged. What goes wrong?'
+    options:
+    - text: The visual information can't travel properly to the brain
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The lens can no longer form an image
+      partId: 
+      misconception: lens-to-brain
+      correct: 0
+      feedback: The lens still forms the image on the retina; the problem is carrying
+        the signals onward.
+    - text: 'Nothing: the eye sees on its own'
+      partId: 
+      misconception: eye-sees-alone
+      correct: 0
+      feedback: Seeing needs the brain to process the signals the optic nerve carries.
+    hints:
+    - Think about what the optic nerve carries.
+    - The lens and retina still work in this example.
+    - Watch the signals travel again.
+    demo: traceNerve
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: the image still forms, but the information can''t
+      travel properly to the brain.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_pupil_cinema
+    topic: pupil_response
+    chapter: Scene05
+    level: 3
+    mode: 0
+    prompt: 'Challenge: you walk from a sunny playground into a dark cinema hall.
+      What do your pupils do?'
+    options:
+    - text: Become larger, letting more light in
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Become smaller
+      partId: 
+      misconception: pupil-dilates-in-bright
+      correct: 0
+      feedback: Smaller pupils happen in bright light; the cinema is dim.
+    - text: Stay the same size
+      partId: 
+      misconception: pupil-fixed
+      correct: 0
+      feedback: The pupil keeps adjusting to the light level.
+    hints:
+    - Is it brighter or dimmer inside?
+    - 'Think about the brightness experiment: what happened in dim light?'
+    - Watch the pupil respond again.
+    demo: pupilTrial
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: they become larger, letting more light in.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_acc_clock
+    topic: accommodation
+    chapter: Scene06
+    level: 3
+    mode: 0
+    prompt: 'Challenge: you look up from your phone to read a clock on the far wall.
+      How does your lens change?'
+    options:
+    - text: It becomes less curved
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: It becomes more curved
+      partId: 
+      misconception: far-rounder
+      correct: 0
+      feedback: That's what happens when you look at something near.
+    - text: It doesn't change
+      partId: 
+      misconception: lens-rigid
+      correct: 0
+      feedback: The lens keeps adjusting to the distance.
+    hints:
+    - Is the clock nearer or farther than the phone?
+    - Near objects need a more curved lens; distant ones the opposite.
+    - Watch the near and distant demonstrations again.
+    demo: replayAccommodation
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: for the distant clock the lens becomes less curved.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_img_world
+    topic: inverted_image
+    chapter: Scene10
+    level: 3
+    mode: 0
+    prompt: 'Challenge: the image on your retina is inverted, yet the world never
+      looks upside down to you. Why?'
+    options:
+    - text: The brain processes the information carried by the signals
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: The cornea flips the image the right way up
+      partId: 
+      misconception: lens-reinverts
+      correct: 0
+      feedback: The cornea bends light; the lens forms an inverted image.
+    - text: The image on the retina is actually upright
+      partId: 
+      misconception: upright-retinal-image
+      correct: 0
+      feedback: The retinal image is inverted; you saw the stem pointing down.
+    hints:
+    - Think about where the signals go.
+    - The retinal image isn't sent to the brain like a photograph.
+    - Listen to Niko's explanation again.
+    demo: replayCue:S09_L04
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: the brain processes the information carried by the
+      signals.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_rc_night
+    topic: rods_cones
+    chapter: Scene08
+    level: 3
+    mode: 0
+    prompt: 'Challenge: at night, under a dim streetlight, it''s hard to tell the
+      colour of a parked car. Why?'
+    options:
+    - text: In dim light mainly rods respond, and rods give brightness rather than
+        colour
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Cones work best in dim light
+      partId: 
+      misconception: cones-for-dim
+      correct: 0
+      feedback: Cones work best in brighter light.
+    - text: The pupil becomes too small at night
+      partId: 
+      misconception: pupil-dilates-in-bright
+      correct: 0
+      feedback: In dim light the pupil becomes larger.
+    hints:
+    - Which cells work well in dim light?
+    - Which cells let us see colour, and when do they work best?
+    - Listen to Niko's explanation of rods again.
+    demo: replayCue:S08_L03
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: in dim light mainly rods respond, and rods give brightness
+      rather than colour.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
+  - id: app_path_convert
+    topic: complete_pathway
+    chapter: Scene10
+    level: 3
+    mode: 0
+    prompt: 'Challenge: light reaches the photoreceptors, but they can''t convert
+      it. Which step of seeing fails?'
+    options:
+    - text: Turning light into electrical signals
+      partId: 
+      misconception: 
+      correct: 1
+      feedback: 
+    - text: Focusing light with the lens
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: Focusing happens earlier, at the lens.
+    - text: Letting light in through the pupil
+      partId: 
+      misconception: 
+      correct: 0
+      feedback: The light already got in; it reached the photoreceptors.
+    hints:
+    - What do photoreceptors do with light?
+    - Focusing happens before the retina; this step happens at it.
+    - Listen to Niko's line again.
+    demo: replayCue:S08_L05
+    trialAfterAnswer: 0
+    correctFeedback: 'Exactly: without electrical signals, nothing can travel along
+      the optic nerve.'
+    tag: "SupplementalAdaptive \xB7 newly authored practice (not storyboard dialogue)"
   - id: rebuild_journey
     topic: complete_pathway
     chapter: Scene10

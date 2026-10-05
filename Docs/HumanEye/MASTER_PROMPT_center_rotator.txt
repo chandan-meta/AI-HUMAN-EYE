@@ -1,0 +1,77 @@
+MASTER PROMPT: Human Eye module. Stage everything on center_rotator, use the user's models, add a cinematic intro.
+
+You are working inside the existing Unity project D:\AI unity project\AI-HUMAN-EYE (Unity 6000.3.0f1, URP 17.3, Cinemachine 3.1.5, Timeline 1.8.9, Splines 2.8.2, Input System). Act as senior Unity developer, technical artist, cinematographer, educational designer and audio designer. Inspect, implement, test, review and refine. Do not stop at a proposal.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+0. NON-NEGOTIABLE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Preserve the storyboard: the 66 cues in Assets\HumanEye\Data\DialogueLedger.json, their wording and order, the chapter flow (Scenes 2 to 11), adaptive checks, Ask Niko, settings, pause, skip and replay behaviour.
+• NEVER run Builder.Build (menu "Regenerate entire module"). It calls NewScene and wipes the hand-placed HUMAN BRAIN ENV room, the Area Light, the lighting bake and the Canvas edits. All scene changes go through an idempotent, save-guarded editor patch (pattern: Assets\HumanEye\Editor\PolishPatch.cs; add SaveCurrentModifiedScenesIfUserWantsTo and refuse to run while the scene is dirty). Content changes go through Tools > Human Eye > Authoring > Update content data only (Builder.BuildData).
+• Run Unity batch mode only when the editor for this project is closed (check Temp\UnityLockfile). Never discard the user's unsaved editor work.
+• Use the models in D:\AI unity project\models exactly as supplied: the files stay unaltered. Unity-side processing is allowed: import settings, baked pose, choosing or hiding sub-meshes, generated helper meshes, materials, scale and offset. Treat the source folders as read-only; copy into the project only what is used.
+• Record every new asset's source, modifications and licence status (UNVERIFIED where unknown) in Docs\HumanEye\ASSET_REGISTER.csv and Docs\HumanEye\THIRD_PARTY_NOTICES.md. Keep raw Reallusion CC4 source files out of any public repository.
+• Keep a recoverable state (git branch claude/wow-moments). Commit only when asked.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. CURRENT STATE (measured; scene saved at 13:54)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• The scene Assets\HumanEye\Scenes\HumanEye_Observatory.unity contains the user-placed prefab "human brain env" (root position (-7.04, 0.73, 4.2961), uniform scale 1.9016, all 351 objects Static). Bake output is in Assets\HumanEye\Scenes\HumanEye_Observatory\ (GPU lightmapper, 7 lightmaps, Area Light at (-0.6, 9.39, -10.08)). Re-measure every number below from the saved scene before using it.
+• center_rotator (inside "fbx env"): pivot about (-1.120, 1.165, -9.797), no rotation, no animation. Glowing top disc "emission_center": centre y about 1.427, top about 1.44, radius about 1.81. Stand radius about 1.96. Room floor y about 0.55. Inner wall radius about 15.8 m around the pedestal; door and corridor on -X; lab-bench arc and video screens on +X. The user's skeleton pod base "center_stand (1)" is a child of center_rotator, at about (0.93, y, -4.68).
+• "Observatory of Vision" (the old procedural dome) is inactive in the scene, but Stage.Enter in Stage.cs calls observatory.SetActive(true) every chapter and brings it back. It also holds the Key, Display and Rim lights, the reflection probe, the starlight beam and dust used by reveals and the ending.
+• Package issues: two VideoPlayers (play on awake, loop, audio Direct, so doubled audio plays over the narration and ignores Pause); two World Space canvases with GraphicRaycasters that make Hud.IsOverUI block part taps, orbit and zoom; 15 spotlights with a missing script; 4K textures with no Android overrides; 95.5k-triangle room plus a 93k-triangle doctor and a 400k-triangle skeleton.
+• The earlier "Microscope exhibit (HUMAN BRAIN ENV)" under the old observatory duplicates the room's own microscopes and sits outside its walls. Remove it, its PolishPatch code and its register rows.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. GOAL A: ALL DISPLAY ACTION ON center_rotator (no spin)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• center_rotator does NOT rotate. Keep its Static flags and the bake.
+• Create a unit-scale scene-root object "HE Display Root" (NOT a child of the 0.06-scaled, static, nested-prefab rotator). Place it at the rotator's measured top centre plus 0.60 m (the same eye-above-plinth gap as before). Move everything that belongs to the display by the same rigid offset: Human Display (plus an extra offset so the feet stand on the disc centre), Hero, Cut and Menu points, Eye Rig and Other Eye, Cut Frame with its shots, Brain Display plus the 52-point "nerve" signal path (convert its space), the optics bench (Apple with Top and Bottom markers, Lamp, Pedestal, Tree), Niko anchors, the roughly 28 world-placed CinemachineCamera shots, the Key, Display and Rim lights and the reflection probe (move them out of the old observatory into a group "HE Display Lights" and point Stage.observatory at that group so validation passes and the dome stays hidden). Leave the magnified retina set (x = 60) and the global volumes where they are.
+• Fix collisions: push the 6 Niko anchors that land inside the pedestal out to its rim (radius about 2.35, same height); start the apple stand's column at the pedestal top when the apple is within the pedestal radius; re-aim S02_NikoMedium, S02_PinchNiko and S02_EyeInSkull for the new figure.
+• Optics: keep LightRays.farDistance = 25; the near-to-far axis points -X toward the door (tree about 10.3 m from the pedestal, about 5.5 m clear of the wall at room scale 1.9016). Fix the Scene 11 tree placement in Stage.Ending (treeRoot.position.z minus 1.5 accumulates on every re-entry) so it is relative to the eye; make followOffset root-relative; remove the hard-coded EyeLeft position in PolishPatch.
+• Room integration: mute both VideoPlayers (audio output None; play and pause them from Clock.Paused) and disable raycasts on the room's canvases; add a LightProbeGroup around the pedestal and re-bake so the dynamic eye, human, brain and Niko receive the baked light; keep the bloom cues readable (the user set Bloom intensity to 0.08; tune emissive cues, do not undo the user's choice without saying so).
+• "Explanations on the rotator": labels, hint glows and Niko's presentation must read clearly with the pedestal as the stage; the left-docked question card and the world labels must not cover the subject. Verify at 1024x768 and 1600x900.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. GOAL B: USE THE USER'S MODELS (D:\AI unity project\models)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Matt (Reallusion CC4, human character\Blender\Matt.Fbx and Matt__Motion.Fbx): the human figure on the pedestal, replacing FitnessMan in HumanDisplay (skin, garment, muscle, skull and brain layers, Reveal, Scan, Dissolve, eye sockets). Use the 28k-triangle base body from Matt__Motion.Fbx, not the 1.8M-triangle subdivided body. Use the shirt, jeans, shoes and hair (hair alpha-clipped). Bake a relaxed pose from the idle take (about frame 61). Keep the boxers hidden: they poke through the jeans, and no underwear layer is shown to the Grade-10 audience. Hide CC_Base_Eye, CC_Base_EyeOcclusion and CC_Base_TearLine; put the module's interactive eyes in sockets at CC_Base_R_Eye and CC_Base_L_Eye (socket scale about 0.0158 times the display scale). Do not import the 493 MB external textures folder; cap the textures that are used (Android 1024, ASTC). Optional: play the idle loop during the intro, frozen before the scan.
+• Brain.fbx plus Brain_Textures.zip: the Brain Display, replacing the Z-Anatomy display brain (keep Z-Anatomy for the brain-inside-head view unless it looks wrong). Import with lights, animation and cameras off; use the albedo (add the normal map only if the Anatomy shader is extended). Generate a separate "Visual processing area" mesh in Unity from the occipital faces (back of the hemispheres above the cerebellum) so the visual_area glow, the Scene 9 tap prediction and visualCentreWorld keep working. Regenerate the optic-nerve path to the chiasm region (about 36 percent back and 27 percent up on the underside) inside the patch.
+• skeleton_pose_01.blend: export, on a copy, the rig plus the 28 bone meshes in the rest A-pose to FBX. Use it as the full-body X-ray layer during the scan, fitted inside Matt (scale about 0.974, offset about (0, +0.047, -0.108); adjust the arms so the bones stay inside the body in Matt's pose). Keep the hollow Z-Anatomy skull for the head close-up (hide the solid cranium and mandible there). The right hand mesh is inside-out: use a material with Render Face Both, no mesh edit. Leave the user's glass-pod skeleton as placed.
+• Do not use G10 eye01.fbx unless asked (painted pupil, built-in RP shaders).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. GOAL C: CINEMATIC, DRAMATIC INTRODUCTION WITH CAMERA MOVEMENT AND SFX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Replace the first Scene 2 step Shot("S02_EstablishB", 6) with one whitelisted Do("intro") step of about 11.5 s. No cue is added, removed or reordered; "Hey! I'm Niko" follows as before. Beat sheet (positions relative to the pedestal; re-derive all heights from the measured disc top at about y 1.44 and floor at about y 0.55):
+1. 0 to 1 s: black, then fade in on a dark room seen from the door end (-X, about 14 m out, eye height). A drone fades in.
+2. 1 to 5 s: slow push toward the pedestal; the room powers up in steps at least 0.35 s apart, with a clunk each: floor rings, pedestal rim, wall uplights, ceiling ring. A riser builds. Exposure goes from -4 to -1 EV through an intro Volume with ColorAdjustments, because baked light cannot be dimmed through realtime lights.
+3. 5 to 8.5 s: crane up and arc about 40 degrees around the pedestal (at most 13 degrees per second, no roll, no shake). A beam of light strikes down from the oculus onto the disc (impact boom, disc emission swells, exposure to 0 EV). The human silhouette materialises on the pedestal at the checkpoint alpha (shimmer). The full reveal stays after S02_L03.
+4. 8.5 to 11.5 s: ease into the re-authored S02_EstablishB framing the figure on the rotator; the music rises under it; then the existing nikoAppear with a materialise SFX.
+• Dim the room through MaterialPropertyBlocks and light intensities only; never edit the room's shared materials. Pause freezes everything (Clock.Delta, Cinemachine UniformDeltaTimeOverride, audio paused). A "Skip intro" button, authored in the saved Canvas and not generated at runtime, always applies the full end state and leaves the fade at 0. Reduced motion or skip-camera: a 2.5 s still version. Restart or menu mid-intro resets room power, music gain and SFX.
+• SFX: the project has no long sounds (the longest real SFX is 0.95 s). Generate project-owned drone, riser, boom, three clunks, shimmer and materialise sounds with a script (Tools\HumanEye\generate_intro_sfx.py, 48 kHz WAV into Assets\HumanEye\Audio\SFX\), unless the user approves downloading Kenney Sci-fi Sounds (CC0). Add the keys to AudioDirector.effects, duck the music, and add an ambience source that is included in pause.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. PLATFORM AND PERFORMANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Windows PC and the Android tablet (ARM64, API 29) remain targets. Add Android texture overrides (1024, ASTC) for the room and the new models; play at most one video, muted; report APK size, triangle counts and texture memory. Do not claim device performance without a device test.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. TESTS AND REVIEW (four passes, fix after each)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Visual and UI: capture before and after with Tools\HumanEye\playtest.ps1 (development Windows player, heAutopilot, offscreen captures including render-texture cameras). Check that every shot frames the pedestal subject, nothing clips the pedestal, walls or bench, and labels and cards do not cover the subject.
+2. Gameplay and learning: full walkthrough of all 10 chapters and 66 cues, adaptive checks, focus challenge, predictions, Ask Niko. Taps on parts must work (no room-canvas interception).
+3. Cinematic and presentation: intro full, short (reduced motion), Skip at several moments, Pause mid-intro, restart and menu mid-intro, audio balance (no video audio, narration audible).
+4. Regression: EditMode suite plus Validator (0 errors), PlayMode walkthrough test, stress run at 1024x768 with reduced motion (0 FAIL, 0 pointer failures), Windows and Android builds (0 errors). Update the Validator cue-sheet descriptions and AutoPilot (one run lets the intro play; one presses Skip and asserts fade = 0).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. FINAL REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Report what changed, where the stage and the intro beats now are, which models were used (source path, where integrated, every Unity-side processing step), files affected, tests executed with results and evidence paths, before and after captures, the licence status of every new asset, the Android budget numbers, and the remaining limitations (device, touch and audio-by-ear untested). Clearly separate executed tests from static inspection.

@@ -50,7 +50,7 @@ namespace HumanEye
                     cams.Snap("S09_Wide"); break;
                 case "Scene11":
                     niko.Place(Anchor("Eleven")); Optic("apple", near, 0);
-                    ShowObject("tree", true); treeRoot.position = new Vector3(eye.transform.TransformPoint(new Vector3(0, 0, EyeGeometry.LensZ + rays.farDistance)).x, treeRoot.position.y, treeRoot.position.z - 1.5f);
+                    ShowObject("tree", true); treeRoot.position = new Vector3(eye.transform.TransformPoint(new Vector3(0, 0, EyeGeometry.LensZ + rays.farDistance)).x, treeRoot.position.y, eye.transform.position.z - 1.5f);
                     cams.Snap("S10_Complete"); break;
             }
         }
@@ -78,7 +78,7 @@ namespace HumanEye
             switch (mode)
             {
                 case "brightness": Simulation = on ? "brightness" : null; break;
-                case "distance": Simulation = on ? "distance" : null; if (on) hud.SetLensState(null); break;
+                case "focus": Simulation = on ? "lens" : null; hud.SetLensState(null); if (on) FocusSetup(0); else eye.Get("lens").SetGlow(0); break;
                 case "photoreceptors": Simulation = on ? "photoreceptors" : null; micro.rods.Selectable = micro.cones.Selectable = on; break;
                 case "inspectImage": if (on) ShowLabels("scan"); break;
             }

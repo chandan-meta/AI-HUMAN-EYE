@@ -104,6 +104,26 @@ namespace HumanEye.Tests
             Assert.AreEqual("b", LearnerModel.Next(b, d, "t", "a").id);
         }
 
+        [Test] public void SecureTopicsGetOneNewSituationInsteadOfRepetition()
+        {
+            var d = new ProgressData(); var b = Bank();
+            b.items = b.items.Append(new QuestionBank.Item { id = "x", topic = "t", level = QuestionLevel.Application }).ToArray();
+            Assert.AreNotEqual("x", LearnerModel.Next(b, d, "t", "c").id, "practice never draws the challenge item");
+            LearnerModel.Record(d, b.items[0], true, false); LearnerModel.Record(d, b.items[1], true, false);
+            Assert.AreEqual(TopicStatus.Secure, LearnerModel.Status(d, "t", true));
+            Assert.AreEqual("x", LearnerModel.Challenge(b, d, "t").id);
+            LearnerModel.Record(d, b.items[3], true, false);
+            Assert.IsNull(LearnerModel.Challenge(b, d, "t"), "a solved challenge is not repeated");
+        }
+
+        [Test] public void FirstTryCorrectSkipsSameLevelFollowUp()
+        {
+            var b = Bank();
+            Assert.IsTrue(LearnerModel.Repetitive(b.items[0], true, b.items[0]));
+            Assert.IsFalse(LearnerModel.Repetitive(b.items[0], true, b.items[1]), "a harder item still follows");
+            Assert.IsFalse(LearnerModel.Repetitive(b.items[0], false, b.items[0]), "after a miss, practice continues");
+        }
+
         [Test] public void SupportTiers() { Assert.AreEqual(0, LearnerModel.SupportTier(0)); Assert.AreEqual(1, LearnerModel.SupportTier(1)); Assert.AreEqual(2, LearnerModel.SupportTier(2)); Assert.AreEqual(3, LearnerModel.SupportTier(5)); }
     }
 

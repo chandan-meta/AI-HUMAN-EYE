@@ -114,6 +114,7 @@ namespace HumanEye
             On("review-restart", () => { OpenReview(false); runner.RestartChapter(); });
             On("btn-read-continue", narrator.Continue);
             On("btn-free-continue", () => { runner.Continue(); stage.sfx.Play("confirm", .6f); });
+            if (Element("btn-skip-intro")) On("btn-skip-intro", stage.SkipIntro);
             foreach (var a in Abilities) { var ability = a; On("ab-" + a, () => stage.UseAbility(ability)); }
             On("view-left", () => stage.Orbit(new Vector2(-60, 0))); On("view-right", () => stage.Orbit(new Vector2(60, 0)));
             On("view-in", () => stage.Zoom(-4)); On("view-out", () => stage.Zoom(4)); On("view-reset", stage.ResetView);
@@ -222,7 +223,7 @@ namespace HumanEye
             }
             Show("btn-read-continue", narrator.AwaitingContinue);
 
-            prompt.text = PromptText();
+            prompt.text = Objective();
             Show("prompt-banner", !string.IsNullOrEmpty(prompt.text));
             bool started = runner.Started;
             Show("topbar", started); Show("bottom", started); Show("middle", started);
@@ -238,6 +239,7 @@ namespace HumanEye
             }
             Show("abilities", started);
             Show("btn-free-continue", runner.FreeMode != null && activities.Card == null);
+            Show("btn-skip-intro", stage.IntroPlaying && !Clock.Paused && !stage.Short);   // the reduced-motion intro is a 1.5 s still: nothing to skip
             Caption(Q<Button>("btn-pause")).text = Clock.Paused ? "Resume" : "Pause";
             var replay = Q<Button>("btn-replay-expl");
             State(replay, "unavailable", narrator.LastCore == null || narrator.Busy);
@@ -255,11 +257,13 @@ namespace HumanEye
             }
             RefreshSimulation();
             Show("end-menu", runner.State == LessonState.Complete);
+            if (runner.State == LessonState.Complete && Element("end-recap")) Q<Label>("end-recap").text = Recap();
             Show("pause-overlay", Clock.Paused && modal == null);
             RefreshActivity();
         }
 
-        string PromptText()
+        /// The learner's current objective (also what Ask Niko answers to "what now?"), derived from the live lesson state.
+        public string Objective()
         {
             if (runner.Awaiting == "scan") return Cue("S02_L05");
             if (runner.Awaiting == "inside") return Cue("S02_L16");
@@ -272,7 +276,7 @@ namespace HumanEye
             return runner.FreeMode switch
             {
                 "brightness" => "Experiment freely with the brightness, then tap Continue.",
-                "distance" => "Try different distances and watch the lens. Tap Continue when ready.",
+                "focus" => stage.FocusPrompt,
                 "photoreceptors" => "Tap the rods or cones to inspect them, or compare dim and bright light.",
                 "inspectImage" => "Inspect the image on the retina. FREEZE or REPLAY it, then tap Continue.",
                 "routeTrace" => "Use TRACE or REPLAY to follow the route again, then tap Continue.",
@@ -283,6 +287,17 @@ namespace HumanEye
         }
 
         string Cue(string id) => narrator.database.Get(id)?.text;
+
+        /// Conclusion from the learner's actual record: the whole pathway, what they achieved, and what is worth revisiting.
+        static string Recap()
+        {
+            var d = SaveSystem.Data;
+            int secure = Topics.Count(t => LearnerModel.Status(d, t, true) == TopicStatus.Secure);
+            var revisit = Enumerable.Range(0, Topics.Length).Where(i => LearnerModel.Status(d, Topics[i], true) == TopicStatus.NeedsPractice).Select(i => TopicNames[i]).ToArray();
+            var s = "Light from an object → cornea → aqueous humour → pupil → lens → vitreous humour → retina → optic nerve → brain.\n" +
+                    $"Discovery stamps: {d.stamps.Count}   ·   Topics secure: {secure} of {Topics.Length}";
+            return revisit.Length == 0 ? s : s + "\nWorth another look in Review: " + string.Join(", ", revisit);
+        }
 
         void RefreshProgress()
         {
@@ -302,10 +317,12 @@ namespace HumanEye
             var sim = stage.Simulation;
             Show("sim-panel", sim != null && activities.Card == null);
             if (sim == null) return;
-            Show("sim-brightness", sim == "brightness"); Show("sim-distance", sim == "distance"); Show("sim-photo", sim == "photoreceptors");
-            Q<Label>("sim-title").text = sim switch { "brightness" => "SIMULATE · Brightness", "distance" => "SIMULATE · Object distance", _ => "SIMULATE · Light level" };
-            Q<Label>("sim-note").text = sim == "distance" ? "Illustrative model — not a clinical optical simulator." : sim == "brightness" ? $"Brightness: {Mathf.RoundToInt(stage.Brightness * 100)}%   Pupil: {(stage.eye.PupilRadius > .2f ? "larger" : stage.eye.PupilRadius < .12f ? "smaller" : "medium")}" : "";
-            Q<Slider>("sim-brightness-slider").SetValueWithoutNotify(stage.Brightness);
+            bool lens = sim == "lens";   // focus challenge: the brightness row becomes the lens-shape control
+            Show("sim-brightness", sim is "brightness" or "lens"); Show("sim-distance", sim is "distance" or "lens"); Show("sim-photo", sim == "photoreceptors");
+            Q<Label>("sim-title").text = sim switch { "brightness" => "SIMULATE · Brightness", "distance" => "SIMULATE · Object distance", "lens" => "SIMULATE · Shape the lens (illustrative model)", _ => "SIMULATE · Light level" };
+            Caption(Q<Button>("sim-dim-preset")).text = lens ? "Flatter" : "Dim"; Caption(Q<Button>("sim-bright-preset")).text = lens ? "Rounder" : "Bright";
+            Q<Label>("sim-note").text = stage.Readout();
+            Q<Slider>("sim-brightness-slider").SetValueWithoutNotify(lens ? stage.eye.accommodationTarget : stage.Brightness);
             Q<Slider>("sim-distance-slider").SetValueWithoutNotify(Mathf.InverseLerp(stage.rays.nearDistance, stage.rays.farDistance, stage.ObjectDistance));
             foreach (var (name, id) in new[] { ("sim-minus", "dimmer"), ("sim-plus", "brighter"), ("sim-dim-preset", "presetDim"), ("sim-bright-preset", "presetBright"), ("sim-near", "near"), ("sim-distant", "distant"), ("sim-light-dim", "lightDim"), ("sim-light-bright", "lightBright") })
             {
@@ -386,7 +403,7 @@ namespace HumanEye
         public void Toast(string text)
         {
             if (string.IsNullOrEmpty(text) || toast == null) return;
-            toast.text = text; Show("toast", true); toastLeft = 3.2f;
+            toast.text = text; Show("toast", true); Element("toast").SetAsLastSibling(); toastLeft = 3.2f;   // transient feedback always draws above open cards
         }
 
         public void Fade(float alpha)

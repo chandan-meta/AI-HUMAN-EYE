@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace HumanEye
 {
-    public enum QuestionLevel { Recognition, Relationship, Prediction }
+    /// Application = a new situation, offered only once a topic is already Secure (challenge, not repetition).
+    public enum QuestionLevel { Recognition, Relationship, Prediction, Application }
     public enum QuestionMode { Choice, TapPart, Order }
 
     /// SupplementalAdaptive content: newly authored practice items. Never part of the storyboard ledger.

@@ -26,7 +26,7 @@ namespace HumanEye.EditorTools
         static readonly Dictionary<string, int> SceneCounts = new()
         { ["Scene02"] = 16, ["Scene03"] = 12, ["Scene04"] = 8, ["Scene05"] = 8, ["Scene06"] = 4, ["Scene07"] = 3, ["Scene08"] = 6, ["Scene09"] = 4, ["Scene10"] = 2, ["Scene11"] = 3 };
         static readonly string[] AwaitKeys = { "scan", "inside", "brighter", "dimmer", "near", "distant" };
-        static readonly string[] FreeModes = { "routeTrace", "brightness", "distance", "inspectImage", "photoreceptors", "signals", "summary" };
+        static readonly string[] FreeModes = { "routeTrace", "brightness", "focus", "inspectImage", "photoreceptors", "signals", "summary" };
         static readonly string[] PartIds = { "sclera", "cornea", "iris", "pupil", "aqueous", "lens", "vitreous", "retina", "choroid", "optic_nerve", "brain", "visual_area", "rods", "cones" };
 
         public class Report { public readonly List<string> errors = new(), warnings = new(), passed = new(); }
@@ -222,7 +222,8 @@ namespace HumanEye.EditorTools
         // ---------------- cue sheet ----------------
         static readonly Dictionary<string, string> Subjects = new()
         {
-            ["S02_EstablishA"] = "Observatory: dome, starlight beam, subdued display", ["S02_EstablishB"] = "Push-in on the central display",
+            ["S02_EstablishA"] = "Dark room from the door end (intro start)", ["S02_IntroThreshold"] = "Dark room from the door end", ["S02_IntroIgnite"] = "Pushing toward the pedestal as the room powers up",
+            ["S02_IntroCrane"] = "Crane above the pedestal: beam strike", ["S02_EstablishB"] = "Establishing view of the pedestal display",
             ["S02_NikoMedium"] = "Niko introduction", ["S02_DisplayWide"] = "Niko and the revealed human", ["S02_ScanFront"] = "Full figure for the scan wave",
             ["S02_EyeInSkull"] = "Selected eye inside the skull (anatomical position)", ["S02_PinchNiko"] = "Niko's pinch gesture", ["S02_EyeHero"] = "Enlarged complete eye",
             ["S02_Part_sclera"] = "Sclera surface", ["S02_Part_cornea"] = "Cornea in profile", ["S02_Part_iris"] = "Iris, front", ["S02_Part_pupil"] = "Pupil opening, front",

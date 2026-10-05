@@ -6,32 +6,32 @@ Scene-to-chapter mapping: one launch scene `Assets/HumanEye/Scenes/HumanEye_Obse
 
 ## Scene02 — Meet Niko
 
-Checkpoint (restart/resume state): Observatory establishing view; display subdued with a faint human silhouette; Niko hidden; the selected eye in its socket; nothing explored.
+Checkpoint (restart/resume state): Dark room from the door end; the cinematic power-up (skippable) ends on the establishing view with a faint human silhouette on the pedestal; Niko hidden; the selected eye in its socket; nothing explored.
 
 | # | Step | Subject · framing | Start → end camera pose | Transition | Dialogue | Animation / visual cue | Permitted input | Exit condition |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Shot | Push-in on the central display · wide | checkpoint → S02_EstablishB (0.00,2.00,-7.20 · yaw 0 pitch 2 · 40°) | Ease-in-out blend 6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (6 s; short fade when reduced motion) |
+| 1 | Do |  |  |  |  | intro | Pause, Help, Settings | Action complete |
 | 2 | Do |  |  |  |  | nikoAppear | Pause, Help, Settings | Action complete |
-| 3 | Shot | Niko introduction · medium | S02_EstablishB → S02_NikoMedium (-0.95,1.30,-1.50 · yaw 353 pitch 6 · 36°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.8 s; short fade when reduced motion) |
+| 3 | Shot | Niko introduction · medium | checkpoint → S02_NikoMedium (-1.97,1.30,-1.34 · yaw 353 pitch 6 · 36°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.8 s; short fade when reduced motion) |
 | 4 | Say |  |  |  | S02_L01: “Hey! I’m Niko. Your Vision Investigator Officer.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 5 | Say |  |  |  | S02_L02: “So you want to know how light becomes sight?” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 6 | Do |  |  |  |  | nikoLook(human) | Pause, Help, Settings | Action complete |
 | 7 | Say |  |  |  | S02_L03: “Then watching from out here won't help.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 8 | Shot | Niko and the revealed human · wide | S02_NikoMedium → S02_DisplayWide (-0.45,1.55,-3.70 · yaw 1 pitch 4 · 40°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 8 | Shot | Niko and the revealed human · wide | S02_NikoMedium → S02_DisplayWide (-0.45,2.29,-3.70 · yaw 1 pitch 4 · 40°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 9 | Do |  |  |  |  | humanReveal | Pause, Help, Settings | Action complete |
 | 10 | Say |  |  |  | S02_L04: “We need to go inside somewhere humans can't.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 11 | Do |  |  |  |  | niko(RaiseHand) | Pause, Help, Settings | Action complete |
 | 12 | Say |  |  |  | S02_L05 [PROMPT VO]: “Click on the SCAN button.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 13 | Await |  |  |  |  | scan | The awaited control (click/tap); orbit/zoom; Pause; Ask Niko | Learner action 'scan' |
-| 14 | Shot | Full figure for the scan wave · wide | S02_DisplayWide → S02_ScanFront (0.00,1.20,-2.80 · yaw 0 pitch 2 · 44°) | Ease-in-out blend 1.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.2 s; short fade when reduced motion) |
+| 14 | Shot | Full figure for the scan wave · wide | S02_DisplayWide → S02_ScanFront (0.00,1.94,-2.80 · yaw 0 pitch 2 · 44°) | Ease-in-out blend 1.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.2 s; short fade when reduced motion) |
 | 15 | Do |  |  |  |  | scan | Pause, Help, Settings | Action complete |
 | 16 | Do |  |  |  |  | illuminate | Pause, Help, Settings | Action complete |
 | 17 | Say |  |  |  | S02_L06: “There.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 18 | Shot | Selected eye inside the skull (anatomical position) · medium | S02_ScanFront → S02_EyeInSkull (0.07,1.99,1.18 · yaw 354 pitch 3 · 32°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
+| 18 | Shot | Selected eye inside the skull (anatomical position) · medium | S02_ScanFront → S02_EyeInSkull (0.02,2.64,1.13 · yaw 354 pitch 3 · 32°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
 | 19 | Say |  |  |  | S02_L07: “Your first destination.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 20 | Hold |  |  |  |  |  | Pause, Help, Settings | 1.5 s inspection hold |
 | 21 | Do |  |  |  |  | nikoLook(eye) | Pause, Help, Settings | Action complete |
-| 22 | Shot | Niko's pinch gesture · medium | S02_EyeInSkull → S02_PinchNiko (-0.85,1.35,-1.05 · yaw 348 pitch 5 · 34°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
+| 22 | Shot | Niko's pinch gesture · medium | S02_EyeInSkull → S02_PinchNiko (-1.87,1.35,-0.89 · yaw 348 pitch 5 · 34°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
 | 23 | Do |  |  |  |  | pinch | Pause, Help, Settings | Action complete |
 | 24 | Shot | Enlarged complete eye · medium | S02_PinchNiko → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 2.4 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 25 | Do |  |  |  |  | enlarge | Pause, Help, Settings | Action complete |
@@ -126,7 +126,7 @@ Checkpoint (restart/resume state): Cutaway eye at the cut point; only the nerve 
 | 11 | Do |  |  |  |  | brainReveal | Pause, Help, Settings | Starts; runs alongside |
 | 12 | Shot | Following the nerve to the brain · medium | S04_NerveClose → S04_NerveMid (1.48,1.67,-0.22 · yaw 348 pitch 14 · 34°) | Ease-in-out blend 2.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 13 | Say |  |  |  | S04_L06: “It carries visual information from the retina to the brain.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 14 | Shot | Visual processing area (back of brain) · medium | S04_NerveMid → S04_BrainClose (3.97,2.33,-0.95 · yaw 328 pitch 13 · 36°) | Ease-in-out blend 2.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2.2 s; short fade when reduced motion) |
+| 14 | Shot | Visual processing area (back of brain) · medium | S04_NerveMid → S04_BrainClose (3.30,2.18,-0.95 · yaw 328 pitch 13 · 36°) | Ease-in-out blend 2.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2.2 s; short fade when reduced motion) |
 | 15 | Do |  |  |  |  | glow(visual_area) | Pause, Help, Settings | Action complete |
 | 16 | Say |  |  |  | S04_L07: “The brain receives and processes this information so that we can see.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 17 | Do |  |  |  |  | glow(optic_nerve,visual_area) | Pause, Help, Settings | Action complete |
@@ -198,7 +198,7 @@ Checkpoint (restart/resume state): Cutaway eye; apple at medium distance with th
 | 19 | Shot | Light continuing through the vitreous · medium | S06_LensClose → S06_Vitreous (-0.04,1.60,-0.76 · yaw 2 pitch 4 · 34°) | Ease-in-out blend 2.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2.2 s; short fade when reduced motion) |
 | 20 | Do |  |  |  |  | lightTravel(5) | Pause, Help, Settings | Action complete |
 | 21 | Offer |  |  |  |  | topic:accommodation | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
-| 22 | Free |  |  |  |  | distance | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
+| 22 | Free |  |  |  |  | focus | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
 
 ## Scene07 — Image Forms on the Retina
 
@@ -208,14 +208,15 @@ Checkpoint (restart/resume state): Cutaway eye; apple at 6 eye-radii with the le
 |---|---|---|---|---|---|---|---|---|
 | 1 | Shot | Toward the back of the eye · medium | checkpoint → S07_Vitreous (0.04,1.56,-0.20 · yaw 10 pitch 4 · 30°) | Ease-in-out blend 2.5 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
 | 2 | Do |  |  |  |  | lightTravel(5) | Pause, Help, Settings | Action complete |
-| 3 | Do |  |  |  |  | imageForm | Pause, Help, Settings | Starts; runs alongside |
-| 4 | Say |  |  |  | S07_L01: “After passing through the lens and vitreous humour, the light reaches the retina.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 5 | Shot | Rays converging; inverted image · close-up | S07_Vitreous → S07_Retina (0.14,1.52,-0.16 · yaw 13 pitch 1 · 28°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.6 s; short fade when reduced motion) |
-| 6 | Do |  |  |  |  | imageInset | Pause, Help, Settings | Action complete |
-| 7 | Say |  |  |  | S07_L02: “The lens forms a real, inverted image of the object on the retina.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 8 | Free |  |  |  |  | inspectImage | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
-| 9 | Shot | Retinal surface · close-up | S07_Retina → S07_RetinaCloser (0.22,1.51,0.10 · yaw 13 pitch 1 · 24°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.8 s; short fade when reduced motion) |
-| 10 | Say |  |  |  | S07_L03: “But what exactly detects this light on the retina?” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 3 | Say |  |  |  | S07_L01: “After passing through the lens and vitreous humour, the light reaches the retina.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 4 | Offer |  |  |  |  | item:img_predict | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
+| 5 | Do |  |  |  |  | imageForm | Pause, Help, Settings | Action complete |
+| 6 | Shot | Rays converging; inverted image · close-up | S07_Vitreous → S07_Retina (0.14,1.52,-0.16 · yaw 13 pitch 1 · 28°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.6 s; short fade when reduced motion) |
+| 7 | Do |  |  |  |  | imageInset | Pause, Help, Settings | Action complete |
+| 8 | Say |  |  |  | S07_L02: “The lens forms a real, inverted image of the object on the retina.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 9 | Free |  |  |  |  | inspectImage | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
+| 10 | Shot | Retinal surface · close-up | S07_Retina → S07_RetinaCloser (0.22,1.51,0.10 · yaw 13 pitch 1 · 24°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.8 s; short fade when reduced motion) |
+| 11 | Say |  |  |  | S07_L03: “But what exactly detects this light on the retina?” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 
 ## Scene08 — Photoreceptors Detect Light
 
@@ -257,16 +258,18 @@ Checkpoint (restart/resume state): Cutaway eye, full optic nerve and brain; appl
 | 2 | Say |  |  |  | S09_L01: “The electrical signals leave the eye through the optic nerve.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | 3 | Do |  |  |  |  | followSignal(nerve) | Pause, Help, Settings | Starts; runs alongside |
 | 4 | Say |  |  |  | S09_L02: “The optic nerve carries this visual information to the brain.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 5 | Shot | Visual processing area (back of brain) · medium | checkpoint → S04_BrainClose (3.97,2.33,-0.95 · yaw 328 pitch 13 · 36°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
-| 6 | Do |  |  |  |  | glow(visual_area) | Pause, Help, Settings | Action complete |
-| 7 | Say |  |  |  | S09_L03: “The brain receives and processes these signals to produce our visual perception.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 8 | Do |  |  |  |  | signals(nerve) | Pause, Help, Settings | Action complete |
-| 9 | Do |  |  |  |  | perception | Pause, Help, Settings | Action complete |
-| 10 | Say |  |  |  | S09_L04: “Although the image formed on the retina is inverted, our visual experience is not simply a photograph of that retinal image. The brain processes the information carried by the signals.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 11 | Do |  |  |  |  | glow(visual_area) | Pause, Help, Settings | Action complete |
-| 12 | Shot | Eye, nerve and brain (Scene 4 continuity) · wide | S04_BrainClose → S09_Wide (1.20,2.15,-4.10 · yaw 0 pitch 7 · 38°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
-| 13 | Offer |  |  |  |  | topic:optic_nerve | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
-| 14 | Free |  |  |  |  | signals | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
+| 5 | Shot | Eye, nerve and brain (Scene 4 continuity) · wide | checkpoint → S09_Wide (1.20,2.15,-4.10 · yaw 0 pitch 7 · 38°) | Ease-in-out blend 1.8 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1.8 s; short fade when reduced motion) |
+| 6 | Offer |  |  |  |  | item:brain_predict | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
+| 7 | Shot | Visual processing area (back of brain) · medium | S09_Wide → S04_BrainClose (3.30,2.18,-0.95 · yaw 328 pitch 13 · 36°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
+| 8 | Do |  |  |  |  | glow(visual_area) | Pause, Help, Settings | Action complete |
+| 9 | Say |  |  |  | S09_L03: “The brain receives and processes these signals to produce our visual perception.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 10 | Do |  |  |  |  | signals(nerve) | Pause, Help, Settings | Action complete |
+| 11 | Do |  |  |  |  | perception | Pause, Help, Settings | Action complete |
+| 12 | Say |  |  |  | S09_L04: “Although the image formed on the retina is inverted, our visual experience is not simply a photograph of that retinal image. The brain processes the information carried by the signals.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 13 | Do |  |  |  |  | glow(visual_area) | Pause, Help, Settings | Action complete |
+| 14 | Shot | Eye, nerve and brain (Scene 4 continuity) · wide | S04_BrainClose → S09_Wide (1.20,2.15,-4.10 · yaw 0 pitch 7 · 38°) | Ease-in-out blend 2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (2 s; short fade when reduced motion) |
+| 15 | Offer |  |  |  |  | topic:optic_nerve | Answer, Hint/Show me, Skip/Continue anyway | Activity finished or skipped |
+| 16 | Free |  |  |  |  | signals | Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue | Learner taps Continue |
 
 ## Scene10 — The Complete Working
 

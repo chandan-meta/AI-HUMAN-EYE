@@ -82,9 +82,23 @@ namespace HumanEye
                     if (known.Length > 0)
                         return new NikoAnswer { text = string.Join(" ", known.Select(c => dialogue.Get(c).text)), cues = known, part = intent.target, action = wantsShow && intent.target != null ? "show" : null };
                     return new NikoAnswer { text = intent.notYet, supplemental = true };
+                case IntentKind.Help:
+                    return new NikoAnswer { text = Status() ?? intent.supplemental, supplemental = true };
                 default:
                     return new NikoAnswer { text = intent.supplemental, supplemental = true };
             }
+        }
+
+        /// "What now?" grounded in the live state: an open question gets its first (attention) hint, never the answer;
+        /// otherwise the current objective plus the simulation's actual readout. Null when nothing is in progress.
+        string Status()
+        {
+            var item = stage.activities.Item;
+            if (item != null && item.hints.Length > 0) return "Hint: " + item.hints[0];
+            var objective = stage.hud.Objective();
+            var readout = stage.Readout();
+            if (string.IsNullOrEmpty(objective)) return string.IsNullOrEmpty(readout) ? null : readout;
+            return string.IsNullOrEmpty(readout) ? objective : objective + " (" + readout + ")";
         }
 
         public void Ask(string raw)

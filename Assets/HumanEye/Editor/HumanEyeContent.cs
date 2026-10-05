@@ -26,10 +26,10 @@ namespace HumanEye.EditorTools
             new Chapter
             {
                 id = "Scene02", title = "Meet Niko", topics = new[] { "external_structures" },
-                checkpoint = "Observatory establishing view; display subdued with a faint human silhouette; Niko hidden; the selected eye in its socket; nothing explored.",
+                checkpoint = "Dark room from the door end; the cinematic power-up (skippable) ends on the establishing view with a faint human silhouette on the pedestal; Niko hidden; the selected eye in its socket; nothing explored.",
                 steps = new[]
                 {
-                    Shot("S02_EstablishB", 6), Do("nikoAppear", null, 1.2f), Shot("S02_NikoMedium", 1.8f),
+                    Do("intro"), Do("nikoAppear", null, 1.2f), Shot("S02_NikoMedium", 1.8f),
                     Say("S02_L01"), Say("S02_L02"), Do("nikoLook", "human"), Say("S02_L03"),
                     Shot("S02_DisplayWide", 1.8f, true), Do("humanReveal", null, 1.6f),
                     Say("S02_L04"),
@@ -129,7 +129,7 @@ namespace HumanEye.EditorTools
                     Say("S06_L04"),
                     Shot("S06_Vitreous", 2.2f), Do("lightTravel", "5", 2.5f),
                     Offer("topic:accommodation"),
-                    Free("distance"),
+                    Free("focus"),
                 },
             },
             new Chapter
@@ -138,8 +138,9 @@ namespace HumanEye.EditorTools
                 checkpoint = "Cutaway eye; apple at 6 eye-radii with the lens matched; light through the lens; no image yet; camera S06_Vitreous.",
                 steps = new[]
                 {
-                    Shot("S07_Vitreous", 2.5f, true), Do("lightTravel", "5", 2.5f), Do("imageForm", null, 1.5f, true), Say("S07_L01"),
-                    Shot("S07_Retina", 1.6f), Do("imageInset"), Say("S07_L02"),
+                    Shot("S07_Vitreous", 2.5f, true), Do("lightTravel", "5", 2.5f), Say("S07_L01"),
+                    Offer("item:img_predict"),
+                    Do("imageForm", null, 1.5f), Shot("S07_Retina", 1.6f), Do("imageInset"), Say("S07_L02"),
                     Free("inspectImage"),
                     Shot("S07_RetinaCloser", 1.8f), Say("S07_L03"),
                 },
@@ -168,6 +169,7 @@ namespace HumanEye.EditorTools
                 {
                     Do("signals", "nerve", 1), Say("S09_L01"),
                     Do("followSignal", "nerve", 1, true), Say("S09_L02"),
+                    Shot("S09_Wide", 1.8f), Offer("item:brain_predict"),   // whole brain in view: front and back are both tappable
                     Shot("S04_BrainClose", 2), Do("glow", "visual_area", .9f), Say("S09_L03"),
                     Do("signals", "nerve", 0), Do("perception"), Say("S09_L04"),
                     Do("glow", "visual_area", 0), Shot("S09_Wide", 2),
@@ -323,6 +325,64 @@ namespace HumanEye.EditorTools
                   O("It is converted into electrical signals", true, ""), O("It travels as light to the brain", false, "Light stops at the retina; signals travel on.", null, "light-travels-to-brain"),
                   O("It is stored as a picture in the eye", false, "The information is carried away as signals.", null, "image-stored")),
             };
+            // Predictions: answered before the demonstration, then tested by it (trialAfterAnswer).
+            list.Add(Q("img_predict", "inverted_image", "Scene07", QuestionLevel.Prediction, QuestionMode.Choice,
+                "Prediction: the light from the apple is about to reach the retina. How will the image there look?", "Your prediction matched: the lens forms a real, inverted image on the retina.",
+                new[] { "Follow the rays from the top of the apple through the lens.", "Rays from the top of the apple cross as they pass through the lens. Where do they end up?", "Watch the image form again." }, "replayImage",
+                O("Upside down (inverted)", true, ""), O("The right way up, like a photograph", false, "Look at the stem: in the image on the retina it points down.", null, "upright-retinal-image"),
+                O("No image, just a spot of light", false, "The rays meet on the retina and form an image of the apple.", null)));
+            list.Add(Q("brain_predict", "optic_nerve", "Scene09", QuestionLevel.Prediction, QuestionMode.TapPart,
+                "Prediction: the signals are about to reach the brain. Tap where you think they are processed for vision.", "Your prediction matched: visual information is processed in the visual area at the back of the brain.",
+                new[] { "Follow the optic nerve all the way into the brain.", "The eyes are at the front, but the route ends far from them.", "Watch the signals travel again." }, "traceNerve",
+                O("Visual area, at the back of the brain", true, "", "visual_area"),
+                O("Elsewhere in the brain, such as the front", false, "Surprisingly, the visual area is at the back of the brain, far from the eyes.", "brain", "vision-at-front"),
+                O("In the optic nerve itself", false, "The optic nerve carries the signals; the brain processes them.", "optic_nerve", "nerve-processes")));
+
+            // Application: new situations, offered only once a topic is already Secure (challenge instead of repetition).
+            list.Add(Q("app_ext_torch", "external_structures", "Scene02", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: a doctor shines a small torch into a patient's eye and the black centre shrinks. Which part made it shrink?", "Exactly: the iris changed the size of the pupil.",
+                new[] { "The black centre is the opening.", "Something around the opening controls its size.", "Listen to Niko's explanation of the iris again." }, "replayCue:S02_L13",
+                O("The iris", true, ""), O("The pupil", false, "The pupil is the opening that shrank; the iris around it changed its size.", null, "pupil-controls-itself"),
+                O("The cornea", false, "The cornea is the clear front layer; it doesn't change size.", null, "cornea-controls-pupil")));
+            list.Add(Q("app_int_clear", "internal_structures", "Scene03", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: an eye doctor looks through the pupil at the retina. Which clear parts inside the eye does the light pass through on the way?", "Exactly: the aqueous humour, the lens and the vitreous humour are all transparent.",
+                new[] { "Think about the structures between the cornea and the retina.", "The sclera and choroid aren't transparent.", "Listen to Niko's explanation again." }, "replayCue:S03_L08",
+                O("Aqueous humour, lens and vitreous humour", true, ""), O("Sclera and choroid", false, "The sclera is the tough white layer and the choroid holds blood vessels; light doesn't pass through them to the retina.", null, "choroid-in-light-path"),
+                O("Only the lens", false, "The lens is clear, but so are the fluids in front of and behind it.", null)));
+            list.Add(Q("app_nerve_damage", "optic_nerve", "Scene09", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: imagine an eye focuses light perfectly, but its optic nerve is damaged. What goes wrong?", "Exactly: the image still forms, but the information can't travel properly to the brain.",
+                new[] { "Think about what the optic nerve carries.", "The lens and retina still work in this example.", "Watch the signals travel again." }, "traceNerve",
+                O("The visual information can't travel properly to the brain", true, ""),
+                O("The lens can no longer form an image", false, "The lens still forms the image on the retina; the problem is carrying the signals onward.", null, "lens-to-brain"),
+                O("Nothing: the eye sees on its own", false, "Seeing needs the brain to process the signals the optic nerve carries.", null, "eye-sees-alone")));
+            list.Add(Q("app_pupil_cinema", "pupil_response", "Scene05", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: you walk from a sunny playground into a dark cinema hall. What do your pupils do?", "Exactly: they become larger, letting more light in.",
+                new[] { "Is it brighter or dimmer inside?", "Think about the brightness experiment: what happened in dim light?", "Watch the pupil respond again." }, "pupilTrial",
+                O("Become larger, letting more light in", true, ""), O("Become smaller", false, "Smaller pupils happen in bright light; the cinema is dim.", null, "pupil-dilates-in-bright"),
+                O("Stay the same size", false, "The pupil keeps adjusting to the light level.", null, "pupil-fixed")));
+            list.Add(Q("app_acc_clock", "accommodation", "Scene06", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: you look up from your phone to read a clock on the far wall. How does your lens change?", "Exactly: for the distant clock the lens becomes less curved.",
+                new[] { "Is the clock nearer or farther than the phone?", "Near objects need a more curved lens; distant ones the opposite.", "Watch the near and distant demonstrations again." }, "replayAccommodation",
+                O("It becomes less curved", true, ""), O("It becomes more curved", false, "That's what happens when you look at something near.", null, "far-rounder"),
+                O("It doesn't change", false, "The lens keeps adjusting to the distance.", null, "lens-rigid")));
+            list.Add(Q("app_img_world", "inverted_image", "Scene10", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: the image on your retina is inverted, yet the world never looks upside down to you. Why?", "Exactly: the brain processes the information carried by the signals.",
+                new[] { "Think about where the signals go.", "The retinal image isn't sent to the brain like a photograph.", "Listen to Niko's explanation again." }, "replayCue:S09_L04",
+                O("The brain processes the information carried by the signals", true, ""),
+                O("The cornea flips the image the right way up", false, "The cornea bends light; the lens forms an inverted image.", null, "lens-reinverts"),
+                O("The image on the retina is actually upright", false, "The retinal image is inverted; you saw the stem pointing down.", null, "upright-retinal-image")));
+            list.Add(Q("app_rc_night", "rods_cones", "Scene08", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: at night, under a dim streetlight, it's hard to tell the colour of a parked car. Why?", "Exactly: in dim light mainly rods respond, and rods give brightness rather than colour.",
+                new[] { "Which cells work well in dim light?", "Which cells let us see colour, and when do they work best?", "Listen to Niko's explanation of rods again." }, "replayCue:S08_L03",
+                O("In dim light mainly rods respond, and rods give brightness rather than colour", true, ""),
+                O("Cones work best in dim light", false, "Cones work best in brighter light.", null, "cones-for-dim"),
+                O("The pupil becomes too small at night", false, "In dim light the pupil becomes larger.", null, "pupil-dilates-in-bright")));
+            list.Add(Q("app_path_convert", "complete_pathway", "Scene10", QuestionLevel.Application, QuestionMode.Choice,
+                "Challenge: light reaches the photoreceptors, but they can't convert it. Which step of seeing fails?", "Exactly: without electrical signals, nothing can travel along the optic nerve.",
+                new[] { "What do photoreceptors do with light?", "Focusing happens before the retina; this step happens at it.", "Listen to Niko's line again." }, "replayCue:S08_L05",
+                O("Turning light into electrical signals", true, ""), O("Focusing light with the lens", false, "Focusing happens earlier, at the lens.", null),
+                O("Letting light in through the pupil", false, "The light already got in; it reached the photoreceptors.", null)));
+
             var path = new[]
             {
                 O("Light from the object", true, "The journey starts with light from the (lit) object reaching the eye."),
@@ -341,7 +401,7 @@ namespace HumanEye.EditorTools
                 "Rebuild the journey: tap the stages in the order light and signals travel. (Sclera and choroid were taught too — decide whether they belong on this path.)",
                 "You rebuilt the whole journey, from light reaching the eye to the brain processing the information.",
                 new[] { "Start with where the light comes from.", "Light passes the front structures before the lens, and signals only start at the retina.", "Watch the journey replay again." }, "journey", path));
-            var predict = list.Find(i => i.id == "pupil_predict"); predict.trialAfterAnswer = true;
+            foreach (var id in new[] { "pupil_predict", "img_predict", "brain_predict" }) list.Find(i => i.id == id).trialAfterAnswer = true;
             return list;
         }
 
@@ -398,7 +458,7 @@ namespace HumanEye.EditorTools
             I("g_niko", IntentKind.Greeting, @"\b(who are you|your name|niko|what can you do)\b", null, null,
               "I'm Niko, your Vision Investigator Officer! I can SCAN structures, go INSIDE the eye, SIMULATE brightness and distance, TRACE light or signals, FREEZE the biology and REPLAY demonstrations."),
             I("g_hello", IntentKind.Greeting, @"\b(hi|hello|hey|thanks|thank you)\b", null, null, "Hello, investigator! Ask me about any part you've explored."),
-            I("h_help", IntentKind.Help, @"\b(help|how do i|what do i do|stuck)\b", null, null,
+            I("h_help", IntentKind.Help, @"\b(help|how do i|what do i do|what should i do|what now|what next|hint|stuck|lost)\b", null, null,
               "Tap the glowing parts, their labels or the Parts list to explore. My ability buttons are along the bottom, and you can ask me about anything you've explored so far."),
         };
 

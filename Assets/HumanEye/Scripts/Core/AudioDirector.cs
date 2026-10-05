@@ -12,6 +12,7 @@ namespace HumanEye
         public AudioSource music, sfx;
         public Sfx[] effects;
         float duck = 1;
+        public float musicGain = 1;   // intro swell; Stage resets it to 1
 
         public void Play(string key, float volume = 1)
         {
@@ -31,7 +32,7 @@ namespace HumanEye
             narrator.voice.volume = s.narration;
             sfx.volume = s.sfx;
             duck = Mathf.MoveTowards(duck, narrator.Busy ? .4f : 1, Time.unscaledDeltaTime * 1.5f);
-            music.volume = s.music * duck;
+            music.volume = s.music * duck * musicGain;
         }
     }
 }

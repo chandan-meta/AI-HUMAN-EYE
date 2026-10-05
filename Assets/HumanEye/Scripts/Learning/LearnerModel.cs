@@ -33,13 +33,23 @@ namespace HumanEye
         public static QuestionBank.Item Next(QuestionBank bank, ProgressData d, string topic, string lastItem)
         {
             var secured = d.evidence.Where(e => e.topic == topic && e.correct && !e.assisted).Select(e => e.item).ToHashSet();
-            var pool = bank.items.Where(i => i.topic == topic && i.id != lastItem && !secured.Contains(i.id)).ToList();
-            if (pool.Count == 0) pool = bank.items.Where(i => i.topic == topic && i.id != lastItem).ToList();
+            var practice = bank.items.Where(i => i.topic == topic && i.id != lastItem && i.level != QuestionLevel.Application).ToList();
+            var pool = practice.Where(i => !secured.Contains(i.id)).ToList();
+            if (pool.Count == 0) pool = practice;
             var lastMiss = d.evidence.LastOrDefault(e => e.topic == topic);
             var missedLevel = lastMiss != null && !lastMiss.correct ? bank.Get(lastMiss.item)?.level : null;
             return pool.OrderBy(i => missedLevel.HasValue && i.level > missedLevel.Value ? 1 : 0)
                        .ThenBy(i => i.level).ThenBy(i => i.id).FirstOrDefault();
         }
+
+        /// Strong understanding: once a topic is Secure, the next check is one new-situation item instead of more of the same.
+        public static QuestionBank.Item Challenge(QuestionBank bank, ProgressData d, string topic) =>
+            bank.items.FirstOrDefault(i => i.topic == topic && i.level == QuestionLevel.Application &&
+                                           !d.evidence.Any(e => e.item == i.id && e.correct && !e.assisted));
+
+        /// After a first-try correct answer, a further item at the same or a lower level is repetition, so it is skipped.
+        public static bool Repetitive(QuestionBank.Item previous, bool firstTryCorrect, QuestionBank.Item next) =>
+            previous != null && firstTryCorrect && next.level <= previous.level;
 
         public static void Record(ProgressData d, QuestionBank.Item item, bool correct, bool assisted)
         {
