@@ -36,18 +36,7 @@ namespace HumanEye.EditorTools
             if (entrance.closed == null || entrance.closed.Length != 2) entrance.closed = entrance.leaves.Select(t => t.localPosition).ToArray();
             entrance.open = entrance.leaves.Select((t, i) => entrance.closed[i] + t.parent.InverseTransformVector(Vector3.up * (t.name.Contains("Up_") ? 6.1f : -1.7f))).ToArray();
             entrance.SetGate(0);
-            void Shot(string name, Vector3 position, Vector3 target, float fov)
-            {
-                var shot = stage.cams.shots.First(s => s.name == name);
-                shot.transform.SetPositionAndRotation(position, Quaternion.LookRotation(target - position));
-                var lens = shot.Lens; lens.FieldOfView = fov; lens.NearClipPlane = .03f; shot.Lens = lens;
-                EditorUtility.SetDirty(shot);
-            }
-            Shot("S02_IntroThreshold", new Vector3(-25, 2, .67f), new Vector3(-17.16f, 2.4f, .67f), 48);
-            Shot("S02_IntroIgnite", new Vector3(-20.4f, 2, .67f), new Vector3(-17.16f, 2.4f, .67f), 48);
-            Shot("S02_IntroCrane", new Vector3(-9, 2.2f, .67f), stage.human.eyeRight.position, 43);
-            Shot("S02_EstablishB", new Vector3(-1.8f, 2.2f, -2.7f), stage.human.transform.position + Vector3.up * 1.05f, 36);
-            Shot("S02_EyeInSkull", stage.human.eyeRight.position + new Vector3(.06f, .015f, -.55f), stage.human.eyeRight.position, 28);
+            ApplyShots(stage);
             foreach (var l in env.GetComponentsInChildren<Light>(true))
             {
                 if (l.type == LightType.Rectangle) continue;
@@ -116,6 +105,36 @@ namespace HumanEye.EditorTools
             foreach (var o in new Object[] { stage, stage.cams, stage.hud, entrance, nav }) EditorUtility.SetDirty(o);
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
             Debug.Log("CINEMATIC_PATCH_APPLIED");
+        }
+
+        /// Intro choreography: low corridor view of the closed gate, a wider frame for the gate lift, a high crane through
+        /// the entrance that descends onto the spotlit human. Re-authoring the shots never touches the rest of the scene.
+        [MenuItem("Tools/Human Eye/Authoring/Rebuild cinematic shots (keeps scene edits)")]
+        public static void Shots()
+        {
+            if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            var scene = EditorSceneManager.OpenScene(Builder.ScenePath);
+            ApplyShots(Object.FindFirstObjectByType<Stage>());
+            EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+            Debug.Log("CINEMATIC_SHOTS_APPLIED");
+        }
+
+        static void ApplyShots(Stage stage)
+        {
+            void Shot(string name, Vector3 position, Vector3 target, float fov)
+            {
+                var shot = stage.cams.shots.First(s => s.name == name);
+                shot.transform.SetPositionAndRotation(position, Quaternion.LookRotation(target - position));
+                var lens = shot.Lens; lens.FieldOfView = fov; lens.NearClipPlane = .03f; shot.Lens = lens;
+                EditorUtility.SetDirty(shot);
+            }
+            var gate = new Vector3(-17.16f, 2.6f, .67f);
+            var subject = stage.human.transform.position + Vector3.up * 1.05f;
+            Shot("S02_IntroThreshold", new Vector3(-25.5f, 1.7f, .67f), gate, 46);            // eye level, slight up-tilt: the gate looms
+            Shot("S02_IntroIgnite", new Vector3(-21, 1.8f, .67f), gate, 50);                  // frame holds the leaf edge as it lifts
+            Shot("S02_IntroCrane", new Vector3(-10, 3.6f, .9f), subject, 42);                  // high and wide through the entrance
+            Shot("S02_EstablishB", new Vector3(-1.8f, 2.2f, -2.7f), subject, 36);              // crane settles on the spotlit subject
+            Shot("S02_EyeInSkull", stage.human.eyeRight.position + new Vector3(.06f, .015f, -.55f), stage.human.eyeRight.position, 28);
         }
 
         static void Canvas(Hud hud, LabNavigation navigation)

@@ -234,6 +234,7 @@ namespace HumanEye
             hud.ShowPartList(on ? runner.Chapter.explore : null);
             ShowLabels(on ? "explore" : null);
             if (on) foreach (var p in set) Part(p)?.SetGlow(runner.ExploreDone.Contains(p) ? 0 : .22f);
+            if (on && runner.ExploreDone.Count == 0) hud.Toast("Inspect mode · Drag to rotate · Scroll or pinch to zoom");   // the interaction mode changed with the camera
         }
 
         public IEnumerator FocusPart(string id)

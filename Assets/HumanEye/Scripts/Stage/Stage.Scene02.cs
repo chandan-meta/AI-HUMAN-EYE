@@ -21,7 +21,9 @@ namespace HumanEye
             eye.SetNerveReveal(.12f); otherEye.SetNerveReveal(.12f);
             niko.Place(Anchor("Intro"));
             niko.gameObject.SetActive(false);
-            cams.Snap("S02_EstablishA");
+            // Start black at the gate: the frame between Enter and the intro step must not flash the lit room.
+            cams.Snap(entrance ? "S02_IntroThreshold" : "S02_EstablishA");
+            if (entrance) hud.Fade(1);
         }
 
         static void Socket(Transform socket, Transform t)
