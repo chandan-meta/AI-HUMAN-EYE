@@ -25,7 +25,7 @@ namespace HumanEye
                 var shift = cam.GetComponent<ViewportShift>();
                 if (shift && shift.enabled)
                 {
-                    float f = Mathf.Min(shift.columnPixels / Mathf.Max(1, Screen.width), ViewportShift.MaxShift);
+                    float f = shift.Current;
                     float halfWidth = canvas.planeDistance * Mathf.Tan(cam.fieldOfView * Mathf.Deg2Rad * .5f) * cam.aspect;
                     canvas.transform.position += cam.transform.right * (f * halfWidth);
                 }

@@ -324,7 +324,7 @@ namespace HumanEye.EditorTools
             Shot(stage, "S11_Closing", ClosingPos, ClosingLook, ClosingFov);
         }
 
-        static void Shot(Stage stage, string name, Vector3 pos, Vector3 look, float fov)
+        internal static void Shot(Stage stage, string name, Vector3 pos, Vector3 look, float fov)
         {
             var shot = stage.cams.shots.FirstOrDefault(s => s.name == name);
             if (!shot)

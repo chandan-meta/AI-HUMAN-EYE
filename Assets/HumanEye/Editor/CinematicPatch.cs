@@ -30,11 +30,14 @@ namespace HumanEye.EditorTools
             var renderers = env.GetComponentsInChildren<Renderer>(true);
             foreach (var t in env.GetComponentsInChildren<Transform>(true)) GameObjectUtility.RemoveMonoBehavioursWithMissingScript(t.gameObject);
             foreach (var video in env.GetComponentsInChildren<UnityEngine.Video.VideoPlayer>(true)) { video.enabled = false; video.playOnAwake = false; }
-            entrance.leaves = renderers.Where(r => r.name.Contains("Door01Up_") || r.name.Contains("Door01lock_down_")).Select(r => r.transform).ToArray();
-            if (entrance.leaves.Length != 2) throw new Exception("Expected the two authored gate leaves.");
-            // Use the stored closed positions on a repeat application, even if an editor preview left the gate open.
-            if (entrance.closed == null || entrance.closed.Length != 2) entrance.closed = entrance.leaves.Select(t => t.localPosition).ToArray();
-            entrance.open = entrance.leaves.Select((t, i) => entrance.closed[i] + t.parent.InverseTransformVector(Vector3.up * (t.name.Contains("Up_") ? 6.1f : -1.7f))).ToArray();
+            if (entrance.leaves == null || entrance.leaves.Length != 3)   // IntroPatch's sliding halves supersede the single lifting panel
+            {
+                entrance.leaves = renderers.Where(r => r.name.Contains("Door01Up_") || r.name.Contains("Door01lock_down_")).Select(r => r.transform).ToArray();
+                if (entrance.leaves.Length != 2) throw new Exception("Expected the two authored gate leaves.");
+                // Use the stored closed positions on a repeat application, even if an editor preview left the gate open.
+                if (entrance.closed == null || entrance.closed.Length != 2) entrance.closed = entrance.leaves.Select(t => t.localPosition).ToArray();
+                entrance.open = entrance.leaves.Select((t, i) => entrance.closed[i] + t.parent.InverseTransformVector(Vector3.up * (t.name.Contains("Up_") ? 6.1f : -1.7f))).ToArray();
+            }
             entrance.SetGate(0);
             ApplyShots(stage);
             foreach (var l in env.GetComponentsInChildren<Light>(true))

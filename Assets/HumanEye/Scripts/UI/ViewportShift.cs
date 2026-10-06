@@ -10,17 +10,19 @@ namespace HumanEye
     {
         public const float MaxShift = .2f;   // 0.2 keeps a subject framed at the left third (Niko) inside the 4:3 view
         public float columnPixels = 412;   // panel width + margins (constant pixel size canvas)
+        public static float Weight = 1;    // 0 while the column is hidden (cinematic intro); the HUD eases it with the column fade
+        public float Current => Mathf.Min(Mathf.Clamp01(columnPixels / Mathf.Max(1, Screen.width)), MaxShift) * Weight;
         Camera cam;
         void Awake() => cam = GetComponent<Camera>();
         void LateUpdate()
         {
             cam.ResetProjectionMatrix();
-            float fraction = Mathf.Clamp01(columnPixels / Mathf.Max(1, Screen.width));
-            if (fraction <= 0) return;
+            float shift = Current;
+            if (shift <= 0) return;
             var m = cam.projectionMatrix;
             // View space looks down -z, so a positive m02 moves the image left. NDC spans 2 units: a shift of `fraction`
             // moves the image by half the column width. Capped so a small game view (tests) never over-shifts.
-            m.m02 += Mathf.Min(fraction, MaxShift);
+            m.m02 += shift;
             cam.projectionMatrix = m;
         }
         void OnDisable() { if (cam) cam.ResetProjectionMatrix(); }

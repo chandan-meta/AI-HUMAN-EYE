@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Unity.Cinemachine;
 
 namespace HumanEye
 {
@@ -23,7 +24,7 @@ namespace HumanEye
             niko.Place(Anchor("Intro"));
             niko.gameObject.SetActive(false);
             // Start black at the gate: the frame between Enter and the intro step must not flash the lit room.
-            cams.Snap(entrance ? "S02_IntroThreshold" : "S02_EstablishA");
+            if (entrance && ResetDolly()) cams.Snap("S02_IntroDolly"); else cams.Snap(entrance ? "S02_IntroThreshold" : "S02_EstablishA");
             if (entrance) hud.Fade(1);
         }
 
@@ -47,7 +48,6 @@ namespace HumanEye
 
         void RegisterScene02()
         {
-            actions["nikoAppear"] = (_, seconds) => niko.Appear(seconds > 0 ? seconds : 1.2f);
             actions["humanReveal"] = (_, seconds) => HumanReveal(seconds > 0 ? seconds : 1.6f);
             actions["scan"] = (_, __) => ScanSequence();
             actions["illuminate"] = (_, __) => { foreach (var id in new[] { "sclera", "iris", "cornea" }) eye.Get(id).SetGlow(1); sfx.Play("ping"); hud.Info("Scan complete · sclera, cornea, iris and pupil identified."); return null; };
@@ -57,11 +57,20 @@ namespace HumanEye
             actions["info"] = (text, _) => { hud.Info(text); return null; };
         }
 
-        // ---------- cinematic intro: three directed shots, ~8.5 s, skippable (Clock.Delta driven, so Pause holds it) ----------
+        // ---------- cinematic intro ----------
+        // Initial view → establishing approach → bolt retracts, gate halves slide apart → pause → camera moves in through
+        // the gate → Niko enters once it is fully open → camera settles beside him → intro ends → the interface fades in.
+        // One code-driven dolly (S02_IntroDolly), Clock.Delta timed (Pause holds it); Skip jumps to the finished state.
         public bool IntroPlaying { get; private set; }
         public string IntroCaption { get; private set; }
+        public float IntroTime { get; private set; }
+        public const float IntroLength = 24.6f, DollyFov = 46;
+        public const float TApproachEnd = 4.5f, TBolt = 5f, TGateOpen = 9.6f, TMoveIn = 10.4f, TInside = 16f, TNiko = 16.4f, TFollow = 17.5f, TArrive = 21.4f, TSettled = 24f;
+        public static readonly Vector3 CamStart = new(-25.5f, 1.75f, .67f), CamApproach = new(-23.5f, 1.75f, .67f), CamInside = new(-14.5f, 1.85f, .45f);
+        public static readonly Vector3 GateLook = new(-17.16f, 2.4f, .67f), PedestalLook = new(0, 1.25f, .6f), NikoStart = new(-19.2f, 1.3f, 1.55f);
+        const string SettleShot = "S02_NikoMedium";   // the first lesson shot: Niko beside the spotlit subject, so the intro ends where the lesson starts
         bool skipIntro;
-        Routine introMove, introFade;
+        Routine introFade;
         public void SkipIntro() { if (IntroPlaying && !Clock.Paused) skipIntro = true; }
 
         void Room(float k) { for (int i = 0; i < roomLights.Length; i++) roomLights[i].intensity = roomBase[i] * k; }
@@ -71,73 +80,127 @@ namespace HumanEye
             introVolume.weight = ev < 0 ? 1 : 0;
             if (introVolume.profile.TryGet(out ColorAdjustments c)) c.postExposure.Override(ev);
         }
+        static float Ease(float t, float from, float to) => Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - from) / (to - from)));
+
+        /// The dolly starts every entrance from the same corridor view (it is moved by code during the intro).
+        bool ResetDolly()
+        {
+            var dolly = cams.Get("S02_IntroDolly"); if (!dolly) return false;
+            dolly.transform.SetPositionAndRotation(CamStart, Quaternion.LookRotation(GateLook - CamStart));
+            var lens = dolly.Lens; lens.FieldOfView = cams.Fitted(DollyFov); dolly.Lens = lens;
+            return true;
+        }
 
         /// Chapter entry, restart and menu all pass through here, so a cancelled intro never leaves the room dark.
         void IntroReset()
         {
-            introMove?.Cancel(); introMove = null;
             introFade?.Cancel(); introFade = null;
             sfx.sfx.Stop();
             if (entrance) { entrance.SetGate(1); entrance.SetAccents(1); }
             eyeRig.gameObject.SetActive(true);
             if (roomBase != null) Room(1);
             keyLight.intensity = keyIntensity;
-            IntroCaption = null;
+            IntroCaption = null; IntroTime = 0;
             Exposure(0); sfx.musicGain = 1; IntroPlaying = skipIntro = false;
             foreach (var b in beamRenderers) b.enabled = true;
         }
 
-        /// Shot 1 (0–2.6 s): the closed gate from the corridor; it unlocks and lifts. Shot 2 (2.6–6.4 s): one crane through
-        /// the entrance while the laboratory powers up, settling on the spotlit subject. Shot 3 (6.4–8.5 s): the establishing
-        /// view holds as the music rises. No drifting camera while nothing happens: every move has a subject.
         IEnumerator Intro()
         {
-            IntroPlaying = true; skipIntro = false; hud.Refresh();   // the Skip button appears in the same frame the intro starts
+            IntroPlaying = true; skipIntro = false; IntroTime = 0; hud.Refresh();   // only the small caption + Skip overlay is shown from here
             float keyBase = keyIntensity;
-            hud.Fade(1); Room(0); Exposure(-4); keyLight.intensity = 0; displayLight.intensity = 0;
+            hud.Fade(1); Room(.1f); Exposure(-1.6f); keyLight.intensity = 0; displayLight.intensity = 0;
             foreach (var b in beamRenderers) b.enabled = false;
             human.ResetVisual(true, 1); sfx.musicGain = 0;
+            var anchor = Anchor("Intro");
+            niko.gameObject.SetActive(false);
             if (entrance) { entrance.SetGate(0); entrance.SetAccents(0); }
             if (Short)
             {
-                cams.Snap("S02_EstablishB"); sfx.Play("boom", .6f);
-                if (entrance) entrance.SetGate(1);
-                yield return Routine.Tween(1.5f, k => { Room(k); Exposure(Mathf.Lerp(-4, 0, k)); keyLight.intensity = keyBase * k; hud.Fade(1 - k); });
+                // Reduced motion: no travel. The lit lab with Niko already in place, revealed through a short fade.
+                cams.Snap(SettleShot); sfx.Play("boom", .6f);
+                if (entrance) { entrance.SetGate(1); entrance.SetAccents(1); }
+                niko.Place(anchor); niko.gameObject.SetActive(true);
+                yield return Routine.Tween(1.5f, k => { Room(Mathf.Lerp(.1f, 1, k)); Exposure(Mathf.Lerp(-1.6f, 0, k)); keyLight.intensity = keyBase * k; displayLight.intensity = displayIntensity * k; hud.Fade(1 - k); });
             }
             else
             {
-                cams.Snap("S02_IntroThreshold");
+                var dolly = cams.Get("S02_IntroDolly"); var settle = cams.Get(SettleShot);
+                if (ResetDolly()) cams.Snap("S02_IntroDolly"); else cams.Snap("S02_IntroThreshold");
                 sfx.Play("drone", .8f);
                 var beats = new (float t, Action a)[]
                 {
-                    (0f, () => introFade = runner.RunSide(hud.Fade(0, .9f))),
-                    (.8f, () => { sfx.Play("clunk1"); sfx.Play("riser", .45f); }),
-                    (2.6f, () => { sfx.Play("clunk2", .7f); cams.Snap("S02_IntroCrane"); introMove = runner.RunSide(cams.MoveTo("S02_EstablishB", 3.6f)); }),
-                    (5.6f, () => { sfx.Play("boom", .55f); foreach (var b in beamRenderers) b.enabled = true; }),
-                    (6.4f, () => sfx.Play("shimmer", .4f)),
+                    (0f, () => introFade = runner.RunSide(hud.Fade(0, 1.6f))),
+                    (TBolt, () => sfx.Play("clunk1", .8f)),
+                    (TBolt + 1.5f, () => sfx.Play("riser", .4f)),
+                    (TGateOpen, () => sfx.Play("clunk2", .6f)),
+                    (TMoveIn, () => sfx.Play("whoosh", .25f)),
+                    (TInside - 1.2f, () => { sfx.Play("boom", .45f); foreach (var b in beamRenderers) b.enabled = true; }),
+                    (TNiko, () => { niko.gameObject.SetActive(true); niko.Play("Idle", .1f); sfx.Play("materialise", .45f); }),
+                    (TSettled - .6f, () => sfx.Play("shimmer", .35f)),
                 };
                 int next = 0;
-                for (float t = 0; t < 8.5f && !skipIntro; t += Clock.Delta)
+                for (float t = 0; t < IntroLength && !skipIntro; t += Clock.Delta)
                 {
+                    IntroTime = t;
                     while (next < beats.Length && t >= beats[next].t) beats[next++].a();
-                    IntroCaption = t < 2.6f ? "OBSERVATORY OF VISION · Access granted" : t < 5.6f ? "Laboratory powering up" : "Your subject today: the human eye";
-                    if (entrance) { entrance.SetGate(Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - .8f) / 1.9f))); entrance.SetAccents(Mathf.Clamp01((t - 4.5f) / 1.2f)); }
-                    Room(Mathf.Lerp(.12f, 1, Mathf.Clamp01((t - 3f) / 2.2f)));
-                    Exposure(Mathf.Lerp(-1.5f, 0, Mathf.Clamp01((t - 3f) / 3f)));
-                    keyLight.intensity = keyBase * Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - 5.6f) / 1.2f));
-                    displayLight.intensity = displayIntensity * Mathf.Clamp01((t - 5.8f) / 1.4f);
-                    sfx.musicGain = Mathf.Clamp01((t - 5.6f) / 2.5f);
+                    IntroCaption = t < TBolt ? "OBSERVATORY OF VISION" : t < TGateOpen ? "Access granted · gate opening" : t < TNiko ? "Entering the laboratory" : "Niko · Vision Investigator Officer";
+                    if (entrance) { entrance.SetGate(Mathf.Clamp01((t - TBolt) / (TGateOpen - TBolt))); entrance.SetAccents(Ease(t, TBolt, TGateOpen)); }
+                    Room(Mathf.Lerp(.1f, 1, Ease(t, TMoveIn, TInside)));
+                    Exposure(Mathf.Lerp(-1.6f, 0, Ease(t, TMoveIn, TInside + 1)));
+                    displayLight.intensity = displayIntensity * Ease(t, TInside - 1.2f, TInside + .6f);
+                    keyLight.intensity = keyBase * Ease(t, TFollow, TSettled);
+                    sfx.musicGain = Ease(t, TSettled - 2, IntroLength);
+                    if (dolly && settle) IntroCamera(dolly, settle, t);
+                    if (niko.gameObject.activeSelf) IntroNiko(anchor, t);
                     yield return null;
                 }
                 if (skipIntro) sfx.sfx.Stop();
             }
-            introMove?.Cancel(); introMove = null; cams.Snap("S02_EstablishB");
-            introFade?.Cancel(); introFade = null;
+            introFade?.Cancel(); introFade = null; cams.Snap(SettleShot);
             if (entrance) { entrance.SetGate(1); entrance.SetAccents(1); }
             Room(1); Exposure(0); keyLight.intensity = keyBase; displayLight.intensity = displayIntensity;
             foreach (var b in beamRenderers) b.enabled = true;
             human.ResetVisual(true, 1); sfx.musicGain = 1; hud.Fade(0);
-            IntroPlaying = false; IntroCaption = null; hud.Refresh();
+            niko.Place(anchor); niko.gameObject.SetActive(true); niko.lookTarget = lookCamera;
+            IntroPlaying = false; IntroCaption = null; IntroTime = IntroLength; hud.Refresh();   // the main interface fades in from here
+        }
+
+        /// One continuous dolly: drift toward the closed gate, hold while it opens, move in through it, hold as Niko
+        /// passes, then settle on the authored first lesson shot (pose and lens), so the final cut is invisible.
+        void IntroCamera(CinemachineCamera dolly, CinemachineCamera settle, float t)
+        {
+            Vector3 pos; Quaternion rot; float fov = cams.Fitted(DollyFov);
+            if (t < TMoveIn) { pos = Vector3.Lerp(CamStart, CamApproach, Ease(t, 0, TApproachEnd)); rot = Quaternion.LookRotation(GateLook - pos); }
+            else if (t < TFollow)
+            {
+                pos = Vector3.Lerp(CamApproach, CamInside, Ease(t, TMoveIn, TInside));
+                rot = Quaternion.LookRotation(Vector3.Lerp(GateLook, PedestalLook, Ease(t, TMoveIn, TMoveIn + 3f)) - pos);
+            }
+            else
+            {
+                // Follow: keep the pedestal until Niko has passed, swing onto him as he flies ahead, then converge on the
+                // authored look point so he never leaves the frame while the camera travels to the settle pose.
+                float k = Ease(t, TFollow, TSettled);
+                pos = Vector3.Lerp(CamInside, settle.transform.position, k);
+                var nikoHead = niko.transform.position + Vector3.up * .6f;
+                var settleLook = settle.transform.position + settle.transform.forward * 2.5f;
+                var look = Vector3.Lerp(Vector3.Lerp(PedestalLook, nikoHead, Ease(t, TFollow + 1f, TFollow + 2.5f)), settleLook, k);
+                rot = Quaternion.LookRotation(look - pos, Vector3.up);
+                fov = Mathf.Lerp(fov, settle.Lens.FieldOfView, k);
+            }
+            dolly.transform.SetPositionAndRotation(pos, rot);
+            var lens = dolly.Lens; lens.FieldOfView = fov; dolly.Lens = lens;
+        }
+
+        /// Niko flies in through the open gate on a gentle arc, passes the camera and settles at his anchor beside the subject.
+        void IntroNiko(Transform anchor, float t)
+        {
+            float u = Ease(t, TNiko, TArrive);
+            var pos = Vector3.Lerp(NikoStart, anchor.position, u) + Vector3.up * (.45f * Mathf.Sin(u * Mathf.PI));
+            var heading = anchor.position - NikoStart; heading.y = 0;
+            var rot = Quaternion.Slerp(Quaternion.LookRotation(heading.normalized), anchor.rotation, Ease(t, TArrive - 1.2f, TArrive + .3f));
+            niko.transform.SetPositionAndRotation(pos, rot);
         }
 
         IEnumerator HumanReveal(float seconds)

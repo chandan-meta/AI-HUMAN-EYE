@@ -41,7 +41,7 @@ Every storyboard line (66 cues) is placed exactly once in its own chapter, in le
 |---|---|---|
 | Observatory: starlight beam, central human figure, reflections, beams, apertures, lenses | Dome + stars, giant beam through an aperture ring and lens, dust, optical benches, HDRI reflections, display plinth | ✔ ◐ (art review) |
 | Subdued display, human appears after S02_L03 | `EnterScene02` (silhouette 6%), `humanReveal` | ✔ |
-| Niko appears; S02_L01–L03; S02_L04 | `nikoAppear` (wave), look at human | ✔ |
+| Niko appears; S02_L01–L03; S02_L04 | Niko flies in through the open gate during the entrance (`Intro`), waves on S02_L01 (`niko Wave`), looks at the human | ✔ |
 | He raises his hand; PROMPT S02_L05; wait for SCAN | `RaiseHand`, prompt banner, `Await scan` (SCAN pulses) | ✔ |
 | Blue scan: skin translucent → muscles → skull → brain; both eyes remain | `HumanDisplay.Scan` (Z-Anatomy skull/brain registered to the eye sockets; shorts stay opaque) | ✔ ◐ |
 | "There." with one eye illuminating; "Your first destination." with the eye in the skull | `illuminate` at the line's start; `S02_EyeInSkull` close-up + inspection hold | ✔ |

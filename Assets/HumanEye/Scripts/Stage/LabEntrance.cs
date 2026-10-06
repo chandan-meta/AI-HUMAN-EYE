@@ -2,20 +2,33 @@ using UnityEngine;
 
 namespace HumanEye
 {
-    /// Authored gate leaves and lighting groups; absolute poses make skip/replay deterministic.
+    /// Futuristic sliding gate. Leaves are driven by absolute local poses, so skip, replay and the menu are deterministic.
+    /// Convention (authored by IntroPatch): leaves[0] and [1] are the two door halves that slide apart sideways;
+    /// a third leaf, when present, is the floor bolt that retracts first. Each stage eases in and out.
     public class LabEntrance : MonoBehaviour
     {
         public Transform[] leaves;
         public Vector3[] closed, open;
         public Light[] accents;
         public float accentIntensity = .7f;
+        [Tooltip("Share of the opening spent on the bolt, then a short mechanical pause before the halves part.")]
+        public float boltShare = .25f, pauseShare = .1f;
         public float OpenAmount { get; private set; }
+
         public void SetGate(float amount)
         {
             OpenAmount = Mathf.Clamp01(amount);
+            bool hasBolt = leaves.Length == 3;
             for (int i = 0; i < leaves.Length; i++)
-                leaves[i].localPosition = Vector3.Lerp(closed[i], open[i], OpenAmount);
+            {
+                bool bolt = hasBolt && i == 2;
+                float k = !hasBolt ? OpenAmount
+                        : bolt ? Mathf.InverseLerp(0, boltShare, OpenAmount)
+                        : Mathf.InverseLerp(boltShare + pauseShare, 1, OpenAmount);
+                leaves[i].localPosition = Vector3.Lerp(closed[i], open[i], Mathf.SmoothStep(0, 1, k));
+            }
         }
+
         public void SetAccents(float amount)
         {
             foreach (var light in accents) light.intensity = accentIntensity * Mathf.Clamp01(amount);

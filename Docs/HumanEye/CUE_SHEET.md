@@ -6,61 +6,60 @@ Scene-to-chapter mapping: one launch scene `Assets/HumanEye/Scenes/HumanEye_Obse
 
 ## Scene02 — Meet Niko
 
-Checkpoint (restart/resume state): Dark room from the door end; the directed entrance (skippable) ends on the establishing view with the spotlit human; Niko hidden; the selected eye in its socket; nothing explored.
+Checkpoint (restart/resume state): Dark corridor facing the closed gate; the entrance (skippable) opens the gate, moves in, flies Niko to his anchor and ends on the establishing view with the spotlit human; the selected eye in its socket; nothing explored.
 
 | # | Step | Subject · framing | Start → end camera pose | Transition | Dialogue | Animation / visual cue | Permitted input | Exit condition |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Do |  |  |  |  | intro | Pause, Help, Settings | Action complete |
-| 2 | Do |  |  |  |  | nikoAppear | Pause, Help, Settings | Starts; runs alongside |
-| 3 | Shot | Niko introduction · medium | checkpoint → S02_NikoMedium (-1.97,1.30,-1.34 · yaw 353 pitch 6 · 36°) | Ease-in-out blend 1.4 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
-| 4 | Do |  |  |  |  | sfx(materialise) | Pause, Help, Settings | Action complete |
-| 5 | Say |  |  |  | S02_L01: “Hey! I’m Niko. Your Vision Investigator Officer.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 6 | Say |  |  |  | S02_L02: “So you want to know how light becomes sight?” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 7 | Do |  |  |  |  | nikoLook(human) | Pause, Help, Settings | Action complete |
-| 8 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
-| 9 | Shot | Niko and the revealed human · wide | S02_NikoMedium → S02_DisplayWide (-0.45,2.29,-3.70 · yaw 1 pitch 4 · 40°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
-| 10 | Do |  |  |  |  | humanReveal | Pause, Help, Settings | Starts; runs alongside |
-| 11 | Say |  |  |  | S02_L03: “Then watching from out here won't help.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 12 | Say |  |  |  | S02_L04: “We need to go inside somewhere humans can't.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 13 | Do |  |  |  |  | info(Niko's scanner is ready. Press Scan Eye in the panel to look inside the subject.) | Pause, Help, Settings | Action complete |
-| 14 | Do |  |  |  |  | niko(RaiseHand) | Pause, Help, Settings | Action complete |
-| 15 | Say |  |  |  | S02_L05 [PROMPT VO]: “Click on the SCAN button.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 16 | Await |  |  |  |  | scan | The awaited control (click/tap); orbit/zoom; Pause; Ask Niko | Learner action 'scan' |
-| 17 | Shot | Full figure for the scan wave · wide | S02_DisplayWide → S02_ScanFront (0.00,1.94,-2.80 · yaw 0 pitch 2 · 44°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
-| 18 | Do |  |  |  |  | scan | Pause, Help, Settings | Action complete |
-| 19 | Do |  |  |  |  | illuminate | Pause, Help, Settings | Action complete |
-| 20 | Shot | Selected eye inside the skull (anatomical position) · close-up | S02_ScanFront → S02_EyeInSkull (-0.09,3.41,-0.04 · yaw 354 pitch 2 · 28°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
-| 21 | Say |  |  |  | S02_L06: “There.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 22 | Say |  |  |  | S02_L07: “Your first destination.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 23 | Do |  |  |  |  | nikoLook(eye) | Pause, Help, Settings | Action complete |
-| 24 | Do |  |  |  |  | pinch | Pause, Help, Settings | Action complete |
-| 25 | Shot | Enlarged complete eye · medium | S02_EyeInSkull → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 2.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
-| 26 | Do |  |  |  |  | enlarge | Pause, Help, Settings | Action complete |
-| 27 | Do |  |  |  |  | nikoMove(EyeLeft) | Pause, Help, Settings | Starts; runs alongside |
-| 28 | Do |  |  |  |  | info | Pause, Help, Settings | Action complete |
-| 29 | Say |  |  |  | S02_L08: “Here it is. The human eye.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 30 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
-| 31 | Say |  |  |  | S02_L09: “It has several parts, and each one has an important job.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 32 | Do |  |  |  |  | niko(Snap) | Pause, Help, Settings | Action complete |
-| 33 | Do |  |  |  |  | sequence(sclera,cornea,iris,pupil) | Pause, Help, Settings | Starts; runs alongside |
-| 34 | Say |  |  |  | S02_L10: “Click or ask Niko about each part to explore what it does.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 35 | Explore |  |  |  |  |  | Tap a highlighted part, its label or the Parts list; Ask Niko; orbit/zoom | Every listed part's explanation finished |
+| 2 | Do |  |  |  |  | niko(Wave) | Pause, Help, Settings | Action complete |
+| 3 | Shot | Niko introduction · medium | checkpoint → S02_NikoMedium (-1.97,1.30,-1.34 · yaw 360 pitch 7 · 36°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 4 | Say |  |  |  | S02_L01: “Hey! I’m Niko. Your Vision Investigator Officer.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 5 | Say |  |  |  | S02_L02: “So you want to know how light becomes sight?” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 6 | Do |  |  |  |  | nikoLook(human) | Pause, Help, Settings | Action complete |
+| 7 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
+| 8 | Shot | Niko and the revealed human · wide | S02_NikoMedium → S02_DisplayWide (-0.45,2.29,-3.70 · yaw 1 pitch 4 · 40°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 9 | Do |  |  |  |  | humanReveal | Pause, Help, Settings | Starts; runs alongside |
+| 10 | Say |  |  |  | S02_L03: “Then watching from out here won't help.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 11 | Say |  |  |  | S02_L04: “We need to go inside somewhere humans can't.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 12 | Do |  |  |  |  | info(Niko's scanner is ready. Press Scan Eye in the panel to look inside the subject.) | Pause, Help, Settings | Action complete |
+| 13 | Do |  |  |  |  | niko(RaiseHand) | Pause, Help, Settings | Action complete |
+| 14 | Say |  |  |  | S02_L05 [PROMPT VO]: “Click on the SCAN button.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 15 | Await |  |  |  |  | scan | The awaited control (click/tap); orbit/zoom; Pause; Ask Niko | Learner action 'scan' |
+| 16 | Shot | Full figure for the scan wave · wide | S02_DisplayWide → S02_ScanFront (0.00,1.94,-2.80 · yaw 0 pitch 2 · 44°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Blend complete (1 s; short fade when reduced motion) |
+| 17 | Do |  |  |  |  | scan | Pause, Help, Settings | Action complete |
+| 18 | Do |  |  |  |  | illuminate | Pause, Help, Settings | Action complete |
+| 19 | Shot | Selected eye inside the skull (anatomical position) · close-up | S02_ScanFront → S02_EyeInSkull (-0.09,3.41,-0.04 · yaw 354 pitch 2 · 28°) | Ease-in-out blend 1.6 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 20 | Say |  |  |  | S02_L06: “There.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 21 | Say |  |  |  | S02_L07: “Your first destination.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 22 | Do |  |  |  |  | nikoLook(eye) | Pause, Help, Settings | Action complete |
+| 23 | Do |  |  |  |  | pinch | Pause, Help, Settings | Action complete |
+| 24 | Shot | Enlarged complete eye · medium | S02_EyeInSkull → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 2.2 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 25 | Do |  |  |  |  | enlarge | Pause, Help, Settings | Action complete |
+| 26 | Do |  |  |  |  | nikoMove(EyeLeft) | Pause, Help, Settings | Starts; runs alongside |
+| 27 | Do |  |  |  |  | info | Pause, Help, Settings | Action complete |
+| 28 | Say |  |  |  | S02_L08: “Here it is. The human eye.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 29 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
+| 30 | Say |  |  |  | S02_L09: “It has several parts, and each one has an important job.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 31 | Do |  |  |  |  | niko(Snap) | Pause, Help, Settings | Action complete |
+| 32 | Do |  |  |  |  | sequence(sclera,cornea,iris,pupil) | Pause, Help, Settings | Starts; runs alongside |
+| 33 | Say |  |  |  | S02_L10: “Click or ask Niko about each part to explore what it does.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 34 | Explore |  |  |  |  |  | Tap a highlighted part, its label or the Parts list; Ask Niko; orbit/zoom | Every listed part's explanation finished |
 | | **Part: Sclera** | close-up (focus shot), others translucent | | | | isolate + highlight | | Explanation complete → return to complete eye |
-|   36 | Say |  |  |  | S02_L11: “This tough white outer layer is called the sclera. It protects the eye and helps maintain its shape.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+|   35 | Say |  |  |  | S02_L11: “This tough white outer layer is called the sclera. It protects the eye and helps maintain its shape.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | | **Part: Cornea** | close-up (focus shot), others translucent | | | | isolate + highlight | | Explanation complete → return to complete eye |
-|   37 | Say |  |  |  | S02_L12: “This transparent, curved layer at the front is the cornea. It protects the eye and bends incoming light.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+|   36 | Say |  |  |  | S02_L12: “This transparent, curved layer at the front is the cornea. It protects the eye and bends incoming light.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | | **Part: Iris** | close-up (focus shot), others translucent | | | | isolate + highlight | | Explanation complete → return to complete eye |
-|   38 | Say |  |  |  | S02_L13: “This coloured part is the iris. It controls the size of the pupil.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+|   37 | Say |  |  |  | S02_L13: “This coloured part is the iris. It controls the size of the pupil.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
 | | **Part: Pupil** | close-up (focus shot), others translucent | | | | isolate + highlight | | Explanation complete → return to complete eye |
-|   39 | Say |  |  |  | S02_L14: “This opening is the pupil. Light enters the eye through it.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 40 | Offer |  |  |  |  | topic:external_structures | Answer, hint, Show me (after two misses), Continue anyway (after a miss) | Check answered (help after misses; answer shown after three) |
-| 41 | Shot | Enlarged complete eye · medium | S02_EyeHero → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
-| 42 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
-| 43 | Say |  |  |  | S02_L15: “We’ve seen the parts we can see from the outside. Now, let’s look inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 44 | Do |  |  |  |  | info(Press Explore Inside in the panel to open the eye.) | Pause, Help, Settings | Action complete |
-| 45 | Say |  |  |  | S02_L16 [PROMPT VO]: “Click on the Inside View button to see how the eye looks from the inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
-| 46 | Await |  |  |  |  | inside | The awaited control (click/tap); orbit/zoom; Pause; Ask Niko | Learner action 'inside' |
-| 47 | Do |  |  |  |  | sfx(unlock) | Pause, Help, Settings | Action complete |
+|   38 | Say |  |  |  | S02_L14: “This opening is the pupil. Light enters the eye through it.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 39 | Offer |  |  |  |  | topic:external_structures | Answer, hint, Show me (after two misses), Continue anyway (after a miss) | Check answered (help after misses; answer shown after three) |
+| 40 | Shot | Enlarged complete eye · medium | S02_EyeHero → S02_EyeHero (-0.30,1.70,-2.60 · yaw 1 pitch 6 · 36°) | Ease-in-out blend 1 s (reduced motion: fade cut) |  |  | Pause, Help, Settings | Starts; continues during next steps |
+| 41 | Do |  |  |  |  | niko(Present) | Pause, Help, Settings | Action complete |
+| 42 | Say |  |  |  | S02_L15: “We’ve seen the parts we can see from the outside. Now, let’s look inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 43 | Do |  |  |  |  | info(Press Explore Inside in the panel to open the eye.) | Pause, Help, Settings | Action complete |
+| 44 | Say |  |  |  | S02_L16 [PROMPT VO]: “Click on the Inside View button to see how the eye looks from the inside.” |  | Pause, Help, Settings, Ask Niko (held to the end of the line) | Clip finished (or explicit Read & Continue when audio is missing) |
+| 45 | Await |  |  |  |  | inside | The awaited control (click/tap); orbit/zoom; Pause; Ask Niko | Learner action 'inside' |
+| 46 | Do |  |  |  |  | sfx(unlock) | Pause, Help, Settings | Action complete |
 
 ## Scene03 — Inside the Eye
 

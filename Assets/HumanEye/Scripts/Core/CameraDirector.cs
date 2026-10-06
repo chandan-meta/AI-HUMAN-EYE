@@ -36,6 +36,8 @@ namespace HumanEye
             foreach (var s in shots) { byName[s.name] = s; s.Priority = 0; baseFov[s] = s.Lens.FieldOfView; }
         }
 
+        /// The vertical FOV a shot authored for 16:9 gets at the current aspect (code-driven lenses must write this).
+        public float Fitted(float fov) => Fit(fov, aspectScale);
         public bool Has(string name) => byName.ContainsKey(name);
         public CinemachineCamera Get(string name) => byName.TryGetValue(name, out var cam) ? cam : null;
 

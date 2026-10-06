@@ -27,11 +27,11 @@ namespace HumanEye.EditorTools
             new Chapter
             {
                 id = "Scene02", title = "Meet Niko", topics = new[] { "external_structures" },
-                checkpoint = "Dark room from the door end; the directed entrance (skippable) ends on the establishing view with the spotlit human; Niko hidden; the selected eye in its socket; nothing explored.",
+                checkpoint = "Dark corridor facing the closed gate; the entrance (skippable) opens the gate, moves in, flies Niko to his anchor and ends on the establishing view with the spotlit human; the selected eye in its socket; nothing explored.",
                 steps = new[]
                 {
                     Do("intro"),
-                    Do("nikoAppear", null, 1.0f, true), Shot("S02_NikoMedium", 1.4f, true), Do("sfx", "materialise", .6f),
+                    Do("niko", "Wave", 2.4f), Shot("S02_NikoMedium", 1.6f, true),
                     Say("S02_L01"), Say("S02_L02"),
                     Do("nikoLook", "human"), Do("niko", "Present", 2.4f), Shot("S02_DisplayWide", 1.6f, true), Do("humanReveal", null, 1.4f, true), Say("S02_L03"),
                     Say("S02_L04"),

@@ -224,6 +224,7 @@ namespace HumanEye.EditorTools
         {
             ["S02_EstablishA"] = "Dark room from the door end (intro start)", ["S02_IntroThreshold"] = "Dark room from the door end", ["S02_IntroIgnite"] = "Pushing toward the pedestal as the room powers up",
             ["S02_IntroCrane"] = "Crane above the pedestal: beam strike", ["S02_EstablishB"] = "Establishing view of the pedestal display",
+            ["S02_IntroDolly"] = "Entrance dolly: approach, gate opens, move in, Niko enters, settle on the first lesson shot",
             ["S02_NikoMedium"] = "Niko introduction", ["S02_DisplayWide"] = "Niko and the revealed human", ["S02_ScanFront"] = "Full figure for the scan wave",
             ["S02_EyeInSkull"] = "Selected eye inside the skull (anatomical position)", ["S02_PinchNiko"] = "Niko's pinch gesture", ["S02_EyeHero"] = "Enlarged complete eye",
             ["S02_Part_sclera"] = "Sclera surface", ["S02_Part_cornea"] = "Cornea in profile", ["S02_Part_iris"] = "Iris, front", ["S02_Part_pupil"] = "Pupil opening, front",

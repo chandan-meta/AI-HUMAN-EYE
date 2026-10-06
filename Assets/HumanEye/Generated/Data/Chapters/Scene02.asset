@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
   id: Scene02
   title: Meet Niko
-  checkpoint: Dark room from the door end; the directed entrance (skippable) ends
-    on the establishing view with the spotlit human; Niko hidden; the selected eye
-    in its socket; nothing explored.
+  checkpoint: Dark corridor facing the closed gate; the entrance (skippable) opens
+    the gate, moves in, flies Niko to his anchor and ends on the establishing view
+    with the spotlit human; the selected eye in its socket; nothing explored.
   topics:
   - external_structures
   steps:
@@ -27,22 +27,16 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: nikoAppear
-    arg: 
-    value: 1
-    async: 1
+    key: niko
+    arg: Wave
+    value: 2.4
+    async: 0
     note: 
   - kind: 0
     key: S02_NikoMedium
     arg: 
-    value: 1.4
+    value: 1.6
     async: 1
-    note: 
-  - kind: 2
-    key: sfx
-    arg: materialise
-    value: 0.6
-    async: 0
     note: 
   - kind: 1
     key: S02_L01

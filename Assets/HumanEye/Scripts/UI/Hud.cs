@@ -51,13 +51,14 @@ namespace HumanEye
         VisualElement root, fade, progress, partButtons, journey, insets;
         Label toast;
         Label title, prompt, speaker, subtitle, lensState, info, nikoStatus;
-        readonly Dictionary<string, float> popTargets = new();
+        readonly Dictionary<string, float> popTargets = new(), popSpeeds = new();
         float toastLeft, refreshIn;
         string pulse;
         string modal;
         bool pausedBeforeModal;
         Action confirmAction;
         VisualElement boundRoot;
+        const float RevealSpeed = 1.6f;   // main interface fade after the intro (~0.6 s), shared with the lens-shift ease
         static readonly string[] Abilities = { "SCAN", "INSIDE", "FREEZE", "REPLAY" };
         static readonly string[] Topics = LearnerModel.Topics;
         static readonly string[] TopicNames = { "Outer parts of the eye", "Inside the eye", "Optic nerve", "Pupil response", "Accommodation", "Inverted retinal image", "Rods and cones", "The complete pathway" };
@@ -81,7 +82,7 @@ namespace HumanEye
         void OnEnable()
         {
             root = Element("root");
-            foreach (var key in new[] { "activity", "ask-panel", "help-panel", "settings-panel", "review-panel", "pause-overlay", "confirm-panel", "end-menu", "toast" }) Show(key, false);
+            foreach (var key in new[] { "activity", "ask-panel", "help-panel", "settings-panel", "review-panel", "pause-overlay", "confirm-panel", "end-menu", "toast", "intro-overlay" }) Show(key, false);
             fade = Element("fade"); toast = Q<Label>("toast"); progress = Element("progress");
             partButtons = Element("part-buttons"); journey = Element("journey"); insets = Element("insets");
             title = Q<Label>("chapter-title"); prompt = Q<Label>("prompt-banner"); speaker = Q<Label>("speaker");
@@ -209,22 +210,24 @@ namespace HumanEye
             labels.Update();
             if (toastLeft > 0 && (toastLeft -= Time.unscaledDeltaTime) <= 0) Show("toast", false);
             if ((refreshIn -= Time.unscaledDeltaTime) <= 0) { refreshIn = .2f; Refresh(); }
+            ViewportShift.Weight = Mathf.MoveTowards(ViewportShift.Weight, stage.IntroPlaying ? 0 : 1, Time.unscaledDeltaTime * RevealSpeed);   // the picture re-composes as the column arrives
             foreach (var key in new List<string>(popTargets.Keys))
             {
                 var e = Element(key); var g = e ? e.GetComponent<CanvasGroup>() : null; if (!g) { popTargets.Remove(key); continue; }
-                g.alpha = Mathf.MoveTowards(g.alpha, popTargets[key], Time.unscaledDeltaTime * 5);
+                g.alpha = Mathf.MoveTowards(g.alpha, popTargets[key], Time.unscaledDeltaTime * (popSpeeds.TryGetValue(key, out var speed) ? speed : 5));
                 if (g.alpha <= 0 && popTargets[key] <= 0) { e.gameObject.SetActive(false); popTargets.Remove(key); }
             }
         }
 
         /// Popup cards (retinal image, journey stages) fade in and out instead of snapping; falls back to SetActive without a CanvasGroup.
-        void Pop(string key, bool show)
+        void Pop(string key, bool show, float speed = 5)
         {
             var e = Element(key); if (!e) return;
             var g = e.GetComponent<CanvasGroup>();
             if (!g) { Show(key, show); return; }
             if (show) { if (!e.gameObject.activeSelf) g.alpha = 0; Show(key, true); }
-            popTargets[key] = show ? 1 : 0;
+            popTargets[key] = show ? 1 : 0; popSpeeds[key] = speed;
+            g.interactable = g.blocksRaycasts = show;   // a card on its way out never blocks what is underneath
         }
 
         /// Short information block in the upper panel (instruction, scan feedback, closing line). Null hides it.
@@ -256,8 +259,12 @@ namespace HumanEye
 
             prompt.text = Objective();
             Show("prompt-banner", !string.IsNullOrEmpty(prompt.text));
-            bool started = runner.Started;
-            Show("topbar", started); Show("bottom", started); Show("middle", started);
+            bool started = runner.Started, intro = stage.IntroPlaying;
+            // Cinematic rule: during the intro only the small caption + Skip overlay is shown; the main interface fades in afterwards.
+            Pop("topbar", started && !intro, RevealSpeed); Pop("right-column", started && !intro, RevealSpeed);
+            Show("bottom", started); Show("middle", started);
+            Show("intro-overlay", intro && !Clock.Paused);
+            if (intro && Element("intro-caption")) Q<Label>("intro-caption").text = stage.IntroCaption ?? "";
 
             foreach (var a in Abilities)
             {
@@ -299,7 +306,7 @@ namespace HumanEye
             RefreshActivity();
             bool walking = stage.navigation && stage.navigation.Active;
             foreach (var key in new[] { "btn-ask", "btn-replay-expl", "btn-review", "btn-help" }) Show(key, !stage.IntroPlaying);
-            Show("btn-sound", started);
+            Show("btn-sound", started && !intro);
             Show("btn-section", stage.CanInspectLayers); Show("btn-shell", stage.CanInspectLayers);
             if (Element("btn-section")) Caption(Q<Button>("btn-section")).text = stage.eye.IsCut ? "Exterior view" : "Cross-section";
             if (Element("btn-shell")) Caption(Q<Button>("btn-shell")).text = stage.eye.Get("sclera").Visible ? "Hide sclera" : "Show sclera";
@@ -307,12 +314,12 @@ namespace HumanEye
             if (Element("btn-lab")) Caption(Q<Button>("btn-lab")).text = walking ? "Return to lesson" : "Explore lab";
             Show("btn-intro-replay", started && !stage.IntroPlaying && !Clock.Paused && (runner.Awaiting == "scan" || runner.State == LessonState.Exploring));
             if (Element("btn-sound")) Caption(Q<Button>("btn-sound")).text = set.muted ? "Sound off" : "Sound on";
-            if (stage.IntroPlaying || walking)
+            if (walking)
             {
                 Show("abilities", false); Show("view-controls", false); Show("part-list", false);
                 Show("btn-free-continue", false);
-                prompt.text = walking ? "Explore lab · WASD / joystick to walk · Right-drag / touch to look" : stage.IntroCaption;
-                Show("prompt-banner", !string.IsNullOrEmpty(prompt.text));
+                prompt.text = "Explore lab · WASD / joystick to walk · Right-drag / touch to look";
+                Show("prompt-banner", true);
             }
             else if (runner.Awaiting == "scan") Show("view-controls", false);
         }

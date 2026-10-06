@@ -136,6 +136,21 @@ namespace HumanEye
             int chapter = int.Parse(Arg("-heChapter", "0"));
             if (chapter == 0) yield return ClickUI("start-begin"); else hud.StartModule(chapter);
             Log("action", "Start pressed");
+            if (Environment.GetCommandLineArgs().Contains("-heIntroOnly"))
+            {
+                // Evidence of the entrance itself: a frame every second at real speed, then the revealed interface.
+                for (float wait = 0; !stage.IntroPlaying && wait < 5; wait += Time.unscaledDeltaTime) yield return null;
+                yield return null; yield return null;   // the overlay was shown this frame; let the canvas lay it out before the pointer audit
+                float lastShot = -10;
+                while (stage.IntroPlaying)
+                {
+                    if (stage.IntroTime - lastShot >= 1f) { lastShot = stage.IntroTime; yield return Capture($"intro_{stage.IntroTime:00.0}s"); }
+                    yield return null;
+                }
+                yield return new WaitForSecondsRealtime(1.2f); yield return Capture("intro_done_ui");
+                Log("check", $"intro finished: gate={stage.entrance.OpenAmount} niko={stage.niko.gameObject.activeSelf} shot={cams.Active?.name}");
+                Summary = "intro only"; Log("done", Summary); log.Close(); Exit(0); yield break;
+            }
             int stopAfter = int.Parse(Arg("-heStop", "99"));
             while (true)
             {

@@ -68,6 +68,7 @@ namespace HumanEye.Tests
                 Assert.Greater(stage.displayLight.intensity, 0);
                 Assert.AreEqual(0, stage.introVolume.weight);
                 Assert.IsTrue(stage.human.gameObject.activeSelf);
+                Assert.IsTrue(stage.niko.gameObject.activeSelf, "Niko has entered the lab when the intro ends");
                 yield return null; Capture("human-reveal");
                 stage.hud.ReturnToMenu(); yield return null;
                 Assert.AreEqual(0, stage.entrance.OpenAmount);

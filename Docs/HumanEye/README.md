@@ -106,6 +106,7 @@ Content layers:
 - Unavailable buttons stay visible but dimmed. Tapping one explains why.
 
 See `Polish/WOW_REDESIGN_2026-10-06.md` for the presentation redesign (introduction, pacing, Niko, labels, rods/cones, ending, sound).
+See `Polish/INTRO_PASS_2026-10-06.md` for the sliding-gate entrance, the intro dolly, Niko's entry and the intro-time interface rules; the permanent operating guide is the repository's `CLAUDE.md`.
 
 ## Configuration (`Assets/HumanEye/Data/ModuleConfig.asset`)
 
