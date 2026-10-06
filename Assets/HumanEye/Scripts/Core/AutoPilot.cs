@@ -219,7 +219,7 @@ namespace HumanEye
 
         IEnumerator Free(string mode)
         {
-            if (Stress && !demoChecked && mode == "routeTrace") { yield return CheckDemoStress(); yield break; }
+            if (Stress && !demoChecked && mode == "brightness") { yield return CheckDemoStress(); yield break; }
             Log("free", mode);
             yield return Real(1.5f);
             yield return Capture("free_" + mode);
@@ -230,35 +230,18 @@ namespace HumanEye
                     guide.Ask("why is the sky blue?"); Log("ask", $"'why is the sky blue?' -> unsupported={guide.Answer?.unsupported}");
                     stage.UseControl("presetDim"); yield return Real(3); yield return Capture("brightness_dim");
                     stage.UseControl("presetBright"); yield return Real(3); yield return Capture("brightness_bright");
-                    break;
-                case "focus":
-                    // Round 1: a wrong (too flat) lens first, then the learner's fix; round 2 refocuses on the distant tree.
-                    stage.SetBrightnessFromSlider(0); yield return Real(1.5f); yield return Capture("focus_blurred");
-                    Log("check", $"focus round 0: flat lens -> state {stage.FocusState} (-1 = light meets behind the retina) readout '{stage.Readout()}'");
                     guide.Ask("what should I do now?"); Log("ask", $"'what should I do now?' -> '{guide.Answer?.text}'");
-                    stage.SetBrightnessFromSlider(stage.FocusNeeded); yield return Real(1); yield return Capture("focus_sharp_near");
-                    yield return Real(2.5f);
-                    stage.SetBrightnessFromSlider(stage.FocusNeeded); yield return Real(1); yield return Capture("focus_sharp_far");
-                    yield return Real(2.5f);
-                    Log("check", $"focus challenge rounds completed={stage.FocusRound} (2 = both)");
-                    stage.UseAbility("REPLAY");
-                    for (float t = 0; t < 20 && !(stage.eye.accommodationTarget > .9f && stage.eye.Accommodation > .55f && stage.eye.Accommodation < .92f); t += Time.unscaledDeltaTime) yield return null;
-                    stage.UseAbility("FREEZE");   // mid-change: the lens shape and ray focus must hold still
-                    float frozenAcc = stage.eye.Accommodation; yield return Capture("frozen_mid_accommodation"); yield return new WaitForSecondsRealtime(1.5f);
-                    Log("check", $"freeze mid-change: accommodation before={frozenAcc:0.000} after 1.5 s={stage.eye.Accommodation:0.000} (equal = frozen)");
-                    stage.UseAbility("FREEZE"); yield return Real(5);
+                    stage.UseAbility("REPLAY"); yield return Real(1);
+                    stage.UseAbility("FREEZE");   // mid-change: the pupil must hold still while frozen
+                    float frozenPupil = stage.eye.PupilRadius; yield return Capture("frozen_mid_pupil"); yield return new WaitForSecondsRealtime(1.5f);
+                    Log("check", $"freeze mid-change: pupil before={frozenPupil:0.000} after 1.5 s={stage.eye.PupilRadius:0.000} (equal = frozen)");
+                    stage.UseAbility("FREEZE"); yield return Real(4);
                     break;
                 case "photoreceptors":
                     stage.OnPartTapped(stage.micro.rods); yield return Real(4);
                     stage.UseControl("lightDim"); yield return Real(2); yield return Capture("photoreceptors_dim");
                     stage.UseControl("lightBright"); yield return Real(2); yield return Capture("photoreceptors_bright");
                     yield return new WaitUntil(() => !narrator.Busy);
-                    break;
-                case "inspectImage":
-                    stage.UseAbility("REPLAY"); yield return Real(4); yield return Capture("image_replay");
-                    break;
-                case "routeTrace": case "signals":
-                    stage.UseAbility("TRACE"); yield return Real(3); yield return Capture("trace_" + mode); yield return Real(6);
                     break;
                 default:
                     yield return Real(1);
@@ -278,12 +261,7 @@ namespace HumanEye
             foreach (var b in new[] { "Next", "Continue" }) if (card.buttons.Contains(b)) { activities.Click(b); yield break; }
             var item = activities.Item;
             if (item == null) { activities.Click(card.buttons.LastOrDefault()); yield break; }
-            if (runner.Chapter.id is "Scene03" or "Scene08" && card.buttons.Contains("Skip")) { activities.Click("Skip"); Log("activity", item.id + " skipped (whole check)"); yield break; }
-            if (item.mode == QuestionMode.Order)
-            {
-                foreach (var o in item.options.Where(o => o.correct)) { activities.Click(o.text); yield return null; }
-                activities.Click("Check"); Log("activity", item.id + " order placed"); yield break;
-            }
+            Check(!card.buttons.Contains("Skip"), "Quick checks have no Skip button");
             if (!triedWrong)
             {
                 triedWrong = true;

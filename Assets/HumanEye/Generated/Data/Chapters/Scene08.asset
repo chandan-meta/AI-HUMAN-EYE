@@ -25,12 +25,6 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: labels
-    arg: scan
-    value: 0
-    async: 0
-    note: 
   - kind: 1
     key: S08_L01
     arg: 
@@ -38,15 +32,27 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: glow
+    key: microLight
+    arg: 0.3
+    value: 1
+    async: 0
+    note: 
+  - kind: 2
+    key: microFocus
     arg: rods
-    value: 0.85
+    value: 0
     async: 0
     note: 
   - kind: 0
     key: S08_Rods
     arg: 
-    value: 1.6
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: labels
+    arg: focus:rods
+    value: 0
     async: 0
     note: 
   - kind: 1
@@ -62,21 +68,27 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: rods
-    value: 0
+    key: microLight
+    arg: 0.95
+    value: 1
     async: 0
     note: 
   - kind: 2
-    key: glow
+    key: microFocus
     arg: cones
-    value: 0.85
+    value: 0
     async: 0
     note: 
   - kind: 0
     key: S08_Cones
     arg: 
-    value: 1.6
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: labels
+    arg: focus:cones
+    value: 0
     async: 0
     note: 
   - kind: 1
@@ -86,32 +98,26 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: cones
+    key: microFocus
+    arg: all
     value: 0
     async: 0
     note: 
   - kind: 0
     key: S08_MicroWide
     arg: 
-    value: 1.6
-    async: 0
+    value: 1.4
+    async: 1
     note: 
   - kind: 2
     key: microLight
-    arg: 0.6
+    arg: 0.65
     value: 1
     async: 0
     note: 
-  - kind: 5
-    key: 
-    arg: 
-    value: 1.2
-    async: 0
-    note: 
-  - kind: 1
-    key: S08_L05
-    arg: 
+  - kind: 2
+    key: labels
+    arg: scan
     value: 0
     async: 0
     note: 
@@ -121,10 +127,16 @@ MonoBehaviour:
     value: 1
     async: 0
     note: 
+  - kind: 1
+    key: S08_L05
+    arg: 
+    value: 0
+    async: 0
+    note: 
   - kind: 0
     key: S08_Signals
     arg: 
-    value: 2
+    value: 1.8
     async: 1
     note: 
   - kind: 1
@@ -136,14 +148,8 @@ MonoBehaviour:
   - kind: 0
     key: S08_PullBack
     arg: 
-    value: 2.5
-    async: 0
-    note: 
-  - kind: 5
-    key: 
-    arg: 
-    value: 1.5
-    async: 0
+    value: 2.2
+    async: 1
     note: 
   - kind: 6
     key: topic:rods_cones

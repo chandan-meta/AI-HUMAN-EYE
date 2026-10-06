@@ -23,8 +23,8 @@ MonoBehaviour:
   - kind: 0
     key: S10_Complete
     arg: 
-    value: 2.4
-    async: 0
+    value: 2.2
+    async: 1
     note: 
   - kind: 1
     key: S10_L01
@@ -42,7 +42,7 @@ MonoBehaviour:
     key: S10_Journey
     arg: 
     value: 2
-    async: 0
+    async: 1
     note: 
   - kind: 2
     key: journey
@@ -50,21 +50,15 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 6
-    key: item:rebuild_journey
+  - kind: 2
+    key: overview
     arg: 
     value: 0
     async: 0
     note: 
-  - kind: 6
-    key: topic:inverted_image
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 7
-    key: summary
-    arg: 
+  - kind: 2
+    key: journey
+    arg: overview
     value: 0
     async: 0
     note: 

@@ -69,14 +69,6 @@ MonoBehaviour:
     availableFromChapter: 0
     supplemental: Freezing the biology mid-action.
     notYet: 
-  - id: act_trace
-    kind: 2
-    pattern: \b(trace|follow)\b
-    target: TRACE
-    cues: []
-    availableFromChapter: 0
-    supplemental: Tracing the route.
-    notYet: 
   - id: act_scan
     kind: 2
     pattern: \b(scan|labels?)\b
@@ -92,14 +84,6 @@ MonoBehaviour:
     cues: []
     availableFromChapter: 0
     supplemental: Moving inside the eye.
-    notYet: 
-  - id: act_simulate
-    kind: 2
-    pattern: \bsimulat
-    target: SIMULATE
-    cues: []
-    availableFromChapter: 0
-    supplemental: Opening the simulation controls.
     notYet: 
   - id: act_reset
     kind: 2
@@ -316,9 +300,9 @@ MonoBehaviour:
     target: 
     cues: []
     availableFromChapter: 0
-    supplemental: I'm Niko, your Vision Investigator Officer! I can SCAN structures,
-      go INSIDE the eye, SIMULATE brightness and distance, TRACE light or signals,
-      FREEZE the biology and REPLAY demonstrations.
+    supplemental: I'm Niko, your Vision Investigator Officer! I scan the subject,
+      take you inside the eye, run the brightness and light experiments with you,
+      and I can freeze or replay a demonstration.
     notYet: 
   - id: g_hello
     kind: 5
@@ -335,7 +319,7 @@ MonoBehaviour:
     cues: []
     availableFromChapter: 0
     supplemental: Tap the glowing parts, their labels or the Parts list to explore.
-      My ability buttons are along the bottom, and you can ask me about anything
+      The panel on the right shows what to do next, and you can ask me about anything
       you've explored so far.
     notYet: 
   suggestions:

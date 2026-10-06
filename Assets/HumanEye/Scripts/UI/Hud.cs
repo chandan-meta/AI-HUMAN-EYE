@@ -11,8 +11,9 @@ using TextField = UnityEngine.UI.InputField;
 
 namespace HumanEye
 {
-    /// Scene-authored Canvas HUD: subtitles, prompts, progress, abilities, simulation controls, part list, activities,
-    /// Ask Niko, settings, review, pause, start and end menus. Every unavailable action explains why.
+    /// Scene-authored Canvas HUD. The right-hand column holds the information panel (chapter, instruction, captions, Niko's
+    /// portrait and status, Talk to Niko) above the View / Activities panel (Scan Eye / Explore Inside, experiment controls,
+    /// parts, quick checks, the retinal popup, the journey stages). Every unavailable action explains why.
     public class Hud : MonoBehaviour
     {
         [Serializable] public struct Binding { public string key; public RectTransform target; }
@@ -49,14 +50,15 @@ namespace HumanEye
         public WorldLabels labels;
         VisualElement root, fade, progress, partButtons, journey, insets;
         Label toast;
-        Label title, prompt, speaker, subtitle, lensState;
+        Label title, prompt, speaker, subtitle, lensState, info, nikoStatus;
+        readonly Dictionary<string, float> popTargets = new();
         float toastLeft, refreshIn;
         string pulse;
         string modal;
         bool pausedBeforeModal;
         Action confirmAction;
         VisualElement boundRoot;
-        static readonly string[] Abilities = { "SCAN", "INSIDE", "SIMULATE", "TRACE", "FREEZE", "REPLAY" };
+        static readonly string[] Abilities = { "SCAN", "INSIDE", "FREEZE", "REPLAY" };
         static readonly string[] Topics = LearnerModel.Topics;
         static readonly string[] TopicNames = { "Outer parts of the eye", "Inside the eye", "Optic nerve", "Pupil response", "Accommodation", "Inverted retinal image", "Rods and cones", "The complete pathway" };
         static readonly string[] TopicChapters = { "Scene02", "Scene03", "Scene04", "Scene05", "Scene06", "Scene07", "Scene08", "Scene10" };
@@ -84,6 +86,7 @@ namespace HumanEye
             partButtons = Element("part-buttons"); journey = Element("journey"); insets = Element("insets");
             title = Q<Label>("chapter-title"); prompt = Q<Label>("prompt-banner"); speaker = Q<Label>("speaker");
             subtitle = Q<Label>("subtitle-text"); lensState = Q<Label>("lens-state");
+            info = Element("info-text") ? Q<Label>("info-text") : null; nikoStatus = Element("niko-status") ? Q<Label>("niko-status") : null;
             if (boundRoot != root)
             {
                 labels = new WorldLabels(Element("labels-layer"), () => mainCamera, id => stage.RequestPartFromList(id));
@@ -100,7 +103,7 @@ namespace HumanEye
         void Bind()
         {
             if (Element("btn-home")) On("btn-home", ReturnToMenu);
-            On("btn-ask", () => OpenAsk(!Shown("ask-panel")));
+            On("btn-ask", () => OpenAsk(!Shown("ask-panel"))); Caption(Q<Button>("btn-ask")).text = "Talk to Niko";
             On("ask-close", () => OpenAsk(false));
             On("ask-submit", SubmitAsk);
             Q<TextField>("ask-input").onSubmit.AddListener(_ => SubmitAsk());
@@ -206,6 +209,29 @@ namespace HumanEye
             labels.Update();
             if (toastLeft > 0 && (toastLeft -= Time.unscaledDeltaTime) <= 0) Show("toast", false);
             if ((refreshIn -= Time.unscaledDeltaTime) <= 0) { refreshIn = .2f; Refresh(); }
+            foreach (var key in new List<string>(popTargets.Keys))
+            {
+                var e = Element(key); var g = e ? e.GetComponent<CanvasGroup>() : null; if (!g) { popTargets.Remove(key); continue; }
+                g.alpha = Mathf.MoveTowards(g.alpha, popTargets[key], Time.unscaledDeltaTime * 5);
+                if (g.alpha <= 0 && popTargets[key] <= 0) { e.gameObject.SetActive(false); popTargets.Remove(key); }
+            }
+        }
+
+        /// Popup cards (retinal image, journey stages) fade in and out instead of snapping; falls back to SetActive without a CanvasGroup.
+        void Pop(string key, bool show)
+        {
+            var e = Element(key); if (!e) return;
+            var g = e.GetComponent<CanvasGroup>();
+            if (!g) { Show(key, show); return; }
+            if (show) { if (!e.gameObject.activeSelf) g.alpha = 0; Show(key, true); }
+            popTargets[key] = show ? 1 : 0;
+        }
+
+        /// Short information block in the upper panel (instruction, scan feedback, closing line). Null hides it.
+        public void Info(string text)
+        {
+            if (!info) return;
+            info.text = text ?? ""; Show("info-text", !string.IsNullOrEmpty(text));
         }
 
         public void Refresh()
@@ -240,11 +266,14 @@ namespace HumanEye
                 Caption(b).text = stage.AbilityLabel(a);
                 State(b, "unavailable", !ok);
                 State(b, "pulse", ok && pulse == a && runner.Awaiting != null);
-                State(b, "selected", ok && (a == "FREEZE" && Clock.Frozen || a == "SIMULATE" && stage.Simulation != null || a == "SCAN" && stage.LabelsOn));
+                State(b, "selected", ok && a == "FREEZE" && Clock.Frozen);
                 b.gameObject.SetActive(ok);
                 b.interactable = ok;
             }
             Show("abilities", started && Abilities.Any(a => stage.Ability(a, out _)));
+            Show("info-panel", started); Show("activity-panel", started);
+            Show("niko-portrait", started && !stage.IntroPlaying && stage.niko.gameObject.activeInHierarchy);
+            if (nikoStatus) nikoStatus.text = NikoStatus();
             Show("btn-free-continue", runner.FreeMode != null && activities.Card == null);
             Show("btn-skip-intro", stage.IntroPlaying && !Clock.Paused && !stage.Short);   // the reduced-motion intro is a 1.5 s still: nothing to skip
             Caption(Q<Button>("btn-pause")).text = Clock.Paused ? "Resume" : "Pause";
@@ -265,6 +294,7 @@ namespace HumanEye
             RefreshSimulation();
             Show("end-menu", runner.State == LessonState.Complete);
             if (runner.State == LessonState.Complete && Element("end-recap")) Q<Label>("end-recap").text = Recap();
+            if (runner.State == LessonState.Complete && Element("end-title")) Q<Label>("end-title").text = Stage.ClosingText;
             Show("pause-overlay", Clock.Paused && modal == null);
             RefreshActivity();
             bool walking = stage.navigation && stage.navigation.Active;
@@ -300,18 +330,25 @@ namespace HumanEye
                 return Cue(runner.Chapter.id == "Scene02" ? "S02_L10" : "S03_L01") + $"  ({runner.ExploreDone.Count} of {runner.ExploreSet.Length} explored)";
             return runner.FreeMode switch
             {
-                "brightness" => "Experiment freely with the brightness, then tap Continue.",
-                "focus" => stage.FocusPrompt,
-                "photoreceptors" => "Tap the rods or cones to inspect them, or compare dim and bright light.",
-                "inspectImage" => "Inspect the image on the retina. FREEZE or REPLAY it, then tap Continue.",
-                "routeTrace" => "Use TRACE or REPLAY to follow the route again, then tap Continue.",
-                "signals" => "TRACE the signals or REPLAY them, then tap Continue.",
-                "summary" => "Open Review to see your discoveries, then tap Continue.",
+                "brightness" => "Experiment with the brightness, then press Continue.",
+                "photoreceptors" => "Tap the rods or cones, compare dim and bright light, then press Continue.",
                 _ => null
             };
         }
 
         string Cue(string id) => narrator.database.Get(id)?.text;
+
+        /// Honest companion status: there is no microphone in this build, so Niko is never shown as "listening".
+        string NikoStatus()
+        {
+            if (!runner.Started || stage.IntroPlaying) return "";
+            if (guide.Thinking) return "Niko is thinking…";
+            if (narrator.Busy) return narrator.Source == NarrationSource.Answer ? "Niko is answering you" : "Niko is speaking";
+            if (Shown("ask-panel")) return "Type a question for Niko (no microphone on this build)";
+            if (runner.Awaiting != null) return "Niko is waiting for you";
+            if (activities.Card != null) return "Niko is ready to help with this check";
+            return "Niko is ready · Talk to Niko to ask a question";
+        }
 
         /// Conclusion from the learner's actual record: the whole pathway, what they achieved, and what is worth revisiting.
         static string Recap()
@@ -342,12 +379,11 @@ namespace HumanEye
             var sim = stage.Simulation;
             Show("sim-panel", sim != null && activities.Card == null);
             if (sim == null) return;
-            bool lens = sim == "lens";   // focus challenge: the brightness row becomes the lens-shape control
-            Show("sim-brightness", sim is "brightness" or "lens"); Show("sim-distance", sim is "distance" or "lens"); Show("sim-photo", sim == "photoreceptors");
-            Q<Label>("sim-title").text = sim switch { "brightness" => "SIMULATE · Brightness", "distance" => "SIMULATE · Object distance", "lens" => "SIMULATE · Shape the lens (illustrative model)", _ => "SIMULATE · Light level" };
-            Caption(Q<Button>("sim-dim-preset")).text = lens ? "Flatter" : "Dim"; Caption(Q<Button>("sim-bright-preset")).text = lens ? "Rounder" : "Bright";
+            Show("sim-brightness", sim == "brightness"); Show("sim-distance", sim == "distance"); Show("sim-photo", sim == "photoreceptors");
+            Q<Label>("sim-title").text = sim switch { "brightness" => "Experiment · Brightness", "distance" => "Experiment · Object distance", _ => "Experiment · Light level" };
+            Caption(Q<Button>("sim-dim-preset")).text = "Dim"; Caption(Q<Button>("sim-bright-preset")).text = "Bright";
             Q<Label>("sim-note").text = stage.Readout();
-            Q<Slider>("sim-brightness-slider").SetValueWithoutNotify(lens ? stage.eye.accommodationTarget : stage.Brightness);
+            Q<Slider>("sim-brightness-slider").SetValueWithoutNotify(stage.Brightness);
             Q<Slider>("sim-distance-slider").SetValueWithoutNotify(Mathf.InverseLerp(stage.rays.nearDistance, stage.rays.farDistance, stage.ObjectDistance));
             foreach (var (name, id) in new[] { ("sim-minus", "dimmer"), ("sim-plus", "brighter"), ("sim-dim-preset", "presetDim"), ("sim-bright-preset", "presetBright"), ("sim-near", "near"), ("sim-distant", "distant"), ("sim-light-dim", "lightDim"), ("sim-light-bright", "lightBright") })
             {
@@ -398,7 +434,8 @@ namespace HumanEye
         // ---------- insets / journey ----------
         public void ShowInsets(RenderTexture texture, bool perception)
         {
-            Show("insets", true);
+            if (!Shown("insets")) stage.sfx.Play("popup", .5f);
+            Pop("insets", true);
             Q<RawImage>("inset-retina-image").texture = texture;
             Element("inset-retina-image").localEulerAngles = new Vector3(0, 0, 180);
             Q<RawImage>("inset-perception-image").texture = texture;
@@ -407,13 +444,14 @@ namespace HumanEye
 
         public void HideInsets()
         {
-            Show("insets", false); SetLensState(null); ShowJourney(null, -1);
+            if (Shown("insets") && runner.Started) stage.sfx.Play("popdown", .4f);
+            Pop("insets", false); SetLensState(null); ShowJourney(null, -1);
         }
 
         public void ShowJourney(string[] stages, int index)
         {
             if (!journey) return;
-            HideChildren(journey); Show("journey", stages != null);
+            HideChildren(journey); Pop("journey", stages != null);
             if (stages == null) return;
             var chips = Slots<Label>(journey); Capacity(stages.Length, chips.Length, "journey");
             for (int i = 0; i < stages.Length; i++)
@@ -462,7 +500,7 @@ namespace HumanEye
             Show("activity", card != null); Show("labels-layer", card == null);
             if (card == shownCard) return;
             shownCard = card; if (card == null) return;
-            Q<Label>("act-title").text = card.title; Q<Label>("act-tag").text = "Optional practice · You can skip any question";
+            Q<Label>("act-title").text = card.title; Q<Label>("act-tag").text = "A wrong answer gets a hint, then a demonstration — never a dead end.";
             Q<Label>("act-prompt").text = card.prompt;
             Q<Label>("act-feedback").text = card.feedback ?? ""; Q<Label>("act-hint").text = card.hint ?? "";
             Show("act-tap-hint", card.tapParts);
@@ -474,9 +512,7 @@ namespace HumanEye
                 var b = optionButtons[n++]; Click(b, selected ? "✓ " + label : label, () => activities.Click(id));
                 State(b, "selected", selected); b.interactable = !selected;
             }
-            var slots = Element("act-slots"); HideChildren(slots);
-            var texts = Slots<Label>(slots); Capacity(card.slots.Count, texts.Length, "activity answer");
-            for (int i = 0; i < card.slots.Count; i++) { texts[i].gameObject.SetActive(true); texts[i].text = (i + 1) + ". " + card.slots[i]; }
+            if (Element("act-slots")) HideChildren(Element("act-slots"));
             var buttons = Element("act-buttons"); HideChildren(buttons);
             var actions = Slots<Button>(buttons); Capacity(card.buttons.Count, actions.Length, "activity actions");
             n = 0; foreach (var name in card.buttons) Click(actions[n++], name, () => activities.Click(name));

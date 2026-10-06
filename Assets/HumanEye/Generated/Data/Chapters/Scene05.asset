@@ -22,7 +22,7 @@ MonoBehaviour:
   - kind: 2
     key: objectAppear
     arg: 
-    value: 1.2
+    value: 1
     async: 0
     note: 
   - kind: 1
@@ -34,13 +34,13 @@ MonoBehaviour:
   - kind: 2
     key: lightTravel
     arg: 1
-    value: 3
+    value: 2.5
     async: 1
     note: 
   - kind: 0
     key: S05_FollowLight
     arg: 
-    value: 3
+    value: 2.5
     async: 1
     note: 
   - kind: 1
@@ -52,19 +52,25 @@ MonoBehaviour:
   - kind: 0
     key: S05_Cornea
     arg: 
-    value: 1.6
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: isolate
+    arg: cornea
+    value: 0
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: cornea
-    value: 0.8
+    key: labels
+    arg: focus:cornea
+    value: 0
     async: 0
     note: 
   - kind: 2
     key: lightTravel
     arg: 1.5
-    value: 1.2
+    value: 1
     async: 1
     note: 
   - kind: 1
@@ -73,28 +79,28 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: glow
-    arg: cornea
-    value: 0
-    async: 0
-    note: 
   - kind: 0
     key: S05_AqueousPupil
     arg: 
-    value: 1.4
+    value: 1.2
+    async: 1
+    note: 
+  - kind: 2
+    key: isolate
+    arg: aqueous
+    value: 0
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: aqueous
-    value: 0.7
+    key: labels
+    arg: focus:aqueous
+    value: 0
     async: 0
     note: 
   - kind: 2
     key: lightTravel
     arg: 2
-    value: 1.5
+    value: 1.3
     async: 1
     note: 
   - kind: 1
@@ -104,8 +110,14 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: aqueous
+    key: restore
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
+    arg: 
     value: 0
     async: 0
     note: 
@@ -118,6 +130,13 @@ MonoBehaviour:
   - kind: 2
     key: brightnessLive
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: info
+    arg: 'Use the brightness controls in the panel: make it brighter, then dimmer,
+      and watch the pupil.'
     value: 0
     async: 0
     note: 
@@ -169,6 +188,12 @@ MonoBehaviour:
     value: 0.8
     async: 0
     note: 
+  - kind: 2
+    key: labels
+    arg: focus:iris
+    value: 0
+    async: 0
+    note: 
   - kind: 1
     key: S05_L08
     arg: 
@@ -178,6 +203,12 @@ MonoBehaviour:
   - kind: 2
     key: glow
     arg: iris
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
+    arg: 
     value: 0
     async: 0
     note: 

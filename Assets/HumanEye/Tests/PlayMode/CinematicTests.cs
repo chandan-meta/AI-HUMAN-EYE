@@ -55,7 +55,7 @@ namespace HumanEye.Tests
             Assert.AreEqual(0, stage.entrance.OpenAmount, "Menu starts at the closed gate");
             Assert.IsFalse(stage.brainRoot.gameObject.activeSelf);
             SaveSystem.Data.settings.reducedMotion = false; SaveSystem.Data.settings.skipCameraMotion = false;
-            foreach (float beat in new[] { .1f, 4f, 9.7f })
+            foreach (float beat in new[] { .1f, 3f, 7f })
             {
                 stage.hud.StartModule(0); yield return null; yield return null;
                 float end = Time.realtimeSinceStartup + beat;
@@ -92,7 +92,7 @@ namespace HumanEye.Tests
             runner.SetPaused(false);
             stage.UseAbility("SCAN"); stage.UseAbility("SCAN");
             Assert.IsFalse(stage.navigation.Active); Assert.IsTrue(stage.cams.brain.enabled);
-            Assert.IsFalse(stage.LabelsOn, "Duplicate scan must not toggle inspection labels");
+            Assert.AreEqual(0, stage.hud.labels.Count, "Duplicate scan must not add labels");
             for (float end = Time.realtimeSinceStartup + 6; stage.cams.Active?.name != "S02_EyeInSkull" && Time.realtimeSinceStartup < end;) yield return null;
             Assert.AreEqual("S02_EyeInSkull", stage.cams.Active?.name, "Scan must travel to the eye close-up");
             yield return null; yield return null;   // the brain applies the cut

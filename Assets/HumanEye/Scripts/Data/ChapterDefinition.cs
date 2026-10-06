@@ -11,8 +11,8 @@ namespace HumanEye
         Await,    // key = learner action (scan, inside, brighter, dimmer, near, distant, continue)
         Explore,  // runs the chapter's explore entries until every part's explanation has finished
         Hold,     // value = seconds a critical close-up stays on screen
-        Offer,    // key = optional SupplementalAdaptive activity (always skippable)
-        Free      // key = free-experimentation mode; ends when the learner taps Continue
+        Offer,    // key = SupplementalAdaptive quick check at an approved checkpoint (help after misses; no Skip)
+        Free      // key = hands-on experiment (brightness, photoreceptors); ends when the learner taps Continue
     }
 
     [Serializable]

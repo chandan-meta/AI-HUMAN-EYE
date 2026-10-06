@@ -35,12 +35,13 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Cull: 0
+    - _Cutoff: 0
     - _DetailSpan: 2
-    - _DetailStrength: 0.55
+    - _DetailStrength: 0.6
     - _DstBlend: 0
     - _F0: 0.3
     - _Flow: 0
-    - _Gloss: 0.35
+    - _Gloss: 0.4
     - _Highlight: 0
     - _HighlightTint: 0.1
     - _InteriorDark: 1
@@ -51,7 +52,7 @@ Material:
     - _Wrap: 0.65
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.86, g: 0.36, b: 0.16, a: 1}
+    - _BaseColor: {r: 0.84, g: 0.38, b: 0.2, a: 1}
     - _DetailAxis: {r: 0.25881904, g: 0, b: -0.9659258, a: 0}
     - _DetailColor: {r: 0.45, g: 0.05, b: 0.04, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}

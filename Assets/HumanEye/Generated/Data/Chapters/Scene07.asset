@@ -22,14 +22,26 @@ MonoBehaviour:
   - kind: 0
     key: S07_Vitreous
     arg: 
-    value: 2.5
+    value: 2.2
     async: 1
+    note: 
+  - kind: 2
+    key: isolate
+    arg: vitreous
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
+    arg: focus:vitreous
+    value: 0
+    async: 0
     note: 
   - kind: 2
     key: lightTravel
     arg: 5
-    value: 2.5
-    async: 0
+    value: 2.2
+    async: 1
     note: 
   - kind: 1
     key: S07_L01
@@ -37,23 +49,29 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 6
-    key: item:img_predict
-    arg: 
+  - kind: 2
+    key: isolate
+    arg: retina
     value: 0
     async: 0
     note: 
   - kind: 2
-    key: imageForm
-    arg: 
-    value: 1.5
+    key: labels
+    arg: focus:retina
+    value: 0
     async: 0
     note: 
   - kind: 0
     key: S07_Retina
     arg: 
-    value: 1.6
-    async: 0
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: imageForm
+    arg: 
+    value: 1.2
+    async: 1
     note: 
   - kind: 2
     key: imageInset
@@ -67,20 +85,32 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 7
-    key: inspectImage
+  - kind: 2
+    key: restore
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: imageInset
+    arg: hide
     value: 0
     async: 0
     note: 
   - kind: 0
     key: S07_RetinaCloser
     arg: 
-    value: 1.8
-    async: 0
+    value: 1.6
+    async: 1
     note: 
   - kind: 1
     key: S07_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
     arg: 
     value: 0
     async: 0

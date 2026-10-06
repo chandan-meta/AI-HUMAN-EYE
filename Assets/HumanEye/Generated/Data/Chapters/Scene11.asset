@@ -15,20 +15,20 @@ MonoBehaviour:
   id: Scene11
   title: Final Curiosity
   checkpoint: Cutaway eye closing to the complete eye; near apple and a distant tree
-    placed; no blur; camera S10_Complete.
+    placed, both sharp; camera S10_Complete.
   topics: []
   steps:
   - kind: 2
     key: closeEye
     arg: 
-    value: 1.4
+    value: 1.2
     async: 0
     note: 
   - kind: 0
     key: S11_Eye
     arg: 
-    value: 2
-    async: 0
+    value: 1.8
+    async: 1
     note: 
   - kind: 1
     key: S11_L01
@@ -36,16 +36,16 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
+  - kind: 0
+    key: S11_NearFar
+    arg: 
+    value: 2.2
+    async: 1
+    note: 
   - kind: 1
     key: S11_L02
     arg: 
     value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: blurDemo
-    arg: 
-    value: 3.5
     async: 0
     note: 
   - kind: 1
@@ -55,27 +55,9 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: fadeBlurred
-    arg: 
-    value: 2.5
-    async: 0
-    note: 
-  - kind: 2
-    key: eyeFade
-    arg: 
-    value: 3
-    async: 0
-    note: 
-  - kind: 2
-    key: cutToBlack
+    key: closing
     arg: 
     value: 0
-    async: 0
-    note: 
-  - kind: 5
-    key: 
-    arg: 
-    value: 2.5
     async: 0
     note: 
   explore: []

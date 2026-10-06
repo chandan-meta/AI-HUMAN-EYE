@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
   id: Scene02
   title: Meet Niko
-  checkpoint: Dark room from the door end; the cinematic power-up (skippable) ends
-    on the establishing view with a faint human silhouette on the pedestal; Niko
-    hidden; the selected eye in its socket; nothing explored.
+  checkpoint: Dark room from the door end; the directed entrance (skippable) ends
+    on the establishing view with the spotlit human; Niko hidden; the selected eye
+    in its socket; nothing explored.
   topics:
   - external_structures
   steps:
@@ -29,13 +29,19 @@ MonoBehaviour:
   - kind: 2
     key: nikoAppear
     arg: 
-    value: 1.2
-    async: 0
+    value: 1
+    async: 1
     note: 
   - kind: 0
     key: S02_NikoMedium
     arg: 
-    value: 1.8
+    value: 1.4
+    async: 1
+    note: 
+  - kind: 2
+    key: sfx
+    arg: materialise
+    value: 0.6
     async: 0
     note: 
   - kind: 1
@@ -56,27 +62,40 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
+  - kind: 2
+    key: niko
+    arg: Present
+    value: 2.4
+    async: 0
+    note: 
+  - kind: 0
+    key: S02_DisplayWide
+    arg: 
+    value: 1.6
+    async: 1
+    note: 
+  - kind: 2
+    key: humanReveal
+    arg: 
+    value: 1.4
+    async: 1
+    note: 
   - kind: 1
     key: S02_L03
     arg: 
     value: 0
     async: 0
     note: 
-  - kind: 0
-    key: S02_DisplayWide
-    arg: 
-    value: 1.8
-    async: 1
-    note: 
-  - kind: 2
-    key: humanReveal
-    arg: 
-    value: 1.6
-    async: 0
-    note: 
   - kind: 1
     key: S02_L04
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: info
+    arg: Niko's scanner is ready. Press Scan Eye in the panel to look inside the
+      subject.
     value: 0
     async: 0
     note: 
@@ -101,7 +120,7 @@ MonoBehaviour:
   - kind: 0
     key: S02_ScanFront
     arg: 
-    value: 1.2
+    value: 1
     async: 0
     note: 
   - kind: 2
@@ -116,28 +135,22 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
+  - kind: 0
+    key: S02_EyeInSkull
+    arg: 
+    value: 1.6
+    async: 1
+    note: 
   - kind: 1
     key: S02_L06
     arg: 
     value: 0
     async: 0
     note: 
-  - kind: 0
-    key: S02_EyeInSkull
-    arg: 
-    value: 2
-    async: 0
-    note: 
   - kind: 1
     key: S02_L07
     arg: 
     value: 0
-    async: 0
-    note: 
-  - kind: 5
-    key: 
-    arg: 
-    value: 1.5
     async: 0
     note: 
   - kind: 2
@@ -155,19 +168,25 @@ MonoBehaviour:
   - kind: 0
     key: S02_EyeHero
     arg: 
-    value: 2.4
+    value: 2.2
     async: 1
     note: 
   - kind: 2
     key: enlarge
     arg: 
-    value: 2.4
+    value: 2.2
     async: 0
     note: 
   - kind: 2
     key: nikoMove
     arg: EyeLeft
-    value: 1.4
+    value: 1.2
+    async: 1
+    note: 
+  - kind: 2
+    key: info
+    arg: 
+    value: 0
     async: 0
     note: 
   - kind: 1
@@ -197,8 +216,8 @@ MonoBehaviour:
   - kind: 2
     key: sequence
     arg: sclera,cornea,iris,pupil
-    value: 0.6
-    async: 0
+    value: 0.5
+    async: 1
     note: 
   - kind: 1
     key: S02_L10
@@ -222,7 +241,7 @@ MonoBehaviour:
     key: S02_EyeHero
     arg: 
     value: 1
-    async: 0
+    async: 1
     note: 
   - kind: 2
     key: niko
@@ -233,6 +252,12 @@ MonoBehaviour:
   - kind: 1
     key: S02_L15
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: info
+    arg: Press Explore Inside in the panel to open the eye.
     value: 0
     async: 0
     note: 
@@ -264,12 +289,6 @@ MonoBehaviour:
       value: 0
       async: 0
       note: 
-    - kind: 5
-      key: 
-      arg: 
-      value: 0.8
-      async: 0
-      note: 
   - partId: cornea
     label: Cornea
     steps:
@@ -277,12 +296,6 @@ MonoBehaviour:
       key: S02_L12
       arg: 
       value: 0
-      async: 0
-      note: 
-    - kind: 5
-      key: 
-      arg: 
-      value: 0.8
       async: 0
       note: 
   - partId: iris
@@ -294,12 +307,6 @@ MonoBehaviour:
       value: 0
       async: 0
       note: 
-    - kind: 5
-      key: 
-      arg: 
-      value: 0.8
-      async: 0
-      note: 
   - partId: pupil
     label: Pupil
     steps:
@@ -307,11 +314,5 @@ MonoBehaviour:
       key: S02_L14
       arg: 
       value: 0
-      async: 0
-      note: 
-    - kind: 5
-      key: 
-      arg: 
-      value: 0.8
       async: 0
       note: 

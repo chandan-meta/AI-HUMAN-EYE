@@ -20,6 +20,12 @@ MonoBehaviour:
   - optic_nerve
   steps:
   - kind: 2
+    key: labels
+    arg: focus:optic_nerve
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
     key: signals
     arg: nerve
     value: 1
@@ -44,27 +50,21 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 0
-    key: S09_Wide
-    arg: 
-    value: 1.8
-    async: 0
-    note: 
-  - kind: 6
-    key: item:brain_predict
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 0
     key: S04_BrainClose
     arg: 
     value: 2
-    async: 0
+    async: 1
     note: 
   - kind: 2
     key: glow
     arg: visual_area
     value: 0.9
+    async: 0
+    note: 
+  - kind: 2
+    key: labels
+    arg: focus:visual_area
+    value: 0
     async: 0
     note: 
   - kind: 1
@@ -97,11 +97,23 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
+  - kind: 2
+    key: labels
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: imageInset
+    arg: hide
+    value: 0
+    async: 0
+    note: 
   - kind: 0
     key: S09_Wide
     arg: 
     value: 2
-    async: 0
+    async: 1
     note: 
   - kind: 6
     key: topic:optic_nerve
@@ -109,8 +121,8 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 7
-    key: signals
+  - kind: 6
+    key: topic:inverted_image
     arg: 
     value: 0
     async: 0

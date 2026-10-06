@@ -54,8 +54,7 @@ namespace HumanEye
         public LabNavigation navigation;
         float[] roomBase;
 
-        public bool LabelsOn { get; private set; }
-        public string Simulation { get; private set; }  // which SIMULATE panel is showing
+        public string Simulation { get; private set; }  // which experiment controls the panel shows
         public float Brightness { get; private set; } = .5f;
         public float ObjectDistance { get; private set; } = 7;
 
@@ -88,6 +87,11 @@ namespace HumanEye
             if (actions.Count > 0) return;
             RegisterCommon(); RegisterScene02(); RegisterScene03(); RegisterOptics(); RegisterSignals(); RegisterEnding();
         }
+
+        void OnEnable() { narrator.Completed += LineDone; }
+        void OnDisable() { narrator.Completed -= LineDone; }
+        /// After every line Niko looks back at the learner, so he is never left staring at a part.
+        void LineDone(DialogueDatabase.Cue cue, NarrationSource source, string how) { niko.lookTarget = lookCamera; }
 
         public IEnumerator Run(string action, string arg, float value)
         {
@@ -149,7 +153,7 @@ namespace HumanEye
             ShowHint(null, 0);
             Clock.Frozen = false;
             spin = false; orbit = Quaternion.identity;
-            LabelsOn = false; hud.labels.Clear();
+            hud.labels.Clear();
             Simulation = null;
             // The supplied exterior is static; use the animated teaching geometry for the pupil response.
             foreach (var p in eye.parts) p.UseImportedExterior = c.id != "Scene05";
@@ -169,10 +173,9 @@ namespace HumanEye
             IntroReset();
             RenderSettings.ambientIntensity = 1;
             observatory.SetActive(true);
-            SetBlur(0);
-            SetEyeFade(1);
             hud.Fade(0);
-            hud.HideInsets();
+            hud.HideInsets(); hud.Info(null);
+            if (c.id != "Scene02" && runner.Started) sfx.Play("chapter", .5f);
             switch (c.id)
             {
                 case "Scene02": EnterScene02(); break;
@@ -244,11 +247,12 @@ namespace HumanEye
             hud.labels.Clear();
             sfx.Play("select");
             spin = false;
-            yield return Routine.Tween(Short ? .2f : .8f, t => eye.transform.localRotation = Quaternion.Slerp(eye.transform.localRotation, Quaternion.identity, t));
+            yield return Routine.Tween(Short ? .2f : .5f, t => eye.transform.localRotation = Quaternion.Slerp(eye.transform.localRotation, Quaternion.identity, t));
             orbit = Quaternion.identity; cams.ResetZoom();
             Isolate(id);
             var shot = (runner.Chapter.id == "Scene02" ? "S02_Part_" : "S03_Part_") + id;
-            if (cams.Has(shot)) yield return cams.MoveTo(shot, 1.3f);
+            if (cams.Has(shot)) runner.RunSide(cams.MoveTo(shot, 1.1f));   // the label and the line start while the camera settles
+            yield return new Wait(Short ? .1f : .35f);
             ShowLabels("focus:" + id);
         }
 
@@ -265,15 +269,15 @@ namespace HumanEye
         public IEnumerator ReturnFromPart(string id)
         {
             hud.labels.Clear();
-            yield return new Wait(.5f);
             RestoreParts();
-            yield return cams.MoveTo(runner.Chapter.id == "Scene02" ? "S02_EyeHero" : "S03_InsideHero", 1.2f);
+            yield return cams.MoveTo(runner.Chapter.id == "Scene02" ? "S02_EyeHero" : "S03_InsideHero", 1.0f);
             OnExplore(true);
             if (runner.Chapter.id == "Scene02") spin = true;
         }
 
         void Isolate(string id)
         {
+            sfx.Play("isolate", .45f);
             foreach (var p in eye.parts)
             {
                 bool me = p.id == id;
@@ -374,12 +378,12 @@ namespace HumanEye
         }
 
         // ---------- labels ----------
-        public void ToggleLabels() { LabelsOn = !LabelsOn; ShowLabels(LabelsOn ? "scan" : null); }
-
+        /// Label sets: "explore" (tappable part labels), "focus:<id>" (the structure being explained), "scan" (every visible
+        /// structure), "journey" (the stages of the whole process), "" or null (none). Only lesson-driven; no manual toggle.
         public void ShowLabels(string set)
         {
             hud.labels.Clear();
-            if (set == null || !SaveSystem.Data.settings.labels) return;
+            if (string.IsNullOrEmpty(set) || !SaveSystem.Data.settings.labels) return;
             if (set == "explore")
             {
                 foreach (var e in runner.Chapter.explore)
@@ -389,10 +393,16 @@ namespace HumanEye
                 }
                 return;
             }
+            sfx.Play("label", .5f);
             if (set.StartsWith("focus:")) { var p = Part(set.Substring(6)); if (p) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null); return; }
-            foreach (var p in VisibleStructures()) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null);
+            var structures = set == "journey" ? JourneyStructures() : VisibleStructures();
+            foreach (var p in structures) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null);
             foreach (var extra in ExtraLabels(set)) hud.labels.Add(extra.text, extra.anchor, extra.target, null);
         }
+
+        /// From above the eye is small, so the overview labels the eye once (at its lens), the nerve and the brain; the chips list every stage.
+        IEnumerable<AnatomyPart> JourneyStructures() =>
+            new[] { "lens", "optic_nerve" }.Select(eye.Get).Where(p => p && p.Visible).Append(brain);
 
         IEnumerable<AnatomyPart> VisibleStructures()
         {
@@ -416,53 +426,38 @@ namespace HumanEye
             if (tier >= 2) foreach (var p in targets) p.SetGlow(.8f);
         }
 
-        // ---------- abilities: SCAN, INSIDE, SIMULATE, TRACE, FREEZE, REPLAY ----------
+        // ---------- panel actions: SCAN (Scan Eye), INSIDE (Explore Inside), FREEZE, REPLAY ----------
         public bool Ability(string ability, out string reason)
         {
             reason = null;
-            if (Clock.Paused) { reason = "Resume the investigation to use this tool."; return false; }
-            if (activities.Card != null) { reason = "Finish or skip the optional question first."; return false; }
-            if (DemoBusy && ability is "TRACE" or "REPLAY" or "INSIDE") { reason = "The demonstration is playing. You can freeze it or wait for it to finish."; return false; }
-            var s = runner.State; var c = runner.Chapter?.id;
-            bool free = runner.FreeMode != null || s == LessonState.Exploring || s == LessonState.AwaitingAction;
+            if (Clock.Paused) { reason = "Resume the investigation to use this."; return false; }
+            if (activities.Card != null) { reason = "Finish the quick check first."; return false; }
+            if (DemoBusy && ability is "REPLAY" or "INSIDE") { reason = "The demonstration is playing. You can freeze it or wait for it to finish."; return false; }
+            var c = runner.Chapter?.id;
             switch (ability)
             {
                 case "SCAN":
                     if (runner.Awaiting == "scan") return true;
-                    if (c == "Scene02" && !SaveSystem.Data.cues.Exists(r => r.id == "S02_L05")) { reason = "Niko will ask you to scan in a moment."; return false; }
-                    if (!free) { reason = "Available when Niko finishes speaking."; return false; }
-                    return true;
+                    reason = c == "Scene02" ? "Niko will ask you to scan in a moment." : "The subject has already been scanned."; return false;
                 case "INSIDE":
                     if (runner.Awaiting == "inside") return true;
-                    if (c == "Scene02") { reason = "Explore the sclera, cornea, iris and pupil first."; return false; }
-                    if (c == "Scene08") { reason = "We're already inside the retina."; return false; }
-                    if (!free) { reason = "Available when Niko finishes speaking."; return false; }
-                    return true;
-                case "SIMULATE":
-                    if (SimulationFor(c) == null) { reason = "There's nothing to simulate in this part of the investigation."; return false; }
-                    if (runner.Awaiting is "brighter" or "dimmer" or "near" or "distant") return true;
-                    if (runner.FreeMode == null) { reason = "Unlocks after Niko's demonstration."; return false; }
-                    return true;
-                case "TRACE":
-                    if (TraceRoute(c) == null) { reason = "There is no light or signal route to trace here yet."; return false; }
-                    if (runner.FreeMode == null) { reason = "Unlocks after Niko's explanation."; return false; }
-                    return true;
+                    reason = c == "Scene02" ? "Explore the sclera, cornea, iris and pupil first." : "We are already inside the eye."; return false;
                 case "FREEZE":
                     if (Clock.Frozen) return true;
-                    if (runner.FreeMode == null && runner.State != LessonState.AwaitingAction) { reason = "Available after Niko's explanation."; return false; }
-                    if (c is "Scene02" or "Scene03" or "Scene11") { reason = "Nothing is moving right now."; return false; }
+                    if (runner.FreeMode == null) { reason = "Available during the experiments."; return false; }
                     return true;
                 case "REPLAY":
-                    if (runner.FreeMode == null) { reason = "Available after Niko's explanation."; return false; }
+                    if (runner.FreeMode == null) { reason = "Available during the experiments."; return false; }
                     if (ReplayFor(c) == null) { reason = "Use Replay explanation to hear Niko again."; return false; }
                     return true;
             }
-            reason = "Unknown ability."; return false;
+            reason = "Unknown action."; return false;
         }
 
-        public string AbilityLabel(string ability) =>
-            ability == "INSIDE" && (runner.Awaiting == "inside" || runner.Chapter?.id == "Scene02") ? "Inside View"
-            : ability == "FREEZE" && Clock.Frozen ? "UNFREEZE" : ability;
+        public string AbilityLabel(string ability) => ability switch
+        {
+            "SCAN" => "Scan Eye", "INSIDE" => "Explore Inside", "FREEZE" => Clock.Frozen ? "Unfreeze" : "Freeze", "REPLAY" => "Replay demo", _ => ability,
+        };
 
         public void UseAbility(string ability)
         {
@@ -471,20 +466,15 @@ namespace HumanEye
             sfx.Play("tap", .6f);
             switch (ability)
             {
-                case "SCAN": if (runner.Awaiting == "scan") runner.Press("scan"); else ToggleLabels(); break;
-                case "INSIDE": if (!runner.Press("inside")) RunDemo(cams.MoveTo(InsideShot(runner.Chapter.id), 1.2f)); break;
-                case "SIMULATE": Simulation = Simulation == null ? SimulationFor(runner.Chapter.id) : null; hud.Refresh(); break;
-                case "TRACE": Clock.Frozen = false; RunDemo(Trace(TraceRoute(runner.Chapter.id))); break;
+                case "SCAN": runner.Press("scan"); break;                       // Press() ignores repeats, so a double click never scans twice
+                case "INSIDE": runner.Press("inside"); break;
                 case "FREEZE": runner.SetFrozen(!Clock.Frozen); hud.Toast(Clock.Frozen ? "Frozen: the biology is paused. Menus still work." : "Unfrozen."); break;
                 case "REPLAY": Clock.Frozen = false; RunDemo(Run(ReplayFor(runner.Chapter.id), "replay", 0)); break;
             }
         }
 
-        string InsideShot(string chapter) => chapter switch { "Scene05" or "Scene06" or "Scene07" => "S06_Vitreous", "Scene04" or "Scene09" or "Scene10" => "S03_InsideHero", _ => "S03_InsideHero" };
-
-        string SimulationFor(string c) => runner.FreeMode == "focus" ? "lens" : c switch { "Scene05" => "brightness", "Scene06" => "distance", "Scene08" => "photoreceptors", _ => null };
+        string SimulationFor(string c) => c switch { "Scene05" => "brightness", "Scene06" => "distance", "Scene08" => "photoreceptors", _ => null };
         static string ReplayFor(string c) => c switch { "Scene04" => "traceNerve", "Scene05" => "replayLight", "Scene06" => "replayAccommodation", "Scene07" => "replayImage", "Scene08" => "replayDetection", "Scene09" => "replaySignals", "Scene10" => "journey", _ => null };
-        static string TraceRoute(string c) => c switch { "Scene04" or "Scene09" => "nerve", "Scene05" or "Scene06" or "Scene07" or "Scene10" => "light", "Scene08" => "retina", _ => null };
 
         // ---------- Ask Niko: whitelisted guide actions ----------
         public bool CanGuideAction(string action, out string reason)
@@ -501,7 +491,7 @@ namespace HumanEye
                     if (runner.Chapter?.id != "Scene06") { reason = "We'll compare near and distant objects when we study the lens."; return false; }
                     if (runner.FreeMode != "focus") { reason = "Use the Near and Distant buttons to run Niko's demonstration."; return false; }
                     return true;
-                case "SCAN": case "INSIDE": case "TRACE": case "FREEZE": case "REPLAY": case "SIMULATE":
+                case "SCAN": case "INSIDE": case "FREEZE": case "REPLAY":
                     return Ability(action, out reason);
                 case "resetView": return true;
             }
@@ -517,7 +507,7 @@ namespace HumanEye
                 case "replay": hud.ReplayExplanation(); break;
                 case "brighter": SetBrightness(Mathf.Min(1, Brightness + .3f)); break;
                 case "dimmer": SetBrightness(Mathf.Max(0, Brightness - .3f)); break;
-                case "near": case "distant": Simulation = SimulationFor(runner.Chapter.id); UseControl(action); break;   // moves the object; focusing stays the learner's job
+                case "near": case "distant": Simulation = SimulationFor(runner.Chapter.id); UseControl(action); break;
                 case "resetView": ResetView(); break;
                 default: UseAbility(action); break;
             }

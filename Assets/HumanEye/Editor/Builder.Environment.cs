@@ -143,15 +143,8 @@ namespace HumanEye.EditorTools
             profile.Add<Tonemapping>().mode.Override(TonemappingMode.Neutral);
             profile.Add<Vignette>().intensity.Override(.2f);
             post.sharedProfile = SaveProfile(profile, "PostProfile");
-            var blur = new GameObject("Blur (Scene 11 depth of field)").AddComponent<Volume>();
-            blur.isGlobal = true; blur.priority = 1; blur.weight = 0;
-            var blurProfile = ScriptableObject.CreateInstance<VolumeProfile>();
-            var dof = blurProfile.Add<DepthOfField>(); dof.mode.Override(DepthOfFieldMode.Gaussian);
-            dof.gaussianStart.Override(3); dof.gaussianEnd.Override(9); dof.gaussianMaxRadius.Override(1.5f); dof.highQualitySampling.Override(true);
-            blur.sharedProfile = SaveProfile(blurProfile, "BlurProfile");
-
             stage.observatory = env.gameObject; stage.keyLight = keyLight; stage.displayLight = displayLight;
-            stage.post = post; stage.blurVolume = blur; stage.beamRenderers = beams.ToArray();
+            stage.post = post; stage.beamRenderers = beams.ToArray();
             // One room capture on load, not a six-camera render every frame.
             var reflection = new GameObject("Observatory Reflection").AddComponent<ReflectionProbe>();
             reflection.transform.SetParent(env); reflection.transform.position = new Vector3(0, 2, 0);

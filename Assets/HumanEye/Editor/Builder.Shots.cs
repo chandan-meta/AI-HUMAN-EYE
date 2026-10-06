@@ -84,8 +84,10 @@ namespace HumanEye.EditorTools
             // Scenes 10–11.
             Shot("S10_Complete", null, new Vector3(-.2f, 1.7f, -2.65f), new Vector3(0, 1.5f, .6f), 34);
             Shot("S10_Journey", null, new Vector3(-.3f, 2.35f, -6.1f), new Vector3(-.3f, 1.5f, .9f), 46);
+            Shot("S10_Overview", null, WowPatch.OverviewPos, WowPatch.OverviewLook, WowPatch.OverviewFov);   // overhead teaching layout
             Shot("S11_Eye", null, new Vector3(.1f, 1.6f, -2.0f), new Vector3(0, 1.5f, .6f), 30);
             Shot("S11_NearFar", null, new Vector3(.65f, 1.62f, -.75f), new Vector3(-3, 1.5f, .35f), 40);
+            Shot("S11_Closing", null, WowPatch.ClosingPos, WowPatch.ClosingLook, WowPatch.ClosingFov);   // Niko beside the eye for the last line
 
             stage.followShot = Shot("Follow (TRACE)", null, Vector3.zero, Vector3.forward, 34);
         }

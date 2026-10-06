@@ -35,6 +35,8 @@ namespace HumanEye
         IEnumerator ClickUI(Button b)
         {
             yield return null;
+            // The lesson can move on during that frame (e.g. the intro ends and Skip is hidden); that is a state change, not a blocked pointer.
+            if (!b.gameObject.activeInHierarchy) { Log("check", b.name + " was no longer shown when the click arrived (state changed)"); yield break; }
             // Scroll to controls below a modal's viewport before attempting a real hit.
             var scroll = b.GetComponentInParent<ScrollRect>();
             if (scroll && scroll.vertical)
@@ -138,14 +140,14 @@ namespace HumanEye
         IEnumerator CheckDemoStress()
         {
             demoChecked = true;
-            yield return ClickUI("ab-TRACE");
-            for (int i = 0; i < 8; i++) stage.UseAbility("TRACE");
-            Check(stage.DemoBusy && !stage.Ability("TRACE", out _), "Rapid TRACE requests cannot start overlapping demonstrations");
+            yield return ClickUI("ab-REPLAY");
+            for (int i = 0; i < 8; i++) stage.UseAbility("REPLAY");
+            Check(stage.DemoBusy && !stage.Ability("REPLAY", out _), "Rapid REPLAY requests cannot start overlapping demonstrations");
             yield return Real(.5f);
             runner.SetPaused(true);
-            var position = cams.brain.transform.position;
+            var position = cams.brain.transform.position; float pupil = stage.eye.PupilRadius;
             yield return new WaitForSecondsRealtime(.3f);
-            Check(Vector3.Distance(position, cams.brain.transform.position) < .005f, "Pause holds camera during TRACE");
+            Check(Vector3.Distance(position, cams.brain.transform.position) < .005f && Mathf.Approximately(pupil, stage.eye.PupilRadius), "Pause holds camera and biology during REPLAY");
             runner.SetPaused(false);
             stage.UseAbility("FREEZE");
             Check(Clock.Frozen, "FREEZE works while a demonstration plays");

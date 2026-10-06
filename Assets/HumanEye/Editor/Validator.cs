@@ -26,7 +26,7 @@ namespace HumanEye.EditorTools
         static readonly Dictionary<string, int> SceneCounts = new()
         { ["Scene02"] = 16, ["Scene03"] = 12, ["Scene04"] = 8, ["Scene05"] = 8, ["Scene06"] = 4, ["Scene07"] = 3, ["Scene08"] = 6, ["Scene09"] = 4, ["Scene10"] = 2, ["Scene11"] = 3 };
         static readonly string[] AwaitKeys = { "scan", "inside", "brighter", "dimmer", "near", "distant" };
-        static readonly string[] FreeModes = { "routeTrace", "brightness", "focus", "inspectImage", "photoreceptors", "signals", "summary" };
+        static readonly string[] FreeModes = { "brightness", "photoreceptors" };
         static readonly string[] PartIds = { "sclera", "cornea", "iris", "pupil", "aqueous", "lens", "vitreous", "retina", "choroid", "optic_nerve", "brain", "visual_area", "rods", "cones" };
 
         public class Report { public readonly List<string> errors = new(), warnings = new(), passed = new(); }
@@ -184,7 +184,7 @@ namespace HumanEye.EditorTools
             r.passed.Add("All chapter shots exist and all chapter/question actions are whitelisted");
             foreach (var shot in new[] { "S02_EstablishA", "S02_EyeHero", "S03_InsideHero", "S05_ObjectWide", "S05_AqueousPupil", "S06_Vitreous", "S07_RetinaCloser", "S08_MicroWide", "S09_RetinaNerve", "S09_Wide", "S10_Complete" })
                 Check(r, shotNames.Contains(shot), $"Checkpoint shot {shot} exists");
-            var allowNull = new HashSet<string> { "irisPick", "lookTarget", "gestureTarget", "focusCut", "labelAnchorCut", "focus", "labelAnchor", "font", "lamp", "lampLight", "targetTop", "targetBottom", "space" };
+            var allowNull = new HashSet<string> { "irisPick", "lookTarget", "gestureTarget", "focusCut", "labelAnchorCut", "focus", "labelAnchor", "font", "lamp", "lampLight", "targetTop", "targetBottom", "space", "imageQuad" };
             int nulls = 0;
             foreach (var mb in Object.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(m => m.GetType().Namespace == "HumanEye"))
                 foreach (var f in mb.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
@@ -238,7 +238,8 @@ namespace HumanEye.EditorTools
             ["S08_RetinaPush"] = "Into the retina", ["S08_MicroWide"] = "Magnified retina: photoreceptors", ["S08_Rods"] = "Rods", ["S08_Cones"] = "Cones", ["S08_Signals"] = "Signals through retinal cells",
             ["S08_PullBack"] = "Photoreceptors, retina and optic nerve together", ["S09_RetinaNerve"] = "Signals leaving through the optic nerve", ["S09_Perception"] = "Original object, clearly (perception)",
             ["S09_Wide"] = "Eye, nerve and brain (Scene 4 continuity)", ["S10_Complete"] = "Complete eye", ["S10_Journey"] = "Whole pathway: object → eye → nerve → brain",
-            ["S11_Eye"] = "Complete eye", ["S11_NearFar"] = "Near object sharp, distant object blurred",
+            ["S11_Eye"] = "Complete eye", ["S11_NearFar"] = "Near apple and distant tree together (both sharp)",
+            ["S10_Overview"] = "Overhead teaching layout: object, eye, route and brain together", ["S11_Closing"] = "Niko beside the eye for the closing line",
         };
 
         static string Framing(CinemachineCamera c) => c.Lens.FieldOfView >= 38 ? "wide" : c.Lens.FieldOfView >= 29 ? "medium" : c.Lens.FieldOfView >= 21 ? "close-up" : "extreme close-up";
@@ -250,8 +251,8 @@ namespace HumanEye.EditorTools
             StepKind.Say => "Pause, Help, Settings, Ask Niko (held to the end of the line)",
             StepKind.Await => "The awaited control (click/tap); orbit/zoom; Pause; Ask Niko",
             StepKind.Explore => "Tap a highlighted part, its label or the Parts list; Ask Niko; orbit/zoom",
-            StepKind.Offer => "Answer, Hint/Show me, Skip/Continue anyway",
-            StepKind.Free => "Abilities (SIMULATE/TRACE/FREEZE/REPLAY), view controls, Continue",
+            StepKind.Offer => "Answer, hint, Show me (after two misses), Continue anyway (after a miss)",
+            StepKind.Free => "Experiment controls, Freeze/Replay, view controls, Continue",
             _ => "Pause, Help, Settings",
         };
 
@@ -263,7 +264,7 @@ namespace HumanEye.EditorTools
             StepKind.Await => $"Learner action '{s.key}'",
             StepKind.Explore => "Every listed part's explanation finished",
             StepKind.Hold => $"{s.value:0.#} s inspection hold",
-            StepKind.Offer => "Activity finished or skipped",
+            StepKind.Offer => "Check answered (help after misses; answer shown after three)",
             StepKind.Free => "Learner taps Continue",
             _ => "",
         };

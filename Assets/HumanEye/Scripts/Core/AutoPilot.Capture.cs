@@ -20,6 +20,15 @@ namespace HumanEye
                 canvas.renderMode = RenderMode.ScreenSpaceCamera; canvas.worldCamera = cam; canvas.planeDistance = .1f;
                 Canvas.ForceUpdateCanvases();
                 yield return null; yield return new WaitForEndOfFrame();
+                // The camera's lens shift (ViewportShift) moves everything it renders left; the overlay UI is unaffected in play,
+                // so move the camera-space canvas right by the same amount to capture what the learner sees.
+                var shift = cam.GetComponent<ViewportShift>();
+                if (shift && shift.enabled)
+                {
+                    float f = Mathf.Min(shift.columnPixels / Mathf.Max(1, Screen.width), ViewportShift.MaxShift);
+                    float halfWidth = canvas.planeDistance * Mathf.Tan(cam.fieldOfView * Mathf.Deg2Rad * .5f) * cam.aspect;
+                    canvas.transform.position += cam.transform.right * (f * halfWidth);
+                }
                 // A hidden window does not run the normal camera loop, so render-texture cameras (the retinal image)
                 // would stay blank in captures; render them first so the capture shows what a visible window shows.
                 foreach (var c in Camera.allCameras)

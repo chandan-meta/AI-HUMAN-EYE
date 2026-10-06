@@ -97,18 +97,15 @@ Content layers:
 
 ## Controls (mouse and touch are equivalent)
 
-- **Tap or click** a glowing part, its label, or the **Parts** list to explore it.
-- **Drag** on the model to turn it. **View** buttons rotate, zoom and reset; the mouse wheel and two-finger pinch are optional.
-- **Niko's abilities:**
-  - **SCAN** identifies structures.
-  - **INSIDE** moves inside the eye. It reads **Inside View** at the Scene 2 transition.
-  - **SIMULATE** controls brightness (Dim/Bright presets, −/+, slider), Near/Distant plus a distance slider, or dim/bright light on photoreceptors.
-  - **TRACE** follows the light or signal route.
-  - **FREEZE** stops the biology mid-action; menus keep working.
-  - **REPLAY** repeats the chapter's demonstration from its known start state.
-- **Top bar:** Ask Niko, Replay explanation, Pause/Resume, Help (includes credits), Review (topic status, replay links, optional practice), Settings.
+- **Right-hand column.** The upper information panel shows Niko's portrait and status, the chapter, the current instruction, short information blocks and the captions, with **Talk to Niko** always in the same place. The lower **View / Activities** panel holds the actions, experiment controls, the Parts list, the view controls, the retinal-image popup and the journey stages; quick checks, the end card and the Ask Niko sheet overlay its lower half.
+- **Tap or click** a glowing part, its label, or the **Parts** list to explore it. **Drag** on the model to turn it. **View** buttons rotate, zoom and reset; the mouse wheel and two-finger pinch are optional.
+- **Scan Eye** (Scene 2, when Niko asks) and **Explore Inside** (after the four outer parts) are the only gated actions. **Freeze** and **Replay demo** appear during the two hands-on experiments (brightness in Scene 5, light level on the photoreceptors in Scene 8); each experiment ends with Continue.
+- **Quick checks** have no Skip: a wrong answer gets a hint, then a comparison, then a worked demonstration, and the answer is shown after three misses with Continue.
+- **Top bar:** progress dots, Replay explanation, Pause/Resume, Help (includes credits), Review (topic status, replay links, optional practice), Settings.
 - **Settings:** subtitle on/off and size, separate narration/music/effects volumes, reduced motion, skip camera travel, wait-for-Continue after each line, labels, quality (Auto/PC/Tablet), and reset all progress.
 - Unavailable buttons stay visible but dimmed. Tapping one explains why.
+
+See `Polish/WOW_REDESIGN_2026-10-06.md` for the presentation redesign (introduction, pacing, Niko, labels, rods/cones, ending, sound).
 
 ## Configuration (`Assets/HumanEye/Data/ModuleConfig.asset`)
 

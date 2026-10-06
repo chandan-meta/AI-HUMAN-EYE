@@ -35,27 +35,28 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Cull: 0
+    - _Cutoff: 0
     - _DetailSpan: 1.75
-    - _DetailStrength: 0.32
+    - _DetailStrength: 0.27
     - _DstBlend: 0
     - _F0: 0.3
     - _Flow: 0
-    - _Gloss: 0.62
+    - _Gloss: 0.6
     - _Highlight: 0
     - _HighlightTint: 0.1
     - _InteriorDark: 0
     - _Reveal: 1
-    - _Rim: 0.08
-    - _Specular: 0.35
+    - _Rim: 0.16
+    - _Specular: 0.42
     - _SrcBlend: 1
-    - _Wrap: 0.55
+    - _Wrap: 0.72
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.95, g: 0.93, b: 0.9, a: 1}
+    - _BaseColor: {r: 0.96, g: 0.94, b: 0.9, a: 1}
     - _DetailAxis: {r: 0, g: 0, b: 1, a: 0}
     - _DetailColor: {r: 0.72, g: 0.12, b: 0.1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _HighlightColor: {r: 0.14999998, g: 0.85, b: 1, a: 1}
-    - _RimColor: {r: 0.54999995, g: 0.8, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 0.9, b: 0.85, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

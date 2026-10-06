@@ -22,19 +22,25 @@ MonoBehaviour:
   - kind: 0
     key: S06_LensClose
     arg: 
-    value: 2
+    value: 1.8
+    async: 1
+    note: 
+  - kind: 2
+    key: isolate
+    arg: lens
+    value: 0
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: lens
-    value: 0.6
+    key: labels
+    arg: focus:lens
+    value: 0
     async: 0
     note: 
   - kind: 2
     key: lightTravel
     arg: 4
-    value: 2.5
+    value: 2.2
     async: 1
     note: 
   - kind: 1
@@ -44,14 +50,20 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: glow
-    arg: lens
+    key: restore
+    arg: 
     value: 0
     async: 0
     note: 
   - kind: 2
     key: distanceControls
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: info
+    arg: Press Near object in the panel to bring the apple close.
     value: 0
     async: 0
     note: 
@@ -64,7 +76,7 @@ MonoBehaviour:
   - kind: 0
     key: S06_NearWide
     arg: 
-    value: 1.4
+    value: 1.2
     async: 1
     note: 
   - kind: 2
@@ -76,12 +88,18 @@ MonoBehaviour:
   - kind: 0
     key: S06_LensClose
     arg: 
-    value: 1.4
-    async: 0
+    value: 1.2
+    async: 1
     note: 
   - kind: 1
     key: S06_L02
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: info
+    arg: Now press Distant object.
     value: 0
     async: 0
     note: 
@@ -94,7 +112,7 @@ MonoBehaviour:
   - kind: 0
     key: S06_FarView
     arg: 
-    value: 1.6
+    value: 1.4
     async: 1
     note: 
   - kind: 2
@@ -103,17 +121,11 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 5
-    key: 
-    arg: 
-    value: 1
-    async: 0
-    note: 
   - kind: 0
     key: S06_LensClose
     arg: 
-    value: 1.4
-    async: 0
+    value: 1.2
+    async: 1
     note: 
   - kind: 1
     key: S06_L03
@@ -127,26 +139,26 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 0
-    key: S06_Vitreous
-    arg: 
-    value: 2.2
-    async: 0
-    note: 
   - kind: 2
-    key: lightTravel
-    arg: 5
-    value: 2.5
-    async: 0
-    note: 
-  - kind: 6
-    key: topic:accommodation
+    key: labels
     arg: 
     value: 0
     async: 0
     note: 
-  - kind: 7
-    key: focus
+  - kind: 0
+    key: S06_Vitreous
+    arg: 
+    value: 2
+    async: 1
+    note: 
+  - kind: 2
+    key: lightTravel
+    arg: 5
+    value: 2.2
+    async: 0
+    note: 
+  - kind: 6
+    key: topic:accommodation
     arg: 
     value: 0
     async: 0

@@ -11,13 +11,13 @@ namespace HumanEye
     {
         public string title, tag, prompt, feedback, hint;
         public readonly List<(string id, string label, bool selected)> options = new();
-        public readonly List<string> slots = new();      // Order mode: placed stage labels
         public readonly List<string> buttons = new();
         public bool tapParts;
     }
 
-    /// Runs optional checks between storyboard beats. Never replaces a source explanation, never locks progress:
-    /// every card can be skipped or continued, and help moves from attention → comparison → worked demonstration.
+    /// Runs the quick checks at the approved checkpoints. There is no Skip: a wrong answer leads to help
+    /// (attention → comparison → worked demonstration), and after three misses the answer is shown with Continue,
+    /// so the check can never lock the learner. "Continue anyway" only appears after a real attempt.
     public class ActivityController : MonoBehaviour
     {
         public QuestionBank bank;
@@ -28,9 +28,8 @@ namespace HumanEye
         public event Action Changed;
 
         string clicked;
-        readonly List<string> placed = new();
 
-        public void Cancel() { Card = null; Item = null; clicked = null; placed.Clear(); Changed?.Invoke(); }
+        public void Cancel() { Card = null; Item = null; clicked = null; Changed?.Invoke(); }
 
         public void Click(string id) { if (Card != null) clicked = id; }
 
@@ -43,10 +42,9 @@ namespace HumanEye
 
         IEnumerator WaitClick() { clicked = null; Changed?.Invoke(); yield return new Until(() => clicked != null); }
 
-        // Outcome of the last Ask: skipped the whole check / answered correctly on the first try without help.
-        bool skipped, firstTry;
+        // Outcome of the last Ask: answered correctly on the first try without help.
+        bool firstTry;
 
-        /// Goes straight to the first question (no "Try it?" gate); "Skip" on any card skips the rest of the check.
         public IEnumerator Offer(string key, ChapterDefinition chapter)
         {
             var items = Plan(key, chapter);
@@ -56,15 +54,13 @@ namespace HumanEye
                 if (LearnerModel.Repetitive(previous, firstTry, item)) break;
                 Card = new ActivityCard { title = Title(item) };
                 yield return Ask(item);
-                if (skipped) break;
                 previous = item;
             }
             Cancel();
         }
 
         static string Title(QuestionBank.Item item) =>
-            item.mode == QuestionMode.Order ? "Optional: Rebuild the journey" : item.trialAfterAnswer ? "Predict, then test"
-            : item.level == QuestionLevel.Application ? "Challenge · apply it" : "Optional quick check";
+            item.trialAfterAnswer ? "Predict, then test" : item.level == QuestionLevel.Application ? "Challenge · apply it" : "Quick check";
 
         List<QuestionBank.Item> Plan(string key, ChapterDefinition chapter)
         {
@@ -81,7 +77,7 @@ namespace HumanEye
             for (int n = 0; n < 2; n++)
             {
                 var next = LearnerModel.Next(bank, d, topic, last);
-                if (next == null || list.Contains(next) || next.mode == QuestionMode.Order || next.trialAfterAnswer) break;
+                if (next == null || list.Contains(next) || next.trialAfterAnswer) break;
                 list.Add(next); last = next.id;
             }
             return list;
@@ -91,49 +87,29 @@ namespace HumanEye
         {
             Item = item;
             int mistakes = 0; bool assisted = false;
-            skipped = firstTry = false;
+            firstTry = false;
             // Tap-part questions: the answer structures must be pickable on the model, not only via the option buttons.
             var tappable = item.mode != QuestionMode.TapPart ? new List<AnatomyPart>()
                 : item.options.Select(o => stage.Part(o.partId)).Where(p => p && !p.Selectable).ToList();
             foreach (var p in tappable) p.Selectable = true;
-            placed.Clear();
-            var order = item.mode == QuestionMode.Order ? Shuffle(item.options) : item.options.ToList();
             string feedback = null, hint = null;
+            stage.sfx.Play("popup", .5f);
             while (true)
             {
-                Card = new ActivityCard { title = Card?.title ?? "Optional quick check", tag = item.tag, prompt = item.prompt, feedback = feedback, hint = hint, tapParts = item.mode == QuestionMode.TapPart };
-                if (item.mode == QuestionMode.Order)
-                {
-                    foreach (var o in order) Card.options.Add((o.text, o.text, placed.Contains(o.text)));
-                    Card.slots.AddRange(placed);
-                    if (placed.Count > 0) Card.buttons.Add("Undo");
-                    if (placed.Count == item.options.Count(o => o.correct)) Card.buttons.Add("Check");
-                }
-                else foreach (var o in order) Card.options.Add((o.text, o.text, false));   // TapPart: buttons are the accessible alternative to tapping the model
+                Card = new ActivityCard { title = Card?.title ?? "Quick check", tag = item.tag, prompt = item.prompt, feedback = feedback, hint = hint, tapParts = item.mode == QuestionMode.TapPart };
+                foreach (var o in item.options) Card.options.Add((o.text, o.text, false));   // TapPart: buttons are the accessible alternative to tapping the model
                 if (mistakes >= 2 && !string.IsNullOrEmpty(item.demo)) Card.buttons.Add("Show me");
-                Card.buttons.Add(mistakes > 0 ? "Continue anyway" : "Skip");
+                if (mistakes > 0) Card.buttons.Add("Continue anyway");
                 yield return WaitClick();
 
-                if (clicked == "Skip") { skipped = true; break; }
                 if (clicked == "Continue anyway") { MarkNeedsPractice(item); break; }
                 if (clicked == "Show me") { assisted = true; hint = item.hints.Length > 2 ? item.hints[2] : hint; feedback = null; yield return Demo(item, "hint"); continue; }
-                if (clicked == "Undo") { if (placed.Count > 0) placed.RemoveAt(placed.Count - 1); continue; }
-                if (item.mode == QuestionMode.Order && clicked != "Check")
-                {
-                    if (!placed.Contains(clicked)) placed.Add(clicked);
-                    continue;
-                }
 
-                bool correct; string wrongFeedback;
-                if (item.mode == QuestionMode.Order) correct = CheckOrder(item, out wrongFeedback);
-                else
-                {
-                    var answer = clicked.StartsWith("part:")
-                        ? Array.Find(item.options, o => o.partId == clicked.Substring(5))
-                        : Array.Find(item.options, o => o.text == clicked);
-                    correct = answer != null && answer.correct;
-                    wrongFeedback = answer?.feedback ?? "That structure isn't one of the choices here — have another look.";
-                }
+                var answer = clicked.StartsWith("part:")
+                    ? Array.Find(item.options, o => o.partId == clicked.Substring(5))
+                    : Array.Find(item.options, o => o.text == clicked);
+                bool correct = answer != null && answer.correct;
+                string wrongFeedback = answer?.feedback ?? "That structure isn't one of the choices here — have another look.";
 
                 if (item.trialAfterAnswer && !string.IsNullOrEmpty(item.demo))
                 {
@@ -163,9 +139,7 @@ namespace HumanEye
                 if (tier >= 3)
                 {
                     MarkNeedsPractice(item);
-                    var right = item.mode == QuestionMode.Order
-                        ? string.Join(" → ", item.options.Where(o => o.correct).Select(o => o.text))
-                        : string.Join(", ", item.options.Where(o => o.correct).Select(o => o.text));
+                    var right = string.Join(", ", item.options.Where(o => o.correct).Select(o => o.text));
                     Card = new ActivityCard { title = Card.title, tag = item.tag, prompt = item.prompt, feedback = feedback, hint = "Answer: " + right + ". We've noted this topic for a little more practice in the Review panel." };
                     Card.buttons.Add("Continue");
                     yield return WaitClick();
@@ -173,11 +147,11 @@ namespace HumanEye
                 }
                 hint = item.hints.Length >= tier ? item.hints[tier - 1] : null;
                 if (tier == 2) assisted = true;   // a retry after comparison help counts as assisted
-                if (item.mode == QuestionMode.Order) placed.Clear();
                 stage.ShowHint(item, tier);
             }
             stage.ShowHint(null, 0);
             foreach (var p in tappable) p.Selectable = false;
+            stage.sfx.Play("popdown", .4f);
             Item = null;
         }
 
@@ -189,31 +163,10 @@ namespace HumanEye
             if (routine != null) yield return routine;
         }
 
-        bool CheckOrder(QuestionBank.Item item, out string feedback)
-        {
-            var path = item.options.Where(o => o.correct).ToList();
-            for (int i = 0; i < placed.Count; i++)
-            {
-                var o = Array.Find(item.options, x => x.text == placed[i]);
-                // Partial understanding: acknowledge the stages already in the right order, then guide the missing link.
-                var kept = i == 0 ? "" : $"Your first {i} stage{(i > 1 ? "s are" : " is")} in the right order. ";
-                if (!o.correct) { feedback = kept + o.feedback; return false; }
-                if (i >= path.Count || path[i].text != placed[i]) { feedback = kept + path[Mathf.Min(i, path.Count - 1)].feedback; return false; }
-            }
-            feedback = null;
-            return placed.Count == path.Count;
-        }
-
         static void MarkNeedsPractice(QuestionBank.Item item)
         {
             if (LearnerModel.UnassistedCorrect(SaveSystem.Data, item.topic) < LearnerModel.SecureThreshold)
                 SaveSystem.AddOnce(SaveSystem.Data.needsPractice, item.topic);
-        }
-
-        static List<QuestionBank.Option> Shuffle(QuestionBank.Option[] options)
-        {
-            // Deterministic shuffle (stable between runs) so tests and screenshots are reproducible.
-            return options.OrderBy(o => (o.text.Aggregate(7, (h, ch) => h * 31 + ch) & 0x7fffffff) % 97).ThenBy(o => o.text).ToList();
         }
     }
 }

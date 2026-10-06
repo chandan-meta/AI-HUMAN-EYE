@@ -111,6 +111,7 @@ namespace HumanEye.EditorTools
                 A("Brain", new Vector3(.95f, .25f, -.75f), new Vector3(-.2f, 0, -1)),
                 A("Wide", new Vector3(-1.5f, .32f, -.45f), new Vector3(.3f, 0, -1)),
                 A("Micro", MicroPosition + new Vector3(-3.7f, .15f, -1.7f), new Vector3(.35f, 0, -1)),
+                A("Closing", WowPatch.ClosingAnchor, WowPatch.ClosingPos - WowPatch.ClosingAnchor),
             };
             var anchorRoot = new GameObject("Niko Anchors").transform;
             foreach (var a in anchors) a.SetParent(anchorRoot, true);

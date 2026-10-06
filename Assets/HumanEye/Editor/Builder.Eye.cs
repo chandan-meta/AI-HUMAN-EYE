@@ -26,7 +26,7 @@ namespace HumanEye.EditorTools
             Lathe.Arc(0, outer, 180, frontPhi, 36), Lathe.Line(P(outer, frontPhi), P(inner, frontPhi)), Lathe.Arc(0, inner, frontPhi, 180, 36),
         };
 
-        static List<Vector2[]> Shift(List<Vector2[]> profile, float dz) => profile.Select(c => c.Select(p => new Vector2(p.x, p.y + dz)).ToArray()).ToList();
+        internal static List<Vector2[]> Shift(List<Vector2[]> profile, float dz) => profile.Select(c => c.Select(p => new Vector2(p.x, p.y + dz)).ToArray()).ToList();
 
         static Dictionary<string, Material> EyeMaterials()
         {

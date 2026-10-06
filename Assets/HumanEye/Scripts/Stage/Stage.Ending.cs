@@ -1,26 +1,23 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 namespace HumanEye
 {
     public partial class Stage
     {
         [Header("Ending")]
-        public Volume blurVolume;
+        public AudioClip closingLine;   // supplemental spoken closing (not a ledger cue); the text is shown in the info panel
+        public const string ClosingText = "Now you've seen the whole journey. Every part has a role, and together they help you see the world.";
         public static readonly string[] Journey =
             { "Light from the object", "Cornea", "Aqueous humour", "Pupil", "Crystalline lens", "Vitreous humour", "Retina (photoreceptors)", "Optic nerve", "Brain" };
         static readonly string[] JourneyParts = { null, "cornea", "aqueous", "pupil", "lens", "vitreous", "retina", "optic_nerve", "visual_area" };
 
         void RegisterEnding()
         {
-            actions["journey"] = (_, __) => JourneyReplay();
-            actions["blurDemo"] = (_, seconds) => BlurDemo(seconds > 0 ? seconds : 3.5f);
-            actions["fadeBlurred"] = (_, seconds) => FadeBlurred(seconds > 0 ? seconds : 2.5f);
-            actions["eyeFade"] = (_, seconds) => EyeFadeOut(seconds > 0 ? seconds : 3);
-            actions["cutToBlack"] = (_, __) => hud.Fade(1, .04f);
-            actions["closeEye"] = (_, seconds) => eye.Cutaway(false, Short ? .3f : (seconds > 0 ? seconds : 1.4f));
+            actions["journey"] = (mode, __) => JourneyReplay(mode == "overview");
+            actions["overview"] = (_, __) => Overview();
+            actions["closing"] = (_, __) => Closing();
+            actions["closeEye"] = (_, seconds) => eye.Cutaway(false, Short ? .3f : (seconds > 0 ? seconds : 1.2f));
         }
 
         void EnterLater(string id)
@@ -78,80 +75,61 @@ namespace HumanEye
             switch (mode)
             {
                 case "brightness": Simulation = on ? "brightness" : null; break;
-                case "focus": Simulation = on ? "lens" : null; hud.SetLensState(null); if (on) FocusSetup(0); else eye.Get("lens").SetGlow(0); break;
                 case "photoreceptors": Simulation = on ? "photoreceptors" : null; micro.rods.Selectable = micro.cones.Selectable = on; break;
-                case "inspectImage": if (on) ShowLabels("scan"); break;
             }
-            if (!on) { StopDemo(); hud.labels.Clear(); Clock.Frozen = false; }
+            if (on) hud.Info(mode == "brightness" ? "Experiment: change the brightness and watch the pupil. Press Continue when you are done."
+                                                  : "Experiment: tap the rods or cones, and compare dim and bright light. Press Continue when you are done.");
+            else { StopDemo(); hud.labels.Clear(); Clock.Frozen = false; hud.Info(null); }
             hud.Refresh();
         }
 
-        IEnumerator JourneyReplay()
+        /// The complete process as one connected demonstration: light from the object through every structure to the brain.
+        /// In overview mode (the overhead teaching layout) each stage is also labelled on the model.
+        IEnumerator JourneyReplay(bool overview)
         {
             hud.ShowJourney(Journey, -1);
-            rays.gameObject.SetActive(true); rays.reach = 0;
+            if (overview) ShowLabels("journey");
+            rays.gameObject.SetActive(true); rays.reach = 0; rays.showImage = false;
             for (int i = 0; i < Journey.Length; i++)
             {
                 hud.ShowJourney(Journey, i);
                 var part = JourneyParts[i] == null ? null : Part(JourneyParts[i]);
                 if (part) part.SetGlow(.85f);
-                if (i <= 5) yield return LightTravel(Mathf.Min(5, new[] { 1f, 1.5f, 1.8f, 2f, 4f, 5f }[i]), 1.1f);
-                if (i == 6) { rays.showImage = true; yield return new Wait(1.2f, true); }
-                if (i == 7) { bool done = false; signals.Fire("nerve", 1, () => done = true); yield return new Until(() => done); }
-                if (i == 8) yield return new Wait(1.2f, true);
+                sfx.Play("tick", .35f);
+                if (i <= 5) yield return LightTravel(Mathf.Min(5, new[] { 1f, 1.5f, 1.8f, 2f, 4f, 5f }[i]), overview ? 1.0f : 1.1f);
+                if (i == 6) { rays.showImage = true; sfx.Play("cell", .6f); yield return new Wait(1.0f, true); }
+                if (i == 7) { bool done = false; sfx.Play("pulse", .5f); signals.Fire("nerve", 1, () => done = true); yield return new Until(() => done); }
+                if (i == 8) { visualArea.SetGlow(.9f); yield return new Wait(1.0f, true); }
                 if (part) part.SetGlow(.2f);
             }
-            yield return new Wait(1, true);
+            yield return new Wait(.8f, true);
             foreach (var id in JourneyParts) if (id != null) Part(id)?.SetGlow(0);
             hud.ShowJourney(null, -1);
         }
 
-        IEnumerator BlurDemo(float hold)
+        /// Pull back into the stable overhead layout where object, eye, route and brain read together.
+        IEnumerator Overview()
         {
-            ShowObject("tree", true);
-            yield return cams.MoveTo("S11_NearFar", 2);
-            if (blurVolume.profile.TryGet(out DepthOfField dof))
-            {
-                var cam = cams.brain.transform.position;
-                float near = Vector3.Distance(cam, appleRoot.position), far = Vector3.Distance(cam, treeRoot.position);
-                dof.mode.Override(DepthOfFieldMode.Gaussian);
-                dof.gaussianStart.Override(near + .6f);
-                dof.gaussianEnd.Override(Mathf.Max(near + 1.2f, far * .7f));
-                dof.gaussianMaxRadius.Override(1.0f);   // "slightly blurred"
-            }
-            yield return Routine.Tween(1.5f, SetBlur);
-            yield return new Wait(hold);
+            hud.Info("The whole journey, seen from above: object → eye → optic nerve → brain.");
+            sfx.Play("overview", .8f);
+            niko.Place(Anchor("Wide"));
+            yield return cams.MoveTo("S10_Overview", Short ? 0 : 2.6f);
+            ShowLabels("journey");
+            yield return new Wait(.6f);
         }
 
-        void SetBlur(float w) { if (blurVolume) blurVolume.weight = w; }
-
-        IEnumerator FadeBlurred(float seconds)
+        /// Niko in frame beside the eye with a warm closing line (supplemental text + clip, spoken through the narration channel).
+        IEnumerator Closing()
         {
-            var renderers = treeRoot.GetComponentsInChildren<Renderer>();
-            var scale = treeRoot.localScale;
-            yield return Routine.Tween(seconds, t => treeRoot.localScale = new Vector3(scale.x, scale.y * Mathf.Max(.001f, 1 - t), scale.z));
-            ShowObject("tree", false); treeRoot.localScale = scale;
-        }
-
-        /// The eye fades into the dark learning environment.
-        IEnumerator EyeFadeOut(float seconds)
-        {
-            float k0 = keyLight.intensity, d0 = displayLight.intensity, a0 = RenderSettings.ambientIntensity;
-            yield return Routine.Tween(seconds, t =>
-            {
-                SetEyeFade(1 - t);
-                keyLight.intensity = Mathf.Lerp(k0, .02f, t); displayLight.intensity = Mathf.Lerp(d0, 0, t);
-                RenderSettings.ambientIntensity = Mathf.Lerp(a0, .05f, t);
-                foreach (var b in beamRenderers) b.enabled = t < .9f;
-            });
-        }
-
-        void SetEyeFade(float a)
-        {
-            foreach (var p in eye.parts) p.SetAlpha(a, true);
-            appleRoot.gameObject.SetActive(appleRoot.gameObject.activeSelf && a > .05f);
-            pedestal.gameObject.SetActive(pedestal.gameObject.activeSelf && a > .05f);
-            if (a > .99f) { RenderSettings.ambientIntensity = 1; foreach (var b in beamRenderers) b.enabled = true; }
+            ShowLabels(null);
+            runner.RunSide(niko.MoveTo(Anchor("Closing"), Short ? .2f : 1.2f, Short));
+            yield return cams.MoveTo("S11_Closing", Short ? 0 : 1.8f);
+            niko.lookTarget = lookCamera; niko.Play("Wave", 3.5f);
+            hud.Info(ClosingText);
+            if (closingLine) { narrator.voice.PlayOneShot(closingLine); yield return new Wait(closingLine.length + .3f); }
+            else yield return new Wait(2.5f);
+            sfx.Play("complete", .8f);
+            yield return new Wait(1.2f);
         }
     }
 }

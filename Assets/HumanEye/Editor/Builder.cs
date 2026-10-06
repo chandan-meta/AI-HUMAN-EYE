@@ -92,7 +92,7 @@ namespace HumanEye.EditorTools
             return existing;
         }
 
-        static Mesh SaveMesh(Mesh m, string name) { m.name = name; return Upsert(m, Gen + "Meshes/" + name + ".asset"); }
+        internal static Mesh SaveMesh(Mesh m, string name) { m.name = name; return Upsert(m, Gen + "Meshes/" + name + ".asset"); }
 
         static Material Anatomy(string name, Color colour, Action<Material> setup = null)
         {
@@ -122,7 +122,7 @@ namespace HumanEye.EditorTools
             return Upsert(m, Gen + "Materials/" + name + ".mat");
         }
 
-        static void EnsureLayer(string name)
+        internal static void EnsureLayer(string name)
         {
             var tags = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
             var layers = tags.FindProperty("layers");

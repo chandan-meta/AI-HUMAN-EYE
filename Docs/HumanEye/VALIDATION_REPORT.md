@@ -1,6 +1,6 @@
 # Validation report
 
-Generated 2026-10-06 09:04 by Tools > Human Eye > Validate Module.
+Generated 2026-10-06 14:27 by Tools > Human Eye > Validate Module.
 
 **70 passed · 0 warnings · 0 errors**
 
@@ -59,7 +59,7 @@ Generated 2026-10-06 09:04 by Tools > Human Eye > Validate Module.
 - Topic 'rods_cones' has at least two distinct items
 - Topic 'complete_pathway' has at least two distinct items
 - Question ids unique
-- 35 Ask Niko intents checked (patterns compile, quoted cues exist)
+- 33 Ask Niko intents checked (patterns compile, quoted cues exist)
 - All chapter shots exist and all chapter/question actions are whitelisted
 - Checkpoint shot S02_EstablishA exists
 - Checkpoint shot S02_EyeHero exists

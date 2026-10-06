@@ -50,13 +50,14 @@ namespace HumanEye
             actions["nikoAppear"] = (_, seconds) => niko.Appear(seconds > 0 ? seconds : 1.2f);
             actions["humanReveal"] = (_, seconds) => HumanReveal(seconds > 0 ? seconds : 1.6f);
             actions["scan"] = (_, __) => ScanSequence();
-            actions["illuminate"] = (_, __) => { foreach (var id in new[] { "sclera", "iris", "cornea" }) eye.Get(id).SetGlow(1); sfx.Play("ping"); return null; };
+            actions["illuminate"] = (_, __) => { foreach (var id in new[] { "sclera", "iris", "cornea" }) eye.Get(id).SetGlow(1); sfx.Play("ping"); hud.Info("Scan complete · sclera, cornea, iris and pupil identified."); return null; };
             actions["pinch"] = (_, __) => Pinch();
             actions["enlarge"] = (_, seconds) => Enlarge(seconds > 0 ? seconds : 2.4f);
             actions["intro"] = (_, __) => Intro();
+            actions["info"] = (text, _) => { hud.Info(text); return null; };
         }
 
-        // ---------- cinematic intro: the dark room powers up around the pedestal (Clock.Delta driven, so Pause holds it) ----------
+        // ---------- cinematic intro: three directed shots, ~8.5 s, skippable (Clock.Delta driven, so Pause holds it) ----------
         public bool IntroPlaying { get; private set; }
         public string IntroCaption { get; private set; }
         bool skipIntro;
@@ -86,6 +87,9 @@ namespace HumanEye
             foreach (var b in beamRenderers) b.enabled = true;
         }
 
+        /// Shot 1 (0–2.6 s): the closed gate from the corridor; it unlocks and lifts. Shot 2 (2.6–6.4 s): one crane through
+        /// the entrance while the laboratory powers up, settling on the spotlit subject. Shot 3 (6.4–8.5 s): the establishing
+        /// view holds as the music rises. No drifting camera while nothing happens: every move has a subject.
         IEnumerator Intro()
         {
             IntroPlaying = true; skipIntro = false; hud.Refresh();   // the Skip button appears in the same frame the intro starts
@@ -106,25 +110,23 @@ namespace HumanEye
                 sfx.Play("drone", .8f);
                 var beats = new (float t, Action a)[]
                 {
-                    (0f, () => introFade = runner.RunSide(hud.Fade(0, 1f))),
-                    (0f, () => introMove = runner.RunSide(cams.MoveTo("S02_IntroIgnite", 3))),
-                    (3f, () => { sfx.Play("clunk1"); sfx.Play("riser", .45f); }),
-                    (5.5f, () => { sfx.Play("clunk2"); introMove = runner.RunSide(cams.MoveTo("S02_IntroCrane", 4)); }),
-                    (7f, () => sfx.Play("clunk3", .4f)),
-                    (9.5f, () => { sfx.Play("boom", .5f); foreach (var b in beamRenderers) b.enabled = true; }),
-                    (10f, () => { introMove = runner.RunSide(cams.MoveTo("S02_EstablishB", 3)); sfx.Play("shimmer", .4f); }),
+                    (0f, () => introFade = runner.RunSide(hud.Fade(0, .9f))),
+                    (.8f, () => { sfx.Play("clunk1"); sfx.Play("riser", .45f); }),
+                    (2.6f, () => { sfx.Play("clunk2", .7f); cams.Snap("S02_IntroCrane"); introMove = runner.RunSide(cams.MoveTo("S02_EstablishB", 3.6f)); }),
+                    (5.6f, () => { sfx.Play("boom", .55f); foreach (var b in beamRenderers) b.enabled = true; }),
+                    (6.4f, () => sfx.Play("shimmer", .4f)),
                 };
                 int next = 0;
-                for (float t = 0; t < 15f && !skipIntro; t += Clock.Delta)
+                for (float t = 0; t < 8.5f && !skipIntro; t += Clock.Delta)
                 {
                     while (next < beats.Length && t >= beats[next].t) beats[next++].a();
-                    IntroCaption = t < 3 ? "OBSERVATORY OF VISION · Approaching the laboratory" : t < 5.5f ? "Access granted · Gate opening" : t < 9.5f ? "Laboratory lights activating" : "Meet your first subject · The human eye";
-                    if (entrance) { entrance.SetGate(Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - 3) / 2.5f))); entrance.SetAccents(Mathf.Clamp01((t - 8) / 1.5f)); }
-                    Room(Mathf.Lerp(.12f, 1, Mathf.Clamp01((t - 7) / 2)));
-                    Exposure(Mathf.Lerp(-1.5f, 0, Mathf.Clamp01((t - 7) / 4)));
-                    keyLight.intensity = keyBase * Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - 9.5f) / 1.5f));
-                    displayLight.intensity = displayIntensity * Mathf.Clamp01((t - 10) / 2);
-                    sfx.musicGain = Mathf.Clamp01((t - 9.5f) / 3);
+                    IntroCaption = t < 2.6f ? "OBSERVATORY OF VISION · Access granted" : t < 5.6f ? "Laboratory powering up" : "Your subject today: the human eye";
+                    if (entrance) { entrance.SetGate(Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - .8f) / 1.9f))); entrance.SetAccents(Mathf.Clamp01((t - 4.5f) / 1.2f)); }
+                    Room(Mathf.Lerp(.12f, 1, Mathf.Clamp01((t - 3f) / 2.2f)));
+                    Exposure(Mathf.Lerp(-1.5f, 0, Mathf.Clamp01((t - 3f) / 3f)));
+                    keyLight.intensity = keyBase * Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - 5.6f) / 1.2f));
+                    displayLight.intensity = displayIntensity * Mathf.Clamp01((t - 5.8f) / 1.4f);
+                    sfx.musicGain = Mathf.Clamp01((t - 5.6f) / 2.5f);
                     yield return null;
                 }
                 if (skipIntro) sfx.sfx.Stop();
@@ -144,19 +146,24 @@ namespace HumanEye
             yield return Routine.All(human.Reveal(seconds), Routine.Tween(seconds, t => displayLight.intensity = displayIntensity));
         }
 
+        /// Niko performs the scan: he turns to the subject, points his scanner, and the wave sweeps the head while the panel
+        /// reports what is happening. The camera is already on the full figure (S02_ScanFront) when this starts.
         IEnumerator ScanSequence()
         {
             if (navigation) navigation.Leave();
-            yield return cams.MoveTo("S02_EyeInSkull", Short ? .2f : 2.2f);
-            sfx.Play("scan");
-            yield return human.Scan(Short ? .6f : 1);
+            niko.lookTarget = human.eyeRight; niko.gestureTarget = human.eyeRight;
+            niko.Play("Point", 3.2f);
+            hud.Info("Scanning the subject…");
+            sfx.Play("nikoscan", .8f); sfx.Play("scan", .6f);
+            yield return human.Scan(Short ? .6f : .85f);
+            niko.lookTarget = lookCamera;
         }
 
         IEnumerator Pinch()
         {
             niko.gestureTarget = eye.transform;
             niko.Play("Pinch", 1.4f);
-            yield return new Wait(.7f);
+            yield return new Wait(.6f);
             sfx.Play("whoosh");
         }
 
@@ -187,10 +194,26 @@ namespace HumanEye
             spin = true;
         }
 
+        /// Which structure a line is about, so Niko looks at it and points while he explains it.
+        static readonly System.Collections.Generic.Dictionary<string, string> CuePart = new()
+        {
+            ["S02_L11"] = "sclera", ["S02_L12"] = "cornea", ["S02_L13"] = "iris", ["S02_L14"] = "pupil",
+            ["S03_L02"] = "aqueous", ["S03_L04"] = "lens", ["S03_L07"] = "vitreous", ["S03_L09"] = "retina", ["S03_L11"] = "choroid",
+            ["S04_L05"] = "optic_nerve", ["S04_L07"] = "visual_area", ["S05_L03"] = "cornea", ["S05_L04"] = "aqueous", ["S05_L08"] = "iris",
+            ["S06_L01"] = "lens", ["S07_L01"] = "vitreous", ["S07_L02"] = "retina", ["S08_L02"] = "rods", ["S08_L04"] = "cones",
+            ["S09_L01"] = "optic_nerve", ["S09_L03"] = "visual_area",
+        };
+
         public void OnCue(string cue)
         {
-            if (cue.EndsWith("_L01") || cue == "S02_L09" || cue == "S03_L12" || cue == "S04_L08") niko.Play("Present", 2.2f);
-            else if (narrator.database.Get(cue)?.IsPrompt == true) niko.Play("Point", 2);
+            if (CuePart.TryGetValue(cue, out var id) && Part(id) is { } part)
+            {
+                niko.gestureTarget = niko.lookTarget = eye.FocusOf(part);
+                niko.Play("Point", 2.6f);
+            }
+            else if (cue.EndsWith("_L01") || cue == "S02_L09" || cue == "S03_L12" || cue == "S04_L08") { niko.lookTarget = lookCamera; niko.Play("Present", 2.2f); }
+            else if (narrator.database.Get(cue)?.IsPrompt == true) { niko.lookTarget = lookCamera; niko.Play("Talk", 2); }
+            else niko.lookTarget = lookCamera;
         }
     }
 }
