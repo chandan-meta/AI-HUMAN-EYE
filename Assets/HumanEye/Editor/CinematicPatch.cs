@@ -134,7 +134,13 @@ namespace HumanEye.EditorTools
             Shot("S02_IntroIgnite", new Vector3(-21, 1.8f, .67f), gate, 50);                  // frame holds the leaf edge as it lifts
             Shot("S02_IntroCrane", new Vector3(-10, 3.6f, .9f), subject, 42);                  // high and wide through the entrance
             Shot("S02_EstablishB", new Vector3(-1.8f, 2.2f, -2.7f), subject, 36);              // crane settles on the spotlit subject
-            Shot("S02_EyeInSkull", stage.human.eyeRight.position + new Vector3(.06f, .015f, -.55f), stage.human.eyeRight.position, 28);
+            // Runtime resets the human to scale 1 (HumanDisplay.ResetVisual) and Stage.FrameEyeInSkull re-aims this shot live;
+            // the saved preview uses the same pose and offset so the Scene view agrees with Play mode.
+            var h = stage.human.transform; var eye = h.position + h.rotation * stage.human.eyeRight.localPosition;
+            var closeUp = stage.cams.shots.First(s => s.name == "S02_EyeInSkull");
+            Stage.AimCloseUp(closeUp.transform, eye);
+            var closeLens = closeUp.Lens; closeLens.FieldOfView = 32; closeLens.NearClipPlane = .03f; closeUp.Lens = closeLens;
+            EditorUtility.SetDirty(closeUp);
         }
 
         static void Canvas(Hud hud, LabNavigation navigation)
@@ -242,6 +248,27 @@ namespace HumanEye.EditorTools
                 banner.GetComponent<Renderer>().sharedMaterial = mat;
             }
         }
+        /// Batch diagnostics for the Scan framing: human chain, eye sockets, head bounds and the Scene 2 shots.
+        public static void InspectScan()
+        {
+            EditorSceneManager.OpenScene(Builder.ScenePath);
+            var stage = Object.FindFirstObjectByType<Stage>(); var h = stage.human;
+            var lines = new System.Collections.Generic.List<string>();
+            for (var t = h.transform; t; t = t.parent) lines.Add($"chain {t.name} | local pos {t.localPosition:F3} rot {t.localEulerAngles:F1} scale {t.localScale:F3} | world {t.position:F3}");
+            lines.Add($"eyeRight {h.eyeRight.position:F3} eyeLeft {h.eyeLeft.position:F3} headTop {h.headTop} headY {h.headY} footY {h.footY}");
+            foreach (var part in new[] { h.skin, h.skull })
+                foreach (var r in part.GetComponentsInChildren<Renderer>(true)) lines.Add($"renderer {part.id}/{r.name} bounds center {r.bounds.center:F3} size {r.bounds.size:F3}");
+            foreach (var shot in stage.cams.shots.Where(s => s.name.StartsWith("S02_")))
+            {
+                var t = shot.transform; var toEye = h.eyeRight.position - t.position;
+                lines.Add($"shot {shot.name} | pos {t.position:F3} fwd {t.forward:F3} fov {shot.Lens.FieldOfView:F1} | dist to eyeRight {toEye.magnitude:F2} angle {Vector3.Angle(t.forward, toEye):F1}");
+            }
+            foreach (var m in Object.FindObjectsByType<Component>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (m.GetType().Name is "Animator" or "Animation" or "CinemachineFollow" or "CinemachineRotationComposer" or "CinemachinePositionComposer") lines.Add($"component {m.GetType().Name} on {m.gameObject.name}");
+            Directory.CreateDirectory("Logs/cinematic"); File.WriteAllLines("Logs/cinematic/scan.txt", lines);
+            Debug.Log("SCAN_INSPECTED " + lines.Count);
+        }
+
         public static void Inspect()
         {
             EditorSceneManager.OpenScene("Assets/HumanEye/Scenes/HumanEye_Observatory.unity");

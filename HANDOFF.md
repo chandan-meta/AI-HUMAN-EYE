@@ -8,6 +8,10 @@ The saved scene starts at the closed gate and plays a 15-second entrance, human 
 
 Updated: 6 October 2026 (Asia/Calcutta). **Source, saved scene and the Windows development build are current and verified by automated walkthroughs; production acceptance remains incomplete.**
 
+## Scan close-up fix (6 October 2026, source committed, scene write pending)
+
+The user reported that pressing Scan sent the camera above the human's head. Cause: the saved `Human Display` root carries an Editor scale of 1.495 (a hand edit saved in commit 30cda6d), so `S02_EyeInSkull` was authored from an eye socket at y≈3.39, while `HumanDisplay.ResetVisual` forces scale 1 at runtime (socket y≈2.55, crown y≈2.71). Fix in source: `Stage.FrameEyeInSkull` (Stage.Scene02.cs) re-aims the `S02_EyeInSkull` CinemachineCamera from the live socket whenever Scene 2 is entered, using the shared `Stage.CloseUpOffset`/`AimCloseUp`, so the close-up sits at eye height, centred on the eye with the crown inside the frame; `CameraDirector.Get` exposes shots by name; `CinematicPatch.ApplyShots` authors the same pose at the runtime scale with a 32° lens; `CinematicTests` now asserts, through the live camera's viewport, that the socket is centred and the top of the head is in frame, and captures `Logs/cinematic/scan-eye-in-skull.png`. The open Editor recompiled these changes with no errors (Editor.log). **Still to run with the Editor closed:** `-executeMethod HumanEye.EditorTools.CinematicPatch.Shots -quit` (writes the preview pose and 32° lens into the saved scene), the Play Mode suite, a Windows rebuild and standalone walkthroughs; the runtime re-aim works without the scene write. Decision for the owner: the human is saved at scale 1.495 but shown at scale 1; say which is intended and the other side will be aligned (ResetVisual or the saved scale).
+
 ## Resume here
 
 - Current branch: `claude/wow-moments`; remote: `https://github.com/chandan-meta/AI-HUMAN-EYE.git`.

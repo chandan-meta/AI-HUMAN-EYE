@@ -14,6 +14,7 @@ namespace HumanEye
             human.ResetVisual(true, 1);
             displayLight.intensity = displayIntensity * .15f;
             Socket(human.eyeRight, eyeRig);
+            FrameEyeInSkull();
             otherEye.gameObject.SetActive(true);
             foreach (var part in otherEye.parts) part.ResetVisual();
             Socket(human.eyeLeft, otherEye.transform);
@@ -25,6 +26,18 @@ namespace HumanEye
             cams.Snap(entrance ? "S02_IntroThreshold" : "S02_EstablishA");
             if (entrance) hud.Fade(1);
         }
+
+        /// Scan close-up: in front of the face, aimed a little above the eye so the whole head stays in frame while the eye
+        /// region fills it. Shared with the editor patch so the Scene-view preview matches.
+        public static readonly Vector3 CloseUpOffset = new(.06f, .03f, -.65f);
+        public static void AimCloseUp(Transform shot, Vector3 eye)
+        {
+            var pos = eye + CloseUpOffset;
+            shot.SetPositionAndRotation(pos, Quaternion.LookRotation(eye + Vector3.up * .03f - pos));
+        }
+        /// The saved human carries an Editor scale that ResetVisual discards, so the close-up is aimed from the live socket,
+        /// never from an author-time position.
+        void FrameEyeInSkull() { var shot = cams.Get("S02_EyeInSkull"); if (shot) AimCloseUp(shot.transform, human.eyeRight.position); }
 
         static void Socket(Transform socket, Transform t)
         {

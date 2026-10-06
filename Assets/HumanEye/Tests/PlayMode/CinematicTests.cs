@@ -93,7 +93,16 @@ namespace HumanEye.Tests
             stage.UseAbility("SCAN"); stage.UseAbility("SCAN");
             Assert.IsFalse(stage.navigation.Active); Assert.IsTrue(stage.cams.brain.enabled);
             Assert.IsFalse(stage.LabelsOn, "Duplicate scan must not toggle inspection labels");
-            yield return null; yield return null;
+            for (float end = Time.realtimeSinceStartup + 6; stage.cams.Active?.name != "S02_EyeInSkull" && Time.realtimeSinceStartup < end;) yield return null;
+            Assert.AreEqual("S02_EyeInSkull", stage.cams.Active?.name, "Scan must travel to the eye close-up");
+            yield return null; yield return null;   // the brain applies the cut
+            var socket = stage.human.eyeRight.position;
+            var crown = new Vector3(socket.x, stage.human.transform.position.y + stage.human.headTop * stage.human.transform.lossyScale.y, socket.z);
+            var eyeView = Camera.main.WorldToViewportPoint(socket); var crownView = Camera.main.WorldToViewportPoint(crown);
+            Assert.Greater(eyeView.z, 0); Assert.Greater(crownView.z, 0);
+            Assert.IsTrue(eyeView.x > .3f && eyeView.x < .7f && eyeView.y > .3f && eyeView.y < .7f, "Scan close-up must centre the live eye socket, got " + eyeView);
+            Assert.IsTrue(crownView.y > 0 && crownView.y < 1, "Top of the head must stay in the scan frame, got " + crownView);
+            Capture("scan-eye-in-skull");
             stage.hud.ReturnToMenu(); yield return null;
             Assert.IsFalse(stage.IntroPlaying); Assert.IsFalse(stage.navigation.Active);
             Assert.AreEqual(0, stage.entrance.OpenAmount);

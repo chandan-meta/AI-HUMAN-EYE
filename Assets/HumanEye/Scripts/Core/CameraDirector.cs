@@ -37,6 +37,7 @@ namespace HumanEye
         }
 
         public bool Has(string name) => byName.ContainsKey(name);
+        public CinemachineCamera Get(string name) => byName.TryGetValue(name, out var cam) ? cam : null;
 
         public IEnumerator MoveTo(string name, float seconds)
         {
