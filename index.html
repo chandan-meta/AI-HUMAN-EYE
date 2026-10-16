@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <title>Human Eye Module</title>
+    <meta name="description" content="The Human Eye: an interactive journey through how we see.">
+    <meta name="theme-color" content="#011634">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="preload" href="TemplateData/human-eye-loading.webp" as="image">
+    <link rel="stylesheet" href="TemplateData/loader.css">
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1" aria-label="Human Eye Module"></canvas>
+
+    <!-- The supplied loading artwork, untouched; the live bar and the light effects sit above it. -->
+    <div id="he-loader">
+      <div id="he-stage">
+        <img id="he-art" src="TemplateData/human-eye-loading.webp" alt="" draggable="false">
+        <div id="he-iris-glow"></div>
+        <div id="he-glint"></div>
+        <div id="he-bar" role="progressbar" aria-label="Loading Human Eye Module" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="he-track"></div>
+          <div class="he-fill"><div class="he-gloss"></div><div class="he-sheen"></div></div>
+        </div>
+      </div>
+      <canvas id="he-particles" aria-hidden="true"></canvas>
+      <div id="he-message" role="alert"></div>
+    </div>
+    <noscript><p class="he-noscript">The Human Eye module needs JavaScript and WebGL 2.</p></noscript>
+
+    <script>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/fb54a397cb8540ddd7efa3b7ec42ae1f.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/d5acaf1a5b7a216af5f0c9f1c05b224a.data.unityweb",
+        frameworkUrl: buildUrl + "/33212a864ea67b6e9b1b38c34d99d960.framework.js.unityweb",
+        codeUrl: buildUrl + "/4e68daca31209871ffb7a4deaf9c06c0.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "AI HUMAN EYE",
+        productVersion: "0.1.0",
+      };
+    </script>
+    <script src="TemplateData/loader.js"></script>
+  </body>
+</html>
