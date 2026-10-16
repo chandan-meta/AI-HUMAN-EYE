@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "human-eye-web",
+      "runtimeExecutable": "C:/Users/ADMIN/AppData/Local/Programs/Python/Python314/python.exe",
+      "runtimeArgs": ["-m", "http.server", "8765", "--bind", "127.0.0.1", "--directory", "C:/he-sandbox/pages-publish"],
+      "port": 8765
+    },
+    {
+      "name": "human-eye-webgl-build",
+      "runtimeExecutable": "C:/Users/ADMIN/AppData/Local/Programs/Python/Python314/python.exe",
+      "runtimeArgs": ["-m", "http.server", "8781", "--bind", "127.0.0.1", "--directory", "C:/he-sandbox/AI-HUMAN-EYE/Builds/HumanEye/WebGL"],
+      "port": 8781, "autoPort": false
+    }
+  ]
+}
