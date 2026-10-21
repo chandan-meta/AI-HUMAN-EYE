@@ -57,3 +57,24 @@ the gate on the start screen.
 
   The tool's list again adds `Universal Render Pipeline/Lit` shadow and depth entries that differ only in keywords their
   passes ignore, now six.
+
+## Published (21 October 2026)
+
+- **Build.** Release WebGL `PlayerBuilds.WebGL -heRelease`, 129.5 MB, from the sandbox after a sync. Code commit
+  `f7bb31b` on `claude/wow-moments`; site `gh-pages` `36f9118`.
+- **Local HTTP**, fresh profile, GPU:
+  - no Niko on the start screen or in the opening;
+  - he arrives about 32.7 s after BEGIN, with the burst;
+  - worst frame after BEGIN 32 ms (26 ms at the arrival), nothing compiled after BEGIN;
+  - loader fade and start screen at 17-19 ms per frame.
+- **Live** (https://chandan-meta.github.io/AI-HUMAN-EYE/), the same check, headless Chrome on the GPU:
+  - the same behaviour;
+  - worst frame after BEGIN 38 ms, at the arrival;
+  - loader fade at most 24 ms per frame.
+- **Console.** Only the known notices: the probe-data warning and URP's three "not supported on this GPU" internal
+  shaders.
+- **Publishing.** GitHub answered the single 130 MB push with HTTP 408, so the site was uploaded in pieces to a
+  temporary branch, then `gh-pages` was moved to the finished commit. `publish_pages.ps1` now does this and checks the
+  remote afterwards.
+- **The check tool.** `web_begin_check.mjs` now runs headless on the GPU (`--headless=new --enable-gpu
+  --use-angle=d3d11`). A visible window that gets minimised throttles the page to about 1 fps and ruins the timing.

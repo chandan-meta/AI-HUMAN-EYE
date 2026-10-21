@@ -1,4 +1,4 @@
-// First-BEGIN check of the Human Eye WebGL build (16 October 2026): opens the page in a real, GPU-backed Chrome with a
+// First-BEGIN check of the Human Eye WebGL build (16 October 2026): opens the page in a GPU-backed headless Chrome with a
 // fresh profile (neither Unity's nor Chrome's shader cache is warm), waits for the loader to fade, presses BEGIN and reports
 // the longest frames: the loader's fade, the start screen, and after BEGIN (a first-use shader compile blocks the page's
 // main thread, so it shows as one long frame). Screenshots land in <out>/. With --trace (the page opened with ?heTrace) it
@@ -13,8 +13,10 @@ const [W, H] = opt("--size", "1920x1080").split("x").map(Number);
 const [bx, by] = opt("--begin", "231,590").split(",").map(Number), begin = { x: bx, y: by };   // BEGIN on the start card (1024x768: 231,433)
 const exe = opt("--chrome", "C:/Program Files/Google/Chrome/Application/chrome.exe"), port = 9300 + Math.floor(Math.random() * 500);
 const profile = `${out}/chrome-profile`; rmSync(profile, { recursive: true, force: true }); mkdirSync(out, { recursive: true });
+// Headless, but on the GPU (ANGLE on Direct3D 11; plain headless falls back to SwiftShader): no desktop window that a
+// minimise or another app could hide, which throttles the page to ~1 fps (21 October 2026).
 const chrome = spawn(exe, [`--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, `--window-size=${W + 16},${H + 140}`,
-  "--no-first-run", "--no-default-browser-check", "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows",
+  "--headless=new", "--enable-gpu", "--use-angle=d3d11", "--ignore-gpu-blocklist", "--no-first-run", "--no-default-browser-check", "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows",
   "--disable-renderer-backgrounding", "--autoplay-policy=no-user-gesture-required", "about:blank"], { stdio: "ignore" });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const report = [], logs = [], note = (s) => { report.push(s); console.log(s); };
