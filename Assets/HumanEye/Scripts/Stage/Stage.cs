@@ -24,7 +24,6 @@ namespace HumanEye
         public EyeModel eye;
         public EyeModel otherEye;
         public Transform eyeRig, heroPoint, cutPoint, menuPoint;
-        public float menuNikoScale = 1.35f;
         Vector3 authoredNikoScale;
 
         [Header("Cast")]
@@ -52,6 +51,7 @@ namespace HumanEye
         public Light[] roomLights;          // the room's realtime lights, ramped up during the intro
         public LabEntrance entrance;
         public LabNavigation navigation;
+        [Tooltip("Lab brightness: multiplies the room's authored lights (set by the look pass)."), Range(.5f, 3)] public float roomBoost = 1;
         float[] roomBase;
 
         public string Simulation { get; private set; }  // which experiment controls the panel shows
@@ -60,7 +60,7 @@ namespace HumanEye
 
         readonly Dictionary<string, Func<string, float, IEnumerator>> actions = new();
         Quaternion orbit = Quaternion.identity;
-        float keyIntensity, displayIntensity;
+        float keyIntensity, displayIntensity, ambientBase = 1;
         string currentHint;
         Routine demo;
         string demoShot;
@@ -74,9 +74,11 @@ namespace HumanEye
         void Awake()
         {
             authoredNikoScale = niko.transform.localScale;
-            keyIntensity = keyLight.intensity; displayIntensity = displayLight.intensity;
+            if (RenderSettings.skybox && Camera.main) Camera.main.clearFlags = CameraClearFlags.Skybox;   // the Lighting window's skybox always shows through the windows, whatever the saved camera clears to
+            keyIntensity = keyLight.intensity; displayIntensity = displayLight.intensity; ambientBase = RenderSettings.ambientIntensity;
             appleBaseScale = appleRoot.localScale.x;
-            roomBase = roomLights.Select(l => l.intensity).ToArray();
+            roomBase = roomLights.Select(l => l.intensity * roomBoost).ToArray();
+            CaptureLighting();   // Stage.Lighting.cs: authored levels of the cinematic lights and the ambient colour
             ambientParticles = observatory.GetComponentsInChildren<ParticleSystem>(true);
             EnsureActions();
         }
@@ -107,6 +109,7 @@ namespace HumanEye
             actions["nikoMove"] = (anchor, seconds) => niko.MoveTo(Anchor(anchor), seconds > 0 ? seconds : 1.4f, Short);
             actions["nikoLook"] = (target, _) => { niko.lookTarget = target == "camera" ? lookCamera : Find(target); niko.gestureTarget = niko.lookTarget; return null; };
             actions["sfx"] = (key, volume) => { sfx.Play(key, volume > 0 ? volume : 1); return null; };
+            actions["music"] = (key, _) => { bed = key; return null; };   // the chapter's music bed from here on (Stage.Audio)
             actions["wait"] = (_, seconds) => Waiting(seconds);
             actions["glow"] = (ids, value) => { foreach (var id in ids.Split(',')) Part(id)?.SetGlow(value); return null; };
             actions["isolate"] = (id, _) => { Isolate(id); return null; };
@@ -119,6 +122,17 @@ namespace HumanEye
 
         IEnumerator Waiting(float seconds) { yield return new Wait(seconds); }
 
+        NikoFloatingCompanion companion;
+        public NikoFloatingCompanion Companion => companion ? companion : companion = hud.GetComponent<NikoFloatingCompanion>();
+
+        /// Point at a structure: in the room at the structure itself; floating beside the lens he faces the learner with the
+        /// structure behind him, so he glances at it and points toward the middle of the frame, where it is.
+        void NikoPoint(Transform target, float seconds = 2.4f)
+        {
+            niko.gestureTarget = niko.lookTarget = target;
+            niko.Play(Companion && Companion.Floating ? Companion.OnRight ? "PointLeft" : "PointRight" : "Point", seconds);
+        }
+
         public Transform Anchor(string name) => Array.Find(nikoAnchors, a => a.name == name) ?? nikoAnchors[0];
 
         Transform Find(string id)
@@ -130,6 +144,11 @@ namespace HumanEye
 
         public AnatomyPart Part(string id)
         {
+            if (EyeBrainPlaying && human.pathway != null && human.pathway.Length == 6)   // Scene 9's cinematic shows the head's pathway
+            {
+                if (id == "optic_nerve") return human.pathway[0];
+                if (id == "visual_area") return human.pathway[5];
+            }
             var p = eye.Get(id);
             if (p) return p;
             if (id == "brain") return brain;
@@ -163,19 +182,23 @@ namespace HumanEye
             eye.SetNerveReveal(1);
             otherEye.gameObject.SetActive(false);
             human.ResetVisual(false);
-            niko.gameObject.SetActive(true); niko.transform.localScale = authoredNikoScale; niko.lookTarget = lookCamera; niko.gestureTarget = eye.transform;
+            niko.gameObject.SetActive(!NikoWaiting); niko.transform.localScale = authoredNikoScale; niko.lookTarget = lookCamera; niko.gestureTarget = eye.transform;
             micro.gameObject.SetActive(false);
             brainRoot.gameObject.SetActive(false);
             appleRoot.gameObject.SetActive(false); treeRoot.gameObject.SetActive(false); pedestal.gameObject.SetActive(false);
             rays.reach = 0; rays.showImage = false; rays.showLamp = false; rays.gameObject.SetActive(false);
             Brightness = .5f; rays.brightness = .5f;
             keyLight.intensity = keyIntensity; displayLight.intensity = displayIntensity;
+            RestoreLighting();   // the cinematic lights, the isolate emphasis and the ambient colour back to authored
             IntroReset();
-            RenderSettings.ambientIntensity = 1;
+            Exhibit(c.id == "Scene02" ? 1 : 0);   // the lab's exhibit eye stands in the room only before the opening hands over
+            RenderSettings.ambientIntensity = ambientBase;   // the authored lab level (look pass), restored at every checkpoint
             observatory.SetActive(true);
             hud.Fade(0);
             hud.HideInsets(); hud.Info(null);
-            if (c.id != "Scene02" && runner.Started) sfx.Play("chapter", .5f);
+            bool marked = sfx.Recently("quizcomplete", 1.5f) || sfx.Recently("unlock", 1.5f);   // a check's fanfare or the unlock already marks the change
+            if (c.id != "Scene02" && runner.Started && !marked) sfx.Play("chapter", .5f);
+            bed = BedFor(c.id);
             switch (c.id)
             {
                 case "Scene02": EnterScene02(); break;
@@ -186,21 +209,22 @@ namespace HumanEye
 
         public void ShowMenu()
         {
+            NikoWait();   // the start screen is without Niko: his next line brings him in
             Enter(runner.chapters[2]);
+            bed = "start";   // so the frame between BEGIN and the first chapter's entry keeps the start theme
             eye.SetCutInstant(false); eye.SetNerveReveal(.12f); PlaceEye(heroPoint);
             if (menuPoint) PlaceEye(menuPoint);
             brainRoot.gameObject.SetActive(false);
             human.gameObject.SetActive(false); appleRoot.gameObject.SetActive(false); lampRoot.gameObject.SetActive(false);
             pedestal.gameObject.SetActive(false); rays.gameObject.SetActive(false); signals.StopAll();
-            niko.Place(Anchor("Menu"));
-            niko.transform.localScale = authoredNikoScale * menuNikoScale;
             cams.Snap(cams.Has("Menu") ? "Menu" : "S04_Wide");
             if (entrance)
             {
                 entrance.SetGate(0); entrance.SetAccents(0);
-                eyeRig.gameObject.SetActive(false); niko.gameObject.SetActive(false);
+                eyeRig.gameObject.SetActive(false);
                 Room(.12f); cams.Snap("S02_IntroThreshold");
             }
+            Exhibit(1);
             hud.HideInsets(); hud.labels.Clear();
         }
 
@@ -238,6 +262,12 @@ namespace HumanEye
             ShowLabels(on ? "explore" : null);
             if (on) foreach (var p in set) Part(p)?.SetGlow(runner.ExploreDone.Contains(p) ? 0 : .22f);
             if (on && runner.ExploreDone.Count == 0) hud.Toast("Inspect mode · Drag to rotate · Scroll or pinch to zoom");   // the interaction mode changed with the camera
+            if (on && spin)
+            {
+                // the learner never chases a moving target: the turntable stops and the eye eases back to face them
+                spin = false; var from = eye.transform.localRotation;
+                runner.RunSide(Routine.Tween(Short ? .2f : .7f, t => eye.transform.localRotation = Quaternion.Slerp(from, Quaternion.identity, Mathf.SmoothStep(0, 1, t))));
+            }
         }
 
         public IEnumerator FocusPart(string id)
@@ -272,25 +302,29 @@ namespace HumanEye
             RestoreParts();
             yield return cams.MoveTo(runner.Chapter.id == "Scene02" ? "S02_EyeHero" : "S03_InsideHero", 1.0f);
             OnExplore(true);
-            if (runner.Chapter.id == "Scene02") spin = true;
         }
 
         void Isolate(string id)
         {
-            sfx.Play("isolate", .45f);
+            sfx.Play(sfx.Clip("hl_" + id) ? "hl_" + id : "isolate", .45f);   // cornea, iris and retina have their own highlight
+            Emphasis(true);   // hero key up a quarter, hall to 85 % (Stage.Lighting.cs)
+            // A clear medium on the cut eye (aqueous, lens, vitreous) only reads inside its section: it lifts to a tinted
+            // 35 % with a stronger glow and the section around it stays at 60 %, instead of a ghost around an invisible target.
+            var target = eye.Get(id);
+            bool clear = eye.IsCut && target && target.baseAlpha < 1;
             foreach (var p in eye.parts)
             {
                 bool me = p.id == id;
-                float a = me ? 1 : p.baseAlpha < 1 ? .35f : .18f;
+                float a = me ? (clear ? .35f / p.baseAlpha : 1) : p.baseAlpha < 1 ? .35f : clear ? .6f : .18f;
                 if (id == "iris" && p.id == "pupil") a = 1;
                 if (id == "pupil" && p.id != "cornea") a = 1;   // an opening only reads as dark if the iris and everything behind it stay solid
                 if (!eye.IsCut && p.id is "aqueous" or "lens" or "vitreous" or "retina" or "choroid") a = 1;   // closed eye: the interior is only seen through the pupil, where it must stay dark
                 p.SetAlpha(a);
-                p.SetGlow(me ? .55f : 0);
+                p.SetGlow(me ? (clear ? .85f : .55f) : 0);
             }
         }
 
-        void RestoreParts() { foreach (var p in AllParts()) { p.SetAlpha(1); p.SetGlow(0); } }
+        void RestoreParts() { Emphasis(false); foreach (var p in AllParts()) { p.SetAlpha(1); p.SetGlow(0); } }
 
         IEnumerator HighlightSequence(string[] ids, float each)
         {
@@ -368,17 +402,19 @@ namespace HumanEye
 
         void Update()
         {
+            if (NikoWaiting && narrator.Speaking) NikoArrive();   // a lesson line or an answer: either is his first
+            AudioFrame();
             if (spin) { swayTime += Clock.VizDelta; eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Sin(swayTime * .35f) * (Short ? 8 : 28), eyeRig.InverseTransformDirection(Vector3.up)); }
             foreach (var particles in ambientParticles)
             {
                 if (Short) { if (!particles.isStopped) particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); }
                 else if (Clock.Paused || Clock.Frozen) { if (particles.isPlaying) particles.Pause(); }
-                else if (!particles.isPlaying) particles.Play();
+                else if (particles.isPaused) particles.Play();
             }
         }
 
         // ---------- labels ----------
-        /// Label sets: "explore" (tappable part labels), "focus:<id>" (the structure being explained), "scan" (every visible
+        /// Label sets: "explore" (tappable part labels), "focus:<id>[,<id>…]" (the structures being explained), "scan" (every visible
         /// structure), "journey" (the stages of the whole process), "" or null (none). Only lesson-driven; no manual toggle.
         public void ShowLabels(string set)
         {
@@ -393,8 +429,12 @@ namespace HumanEye
                 }
                 return;
             }
-            sfx.Play("label", .5f);
-            if (set.StartsWith("focus:")) { var p = Part(set.Substring(6)); if (p) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null); return; }
+            sfx.Soft("label", .5f);
+            if (set.StartsWith("focus:"))   // one structure, or a few named together ("focus:optic_nerve,brain")
+            {
+                foreach (var id in set.Substring(6).Split(',')) { var p = Part(id); if (p) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null); }
+                return;
+            }
             var structures = set == "journey" ? JourneyStructures() : VisibleStructures();
             foreach (var p in structures) hud.labels.Add(p.label, eye.LabelOf(p), eye.FocusOf(p), null);
             foreach (var extra in ExtraLabels(set)) hud.labels.Add(extra.text, extra.anchor, extra.target, null);
@@ -426,7 +466,7 @@ namespace HumanEye
             if (tier >= 2) foreach (var p in targets) p.SetGlow(.8f);
         }
 
-        // ---------- panel actions: SCAN (Scan Eye), INSIDE (Explore Inside), FREEZE, REPLAY ----------
+        // ---------- panel actions: INSIDE (Explore Inside), FREEZE, REPLAY (the only scan is the opening's) ----------
         public bool Ability(string ability, out string reason)
         {
             reason = null;
@@ -436,9 +476,6 @@ namespace HumanEye
             var c = runner.Chapter?.id;
             switch (ability)
             {
-                case "SCAN":
-                    if (runner.Awaiting == "scan") return true;
-                    reason = c == "Scene02" ? "Niko will ask you to scan in a moment." : "The subject has already been scanned."; return false;
                 case "INSIDE":
                     if (runner.Awaiting == "inside") return true;
                     reason = c == "Scene02" ? "Explore the sclera, cornea, iris and pupil first." : "We are already inside the eye."; return false;
@@ -456,17 +493,15 @@ namespace HumanEye
 
         public string AbilityLabel(string ability) => ability switch
         {
-            "SCAN" => "Scan Eye", "INSIDE" => "Explore Inside", "FREEZE" => Clock.Frozen ? "Unfreeze" : "Freeze", "REPLAY" => "Replay demo", _ => ability,
+            "INSIDE" => "Explore Inside", "FREEZE" => Clock.Frozen ? "Unfreeze" : "Freeze", "REPLAY" => "Replay demo", _ => ability,
         };
 
         public void UseAbility(string ability)
         {
             if (navigation && navigation.Active) navigation.Leave();
             if (!Ability(ability, out var reason)) { hud.Toast(reason); sfx.Play("deny", .6f); return; }
-            sfx.Play("tap", .6f);
             switch (ability)
             {
-                case "SCAN": runner.Press("scan"); break;                       // Press() ignores repeats, so a double click never scans twice
                 case "INSIDE": runner.Press("inside"); break;
                 case "FREEZE": runner.SetFrozen(!Clock.Frozen); hud.Toast(Clock.Frozen ? "Frozen: the biology is paused. Menus still work." : "Unfrozen."); break;
                 case "REPLAY": Clock.Frozen = false; RunDemo(Run(ReplayFor(runner.Chapter.id), "replay", 0)); break;
@@ -491,7 +526,7 @@ namespace HumanEye
                     if (runner.Chapter?.id != "Scene06") { reason = "We'll compare near and distant objects when we study the lens."; return false; }
                     if (runner.FreeMode != "focus") { reason = "Use the Near and Distant buttons to run Niko's demonstration."; return false; }
                     return true;
-                case "SCAN": case "INSIDE": case "FREEZE": case "REPLAY":
+                case "INSIDE": case "FREEZE": case "REPLAY":
                     return Ability(action, out reason);
                 case "resetView": return true;
             }
