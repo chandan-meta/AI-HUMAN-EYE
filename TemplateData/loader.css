@@ -1,0 +1,75 @@
+/* Human Eye loading page. The supplied artwork is the screen; only the live bar and a light layer of motion sit above it.
+   The stage is the artwork's own frame (1672 x 941): everything on it is placed in its percentages, so it scales with
+   the artwork (loader.js sizes and centres the stage: cover, never cropping the eye, title or bar). */
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #011634; }
+body { -webkit-tap-highlight-color: transparent; }
+
+#unity-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; background: #011634; outline: none; }
+
+#he-loader { position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #011634; opacity: 1; transition: opacity .65s ease; }
+#he-loader.he-out { opacity: 0; pointer-events: none; }
+
+#he-stage { position: absolute; left: 0; top: 0; width: 1672px; height: 941px; }
+#he-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+
+/* Iris: a barely-there breathing glow over the drawn iris (opacity 0.10 - 0.18). */
+#he-iris-glow {
+  position: absolute; left: 34.69%; top: 21.57%; width: 20.33%; height: 36.13%;   /* centred on the pupil (750, 373), radius 170 */
+  border-radius: 50%; pointer-events: none; mix-blend-mode: screen;
+  /* a ring over the iris only: the pupil (radius ~0.2) stays black */
+  background: radial-gradient(closest-side, rgba(60, 170, 255, 0) 24%, rgba(130, 215, 255, .8) 42%, rgba(60, 170, 255, .4) 62%, rgba(20, 110, 255, 0) 82%);
+  animation: he-breathe 3.2s ease-in-out infinite; opacity: .1;
+}
+@keyframes he-breathe { 0%, 100% { opacity: .10; } 50% { opacity: .18; } }
+
+/* Glint on the cornea's rim (622, 318): a faint twinkle every few seconds. */
+#he-glint {
+  position: absolute; left: 37.20%; top: 33.79%; width: 4.2%; height: 7.4%; transform: translate(-50%, -50%);
+  pointer-events: none; mix-blend-mode: screen; opacity: 0;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(160, 225, 255, .35) 35%, rgba(160, 225, 255, 0) 70%),
+    linear-gradient(90deg, rgba(190, 235, 255, 0) 0%, rgba(210, 242, 255, .8) 50%, rgba(190, 235, 255, 0) 100%) center / 100% 6% no-repeat,
+    linear-gradient(0deg, rgba(190, 235, 255, 0) 0%, rgba(210, 242, 255, .55) 50%, rgba(190, 235, 255, 0) 100%) center / 5% 100% no-repeat;
+  animation: he-glint 5.5s ease-in-out 1.2s infinite;
+}
+@keyframes he-glint { 0%, 70%, 100% { opacity: 0; } 80% { opacity: .55; } 88% { opacity: .2; } }
+
+/* The live bar, exactly over the drawn one: capsule x 605-1067, y 669-699. The track is opaque in the artwork's own empty
+   colour so the drawn (static) fill never shows through; the fill runs bright cyan to near-white at its leading edge. */
+#he-bar { position: absolute; left: 36.18%; top: 71.10%; width: 27.63%; height: 3.19%; }
+#he-bar .he-track {
+  position: absolute; inset: 0; border-radius: 999px; box-sizing: border-box;
+  background: linear-gradient(180deg, #0b345e 0%, #092e54 55%, #08294c 100%);
+  border: 1px solid rgba(78, 140, 186, .95);
+  box-shadow: inset 0 1px 3px rgba(0, 10, 30, .55), 0 0 6px rgba(40, 150, 220, .18);
+}
+#he-bar .he-fill {
+  position: absolute; left: 1px; top: 1px; bottom: 1px; width: 0; border-radius: 999px; overflow: hidden;
+  background: linear-gradient(90deg, #10ddf4 0%, #4beaff 58%, #eafbff 100%);
+  box-shadow: 0 0 8px rgba(38, 198, 245, .55), 0 0 18px rgba(38, 198, 245, .22);
+}
+#he-bar .he-gloss { position: absolute; left: 0; right: 0; top: 0; height: 48%; border-radius: 999px 999px 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, .06)); }
+#he-bar .he-sheen { position: absolute; top: 0; bottom: 0; width: 34%; left: -40%; mix-blend-mode: screen;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .45) 50%, rgba(255, 255, 255, 0) 100%);
+  animation: he-sheen 2.6s ease-in-out infinite; }
+@keyframes he-sheen { 0% { left: -40%; } 70%, 100% { left: 110%; } }
+#he-bar.he-done .he-fill { animation: he-pulse .5s ease-out 1; }
+@keyframes he-pulse {
+  0% { box-shadow: 0 0 8px rgba(38, 198, 245, .55), 0 0 18px rgba(38, 198, 245, .22); }
+  45% { box-shadow: 0 0 14px rgba(120, 230, 255, .95), 0 0 34px rgba(38, 198, 245, .55); }
+  100% { box-shadow: 0 0 8px rgba(38, 198, 245, .55), 0 0 18px rgba(38, 198, 245, .22); }
+}
+
+#he-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+#he-message { position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%); max-width: 80%; display: none;
+  padding: 10px 16px; border-radius: 10px; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center;
+  color: #e8f6ff; background: rgba(7, 56, 93, .92); border: 1px solid rgba(38, 198, 245, .6); }
+#he-message.he-show { display: block; }
+.he-noscript { position: fixed; inset: auto 0 6% 0; z-index: 20; text-align: center; color: #e8f6ff; font: 16px system-ui, sans-serif; }
+
+@media (prefers-reduced-motion: reduce) {
+  #he-iris-glow, #he-glint, #he-bar .he-sheen { animation: none; }
+  #he-glint { opacity: 0; }
+}
