@@ -180,6 +180,50 @@ works only in a development build, because a release build records nothing.
    compiles; they were left out of the shipped list.
 3. Rebuild with `-heRelease` and run the same tool without `?heTrace` and `--trace` as the release check.
 
+## Smaller web build (22 October 2026)
+
+The owner asked for the lowest build size. Everything below is applied by `PlayerBuilds.WebGL` to the web build only; the
+Editor and the desktop player keep their settings and assets.
+
+| | 21 Oct | 22 Oct |
+| --- | --- | --- |
+| Download (release) | 129.5 MB | **88.3 MB** (−32 %) |
+| `.data` | 116 MB (gzip, split into 3 parts) | 80.1 MB (Brotli, one file, no split needed) |
+| `.wasm` | 12.9 MB | 7.9 MB |
+| Textures (uncompressed in the build) | 65.1 MB | 44.2 MB |
+| Meshes | 64.4 MB | 32.8 MB |
+| Sounds | 23.7 MB | 19.4 MB |
+| Unity splash logo | 2.7 MB | gone |
+
+- **Compression:** Brotli instead of gzip, with decompression fallback still on. GitHub Pages sends no
+  `Content-Encoding`, so Unity's loader decompresses in the page; the custom loader needed no change.
+- **Code:** IL2CPP code generation is set to *optimize for size*. The WebGL build profile already optimises for disk size
+  with LTO.
+- **Splash:** `SplashScreen.show` and `showUnityLogo` are off, because the loading page is the splash.
+- **Textures:** the lesson eye's maps (`LocalEye`) are now crunched at quality 90 at 2048. Before, they shipped uncrunched,
+  22 MB of the build.
+- **Meshes:** generated meshes (`Generated/Meshes`) are stored quantized for the build: mesh compression Medium, and Low
+  for the eye's own meshes, which the lesson explains up close.
+- **Audio:** music and Niko's voice are encoded at quality 0.35 instead of 0.55 and 0.7.
+  - Unity 6.3 refuses any WebGL audio override (every format, by name or by build target group).
+  - On WebGL, quality below 0.35 and lower sample rates save nothing more (measured with the importer's compressed size).
+- **Kept to the web build:** the mesh and audio changes alter the assets themselves. `WebOnlyAssets` copies their files
+  aside before the build and `PutBack` restores them afterwards. A hash check after the sandbox build confirmed all 302
+  files were restored byte for byte.
+- **Tried and dropped:**
+  - Non-readable generated meshes with prebaked collision: vertex compression still did not apply, and the cooked
+    collision data added 3 MB.
+  - URP shader stripping was already at its maximum (Lit stays 6.6 MB, for both the PC and the tablet pipeline).
+- **Checked:**
+  - Local HTTP, headless Chrome on the GPU: the opening's portrait, muscle, organ and eye shots and Niko's arrival show no
+    mesh or texture artefacts.
+  - Worst frame after BEGIN 45 ms, nothing compiled after BEGIN.
+  - Console: only the known notices.
+- **Further cuts, not made (each costs quality or risk):**
+  - quantizing the FBX models, about 14 MB uncompressed, Niko's 6.3 MB the largest;
+  - mono music;
+  - a higher managed code stripping level, which can break code reached only by reflection, such as `SendMessage`.
+
 ## Files changed
 
 | Kind | Files |
@@ -187,6 +231,7 @@ works only in a development build, because a release build records nothing.
 | New | `Assets/WebGLTemplates/HumanEyeLoader/` (`index.html`, `TemplateData/loader.css`, `loader.js`, `human-eye-loading.webp`, `favicon.ico`); `Assets/HumanEye/Plugins/WebGL/HumanEyePage.jslib` |
 | Changed | `Assets/HumanEye/Scripts/Core/ModuleBoot.cs` (page-ready call); `Assets/HumanEye/Editor/PlayerBuilds.cs` (WebGL settings, web textures, cleaned output, notices file); `Assets/_Project/Editor/AssetAudit.cs` (`-heRelease`) |
 | Tooling (sandbox, outside the repo) | `C:\he-sandbox\round23.ps1` step `webglrel`; `publish_pages.ps1`; `split_parts.py`; `.claude/launch.json` (local static server) |
+| Smaller build (22 Oct) | Changed: `PlayerBuilds.cs` (`WebGLSettings`, `WebOnlyAssets`, `PutBack`, LocalEye crunch); sandbox `push_pages_in_pieces.sh` (small files together, each file over 5 MB on its own) |
 | Shader warm-up (evening) | New: `Assets/HumanEye/Resources/ShaderWarmup.txt`, `Tools/HumanEye/web_begin_check.mjs`. Changed: `ModuleBoot.cs` (`WarmShaders`, `?heTrace` and `TraceDump`); `.claude/launch.json` (the build server on port 8781, because 8766 is another project's) |
 
 ## Remaining issues
@@ -194,8 +239,8 @@ works only in a development build, because a release build records nothing.
 - **Later chapters' first use.** The list covers the opening and the first minute of the lesson. A learner who resumes
   with "Continue from Chapter N" may still meet a first-use compile in that chapter. A longer trace, or one per resumed
   chapter, would extend the list.
-- **Download size.** 129.5 MB on a first visit is still heavy on slow connections; repeat visits use the cache.
-  Further cuts would mean crunching the lesson eye or dropping unused legacy meshes from the scene.
+- **Download size.** 88.3 MB since 22 October 2026 (see *Smaller web build*); repeat visits use the cache. Further cuts
+  are listed there.
 - **Tablets and phones.** Tablet browsers without DXT support (iOS Safari, many Android GPUs) would decompress textures in
   memory. An ASTC build variant for mobile browsers is not made.
 - **Pre-existing console warning.** "Inconsistent counts in appended probe data" comes from the baked lighting data.

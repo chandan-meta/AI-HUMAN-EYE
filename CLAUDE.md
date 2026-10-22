@@ -144,7 +144,9 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
   force-pushed by `C:\he-sandbox\publish_pages.ps1`, which splits files over 90 MB into parts that the loader joins).
   The loading page is the WebGL template `Assets/WebGLTemplates/HumanEyeLoader` (the owner's artwork exactly, a live bar on
   Unity's real progress, light effects; `HumanEyePage.jslib` fades it into the module). Build it with
-  `PlayerBuilds.WebGL -heRelease` (gzip with decompression fallback, hashed names, web-only texture overrides); only
+  `PlayerBuilds.WebGL -heRelease` (Brotli with decompression fallback, hashed names, no splash, IL2CPP for size, web-only
+  texture overrides; generated meshes quantized and music/voice at quality 0.35 for the build only, their files restored
+  afterwards, 88 MB on 22 October 2026); only
   `-heRelease` passes the AssetAudit gate. See `Docs/HumanEye/Polish/WEB_LOADER_PAGES_2026-10-16.md`. WebGL compiles a
   shader variant on first draw, so the variants first drawn after BEGIN (`Resources/ShaderWarmup.txt`) are warmed in
   `ModuleBoot.Start` behind the loader; re-trace the list (`Tools/HumanEye/web_begin_check.mjs --trace`, development build)
