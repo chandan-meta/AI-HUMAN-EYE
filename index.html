@@ -8,10 +8,16 @@
     <meta name="theme-color" content="#011634">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="preload" href="TemplateData/human-eye-loading.webp" as="image">
-    <link rel="stylesheet" href="TemplateData/loader.css">
+    <link rel="stylesheet" href="TemplateData/loader.css?v=20261024-fullscreen">
   </head>
   <body>
-    <canvas id="unity-canvas" tabindex="-1" aria-label="Human Eye Module"></canvas>
+    <div id="he-player">
+      <canvas id="unity-canvas" tabindex="-1" aria-label="Human Eye Module"></canvas>
+      <button id="he-fullscreen" type="button" aria-label="Enter fullscreen" aria-pressed="false" aria-controls="unity-canvas" title="Enter fullscreen" hidden>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path id="he-fullscreen-icon" d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>
+      </button>
+      <div id="he-fullscreen-status" role="status" aria-live="polite" hidden></div>
+    </div>
 
     <!-- The supplied loading artwork, untouched; the live bar and the light effects sit above it. -->
     <div id="he-loader">
@@ -31,18 +37,19 @@
 
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/3aaeb01da97d91e1f778b8241bad8582.loader.js";
+      var loaderUrl = buildUrl + "/84f89cb7ba667c97d6d8b39b4b2f4ed7.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/06a7d86a4ebabc2e57bdce1d169717b5.data.unityweb",
-        frameworkUrl: buildUrl + "/3951a1afab7be819d1e63d0339141bba.framework.js.unityweb",
-        codeUrl: buildUrl + "/09dc62714b92ab36e45c947ea102a116.wasm.unityweb",
+        dataUrl: buildUrl + "/c1c1be83e1f8a1ff9edd72d9ffad9c47.data.unityweb",
+        frameworkUrl: buildUrl + "/6f9cda8370afb2f98e59e0608597bb3f.framework.js.unityweb",
+        codeUrl: buildUrl + "/77890e003b92676b69c8d95fe6dee72f.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "AI HUMAN EYE",
         productVersion: "0.1.0",
       };
     </script>
+    <script src="TemplateData/fullscreen.js"></script>
     <script src="TemplateData/loader.js"></script>
   </body>
 </html>
