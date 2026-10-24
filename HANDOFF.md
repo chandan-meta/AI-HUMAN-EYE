@@ -2,6 +2,16 @@
 
 User preference: use the Ponytail skill for coding work until explicitly disabled.
 
+## WebGL fullscreen and Pages release (24 October 2026)
+
+The WebGL player now has a bottom-left fullscreen/exit control with a 48px touch target and Escape handling.
+The optimized release is **91.22 MiB**, down **29.59%** from the previous live 129.55 MiB site.
+Module source is pushed to `claude/wow-moments` (`7a61449`); Pages is updated normally at `41705e9`, retaining its history.
+Use `Tools/HumanEye/publish_pages.ps1` with an explicit verified build and a new external work directory for future publication.
+Automated fullscreen/binary checks passed. Actual browser clicks/gameplay were not tested because browser use is disabled
+in Work settings; physical tablet performance remains unverified.
+See [release evidence and limits](Docs/HumanEye/Polish/WEBGL_FULLSCREEN_2026-10-24.md).
+
 ## Reference eye finish and live landing screen (24 October 2026)
 
 The existing scene now has dielectric eye surfaces, transmitting cornea/media, a static studio reflection, refined

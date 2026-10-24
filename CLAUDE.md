@@ -174,13 +174,16 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
   `Generated/Textures/DaylightSky.hdr` stays only for the bake) and the galaxy as an interior projection on a shell
   outside the roof (`GalaxyDome.shader`, cut below the ceiling ring so side windows never show it). Custom opaque shaders need
   DepthOnly and DepthNormals passes: the PC renderer primes depth for SSAO and drops surfaces missing from the prepass.
-- Web (16 October 2026): published at https://chandan-meta.github.io/AI-HUMAN-EYE/ from the `gh-pages` branch (site only,
-  force-pushed by `C:\he-sandbox\publish_pages.ps1`, which splits files over 90 MB into parts that the loader joins).
+- Web (24 October 2026): published at https://chandan-meta.github.io/AI-HUMAN-EYE/ from `gh-pages` (site only).
+  Use `Tools/HumanEye/publish_pages.ps1` with an explicit verified build and a new external work directory; it retains
+  current history, verifies file hashes, splits data over 90 MiB and uses an ordinary push. The old external force-push
+  publisher is superseded. The WebGL template provides the bottom-left fullscreen/exit control; keep its 48px touch
+  target, safe-area spacing and exit/Escape state handling. This browser control stays outside the saved Unity Canvas.
   The loading page is the WebGL template `Assets/WebGLTemplates/HumanEyeLoader` (the owner's artwork exactly, a live bar on
   Unity's real progress, light effects; `HumanEyePage.jslib` fades it into the module). Build it with
   `PlayerBuilds.WebGL -heRelease` (Brotli with decompression fallback, hashed names, no splash, IL2CPP for size, web-only
   texture overrides; generated meshes quantized and music/voice at quality 0.35 for the build only, their files restored
-  afterwards, 88 MB on 22 October 2026); only
+  afterwards, 91.22 MiB in the 24 October 2026 release); only
   `-heRelease` passes the AssetAudit gate. See `Docs/HumanEye/Polish/WEB_LOADER_PAGES_2026-10-16.md`. WebGL compiles a
   shader variant on first draw, so the variants first drawn after BEGIN (`Resources/ShaderWarmup.txt`) are warmed in
   `ModuleBoot.Start` behind the loader; re-trace the list (`Tools/HumanEye/web_begin_check.mjs --trace`, development build)
