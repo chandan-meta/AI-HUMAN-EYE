@@ -17,7 +17,7 @@ Shader "HumanEye/UI Glass"
         Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "CanUseSpriteAtlas"="False" }
         Stencil { Ref [_Stencil] Comp [_StencilComp] Pass [_StencilOp] ReadMask [_StencilReadMask] WriteMask [_StencilWriteMask] }
         Cull Off Lighting Off ZWrite Off ZTest [unity_GUIZTestMode]
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha   // alpha = coverage (premultiplied overlay captures; an opaque back buffer stays opaque)
         ColorMask [_ColorMask]
         Pass
         {
@@ -44,15 +44,18 @@ Shader "HumanEye/UI Glass"
                 float d=length(max(q,0))+min(max(q.x,q.y),0)-i.shape.x;
                 float body=1-smoothstep(-.7,.7,d);
                 float rim=1-smoothstep(i.shape.y*.45,i.shape.y*.45+1,abs(d+i.shape.y*.65));
+                // Calm by default: a hairline border at rest; the cyan rim and halo appear only for hover/focus
+                // (glow ~.8) and the selected / required action (glow 1.4). No sheen, a barely-there vertical gradient.
+                float g=i.halo.y, active=saturate((g-.3)*1.6);
+                float3 rimCol=lerp(float3(.141,.22,.31),_RimColor.rgb,active);
                 float h=max(i.halo.x*.38,1);
-                float halo=exp(-max(d,0)*max(d,0)/(h*h)) * saturate(d+1) * i.halo.y*.6;
+                float halo=exp(-max(d,0)*max(d,0)/(h*h)) * saturate(d+1) * g*.5*active;
                 float y=saturate(i.p.y/max(i.size.y,1));
-                float sheen=pow(y,5)*.045 + exp(-pow((y-.08)*20,2))*.018;
-                float3 fill=i.color.rgb*lerp(.65,1.35,y)+float3(.10,.29,.40)*sheen;
-                float edgeGlow=exp(-abs(d)/5)*i.halo.y*.20;
-                float3 rgb=lerp(fill+_RimColor.rgb*edgeGlow,lerp(_RimColor.rgb*.60,float3(.65,1,1),saturate(i.halo.y)),rim);
-                rgb=lerp(_RimColor.rgb,rgb,body);
-                float alpha=saturate(body*i.color.a+rim*.8+halo);
+                float3 fill=i.color.rgb*lerp(.95,1.05,y);
+                float edgeGlow=exp(-abs(d)/5)*g*.16*active;
+                float3 rgb=lerp(fill+rimCol*edgeGlow,lerp(rimCol,float3(.75,1,1),.2*active),rim);
+                rgb=lerp(rimCol,rgb,body);
+                float alpha=saturate(body*i.color.a+rim*lerp(.7,.9,active)+halo);
                 #ifdef UNITY_UI_CLIP_RECT
                 alpha*=UnityGet2DClipping(i.world.xy,_ClipRect);
                 #endif

@@ -97,6 +97,18 @@ MonoBehaviour:
     value: 2.2
     async: 1
     note: 
+  - kind: 2
+    key: brainGhost
+    arg: on
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: signals
+    arg: nerve
+    value: 1
+    async: 0
+    note: 
   - kind: 1
     key: S04_L06
     arg: 
@@ -108,6 +120,12 @@ MonoBehaviour:
     arg: 
     value: 2
     async: 1
+    note: 
+  - kind: 2
+    key: sfx
+    arg: cortex
+    value: 0.5
+    async: 0
     note: 
   - kind: 2
     key: glow
@@ -128,6 +146,18 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
+    key: signals
+    arg: nerve
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: brainGhost
+    arg: off
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
     key: glow
     arg: optic_nerve,visual_area
     value: 0
@@ -141,7 +171,7 @@ MonoBehaviour:
     note: 
   - kind: 2
     key: labels
-    arg: scan
+    arg: focus:optic_nerve,brain
     value: 0
     async: 0
     note: 

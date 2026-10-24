@@ -81,7 +81,7 @@ namespace HumanEye
             StartCoroutine(Drive());
         }
 
-        void OnDestroy() { AudioDirector.Played -= Heard; drawCalls.Dispose(); setPass.Dispose(); triangles.Dispose(); systemMemory.Dispose(); mainThread.Dispose(); gcAllocated.Dispose(); gpuFrame.Dispose(); }
+        void OnDestroy() { DisposeCaptureResources(); AudioDirector.Played -= Heard; drawCalls.Dispose(); setPass.Dispose(); triangles.Dispose(); systemMemory.Dispose(); mainThread.Dispose(); gcAllocated.Dispose(); gpuFrame.Dispose(); }
 
         void Log(string kind, string detail) => log?.WriteLine($"{Time.realtimeSinceStartup - t0,8:0.00}s\t{kind}\t{detail}");
 
@@ -92,6 +92,8 @@ namespace HumanEye
             capturing = true;
             try
             {
+            // Newly enabled controls need a rendered Canvas frame before their raycast depth is valid.
+            yield return null;
             // Batch Editor uses a 640x480 Game view; the full layout audit runs in the
             // standalone player at the supported 1024x768+ sizes. Explicit clicks still run here.
             if (pointers && (!Application.isEditor || Screen.width >= 1024)) AuditPointers(name);
@@ -304,13 +306,14 @@ namespace HumanEye
                 if (runner.State == LessonState.Complete)
                 {
                     yield return Real(3); yield return Capture("end_menu");
+                    if (System.Environment.GetCommandLineArgs().Contains("-heFreeExplore") && !freeChecked) { yield return FreeExploreTour(); continue; }
                     if (Stress && !savedChecked) { yield return CheckSavedCompletion(); continue; }
                     LogPerformance();
                     Summary = $"completed={string.Join(",", SaveSystem.Data.completedChapters)} cues={SaveSystem.Data.cues.Count} evidence={SaveSystem.Data.evidence.Count}";
                     Log("done", Summary);
                     Done = true; yield return Real(1); log.Close(); log = null; Exit(0); yield break;
                 }
-                if (stage.EyeBrainPlaying && Time.realtimeSinceStartup - lastCine >= cineStep)
+                if ((stage.EyeBrainPlaying || stage.JourneyPlaying) && Time.realtimeSinceStartup - lastCine >= cineStep)
                 {
                     lastCine = Time.realtimeSinceStartup; yield return Capture($"cine_{runner.Chapter.id}_{lastCine - t0:000.0}s");
                     continue;

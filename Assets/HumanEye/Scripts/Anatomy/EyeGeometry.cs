@@ -3,16 +3,17 @@ using UnityEngine;
 
 namespace HumanEye
 {
-    /// Illustrative eye proportions in eye-radius units (radius 1 ≈ 12 mm), optical axis +Z (cornea at front).
-    /// Layer thicknesses are exaggerated slightly so thin layers stay readable and selectable; relationships are kept.
+    /// Eye proportions in eye-radius units (radius 1 ≈ 12 mm), optical axis +Z (cornea at front). The anterior landmarks
+    /// (cornea, iris, pupil, lens, retina, optic disc) are measured from the supplied cross-section model
+    /// (Tools/HumanEye/LocalEye_report.json), so rays, picks and the procedural clear media sit on the visible anatomy.
     public static class EyeGeometry
     {
-        public const float Limbus = .48f, CorneaCenterZ = .439f, CorneaOuter = .65f, CorneaInner = .60f;
-        public const float Sclera = 1f, ScleraIn = .94f, ChoroidIn = .915f, RetinaIn = .89f;
-        public const float LensZ = .655f, LensRadius = .40f, LensFront = .12f, LensBack = .20f;
-        public const float IrisRoot = .455f, IrisThick = .026f, PupilMin = .075f, PupilMax = .30f, PupilDefault = .17f;
+        public const float Limbus = .446f, CorneaCenterZ = .489f, CorneaOuter = .637f, CorneaInner = .594f;
+        public const float Sclera = 1f, ScleraIn = .96f, ChoroidIn = .94f, RetinaIn = .925f;
+        public const float LensZ = .81f, LensRadius = .256f, LensFront = .145f, LensBack = .127f;
+        public const float IrisRoot = .428f, IrisThick = .05f, IrisZ = .935f, PupilMin = .075f, PupilMax = .30f, PupilDefault = .18f;
         public const float KeepFrom = -90, KeepTo = 90, CutFrom = 90, CutTo = 270;   // keep half x ≥ 0; removable half x ≤ 0
-        public static readonly Vector3 OpticDisc = new Vector3(Mathf.Sin(15 * Mathf.Deg2Rad), 0, -Mathf.Cos(15 * Mathf.Deg2Rad));
+        public static readonly Vector3 OpticDisc = new Vector3(0, -.1f, -1).normalized;   // the cross-section's nerve leaves on the cut plane
 
         static float Phi(float radius, float r) => Mathf.Asin(r / radius) * Mathf.Rad2Deg;
         static Vector2 P(float radius, float phi, float cz = 0) => new(radius * Mathf.Sin(phi * Mathf.Deg2Rad), cz + radius * Mathf.Cos(phi * Mathf.Deg2Rad));
@@ -47,7 +48,7 @@ namespace HumanEye
         static float IrisFront(float r, float rp)
         {
             float u = Mathf.InverseLerp(rp, IrisRoot, r);
-            return .795f + .008f * u + .006f * Mathf.Sin(Mathf.PI * u);
+            return IrisZ + .008f * u + .006f * Mathf.Sin(Mathf.PI * u);
         }
 
         /// The iris is an annulus whose inner edge IS the pupil: the pupil is an opening, not geometry.
@@ -104,15 +105,24 @@ namespace HumanEye
             return new() { lensBack, Lathe.Line(lensBack[12], wallTop, 4), Lathe.Arc(0, wall, 61, 180, 40) };
         }
 
-        /// Optic nerve centreline from the optic disc (15° nasal of the posterior pole) to an end point, eye-local.
+        /// Optic nerve centreline: through the cross-section model's nerve stub (disc → sheath end), then a smooth curve
+        /// to the end point, eye-local. The tube continues the modelled stub, so the nerve reads as one structure.
+        public static readonly Vector3[] NerveStub = { OpticDisc * .9f, new(0, -.045f, -1.2f), new(0, -.08f, -1.8f), new(0, -.28f, -2.55f) };
+
         public static List<Vector3> NervePath(Vector3 endLocal, int steps = 48)
         {
-            var a = OpticDisc * .9f; var b = OpticDisc * 1.6f;
-            var c = Vector3.Lerp(b, endLocal, .5f) + Vector3.down * .25f;
+            const int stub = 12;
             var path = new List<Vector3>();
-            for (int i = 0; i <= steps; i++)
+            for (int i = 0; i < stub; i++)
             {
-                float t = i / (float)steps;
+                float u = i / (float)stub * (NerveStub.Length - 1); int k = Mathf.Min((int)u, NerveStub.Length - 2);
+                path.Add(Vector3.Lerp(NerveStub[k], NerveStub[k + 1], u - k));
+            }
+            var a = NerveStub[^1]; var b = a + (NerveStub[^1] - NerveStub[^2]).normalized * 1.1f;
+            var c = Vector3.Lerp(b, endLocal, .5f) + Vector3.down * .25f;
+            for (int i = 0; i <= steps - stub; i++)
+            {
+                float t = i / (float)(steps - stub);
                 path.Add((1 - t) * (1 - t) * (1 - t) * a + 3 * (1 - t) * (1 - t) * t * b + 3 * (1 - t) * t * t * c + t * t * t * endLocal);
             }
             return path;

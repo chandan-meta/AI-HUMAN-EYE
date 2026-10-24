@@ -6,186 +6,223 @@ namespace HumanEye
 {
     public partial class Stage
     {
-        public const float OpeningLength = 32.5f;
-        [Tooltip("Small cyan burst at each layer change and at the eye extraction.")] public ParticleSystem anatomyTransition;
+        public const float OpeningLength = 21f;
+        Material openingSky, authoredSky;
+        float authoredSkyExposure;
+        [Tooltip("Small cyan burst at the cutaway and at the light's arrival on the retina.")] public ParticleSystem anatomyTransition;
         [Tooltip("Electric breakup motes, born on the departing layer's surface (driven by AnatomyRevealController).")] public ParticleSystem anatomyMotes;
-        [Header("Opening shots (metres from the subject's eyes, degrees)")]
-        [Tooltip("Wide establishing shot after the gate: distance, height over the stand top, lens.")] public float wideDistance = 10.5f, wideHeight = 1.75f, wideFov = 46;
-        [Tooltip("Full-body title shot: distance, lens.")] public float fullDistance = 4.6f, fullFov = 38;
-        [Tooltip("Medium bust for the anatomy reveals: distance, look point below the eyes, lens.")] public float bustDistance = 2.05f, bustLookDrop = .33f, bustFov = 35;
-        [Tooltip("Exposure (EV over the lab grade) in the corridor before the gate opens, and the lab's own level after it.")] public float corridorLift = .45f, labLift = -.1f;
-        [Tooltip("Metres the opening starts behind the gate's doorway, and the lens there (the still before the leaves part; corridor gate, 15 October 2026). The lens eases to the bust lens as the camera enters.")] public float gateApproach = 8f, gateFov = 50f;
+        // Kept for the authoring patches that still set them (the gate-to-face opening they tuned is retired).
+        [HideInInspector] public float wideDistance = 10.5f, wideHeight = 1.75f, wideFov = 46, fullDistance = 4.6f, fullFov = 38,
+            bustDistance = 2.05f, bustLookDrop = .33f, bustFov = 35, corridorLift = .45f, labLift = -.1f, gateApproach = 8f, gateFov = 50f;
 
-        // One continuous production path, measured from the owner's subject position. No scene transforms are relocated.
-        IEnumerator Opening(CinemachineCamera dolly, Transform anchor)
+        /// The production opening, "the eye awakens" (22 October 2026 brief: the gate, the standing figure and the organ
+        /// layers were dull; no human figure). The learner's eye floats at the display in the dark observatory, lit only at its
+        /// rim (the start screen's own view). Light arrives and the wide pupil tightens; the camera swings to the side as the
+        /// room wakes; the eye opens into its cross-section in a cyan burst; light from the apple is bent by the cornea and the
+        /// lens to a spark on the retina; THE HUMAN EYE; the cutaway closes, the lab comes up and the camera settles on the first
+        /// lesson shot, where Niko arrives with his first line. A pure function of time (AwakeningFrame) drives it, so Pause
+        /// holds it and the reduced-motion stills are frames of it. No electric sound here is a buzzer: soft cues only.
+        IEnumerator Opening(CinemachineCamera dolly)
         {
-            BuildOpeningPath();
+            AwakeningSetup();
             cams.Snap("S02_IntroDolly"); GradeOn(true);
-            int beat = 0;
-            float[] accents = { 1f, 3.5f, 9f, 17f, 22f, 26.5f };
-            // Audio overhaul (15 October 2026): the leaves start, are fully open, the lab and title, the two breakups, the
-            // extraction. Indices also drive the bursts below, so entries change in place only. Niko is not in the opening
-            // (21 October 2026): he arrives with his first line, after it (Stage.NikoArrive).
-            string[] sounds = { "gateunlock", "gatewhoosh", "labsting", "dissolve", "dissolve", "eyeappear" };
-            float[] volumes = { .7f, .6f, .65f, .6f, .55f, .6f };
+            var cues = new (float at, System.Action act)[]
+            {
+                (.2f, () => sfx.Play("hologram", .35f)),
+                (2.6f, () => sfx.Play("pupilnarrow", .6f)),
+                (4.6f, () => sfx.Play("softwhoosh", .35f)),
+                (8.6f, () => { sfx.Play("dissolve", .55f); AwakeningPulse(anatomyTransition, false); sfx.BeginIntroMusic("transition"); }),
+                (11f, () => sfx.Play("layerreveal", .45f)),
+                (12f, () => sfx.Play("lightmove", .55f)),
+                (14.4f, () => { sfx.Play("cell", .7f); AwakeningPulse(anatomyTransition, true); }),
+                (15.2f, () => { sfx.Play("labsting", .6f); AwakeningPulse(titleBurst, false); }),
+                (17.6f, () => sfx.EndIntroMusic()),
+                (19.2f, () => sfx.Play("softwhoosh", .35f)),
+                (20.2f, () => sfx.Play("hologram", .4f)),
+            };
+            int next = 0;
             for (float t = 0; t < OpeningLength && !skipIntro; t += Clock.Delta)
             {
                 IntroTime = t;
-                while (beat < accents.Length && t >= accents[beat])
-                {
-                    sfx.Play(sounds[beat], volumes[beat]); beat++;
-                    if (beat >= 4 && beat <= 6) Burst(anatomyTransition, beat == 6 ? iEye : iMid - Vector3.up * .12f, 48);
-                }
-                bool At(float s) => t >= s && t - Clock.Delta < s;   // one frame, whatever the frame rate
-                if (At(.3f)) sfx.Play("gatescan", .55f);              // the gate's eye wakes in the corridor still
-                if (At(15)) { sfx.Play("gatescan", .4f); sfx.BeginIntroMusic("transition"); }   // the face hold: the layer scan begins
-                if (At(20)) sfx.SetMusic("lab", .1f);                 // under the transition score, so the hand-over returns to the lab bed
-                if (At(25.5f)) { sfx.Play("eyezoom", .55f); sfx.EndIntroMusic(); }   // the push into the eye; the score hands back
-                if (At(29.5f)) sfx.Play("hologram", .5f);             // the eye settles on the display
-                OpeningFrame(dolly, t);
+                while (next < cues.Length && t >= cues[next].at) cues[next++].act();
+                AwakeningFrame(dolly, t);
                 yield return null;
             }
             if (skipIntro) { sfx.StopEffects(); sfx.Play("skip", .6f); }
         }
 
-        bool gateCrossed; AnatomyRevealController.RevealState revealHeard;
-        void OpeningLoop(string key, bool on, float level, Transform at = null) { if (on) sfx.LoopOn(key, level, at); else sfx.LoopOff(key); }
-
-        /// Closed gate, straight approach, two-second face hold, then matched shoulder/head layer reveals.
-        void BuildOpeningPath()
+        /// The opening's (and the start screen's) world: no figure, no exhibit, the learner's eye whole at the display.
+        void AwakeningSetup()
         {
-            float e = iMid.y;
-            Vector3 F(float d, float y) => new Vector3(iMid.x, y, iMid.z) + iFace * d;
-            float gateDistance = Vector3.Dot(new Vector3(GateLook.x, e, GateLook.z) - iMid, iFace);
-            if (entrance && entrance.leaves != null && entrance.leaves.Length > 0 && entrance.leaves[0])
-            {   // the corridor gate's doorway (its leaves, closed at this point) sets the start, not the retired lifting door's constant
-                var doorway = new Bounds(entrance.leaves[0].position, Vector3.zero);
-                foreach (var leaf in entrance.leaves) if (leaf) foreach (var r in leaf.GetComponentsInChildren<Renderer>()) doorway.Encapsulate(r.bounds);
-                gateDistance = Vector3.Dot(new Vector3(doorway.center.x, e, doorway.center.z) - iMid, iFace);
+            human.gameObject.SetActive(false); otherEye.gameObject.SetActive(false); Exhibit(0);
+            eyeRig.gameObject.SetActive(true); PlaceEye(heroPoint);
+            eye.transform.localPosition = Vector3.zero; eye.transform.localRotation = Quaternion.identity; eye.transform.localScale = Vector3.one;
+            eye.SetCut(0); eye.SetNerveReveal(.12f); eye.SetPupil(EyeGeometry.PupilMax * .95f, true);
+            if (entrance) { entrance.SetGate(0); entrance.SetAccents(0); }
+            // Reuse the authored systems so Pause, reduced motion and every exit share the existing cleanup.
+            float r = eye.transform.lossyScale.x;
+            if (depthDust)
+            {
+                var main = depthDust.main;
+                main.startLifetime = new ParticleSystem.MinMaxCurve(5, 7); main.startSpeed = .025f * r;
+                main.startSize = new ParticleSystem.MinMaxCurve(.006f * r, .014f * r); main.maxParticles = 120;
+                main.startColor = new Color(.65f, .82f, 1, .65f);
+                var emission = depthDust.emission; emission.rateOverTime = 18;
+                var shape = depthDust.shape; shape.radius = 1.9f * r;
             }
-            var start = F(gateDistance + gateApproach, e + .04f);
-            xrayEndPos = iEye + iFace * .8f + iRight * (iSide * .08f) + Vector3.up * .01f;
-            xrayEndLook = iEye;
-            presentPos = iPresent + new Vector3(0, .25f, -4.3f);
-            presentLook = iPresent + Vector3.up * .1f;
-            var bustLook = iMid - Vector3.up * bustLookDrop;
-            introPath = new[] { new[] {
-                new CamKey(0, start, bustLook, bustFov),
-                new CamKey(15, F(bustDistance, e + .04f), bustLook, bustFov),
-            }, new[] { // Separate segments prevent spline overshoot during the matching layer holds.
-                new CamKey(15, F(bustDistance, e + .04f), bustLook, bustFov),
-                new CamKey(25.5f, F(bustDistance, e + .04f), bustLook, bustFov),
-            }, new[] {
-                new CamKey(25.5f, F(bustDistance, e + .04f), bustLook, bustFov),
-                new CamKey(26.5f, xrayEndPos, xrayEndLook, 35),
-            } };
+            if (extractMotes)
+            {
+                var main = extractMotes.main;
+                main.startLifetime = new ParticleSystem.MinMaxCurve(1.8f, 2.8f); main.startSpeed = .035f * r;
+                main.startSize = new ParticleSystem.MinMaxCurve(.012f * r, .025f * r); main.maxParticles = 180;
+                main.startColor = new Color(.35f, .8f, 1, .75f);
+                var emission = extractMotes.emission; emission.rateOverTime = 65;
+                var shape = extractMotes.shape; shape.radius = 1.08f * r; shape.radiusThickness = .08f;
+                var velocity = extractMotes.velocityOverLifetime; velocity.orbitalY = .55f;
+            }
         }
 
-        void OpeningFrame(CinemachineCamera dolly, float t)
+        static float Seg(float t, float from, float to) => Mathf.SmoothStep(0, 1, Mathf.Clamp01((t - from) / (to - from)));
+
+        // The panorama is emissive: dim its runtime copy independently of the eye's lights and leave the saved sky untouched.
+        void AwakeningSky(float level)
         {
-            if (t < 26.5f)
+            if (!openingSky)
             {
-                var pose = Pose(t);
-                if (t < 15)
-                {
-                    // Ease distance logarithmically so the straight dolly slows as the face fills the frame.
-                    float start = Vector3.Dot(introPath[0][0].pos - iMid, iFace);
-                    float distance = Mathf.Exp(Mathf.Lerp(Mathf.Log(start), Mathf.Log(bustDistance), Ease(t, 3.5f, 15)));
-                    pose = new CamKey(t, iMid + iFace * distance + Vector3.up * .04f,
-                        iMid - Vector3.up * bustLookDrop, Mathf.Lerp(gateFov, bustFov, Ease(t, 3.5f, 8f)));   // the whole gate in the corridor still, the bust lens by the time the camera is through it
-                    if (!gateCrossed && distance <= start - gateApproach) { gateCrossed = true; sfx.Play("gateentry", .6f); }   // the camera crosses the doorway
-                }
-                Dolly(dolly, pose.pos, pose.look, pose.fov, .015f);
+                authoredSky = RenderSettings.skybox;
+                if (!authoredSky || !authoredSky.HasProperty("_Exposure")) return;
+                authoredSkyExposure = authoredSky.GetFloat("_Exposure");
+                openingSky = new Material(authoredSky) { hideFlags = HideFlags.HideAndDontSave };
             }
-            else
+            openingSky.SetFloat("_Exposure", authoredSkyExposure * level);
+            RenderSettings.skybox = openingSky;
+        }
+
+        void RestoreAwakeningSky()
+        {
+            if (openingSky && RenderSettings.skybox == openingSky) RenderSettings.skybox = authoredSky;
+        }
+
+        void OnDestroy()
+        {
+            RestoreAwakeningSky();
+            if (openingSky) Destroy(openingSky);
+        }
+
+        // A rim wave keeps the reveal readable; the retinal beat is a small, local spark rather than a white flash.
+        void AwakeningPulse(ParticleSystem ps, bool retina)
+        {
+            if (!ps || Short) return;
+            var e = eye.transform; float r = e.lossyScale.x;
+            var centre = retina ? e.TransformPoint(new Vector3(0, 0, -EyeGeometry.RetinaIn)) : e.position;
+            Particles(ps, true, centre);
+            var particle = new ParticleSystem.EmitParams { applyShapeToPosition = false };
+            int count = retina ? 28 : 72;
+            for (int i = 0; i < count; i++)
             {
-                float u = Ease(t, 26.5f, 29.5f), radius = iR * AnatomicalEye;
-                Vector3 at = Bezier(iEye, iEye + iFace * .22f + Vector3.up * .22f,
-                    iPresent + iFace * .3f + Vector3.up * .25f, iPresent, u);
-                eyeRig.SetPositionAndRotation(at, Quaternion.Slerp(iEyeRot, iPresentRot, u));
-                eyeRig.localScale = Vector3.one * (radius * Mathf.Pow(heroPoint.lossyScale.x / radius, u));
-                var pos = Bezier(xrayEndPos, xrayEndPos + iFace * .7f + Vector3.up * .45f,
-                    presentPos + Vector3.up * .3f, presentPos, u);
-                var look = Vector3.Lerp(at, presentLook, u);
-                float handover = Ease(t, 29.5f, OpeningLength);
-                var settle = cams.Get(SettleShot);
-                if (settle)
-                {
-                    pos = Vector3.Lerp(pos, settle.transform.position, handover);
-                    var rotation = Quaternion.Slerp(Quaternion.LookRotation(look - pos), settle.transform.rotation, handover);
-                    Dolly(dolly, pos, pos + rotation * Vector3.forward, Mathf.Lerp(35, cams.AuthoredFov(settle), handover), .015f);
-                }
-                else Dolly(dolly, pos, look, 35, .015f);
+                float a = i * Mathf.PI * 2 / count;
+                var radial = e.forward * Mathf.Cos(a) + e.up * Mathf.Sin(a);
+                particle.position = centre + radial * (retina ? .035f : 1.04f) * r;
+                particle.velocity = radial * (retina ? .18f : .32f) * r;
+                particle.startSize = (retina ? .025f : .035f) * r;
+                particle.startLifetime = retina ? .9f : 1.25f;
+                particle.startColor = retina ? new Color(1, .8f, .35f, .85f) : new Color(.25f, .75f, 1, .65f);
+                ps.Emit(particle, 1);
             }
-            if (entrance) { entrance.SetGate(Ease(t, 1f, 3.5f)); entrance.SetAccents(Ease(t, 1f, 2f)); }   // a one-second still, then the leaves part before the dolly moves at 3.5 s
-            human.SetBlink(Ease(t, 15.7f, 15.82f) * (1 - Ease(t, 15.9f, 16.12f)));
-            Exhibit(1 - Ease(t, 6.5f, 9));
-            float light = Mathf.Lerp(.8f, 1, Ease(t, 0, 4));
-            for (int i = 0; i < roomLights.Length; i++)
-                if (roomLights[i]) roomLights[i].intensity = roomBase[i] * Mathf.Lerp(.72f, .9f, Ease(t, 0, 4));
-            keyLight.intensity = keyIntensity * light * .85f;
-            displayLight.intensity = displayIntensity * light * .65f;
-            sfx.musicGain = 1;
-            // Three-point portrait light: key front-left high, a soft fill front-right low, a rim behind-right so the
-            // figure separates from the windows.
-            bool portrait = t >= 7 && t < 28.5f; float ramp = Ease(t, 7, 9);
-            if (faceKey)
+        }
+
+        void AwakeningFrame(CinemachineCamera dolly, float t)
+        {
+            var e = eye.transform; var E = e.position; float r = e.lossyScale.x;
+            Vector3 f = e.forward, side = -e.right, up = Vector3.up;   // side: where the removable half slides to, the cutaway's viewer
+            Vector3 Around(float deg, float dist, float h) => E + (f * Mathf.Cos(deg * Mathf.Deg2Rad) + side * Mathf.Sin(deg * Mathf.Deg2Rad)) * dist * r + up * h * r;
+            var mid = E + f * 3.6f * r;   // between the eye and the apple
+            // Camera keys: (time, position, look, lens). Each segment eases in and out; the holds read as stills.
+            var keys = new (float t, Vector3 pos, Vector3 look, float fov)[]
             {
-                var at = iMid + iFace * 1.2f - iRight * .75f + Vector3.up * .65f;
-                faceKey.enabled = portrait;
-                faceKey.transform.SetPositionAndRotation(at, Quaternion.LookRotation(iMid - at));
-                faceKey.intensity = faceKeyBase * .45f * ramp;
+                (0, Around(12, 4.2f, .25f), E, 32),
+                (4.4f, Around(15, 3.9f, .22f), E, 32),
+                (8.6f, Around(78, 5.35f, .4f), E, 36),
+                (11.2f, Around(86, 5.15f, .35f), E, 36),
+                (12.8f, mid + side * 10.4f * r + up * 1.9f * r, mid - up * .1f * r, 38),
+                (14.6f, mid + side * 10f * r + up * 1.8f * r, mid - up * .1f * r, 38),
+                (17.6f, E + f * .3f * r + side * 4.8f * r + up * .3f * r, E - f * .15f * r, 36),
+            };
+            int k = 0; while (k < keys.Length - 2 && t >= keys[k + 1].t) k++;
+            var a = keys[k]; var b = keys[k + 1]; float u = Seg(t, a.t, b.t);
+            var pos = Vector3.Lerp(a.pos, b.pos, u); var look = Vector3.Lerp(a.look, b.look, u); float fov = Mathf.Lerp(a.fov, b.fov, u);
+            // On the start screen (t = 0) the eye sits right of centre, clear of the title card; it glides to the centre as the light comes.
+            var shift = Vector3.Cross((look - pos).normalized, Vector3.up) * (1.1f * r * (1 - Seg(t, 1, 4.4f)));   // the camera's left
+            pos += shift; look += shift;
+            var settle = cams.Get(SettleShot);
+            float hand = Seg(t, 18.6f, OpeningLength);   // the hand-over to the first lesson shot
+            if (settle && hand > 0)
+            {
+                var from = Quaternion.LookRotation(look - pos, Vector3.up);
+                var rot = Quaternion.Slerp(from, settle.transform.rotation, hand);
+                pos = Vector3.Lerp(pos, settle.transform.position, hand);
+                look = pos + rot * Vector3.forward; fov = Mathf.Lerp(fov, cams.AuthoredFov(settle), hand);
             }
-            if (eyeFill)
+            if (dolly) Dolly(dolly, pos, look, fov, .01f);
+
+            // The eye: the wide, dark-adapted pupil tightens when the light arrives; the cutaway opens, then closes for the lesson.
+            if (t < 2.6f) eye.SetPupil(EyeGeometry.PupilMax * .95f, true); else eye.SetPupil(EyeGeometry.PupilMin * 1.25f, false);
+            eye.SetCut(Seg(t, 8.6f, 10.2f) * (1 - Seg(t, 19.2f, 20.6f)));   // it closes only as the camera leaves for Niko's shot
+            var retina = eye.Get("retina"); if (retina) retina.SetGlow(Seg(t, 14.3f, 14.6f) * (1 - Seg(t, 15.6f, 17.2f)), true);
+
+            // The apple and its light: in from 11 s, the rays crossing cornea and lens to the retina by 14.4 s, gone for the lesson.
+            float apple = Seg(t, 11, 11.7f) * (1 - Seg(t, 17.6f, 18.3f));
+            if (apple > .001f)
             {
-                var at = iMid + iFace * 1.5f + iRight * .95f - Vector3.up * .15f;
-                eyeFill.enabled = portrait;
-                eyeFill.transform.SetPositionAndRotation(at, Quaternion.LookRotation(iMid - Vector3.up * .3f - at));
-                eyeFill.intensity = eyeFillBase * .5f * ramp;
+                Optic("apple", 7, 5 * Seg(t, 12, 14.4f)); rays.showImage = false;
+                appleRoot.localScale = Vector3.one * appleBaseScale * Mathf.Max(.01f, apple);
+                pedestal.localScale = BaseScale(pedestal) * Mathf.Max(.01f, apple);
+            }
+            else if (appleRoot.gameObject.activeSelf || rays.gameObject.activeSelf) { ShowObject("apple", false); rays.gameObject.SetActive(false); }
+
+            // Keep the eye as the brightest subject; restore the hall only during the lesson handover.
+            float wake = Seg(t, 4.4f, 9), lab = Seg(t, 18.2f, OpeningLength), cut = Seg(t, 8, 10.2f);
+            Room(Mathf.Lerp(.045f, .14f, wake) * (1 - lab) + lab);
+            AmbientScale(Mathf.Lerp(.28f, .48f, wake) * (1 - lab) + lab);
+            AwakeningSky(Mathf.Lerp(.16f, .24f, wake) * (1 - lab) + lab);
+            keyLight.intensity = keyIntensity * Mathf.Lerp(.06f, .22f, wake) * (1 - lab) + keyIntensity * lab;
+            displayLight.intensity = displayIntensity * lab;
+            float arrive = Seg(t, 2.4f, 3.1f);
+            if (eyeKey)
+            {
+                var at = E + f * 2.4f * r + up * 1.7f * r - side * 1.3f * r;
+                eyeKey.enabled = arrive > .001f; eyeKey.transform.SetPositionAndRotation(at, Quaternion.LookRotation(E - at));
+                eyeKey.intensity = eyeKeyBase * Mathf.Lerp(.95f, .48f, cut) * arrive;
             }
             if (eyeRim)
             {
-                var target = t < 26.5f ? iMid : eyeRig.position;
-                var at = target - iFace * .9f + iRight * .65f + Vector3.up * .55f;
-                eyeRim.enabled = t >= 7;
-                eyeRim.transform.SetPositionAndRotation(at, Quaternion.LookRotation(target - at));
-                eyeRim.intensity = eyeRimBase * 1.1f * ramp;
+                var at = E - f * 1.4f * r + up * 1.1f * r + side * .4f * r;
+                eyeRim.enabled = true; eyeRim.transform.SetPositionAndRotation(at, Quaternion.LookRotation(E - at));
+                eyeRim.intensity = eyeRimBase * Mathf.Lerp(1.55f, 1.05f, cut);
             }
-            if (eyeKey) eyeKey.enabled = t >= 28;
-            if (human.reveal)
+            if (eyeFill)
             {
-                human.reveal.Evaluate(t);
-                var state = human.reveal.State;   // a layer stands complete: a resolving shimmer (also marks the reduced-motion stills)
-                if (state != revealHeard)
-                {
-                    if (state == AnatomyRevealController.RevealState.Muscle) sfx.Play("layerdone", .55f);
-                    else if (state == AnatomyRevealController.RevealState.Organs) sfx.Play("organs", .55f);
-                    revealHeard = state;
-                }
+                var at = E + side * 2f * r + f * .6f * r - up * .2f * r;
+                eyeFill.enabled = true; eyeFill.transform.SetPositionAndRotation(at, Quaternion.LookRotation(E - at));
+                eyeFill.intensity = eyeFillBase * Mathf.Lerp(.18f, .4f, wake);
             }
-            // Loops that follow the real motion: the leaves' servo (from the gate, 3D) and each breakup's crackle.
-            OpeningLoop("gateservo", t > 1f && t < 3.6f, Mathf.Sin(Mathf.PI * Ease(t, 1f, 3.5f)), entrance ? entrance.transform : null);
-            OpeningLoop("crackle1", t > 17f && t < 18.7f, Mathf.Sin(Mathf.PI * Ease(t, 17f, 18.6f)));
-            OpeningLoop("crackle2", t > 22f && t < 23.7f, Mathf.Sin(Mathf.PI * Ease(t, 22f, 23.6f)));
-            if (t < 26.5f)
+            float exposure = Mathf.Lerp(-1.65f, -.65f, Seg(t, 2.4f, 5));
+            float focus = t < 12.2f || t > 15.1f ? Vector3.Distance(pos, E) + 1.65f * r : 0;
+            Look(exposure * (1 - lab), Mathf.Lerp(.34f, labVignette, lab), 4 * (1 - lab), -3 * (1 - lab), 0, Mathf.Lerp(1.45f, 1, lab), Short ? 0 : focus * (1 - hand));
+            if (!Clock.Paused && !Clock.Frozen)
             {
-                eyeRig.localScale = Vector3.one * (iR * Mathf.Lerp(1, AnatomicalEye, Ease(t, 17, 18.6f)));
-                otherEye.transform.localScale = eyeRig.localScale;
+                Particles(depthDust, IntroPlaying && !Short && t > .35f && t < 18.5f, E);
+                Particles(extractMotes, IntroPlaying && !Short && t > 7.8f && t < 11.8f, E);
             }
-            foreach (var p in otherEye.parts) p.SetAlpha(1 - Ease(t, 26.5f, 28.5f), true);
-            if (t >= 28.5f) { human.gameObject.SetActive(false); otherEye.gameObject.SetActive(false); }
-            hud.Fade(1 - Ease(t, 0, .6f));   // a short fade-in: the corridor is seen, not a black hold
-            // The corridor is lifted, not black; the lab sits a touch under its lesson level and returns to it by the hand-over.
-            float lab = Ease(t, 3.5f, 6.5f);
-            float ev = labLift * (1 - Ease(t, 29.5f, OpeningLength));
-            Look(ev, .2f, 0, 2 * lab, 0, .85f, 0);   // no depth of field: the extracted eye fades in see-through, and a blur took it too
-            IntroCaption = t < 3.5f ? null : t < 9 ? "A world of detail. One remarkable sense."
-                : t < 15 ? null : t < 17 ? "SKIN · The surface we see"
-                : t < 22 ? "MUSCULAR SYSTEM · Muscles move the eyes and eyelids"
-                : t < 25.5f ? "INTERNAL ORGANS · The eyes and brain work together"
-                : t < 29.5f ? "THE EYE · Let's look closer" : null;
-            if (t >= 9 && t < 12)
-                SetTitle("THE HUMAN EYE", "DISCOVER HOW VISION WORKS", Ease(t, 9, 9.8f), Ease(t, 9.5f, 10.2f) * (1 - Ease(t, 11.5f, 12)), 1 - Ease(t, 11.5f, 12));
+            sfx.musicGain = 1;
+            hud.Fade(0);
+
+            IntroCaption = t >= 2.8f && t < 6.4f ? "Light arrives, and the pupil tightens to let in just enough."
+                : t >= 9.6f && t < 12.2f ? "Inside: a lens, clear jelly, and the light-sensitive retina."
+                : t >= 12.4f && t < 15.1f ? "The cornea and the lens bend the light onto the retina."
+                : null;
+            if (t >= 15.2f && t < 18.6f)
+                SetTitle("THE HUMAN EYE", "HOW LIGHT BECOMES SIGHT", Seg(t, 15.2f, 16), Seg(t, 15.7f, 16.4f) * (1 - Seg(t, 18, 18.6f)), 1 - Seg(t, 18, 18.6f));
             else ClearTitle();
         }
     }

@@ -25,7 +25,7 @@ namespace HumanEye
         public float ImageTop { get; private set; }
         public float ImageBottom { get; private set; }
 
-        const float RetinaDistance = EyeGeometry.LensZ + EyeGeometry.RetinaIn, PupilZ = .79f;
+        const float RetinaDistance = EyeGeometry.LensZ + EyeGeometry.RetinaIn, PupilZ = EyeGeometry.IrisZ + .01f;
         readonly Vector3[] pts = new Vector3[6];
         readonly Vector3[] draw = new Vector3[6];
 
@@ -60,8 +60,8 @@ namespace HumanEye
             FocusError = Mathf.Abs(v - RetinaDistance);
             ImageTop = -top.y * v / u; ImageBottom = -bottom.y * v / u;
 
-            float width = Mathf.Lerp(.004f, .011f, brightness) * eye.transform.lossyScale.x / .4f;
-            var tint = new Color(1, .93f, .7f, Mathf.Lerp(.3f, 1, brightness));
+            float width = Mathf.Lerp(.0022f, .0055f, brightness) * eye.transform.lossyScale.x / .4f;   // thin, elegant rays
+            var tint = new Color(1, .96f, .86f, Mathf.Lerp(.3f, 1, brightness));   // pale warm white: light, never the gold of a nerve signal
             for (int k = 0; k < rays.Length; k++)
             {
                 var o = k < 3 ? top : bottom;
@@ -74,7 +74,7 @@ namespace HumanEye
                 lampRays[k].positionCount = 2;
                 lampRays[k].SetPosition(0, lamp.position); lampRays[k].SetPosition(1, hit);
                 lampRays[k].widthMultiplier = width * .8f;
-                lampRays[k].startColor = lampRays[k].endColor = new Color(1, .9f, .65f, Mathf.Lerp(.15f, .7f, brightness));
+                lampRays[k].startColor = lampRays[k].endColor = new Color(1, .94f, .8f, Mathf.Lerp(.15f, .7f, brightness));
             }
             if (lampLight) lampLight.intensity = Mathf.Lerp(.25f, 5f, brightness);
             if (imageQuad && showImage)

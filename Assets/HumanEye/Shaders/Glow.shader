@@ -11,6 +11,7 @@ Shader "HumanEye/Glow"
         _Alpha("Alpha", Range(0,1)) = 1
         _EdgeFade("View Edge Fade", Float) = 0
         _LengthFade("Length Fade (uv.y)", Float) = 0
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Depth Test (Always: a pulse inside an opaque nerve stays visible)", Float) = 4
     }
     SubShader
     {
@@ -20,6 +21,7 @@ Shader "HumanEye/Glow"
             Tags { "LightMode"="UniversalForward" }
             Blend SrcAlpha One
             ZWrite Off
+            ZTest [_ZTest]
             Cull Off
             HLSLPROGRAM
             #pragma vertex vert

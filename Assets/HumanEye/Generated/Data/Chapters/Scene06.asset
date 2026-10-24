@@ -61,12 +61,6 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: info
-    arg: Press Near object in the panel to bring the apple close.
-    value: 0
-    async: 0
-    note: 
   - kind: 3
     key: near
     arg: 
@@ -80,7 +74,13 @@ MonoBehaviour:
     async: 1
     note: 
   - kind: 2
-    key: nearDemo
+    key: focusView
+    arg: on
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: nearApproach
     arg: 
     value: 0
     async: 0
@@ -89,17 +89,17 @@ MonoBehaviour:
     key: S06_LensClose
     arg: 
     value: 1.2
+    async: 0
+    note: 
+  - kind: 2
+    key: lensFocus
+    arg: near
+    value: 0
     async: 1
     note: 
   - kind: 1
     key: S06_L02
     arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: info
-    arg: Now press Distant object.
     value: 0
     async: 0
     note: 
@@ -116,7 +116,7 @@ MonoBehaviour:
     async: 1
     note: 
   - kind: 2
-    key: distantDemo
+    key: distantApproach
     arg: 
     value: 0
     async: 0
@@ -125,10 +125,28 @@ MonoBehaviour:
     key: S06_LensClose
     arg: 
     value: 1.2
+    async: 0
+    note: 
+  - kind: 2
+    key: lensFocus
+    arg: distant
+    value: 0
     async: 1
     note: 
   - kind: 1
     key: S06_L03
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: ciliaryDemo
+    arg: 
+    value: 0
+    async: 1
+    note: 
+  - kind: 1
+    key: acc_ciliary
     arg: 
     value: 0
     async: 0
@@ -140,8 +158,20 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
+    key: glow
+    arg: lens
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
     key: labels
     arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: focusView
+    arg: off
     value: 0
     async: 0
     note: 

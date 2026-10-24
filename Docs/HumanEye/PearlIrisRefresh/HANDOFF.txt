@@ -1,0 +1,117 @@
+HUMAN EYE — PEARL + IRIS REFRESH
+
+UNITY FOLLOW-UP — 24 OCTOBER 2026
+Exported Figma PNG panels and buttons are now applied to the existing saved Canvas.
+The already-unpacked scene Canvas remains the UI authority; no runtime UI generation
+was added. See Docs/HumanEye/FigmaIntegration/README.md for evidence and validation
+status. Figma-only and material-preview statements below describe earlier revisions.
+
+Figma: https://www.figma.com/design/wLgTj7N6mpfRONuYkmZac0
+Prototype: https://www.figma.com/proto/wLgTj7N6mpfRONuYkmZac0?node-id=4-9
+Account: Vaibhav Sharma (vaibhav@metabookxr.com)
+Session: 6069b959-f4e8-4240-b155-c045ad9311ca
+
+DELIVERED DESIGN INVENTORY
+Eight requested pages. All 20 approved reference images in References & Audit.
+12 desktop frames, 1920 x 1080. Inside, accommodation, quiz and Free Explore
+adaptations at both 1280 x 800 and 1024 x 768.
+Native editable interface above separate clean scene image layers.
+Nunito Sans; five text styles; 12 semantic colour variables and six spacing/radius variables.
+Five button families x six interaction states; ten reusable teaching panels,
+ten vector icon components, native toggle states and component review sheet.
+Loading, Pause, Settings, Chapters, Help, Ask Niko, correct and retry layouts.
+Primary selected quiz state is not a correctness signal.
+
+IMPLEMENTATION
+Pearl FCFDFF; Card FFFFFF; Primary text 1A2B49; Primary action 6657D9;
+Soft selection EEEAFE; Border DCD7F3; Secondary text 5E6B82;
+Teal 0D817F; Amber F3B84C; Success surface E6F6EE; Caption 172641.
+8-unit spacing. Control corners 20, panel corners 28. Primary hit targets >=48.
+Desktop title 32; body 26; control labels 24. Tablet body generally 20.
+Chapter top-left; tools top-right; activity panel right; caption lower centre;
+Ask Niko lower-right on desktop and upper-left on tablet to avoid the tall panel.
+Keep scene artwork aspect ratio. Tablet letterboxing is deliberate.
+Copy wording and chapter sequence from the Unity chapter assets and narration.
+No score, achievement count or progress percentage was invented.
+
+TEXTURE ASSETS AND STATUS
+EyeInterior_BaseColor_Candidate.png: AI-generated flat appearance source, actual 1254 x 1254.
+EyeInterior_BaseColor.png: source master, same resolution.
+Normal, Roughness, Smoothness and SpecularMask derived from that same source;
+aligned numerical checks passed. 2048 variants are upscaled; 1024 variants downsampled.
+No geometry-derived AO or height is claimed. Normal is a conservative high-pass
+luminance estimate, not a bake or measured surface. Roughness is art-directed.
+Original retina mesh and UVs from Tools/HumanEye/LocalEye.json.gz were rendered
+in Blender with original red/blue vessel geometry. Before and after use identical
+camera, lighting and exposure. The .blend file preserves the candidate preview.
+This verifies that the base colour can be displayed on that exported mesh; it
+does not certify all UV seams, poles, mips, normal orientation or runtime performance.
+Generated clean gameplay images are appearance concepts, not rendered evidence
+that the candidate maps are applied in the production Unity scene.
+The inside-eye concept was corrected to remove exaggerated radial folds and
+uses finer tissue detail. Scene artwork remains a concept; the separate Unity
+comparison frames are the evidence of the actual candidate material on the model.
+
+UNITY SHADER HANDOFF
+Installed Unity: 6000.3.0f1. Shader: HumanEye/Anatomy.
+_BaseMap: sRGB; _BumpMap: normal-map import, linear;
+_SpecMap: linear red-channel specular-intensity mask.
+_Gloss controls shininess as a scalar; Roughness/Smoothness are handoff maps,
+not directly supported texture inputs in this shader. Do not pack them into _SpecMap.
+Preserve separate retina/choroid/sclera/lens materials and vessel meshes/overlays.
+Start candidate normal strength below original 0.45 and evaluate at lesson distance.
+Do not assign the retinal base colour indiscriminately to choroid or sclera.
+The grey/orange boundary was retained. A Unity diagnostic hiding the vitreous
+removed that boundary, identifying the translucent vitreous/cutaway surface as
+its cause. It was not painted into or out of the retina texture.
+
+VERIFICATION AND LIMITS
+Desktop panel bounds measured, all 12 scene layers verified to contain images;
+Free Explore clipping found in exported review and corrected.
+Selected priority screens, component states and tablet accommodation visually inspected.
+PNG previews exported. Representative navigation and overlays authored; a complete
+interactive click-through has not been exercised in Present mode.
+Ask Niko is a design state, not an implemented AI integration. Brightness and focus
+are illustrative, not a functioning Unity simulation in Figma.
+Unity production materials, scene, gameplay logic and narration were not changed.
+The duplicate Retina_PearlIris_Candidate material in Assets/HumanEye/PearlIrisPreview
+was rendered with HumanEye/Anatomy in Unity 6000.3.0f1 on six retina renderers,
+using 1024 base-colour, normal and specular maps. Both S03_Lens_Close and
+S06_LensClose were rendered before/after at identical camera and exposure.
+The preview helper compiled and Unity exited successfully; no C# exceptions
+or shader errors were found in its log. Preview-only blending follows the
+AnatomyPart runtime blend configuration; the unrelated human display is hidden.
+Production scene and source material timestamps stayed at their earlier values.
+The boundary disappeared in a no-vitreous diagnostic: it is a transparency/cutaway
+effect, not a defect to paint out of the retina base colour. Preserve it.
+Candidate shader calibration: BaseColor tint (1, .72, .68), BumpScale .12,
+Gloss .38, Specular .16, Wet .18. Preview maps are uncompressed with mipmaps.
+Mobile compression, complete mip/seam/pole review, build and runtime performance
+remain outstanding; this is a model-tested candidate, not a release certification.
+Brightness Dim/Bright, Near/Distant and incorrect-selection quiz states are
+included as static illustrative prototype states with separate feedback.
+No .fig export: this connector did not provide a native binary export workflow.
+
+ANATOMY CHECK SOURCES
+NEI: https://www.nei.nih.gov/eye-health-information/healthy-vision/how-eyes-work
+Retinal image formation: https://www.ncbi.nlm.nih.gov/books/NBK11079/
+Near focus: ciliary contraction reduces zonular tension and allows a thicker lens.
+Optical light path and subsequent neural signal path are kept distinct.
+
+VISUAL POLISH — 24 OCTOBER 2026
+Editable iris crest and orbital line motifs; layered pearl fills, lilac edges and
+surface depth; raised violet and amber actions with distinct hover/pressed states.
+Start screen has an iris brand row, violet EYE emphasis, full-width amber action
+and one secondary action row. Chapter and panel headers carry iris details.
+Selected part rows have pearl markers and violet borders. Menus use icon badges;
+success and retry retain separate mint and warm surfaces, with supporting copy
+as plain text. Tablet tabs, reset labels, slider rails and lens callouts fit.
+All 38 preview nodes were re-exported; IrisCrest.svg is included in UIAssets/.
+Six paint styles and two effect styles are recorded in visual-polish-styles.json.
+Start display title is 64 px; existing lesson typography remains in use.
+Final structural check: zero horizontal text overflow, zero missing destinations
+across 139 prototype routes. New gradient/text contrast pairs meet 4.5:1.
+Secondary text was refined to 5E6B82 for contrast on the pearl gradient.
+This revision changed Figma/UI artifacts only. Unity scenes, materials and
+texture maps were not changed or retested. Full Present-mode click-through
+remains unperformed. See design-polish-check.json for exact evidence.

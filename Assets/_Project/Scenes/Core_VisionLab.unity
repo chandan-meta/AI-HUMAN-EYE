@@ -18835,21 +18835,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: d400d0bd1921f7745aa1010857384c1f, type: 2}
+      objectReference: {fileID: 2100000, guid: f1bfba115dcd97a41a1d9961e91fb267, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: d400d0bd1921f7745aa1010857384c1f, type: 2}
+      objectReference: {fileID: 2100000, guid: 97add57c724a97a4286a3f6e83d31a40, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: d400d0bd1921f7745aa1010857384c1f, type: 2}
+      objectReference: {fileID: 2100000, guid: d9bd730011f2d0e4c88c1e661bfb773e, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: 'm_Materials.Array.data[3]'
       value: 
-      objectReference: {fileID: 2100000, guid: d400d0bd1921f7745aa1010857384c1f, type: 2}
+      objectReference: {fileID: 2100000, guid: 798311a5e198b4343972070ea5ee062f, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: 'm_Materials.Array.data[4]'
       value: 
@@ -18898,6 +18902,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[15]'
       value: 
       objectReference: {fileID: 2100000, guid: d400d0bd1921f7745aa1010857384c1f, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 15259bc9e8c89e644a1b5c90e361ae1e, type: 2}
     - target: {fileID: 919132149155446097, guid: 2780c457e5257ba419679fa13fe16e40, type: 3}
       propertyPath: m_Name
       value: Brain

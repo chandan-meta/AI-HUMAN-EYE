@@ -20,15 +20,15 @@ MonoBehaviour:
   - optic_nerve
   steps:
   - kind: 2
-    key: labels
-    arg: focus:optic_nerve
+    key: eyeToBrain
+    arg: 
     value: 0
-    async: 0
+    async: 1
     note: 
   - kind: 2
-    key: signals
-    arg: nerve
-    value: 1
+    key: cineBeat
+    arg: signals
+    value: 0
     async: 0
     note: 
   - kind: 1
@@ -38,10 +38,10 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: followSignal
-    arg: nerve
-    value: 1
-    async: 1
+    key: cineBeat
+    arg: pathway
+    value: 0
+    async: 0
     note: 
   - kind: 1
     key: S09_L02
@@ -49,21 +49,9 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 0
-    key: S04_BrainClose
-    arg: 
-    value: 2
-    async: 1
-    note: 
   - kind: 2
-    key: glow
-    arg: visual_area
-    value: 0.9
-    async: 0
-    note: 
-  - kind: 2
-    key: labels
-    arg: focus:visual_area
+    key: cineBeat
+    arg: brain
     value: 0
     async: 0
     note: 
@@ -74,8 +62,8 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: signals
-    arg: nerve
+    key: cineBeat
+    arg: end
     value: 0
     async: 0
     note: 

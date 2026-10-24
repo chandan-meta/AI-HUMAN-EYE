@@ -6,7 +6,7 @@ namespace HumanEye
     [RequireComponent(typeof(CanvasRenderer))]
     public sealed class HudIcon : MaskableGraphic
     {
-        public enum Symbol { Home, Chat, Play, Pause, Help, Review, Settings, Scan, Eye, Trace, Freeze, Replay, Book, Chevron, ZoomIn, ZoomOut, TurnLeft, TurnRight }
+        public enum Symbol { Home, Chat, Play, Pause, Help, Review, Settings, Scan, Eye, Trace, Freeze, Replay, Book, Chevron, ZoomIn, ZoomOut, TurnLeft, TurnRight, Sound, SoundOff, List }   // append only: symbols are saved by index
         public Symbol symbol;
         [Range(1,4)] public float stroke = 2;
         VertexHelper mesh;
@@ -30,6 +30,11 @@ namespace HumanEye
                 case Symbol.TurnRight: Arc(.5f,.48f,.34f,-180,125); Path(.45f,.91f,.67f,.79f,.45f,.66f); break;
                 case Symbol.Book: Path(.1f,.18f,.1f,.82f,.3f,.88f,.5f,.78f,.7f,.88f,.9f,.82f,.9f,.18f,.7f,.24f,.5f,.14f,.3f,.24f,.1f,.18f); Path(.5f,.14f,.5f,.78f); break;
                 case Symbol.Chevron: Path(.36f,.18f,.65f,.5f,.36f,.82f); break;
+                case Symbol.Sound: case Symbol.SoundOff:
+                    Path(.12f,.38f,.3f,.38f,.52f,.18f,.52f,.82f,.3f,.62f,.12f,.62f,.12f,.38f);
+                    if (symbol == Symbol.Sound) { Arc(.52f,.5f,.17f,-50,50); Arc(.52f,.5f,.31f,-50,50); } else { Path(.66f,.37f,.9f,.63f); Path(.66f,.63f,.9f,.37f); }
+                    break;
+                case Symbol.List: for (int k = 0; k < 3; k++) { float y = .74f - k * .24f; Circle(.2f, y, .045f); Path(.36f, y, .86f, y); } break;
                 case Symbol.ZoomIn: case Symbol.ZoomOut: Circle(.43f,.58f,.29f); Path(.65f,.36f,.9f,.1f); Path(.28f,.58f,.58f,.58f); if(symbol==Symbol.ZoomIn) Path(.43f,.43f,.43f,.73f); break;
             }
         }

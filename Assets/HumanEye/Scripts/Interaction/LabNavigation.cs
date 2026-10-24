@@ -12,9 +12,9 @@ namespace HumanEye
         public GameObject joystickPanel;
         public float speed = 2, eyeHeight = 1.65f, lookSpeed = .12f;
         public bool Active { get; private set; }
-        public bool Available => stage.runner.Started && !stage.IntroPlaying && !stage.DemoBusy &&
+        public bool Available => stage.runner.Started && !stage.CinematicPlaying && !stage.DemoBusy &&
             stage.runner.Focused == null && stage.activities.Card == null &&
-            (stage.runner.Awaiting == "scan" || stage.runner.State == LessonState.Exploring);
+            stage.runner.State == LessonState.Exploring;
         Camera Camera => stage.cams.brain.GetComponent<Camera>();
         Vector3 savedPosition;
         Quaternion savedRotation;
@@ -31,8 +31,8 @@ namespace HumanEye
             savedPosition = cam.position; savedRotation = cam.rotation;
             stage.cams.brain.enabled = false;
             body.enabled = false;
-            // Authored clear floor in front of the platform, away from tables and camera-only hero shots.
-            transform.position = new Vector3(-4, 0.05f, -4);
+            // Clear floor in front of the stand (the new lab's floor is at y 0.11), away from the side exhibits and hero shots.
+            transform.position = new Vector3(-4, .16f, -6);
             body.enabled = true; yaw = 45; pitch = 0;
             Active = true; joystickPanel.SetActive(true);
             stage.hud.Refresh();

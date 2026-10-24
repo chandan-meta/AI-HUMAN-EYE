@@ -1,0 +1,7 @@
+{
+  "tiles": 14,
+  "atlas": 4096,
+  "tile": 1024,
+  "edge": 8,
+  "verified_against_2048_max_mean_diff": 0.001671910285949707
+}

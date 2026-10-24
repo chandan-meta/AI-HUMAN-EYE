@@ -8,6 +8,8 @@ namespace HumanEye
         bool brightnessLive;
         float appleBaseScale = 1;
         string viewed = "apple";
+        Vector3 treeBaseScale = Vector3.one, pedestalBaseScale = Vector3.one;
+        bool objectScalesCached;
 
         void RegisterOptics()
         {
@@ -25,6 +27,7 @@ namespace HumanEye
             actions["replayAccommodation"] = (mode, __) => ReplayAccommodation();
             actions["replayImage"] = (mode, __) => ReplayImage();
             actions["pupilTrial"] = (mode, __) => PupilTrial();
+            RegisterFraming();   // Stage.Framing.cs: isolateKeep, nearApproach, distantApproach, lensFocus
         }
 
         // ---------- placement ----------
@@ -44,10 +47,60 @@ namespace HumanEye
             rays.showLamp = which == "apple";
         }
 
+        /// Instant show/hide (checkpoints and resets). Scales are restored so a cancelled transition never leaves an object small.
         void ShowObject(string which, bool on)
         {
-            (which == "tree" ? treeRoot : appleRoot).gameObject.SetActive(on);
-            if (which == "apple") { pedestal.gameObject.SetActive(on); lampRoot.gameObject.SetActive(on); }
+            CacheObjectScales();
+            var root = which == "tree" ? treeRoot : appleRoot;
+            root.gameObject.SetActive(on); root.localScale = BaseScale(root);
+            if (which == "apple") { pedestal.gameObject.SetActive(on); pedestal.localScale = pedestalBaseScale; lampRoot.gameObject.SetActive(on); }
+        }
+
+        // ---------- object transitions (no pops): objects grow in from their base and shrink away ----------
+        void CacheObjectScales()
+        {
+            if (objectScalesCached) return;
+            treeBaseScale = treeRoot.localScale; pedestalBaseScale = pedestal.localScale; objectScalesCached = true;
+        }
+
+        Vector3 BaseScale(Transform root) => root == treeRoot ? treeBaseScale : root == pedestal ? pedestalBaseScale : Vector3.one * appleBaseScale;
+
+        IEnumerator Grow(Transform root, float seconds, string sound = null, float volume = .5f)
+        {
+            CacheObjectScales();
+            var full = BaseScale(root);
+            root.gameObject.SetActive(true);
+            if (Short || seconds <= 0) { root.localScale = full; yield break; }
+            if (sound != null) sfx.Play(sound, volume);
+            yield return Routine.Tween(seconds, t => root.localScale = full * Mathf.Max(.01f, t), true);
+            root.localScale = full;
+        }
+
+        IEnumerator Shrink(Transform root, float seconds, string sound = null, float volume = .4f)
+        {
+            CacheObjectScales();
+            var full = BaseScale(root);
+            if (!root.gameObject.activeSelf) yield break;
+            if (!Short && seconds > 0)
+            {
+                if (sound != null) sfx.Play(sound, volume);
+                yield return Routine.Tween(seconds, t => root.localScale = full * Mathf.Max(.01f, 1 - t), true);
+            }
+            root.gameObject.SetActive(false); root.localScale = full;
+        }
+
+        IEnumerator Delayed(float seconds, IEnumerator then) { yield return new Wait(seconds, true); yield return then; }
+
+        /// The pedestal rises first, then the lit apple (with its lamp) grows in on top of it.
+        IEnumerator AppleIn(float seconds)
+        {
+            lampRoot.gameObject.SetActive(true);
+            yield return Routine.All(Grow(pedestal, seconds * .7f, "layerreveal", .5f), Delayed(seconds * .3f, Grow(appleRoot, seconds * .7f, "softwhoosh", .4f)));
+        }
+
+        IEnumerator AppleOut(float seconds)
+        {
+            yield return Routine.All(Shrink(appleRoot, seconds, "softwhoosh", .35f), Delayed(seconds * .3f, Shrink(pedestal, seconds * .7f)));
         }
 
         public void SetObjectDistance(float u)
@@ -66,7 +119,7 @@ namespace HumanEye
         public string Readout() => Simulation switch
         {
             "brightness" => $"Brightness: {Mathf.RoundToInt(Brightness * 100)}%   Pupil: {(eye.PupilRadius > .2f ? "larger" : eye.PupilRadius < .12f ? "smaller" : "medium")}",
-            "distance" => "Illustrative model — not a clinical optical simulator.",
+            "distance" => FreeExploring ? "" : "Illustrative model — not a clinical optical simulator.",
             _ => "",
         };
 
@@ -75,7 +128,7 @@ namespace HumanEye
             if (!brightnessLive) return;
             rays.brightness = Brightness;
             eye.SetPupil(Mathf.Lerp(EyeGeometry.PupilMax * .95f, EyeGeometry.PupilMin * 1.15f, Brightness), false);
-            RenderSettings.ambientIntensity = Mathf.Lerp(.35f, 1.15f, Brightness);
+            RenderSettings.ambientIntensity = ambientBase * Mathf.Lerp(.35f, 1.15f, Brightness);
             displayLight.intensity = displayIntensity * Mathf.Lerp(.3f, 1.3f, Brightness);
             if (runner.Awaiting == "brighter" && Brightness >= .8f) runner.Press("brighter");
             if (runner.Awaiting == "dimmer" && Brightness <= .2f) runner.Press("dimmer");
@@ -87,6 +140,11 @@ namespace HumanEye
             reason = null;
             if (Clock.Paused) { reason = "Resume to change the demonstration."; return false; }
             if (DemoBusy) { reason = "Wait for the current demonstration to finish."; return false; }
+            if (FreeExploring)
+            {
+                if (id is "near" or "distant" or "distanceSlider") return !fxBusy;
+                reason = "Not part of Free Explore."; return false;
+            }
             switch (id)
             {
                 case "brighter": case "presetBright":
@@ -113,6 +171,16 @@ namespace HumanEye
         public void UseControl(string id, float value = 0)
         {
             if (!Control(id, out var reason)) { hud.Toast(reason); sfx.Play("deny", .6f); return; }
+            if (FreeExploring)
+            {
+                if (id == "distanceSlider")
+                {
+                    if (!rays.showImage) { rays.showImage = true; hud.ShowInsets(rays.objectCamera.targetTexture, false); }
+                    SetObjectDistance(Mathf.Lerp(rays.nearDistance, rays.farDistance, value));
+                }
+                else RunDemo(FreeFocus(id == "near" ? rays.nearDistance : rays.farDistance * .7f));
+                hud.Refresh(); return;
+            }
             switch (id)
             {
                 case "brighter": SetBrightness(Brightness + .15f); break;
@@ -139,10 +207,10 @@ namespace HumanEye
         // ---------- Scene 5 ----------
         IEnumerator ObjectAppear(float seconds)
         {
-            ShowObject("apple", true); PlaceObject("apple", 7);
+            ShowObject("tree", false);
+            PlaceObject("apple", 7);
             rays.gameObject.SetActive(true); rays.reach = 0; rays.showLamp = true;
-            sfx.Play("materialise", .5f);
-            yield return Routine.Tween(seconds, t => appleRoot.localScale = Vector3.one * appleBaseScale * Mathf.Max(.01f, t));
+            yield return AppleIn(seconds);
         }
 
         IEnumerator LightTravel(float to, float seconds)
@@ -182,29 +250,75 @@ namespace HumanEye
         }
 
         // ---------- Scene 6 ----------
+        // Each demonstration is split so the lens change happens on the lens close-up while its line is spoken: the object
+        // moves (nearApproach / distantApproach, on the wide shot), the content cuts to S06_LensClose, then lensFocus runs
+        // beside the line. NearDemo / DistantDemo keep the complete beat for the panel fallback and the question replays.
+        const string LensShot = "S06_LensClose";
+
+        /// The apple comes close (the tree, if shown, goes first). The lens is not touched here.
+        IEnumerator NearApproach()
+        {
+            if (ciliary) { ciliary.Shown = false; ShowLabels("focus:lens"); }   // the muscle's label waits for the lens to work
+            yield return Shrink(treeRoot, .4f);
+            if (!appleRoot.gameObject.activeSelf) yield return AppleIn(.8f);
+            float u0 = ObjectDistance;
+            if (!Short) sfx.Play("softwhoosh", .3f);
+            yield return Routine.Tween(Short ? .5f : 1.6f, t => PlaceObject("apple", Mathf.Lerp(u0, rays.nearDistance, t)), true);
+        }
+
+        /// The apple and its pedestal shrink away; the distant tree grows in at the far distance.
+        IEnumerator DistantApproach()
+        {
+            if (ciliary) { ciliary.Shown = false; ShowLabels("focus:lens"); }
+            yield return AppleOut(.6f);
+            PlaceObject("tree", rays.farDistance);
+            yield return Grow(treeRoot, .7f, "layerreveal", .5f);
+        }
+
+        /// The lens changes shape slowly enough to watch and glows while it does (the content clears the glow after S06_L04).
+        IEnumerator LensFocus(bool near)
+        {
+            float target = near ? 1 : 0;
+            hud.SetLensState(near ? "Near object · the lens is rounding up…" : "Distant object · the lens is flattening…");
+            var lens = eye.Get("lens"); if (lens) lens.SetGlow(1);
+            if (ciliary) { ShowLabels("focus:lens"); CiliaryLabel(near ? "Ciliary muscle tightens" : "Ciliary muscle relaxes"); }
+            sfx.Play("lensfocus", .5f);
+            eye.accommodationRate = Short ? 1.2f : .3f;
+            eye.SetAccommodation(target, false);
+            yield return Settle(() => Mathf.Abs(eye.Accommodation - target) < .01f || !Mathf.Approximately(eye.accommodationTarget, target));   // a newer focus takes over
+            eye.accommodationRate = .45f;
+            if (Mathf.Approximately(eye.accommodationTarget, target))
+            {
+                hud.SetLensState(near ? "Lens more curved · image sharp ✓" : "Lens less curved · image sharp ✓");
+                sfx.Play("tick", .5f);   // a soft click of focus
+            }
+        }
+
+        /// Puts the camera on the lens close-up when a demonstration runs outside the authored content order.
+        IEnumerator OnLensShot()
+        {
+            if (cams.Has(LensShot) && (!cams.Active || cams.Active.name != LensShot)) yield return cams.MoveTo(LensShot, 1.0f);
+        }
+
         IEnumerator NearDemo(bool quiet)
         {
-            ShowObject("tree", false); ShowObject("apple", true);
-            float u0 = ObjectDistance;
-            yield return Routine.Tween(Short ? .5f : 1.6f, t => PlaceObject("apple", Mathf.Lerp(u0, rays.nearDistance, t)), true);
-            eye.SetAccommodation(1, false);
-            hud.SetLensState("Lens: more curved (near object)");
-            yield return Settle(() => Mathf.Abs(eye.Accommodation - 1) < .01f);
+            yield return NearApproach();
+            yield return OnLensShot();
+            yield return LensFocus(true);
         }
 
         IEnumerator DistantDemo()
         {
-            yield return Routine.Tween(.6f, t => appleRoot.localScale = Vector3.one * Mathf.Max(.01f, 1 - t) * appleBaseScale, true);
-            ShowObject("apple", false); appleRoot.localScale = Vector3.one * appleBaseScale;
-            ShowObject("tree", true); PlaceObject("tree", rays.farDistance);
-            eye.SetAccommodation(0, false);
-            hud.SetLensState("Lens: less curved (distant object)");
-            yield return Settle(() => eye.Accommodation < .01f);
+            yield return DistantApproach();
+            yield return OnLensShot();
+            yield return LensFocus(false);
         }
 
         IEnumerator ReplayAccommodation()
         {
-            // Restores the known start state (medium distance) and repeats both authored demonstrations in order.
+            // Restores the known start state (medium distance), repeats both authored demonstrations in order on the lens
+            // close-up, then returns to the shot the replay started on.
+            var previous = cams.Active ? cams.Active.name : null;
             ShowObject("tree", false); ShowObject("apple", true); PlaceObject("apple", 7);
             eye.SetAccommodation(LightRays.RequiredAccommodation(7, rays.nearDistance, rays.farDistance), true);
             rays.reach = 5;
@@ -212,6 +326,8 @@ namespace HumanEye
             yield return NearDemo(true);
             yield return new Wait(1.2f, true);
             yield return DistantDemo();
+            var lens = eye.Get("lens"); if (lens) lens.SetGlow(0);
+            if (previous != null && previous != LensShot) yield return cams.MoveTo(previous, 1);
         }
 
         // ---------- Scene 7 ----------

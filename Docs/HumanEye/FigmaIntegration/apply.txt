@@ -1,0 +1,7 @@
+Direct Figma PNG integration
+Sprites: 43
+Surfaces: 165
+Exported icons: 0
+Buttons retained: 165
+Bindings retained: 159
+Scene: Assets/HumanEye/Scenes/HumanEye_Observatory.unity

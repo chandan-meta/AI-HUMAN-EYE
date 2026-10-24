@@ -1,0 +1,462 @@
+[
+  {
+    "path": "Design/01_Start_CleanPlate.png",
+    "bytes": 1940019
+  },
+  {
+    "path": "Design/02_Opening_Cinematic_CleanPlate.png",
+    "bytes": 1928735
+  },
+  {
+    "path": "Design/03_Meet_Niko_CleanPlate.png",
+    "bytes": 1780963
+  },
+  {
+    "path": "Design/04_Exterior_Sclera_CleanPlate.png",
+    "bytes": 1806361
+  },
+  {
+    "path": "Design/06_Brightness_Experiment_CleanPlate.png",
+    "bytes": 1885855
+  },
+  {
+    "path": "Design/08_Rods_And_Cones_CleanPlate.png",
+    "bytes": 2192846
+  },
+  {
+    "path": "Design/09_Light_To_Brain_Journey_CleanPlate.png",
+    "bytes": 1905351
+  },
+  {
+    "path": "Design/10_Quick_Check_CleanPlate.png",
+    "bytes": 1719497
+  },
+  {
+    "path": "Design/11_Free_Explore_CleanPlate.png",
+    "bytes": 1767508
+  },
+  {
+    "path": "Design/12_Investigation_Complete_CleanPlate.png",
+    "bytes": 1817666
+  },
+  {
+    "path": "Design/Accommodation_CleanPlate_Concept.png",
+    "bytes": 1982658
+  },
+  {
+    "path": "Design/Accommodation_Distant_Concept.png",
+    "bytes": 2007760
+  },
+  {
+    "path": "Design/artifact-check.json",
+    "bytes": 141
+  },
+  {
+    "path": "Design/Brightness_Bright_Concept.png",
+    "bytes": 1840221
+  },
+  {
+    "path": "Design/Brightness_Dim_Concept.png",
+    "bytes": 1876501
+  },
+  {
+    "path": "Design/contrast-check.json",
+    "bytes": 103
+  },
+  {
+    "path": "Design/derive_material.py",
+    "bytes": 2217
+  },
+  {
+    "path": "Design/design-polish-check.json",
+    "bytes": 5790
+  },
+  {
+    "path": "Design/design-tokens.json",
+    "bytes": 14370
+  },
+  {
+    "path": "Design/EyeInterior_BaseColor.png",
+    "bytes": 2314986
+  },
+  {
+    "path": "Design/EyeInterior_BaseColor_1024.png",
+    "bytes": 1583111
+  },
+  {
+    "path": "Design/EyeInterior_BaseColor_2048.png",
+    "bytes": 4869926
+  },
+  {
+    "path": "Design/EyeInterior_BaseColor_Candidate.png",
+    "bytes": 2413072
+  },
+  {
+    "path": "Design/EyeInterior_Normal.png",
+    "bytes": 1221659
+  },
+  {
+    "path": "Design/EyeInterior_Normal_1024.png",
+    "bytes": 896018
+  },
+  {
+    "path": "Design/EyeInterior_Normal_2048.png",
+    "bytes": 2366748
+  },
+  {
+    "path": "Design/EyeInterior_Roughness.png",
+    "bytes": 391580
+  },
+  {
+    "path": "Design/EyeInterior_Roughness_1024.png",
+    "bytes": 292392
+  },
+  {
+    "path": "Design/EyeInterior_Roughness_2048.png",
+    "bytes": 682094
+  },
+  {
+    "path": "Design/EyeInterior_Smoothness.png",
+    "bytes": 391467
+  },
+  {
+    "path": "Design/EyeInterior_Smoothness_1024.png",
+    "bytes": 292205
+  },
+  {
+    "path": "Design/EyeInterior_Smoothness_2048.png",
+    "bytes": 681642
+  },
+  {
+    "path": "Design/EyeInterior_SpecularMask.png",
+    "bytes": 318697
+  },
+  {
+    "path": "Design/EyeInterior_SpecularMask_1024.png",
+    "bytes": 236933
+  },
+  {
+    "path": "Design/EyeInterior_SpecularMask_2048.png",
+    "bytes": 488296
+  },
+  {
+    "path": "Design/figma-state.json",
+    "bytes": 1910
+  },
+  {
+    "path": "Design/HANDOFF.txt",
+    "bytes": 7471
+  },
+  {
+    "path": "Design/InsideEye_CleanPlate_Concept.png",
+    "bytes": 2069009
+  },
+  {
+    "path": "Design/material-status.json",
+    "bytes": 1065
+  },
+  {
+    "path": "Design/preview_material.py",
+    "bytes": 3016
+  },
+  {
+    "path": "Design/Previews/01_Desktop.png",
+    "bytes": 2373294
+  },
+  {
+    "path": "Design/Previews/02_Desktop.png",
+    "bytes": 2531628
+  },
+  {
+    "path": "Design/Previews/03_Desktop.png",
+    "bytes": 2273339
+  },
+  {
+    "path": "Design/Previews/04_Desktop.png",
+    "bytes": 2085904
+  },
+  {
+    "path": "Design/Previews/05_Desktop.png",
+    "bytes": 2207247
+  },
+  {
+    "path": "Design/Previews/06_Desktop.png",
+    "bytes": 2234959
+  },
+  {
+    "path": "Design/Previews/07_Desktop.png",
+    "bytes": 2216623
+  },
+  {
+    "path": "Design/Previews/08_Desktop.png",
+    "bytes": 2548376
+  },
+  {
+    "path": "Design/Previews/09_Desktop.png",
+    "bytes": 2284935
+  },
+  {
+    "path": "Design/Previews/10_Desktop.png",
+    "bytes": 1992058
+  },
+  {
+    "path": "Design/Previews/11_Desktop.png",
+    "bytes": 2080773
+  },
+  {
+    "path": "Design/Previews/12_Desktop.png",
+    "bytes": 2046314
+  },
+  {
+    "path": "Design/Previews/AskNiko.png",
+    "bytes": 170083
+  },
+  {
+    "path": "Design/Previews/Brightness_Bright_State.png",
+    "bytes": 2182459
+  },
+  {
+    "path": "Design/Previews/Brightness_Dim_State.png",
+    "bytes": 2228915
+  },
+  {
+    "path": "Design/Previews/Chapters.png",
+    "bytes": 365513
+  },
+  {
+    "path": "Design/Previews/ComponentSheet.png",
+    "bytes": 311939
+  },
+  {
+    "path": "Design/Previews/Correct.png",
+    "bytes": 95300
+  },
+  {
+    "path": "Design/Previews/DistantFocus_State.png",
+    "bytes": 2245541
+  },
+  {
+    "path": "Design/Previews/Exterior_View_State.png",
+    "bytes": 2138789
+  },
+  {
+    "path": "Design/Previews/FreeExplore_View_State.png",
+    "bytes": 2079989
+  },
+  {
+    "path": "Design/Previews/Help.png",
+    "bytes": 181391
+  },
+  {
+    "path": "Design/Previews/Inside_View_State.png",
+    "bytes": 2276566
+  },
+  {
+    "path": "Design/Previews/Loading.png",
+    "bytes": 2546564
+  },
+  {
+    "path": "Design/Previews/Pause.png",
+    "bytes": 156780
+  },
+  {
+    "path": "Design/Previews/Quiz_IncorrectSelection.png",
+    "bytes": 1988212
+  },
+  {
+    "path": "Design/Previews/Quiz_Pupil_Selection.png",
+    "bytes": 1988552
+  },
+  {
+    "path": "Design/Previews/Quiz_Sclera_Selection.png",
+    "bytes": 1988358
+  },
+  {
+    "path": "Design/Previews/Retry.png",
+    "bytes": 134735
+  },
+  {
+    "path": "Design/Previews/ReviewContactSheet.jpg",
+    "bytes": 925269
+  },
+  {
+    "path": "Design/Previews/Settings.png",
+    "bytes": 270429
+  },
+  {
+    "path": "Design/Previews/Tablet_1024_Accommodation.png",
+    "bytes": 844984
+  },
+  {
+    "path": "Design/Previews/Tablet_1024_FreeExplore.png",
+    "bytes": 747344
+  },
+  {
+    "path": "Design/Previews/Tablet_1024_Inside.png",
+    "bytes": 784702
+  },
+  {
+    "path": "Design/Previews/Tablet_1024_Quiz.png",
+    "bytes": 707741
+  },
+  {
+    "path": "Design/Previews/Tablet_1280_Accommodation.png",
+    "bytes": 1148211
+  },
+  {
+    "path": "Design/Previews/Tablet_1280_FreeExplore.png",
+    "bytes": 1019059
+  },
+  {
+    "path": "Design/Previews/Tablet_1280_Inside.png",
+    "bytes": 1098631
+  },
+  {
+    "path": "Design/Previews/Tablet_1280_Quiz.png",
+    "bytes": 1029017
+  },
+  {
+    "path": "Design/README.txt",
+    "bytes": 3663
+  },
+  {
+    "path": "Design/reference-nodes.json",
+    "bytes": 5634
+  },
+  {
+    "path": "Design/Retina_Candidate_Preview.blend",
+    "bytes": 4213903
+  },
+  {
+    "path": "Design/Retina_ModelPreview_Candidate.png",
+    "bytes": 1436727
+  },
+  {
+    "path": "Design/Retina_ModelPreview_Original.png",
+    "bytes": 1386679
+  },
+  {
+    "path": "Design/UIAssets/Back.svg",
+    "bytes": 303
+  },
+  {
+    "path": "Design/UIAssets/Chapters.svg",
+    "bytes": 326
+  },
+  {
+    "path": "Design/UIAssets/Close.svg",
+    "bytes": 300
+  },
+  {
+    "path": "Design/UIAssets/Home.svg",
+    "bytes": 315
+  },
+  {
+    "path": "Design/UIAssets/IrisCrest.svg",
+    "bytes": 8015
+  },
+  {
+    "path": "Design/UIAssets/Next.svg",
+    "bytes": 304
+  },
+  {
+    "path": "Design/UIAssets/Pause.svg",
+    "bytes": 295
+  },
+  {
+    "path": "Design/UIAssets/Reset.svg",
+    "bytes": 659
+  },
+  {
+    "path": "Design/UIAssets/Settings.svg",
+    "bytes": 659
+  },
+  {
+    "path": "Design/UIAssets/ZoomIn.svg",
+    "bytes": 609
+  },
+  {
+    "path": "Design/UIAssets/ZoomOut.svg",
+    "bytes": 602
+  },
+  {
+    "path": "Design/unity-render-check.json",
+    "bytes": 218
+  },
+  {
+    "path": "Design/Unity_S03_Lens_Close_Candidate.png",
+    "bytes": 1979068
+  },
+  {
+    "path": "Design/Unity_S03_Lens_Close_NoVitreous_Diagnostic.png",
+    "bytes": 2050259
+  },
+  {
+    "path": "Design/Unity_S03_Lens_Close_Original.png",
+    "bytes": 1886735
+  },
+  {
+    "path": "Design/Unity_S06_LensClose_Candidate.png",
+    "bytes": 2556999
+  },
+  {
+    "path": "Design/Unity_S06_LensClose_NoVitreous_Diagnostic.png",
+    "bytes": 2591169
+  },
+  {
+    "path": "Design/Unity_S06_LensClose_Original.png",
+    "bytes": 2484752
+  },
+  {
+    "path": "Design/VERIFICATION.txt",
+    "bytes": 3476
+  },
+  {
+    "path": "Design/visual-polish-styles.json",
+    "bytes": 8811
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_BaseColor.png",
+    "bytes": 1583111
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_BaseColor.png.meta",
+    "bytes": 3364
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_Normal.png",
+    "bytes": 896018
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_Normal.png.meta",
+    "bytes": 3364
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_SpecularMask.png",
+    "bytes": 236933
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/EyeInterior_SpecularMask.png.meta",
+    "bytes": 3364
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/Retina_PearlIris_Candidate.mat",
+    "bytes": 2400
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview/Retina_PearlIris_Candidate.mat.meta",
+    "bytes": 188
+  },
+  {
+    "path": "Unity/Assets/HumanEye/PearlIrisPreview.meta",
+    "bytes": 172
+  },
+  {
+    "path": "Unity/Assets/HumanEye/Editor/PearlIrisPreview.cs",
+    "bytes": 8100
+  },
+  {
+    "path": "Unity/Assets/HumanEye/Editor/PearlIrisPreview.cs.meta",
+    "bytes": 59
+  }
+]

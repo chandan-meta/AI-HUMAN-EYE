@@ -1,0 +1,40 @@
+{
+  "source": "D:\\AI unity project\\models\\rod cone .blend",
+  "frame": "metres, cell axis on x = y = 0, synaptic terminal feet at z = 0, outer segment toward +Z",
+  "cells": {
+    "Rod": {
+      "source_triangles": 18138,
+      "triangles": {
+        "Rod_Outer": 479,
+        "Rod_Body": 6521
+      },
+      "height": 0.9982,
+      "cilium": 0.6366,
+      "marks": {
+        "Mark_OuterSegment": 0.8174,
+        "Mark_InnerSegment": 0.5018,
+        "Mark_Nucleus": 0.2922,
+        "Mark_SynapticTerminal": 0.0175
+      },
+      "width": 0.2107,
+      "albedo": "neuron+3d+model_basecolor.jpg"
+    },
+    "Cone": {
+      "source_triangles": 17777,
+      "triangles": {
+        "Cone_Outer": 2283,
+        "Cone_Body": 4716
+      },
+      "height": 0.9987,
+      "cilium": 0.6068,
+      "marks": {
+        "Mark_OuterSegment": 0.8028,
+        "Mark_InnerSegment": 0.442,
+        "Mark_Nucleus": 0.2673,
+        "Mark_SynapticTerminal": 0.0375
+      },
+      "width": 0.2348,
+      "albedo": "glowing+transparent+worm+3d+model_basecolor.jpg"
+    }
+  }
+}

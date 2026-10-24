@@ -26,9 +26,9 @@ MonoBehaviour:
     async: 1
     note: 
   - kind: 2
-    key: isolate
-    arg: vitreous
-    value: 0
+    key: isolateKeep
+    arg: vitreous,lens,retina
+    value: 0.25
     async: 0
     note: 
   - kind: 2

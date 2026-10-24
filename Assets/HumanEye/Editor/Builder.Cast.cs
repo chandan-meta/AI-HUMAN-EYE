@@ -176,7 +176,15 @@ namespace HumanEye.EditorTools
         /// full frame alignment (forward + the person's left-right axis), uniform scale from the eye spacing.
         static (Renderer skull, Renderer brain, Renderer visual) PlaceZAnatomy(Transform parent, Vector3 leftEye, Vector3 rightEye, Vector3 forward)
         {
-            var go = Instantiate(ZA, parent);
+            var go = FitZAnatomy(ZA, parent, leftEye, rightEye, forward);
+            Renderer R(string n) => go.GetComponentsInChildren<Renderer>(true).First(r => r.name == n);
+            return (R("ZA_Skull"), R("ZA_Brain"), R("ZA_VisualArea"));
+        }
+
+        /// Any Z-Anatomy export carrying the four eye markers (export_zanatomy_head.py, export_zanatomy_vision.py), fitted the same way.
+        static GameObject FitZAnatomy(string path, Transform parent, Vector3 leftEye, Vector3 rightEye, Vector3 forward)
+        {
+            var go = Instantiate(path, parent);
             Renderer R(string n) => go.GetComponentsInChildren<Renderer>(true).First(r => r.name == n);
             Vector3 C(string n) => R(n).bounds.center;
             var zl = C("ZA_EyeMarker_L"); var zr = C("ZA_EyeMarker_R");
@@ -189,7 +197,7 @@ namespace HumanEye.EditorTools
             var zmid = (C("ZA_EyeMarker_L") + C("ZA_EyeMarker_R")) * .5f;
             go.transform.position += (leftEye + rightEye) * .5f - zmid;
             foreach (var m in new[] { "ZA_EyeMarker_L", "ZA_EyeMarker_R", "ZA_EyeFront_L", "ZA_EyeFront_R" }) R(m).gameObject.SetActive(false);
-            return (R("ZA_Skull"), R("ZA_Brain"), R("ZA_VisualArea"));
+            return go;
         }
 
         static void BuildHuman()

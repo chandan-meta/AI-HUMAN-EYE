@@ -1,0 +1,387 @@
+{
+  "paintStyles": [
+    {
+      "id": "S:665dd6e9f8cc1e1462ac2aa46d057d9c0551692d,",
+      "name": "Pearl / Layered surface",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 0.9411764740943909,
+                "g": 0.929411768913269,
+                "b": 1,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S:bdd65795ede2e9a99ff1b5eb8838a2c5f66a8d3e,",
+      "name": "Iris / Action gradient",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 0.4431372582912445,
+                "g": 0.3803921639919281,
+                "b": 0.8549019694328308,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 0.3450980484485626,
+                "g": 0.2823529541492462,
+                "b": 0.7686274647712708,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S:4a64457b5056f491cda3aa2014e4309a7757ea8d,",
+      "name": "Amber / Journey gradient",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 1,
+                "g": 0.8627451062202454,
+                "b": 0.5137255191802979,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 0.9490196108818054,
+                "g": 0.7137255072593689,
+                "b": 0.2666666805744171,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S:6d1c336dc706626fd5ddd2f8e7a9aacd8d3d2f43,",
+      "name": "Pearl / Button surface",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 0.9725490212440491,
+                "g": 0.9647058844566345,
+                "b": 1,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S:8fbb3f124d1c8969702a608f747937f49638ff98,",
+      "name": "Feedback / Success pearl",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 0.9020000100135803,
+                "g": 0.9649999737739563,
+                "b": 0.9330000281333923,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S:57cc0813fe041615e02890f0ff34e90d6b1307f9,",
+      "name": "Feedback / Retry pearl",
+      "paints": [
+        {
+          "type": "GRADIENT_LINEAR",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "gradientStops": [
+            {
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+              },
+              "position": 0,
+              "boundVariables": {}
+            },
+            {
+              "color": {
+                "r": 1,
+                "g": 0.9570000171661377,
+                "b": 0.8429999947547913,
+                "a": 1
+              },
+              "position": 1,
+              "boundVariables": {}
+            }
+          ],
+          "gradientTransform": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "effectStyles": [
+    {
+      "id": "S:5931cd0630eedf8f901db70f4eae77085555407c,",
+      "name": "Pearl / Surface shadow",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 32,
+          "boundVariables": {},
+          "color": {
+            "r": 0.09019608050584793,
+            "g": 0.14901961386203766,
+            "b": 0.2549019753932953,
+            "a": 0.23000000417232513
+          },
+          "offset": {
+            "x": 0,
+            "y": 12
+          },
+          "spread": 0,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "INNER_SHADOW",
+          "visible": true,
+          "radius": 2,
+          "boundVariables": {},
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.949999988079071
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "spread": 0,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "id": "S:880bbd4ea2c9db4fccdd3f7acfbb3e59dcd86585,",
+      "name": "Iris / Raised action",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 10,
+          "boundVariables": {},
+          "color": {
+            "r": 0.27843138575553894,
+            "g": 0.2078431397676468,
+            "b": 0.5529412031173706,
+            "a": 0.23999999463558197
+          },
+          "offset": {
+            "x": 0,
+            "y": 5
+          },
+          "spread": 0,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        },
+        {
+          "type": "INNER_SHADOW",
+          "visible": true,
+          "radius": 2,
+          "boundVariables": {},
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.2800000011920929
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "spread": 0,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "INNER_SHADOW",
+          "visible": true,
+          "radius": 3,
+          "boundVariables": {},
+          "color": {
+            "r": 0.19607843458652496,
+            "g": 0.1411764770746231,
+            "b": 0.3921568691730499,
+            "a": 0.15000000596046448
+          },
+          "offset": {
+            "x": 0,
+            "y": -2
+          },
+          "spread": 0,
+          "blendMode": "NORMAL"
+        }
+      ]
+    }
+  ],
+  "irisCrest": "62:79"
+}

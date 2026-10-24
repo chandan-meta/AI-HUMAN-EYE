@@ -1,8 +1,8 @@
 # Validation report
 
-Generated 2026-10-06 16:28 by Tools > Human Eye > Validate Module.
+Generated 2026-10-24 14:54 by Tools > Human Eye > Validate Module.
 
-**70 passed · 0 warnings · 0 errors**
+**73 passed · 0 warnings · 0 errors**
 
 ## Passed
 
@@ -48,8 +48,10 @@ Generated 2026-10-06 16:28 by Tools > Human Eye > Validate Module.
 - Scene09: narration steps follow ledger order
 - Scene10: narration steps follow ledger order
 - Scene11: narration steps follow ledger order
-- Coverage: 66 of 66 cues placed exactly once in their own chapter
+- Retired cues exist in the ledger (kept there, unspoken)
+- Coverage: 65 of 65 cues placed exactly once in their own chapter (S02_L05 retired)
 - No chapter references an unknown cue
+- Supplemental lines spoken in chapters have clips (acc_ciliary)
 - Topic 'external_structures' has at least two distinct items
 - Topic 'internal_structures' has at least two distinct items
 - Topic 'optic_nerve' has at least two distinct items
@@ -59,7 +61,8 @@ Generated 2026-10-06 16:28 by Tools > Human Eye > Validate Module.
 - Topic 'rods_cones' has at least two distinct items
 - Topic 'complete_pathway' has at least two distinct items
 - Question ids unique
-- 33 Ask Niko intents checked (patterns compile, quoted cues exist)
+- 32 Ask Niko intents checked (patterns compile, quoted cues exist)
+- Scene GameObjects have no missing scripts (including inactive children and prefab instances)
 - All chapter shots exist and all chapter/question actions are whitelisted
 - Checkpoint shot S02_EstablishA exists
 - Checkpoint shot S02_EyeHero exists

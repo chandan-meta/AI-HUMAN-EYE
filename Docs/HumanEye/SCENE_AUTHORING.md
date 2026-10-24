@@ -1,5 +1,7 @@
 # Editing the authored Unity scene
 
+**24 October 2026:** exported Figma PNG panels and buttons are applied to the existing saved Canvas. The scene Canvas was already unpacked and remains the UI authority. This adds no runtime UI generation. See [Figma integration, reapply instructions and validation status](FigmaIntegration/README.md). The prefab and glass-style guidance below records earlier authoring passes; normal Play and player builds use the saved scene.
+
 Open `Assets/HumanEye/Scenes/HumanEye_Observatory.unity` outside Play mode.
 
 ## UI in the Hierarchy

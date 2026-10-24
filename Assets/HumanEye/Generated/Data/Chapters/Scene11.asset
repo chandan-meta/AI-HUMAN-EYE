@@ -24,6 +24,12 @@ MonoBehaviour:
     value: 1.2
     async: 0
     note: 
+  - kind: 2
+    key: faceLearner
+    arg: 
+    value: 1.6
+    async: 1
+    note: 
   - kind: 0
     key: S11_Eye
     arg: 
@@ -35,6 +41,12 @@ MonoBehaviour:
     arg: 
     value: 0
     async: 0
+    note: 
+  - kind: 2
+    key: turnToSide
+    arg: 
+    value: 1.6
+    async: 1
     note: 
   - kind: 0
     key: S11_NearFar

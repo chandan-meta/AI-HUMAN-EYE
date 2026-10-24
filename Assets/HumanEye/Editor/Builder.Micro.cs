@@ -72,6 +72,23 @@ namespace HumanEye.EditorTools
             EditorUtility.SetDirty(s); EditorUtility.SetDirty(s.signals);
         }
 
+        /// Outer segment: the stack of membrane discs that hold the photopigment, read as fine ridges along a capsule that
+        /// may taper (a cone narrows toward the pigment layer). Lathe +Z from 0 to length; r0 at the base, r1 at the tip.
+        static Mesh Ridged(string name, float r0, float r1, float length, int discs)
+        {
+            float cap0 = Mathf.Min(r0, .04f), cap1 = Mathf.Min(r1, .04f);
+            var pts = new List<Vector2> { new(0, 0), new(r0 * .8f, cap0 * .4f) };
+            float y0 = cap0, y1 = length - cap1, step = (y1 - y0) / discs;
+            for (int i = 0; i <= discs; i++)
+            {
+                float y = y0 + step * i, r = Mathf.Lerp(r0, r1, i / (float)discs);
+                pts.Add(new Vector2(r, y));
+                if (i < discs) pts.Add(new Vector2(r * .86f, y + step * .5f));
+            }
+            pts.Add(new Vector2(r1 * .8f, length - cap1 * .4f)); pts.Add(new Vector2(0, length));
+            return SaveMesh(Lathe.Revolve(new List<Vector2[]> { pts.ToArray() }, 0, 360, 20), name);
+        }
+
         static void BuildMicro()
         {
             microRoot = new GameObject("Retina (magnified, Scene 8)").transform;
@@ -80,25 +97,29 @@ namespace HumanEye.EditorTools
             // Bright, organised microscope stage: a light backdrop and layered base instead of a dark red cavern.
             var back = new List<Vector2[]> { Lathe.Arc(0, 12, 0, 180, 24) };
             var sphere = Lathe.Revolve(back, 0, 360, 32); Flip(sphere);
-            Obj("Backdrop", microRoot, SaveMesh(sphere, "MicroBackdrop"), Lit("MicroBackdrop", new Color(.5f, .47f, .5f), .15f, emission: new Color(.16f, .14f, .16f)), new Vector3(.5f, 1.5f, 0));
+            Obj("Backdrop", microRoot, SaveMesh(sphere, "MicroBackdrop"), Lit("MicroBackdrop", new Color(.3f, .34f, .45f), .12f, emission: new Color(.06f, .08f, .13f)), new Vector3(.5f, 1.5f, 0));
             Obj("Pigment layer", microRoot, Box("PigmentLayer", new Vector3(9.4f, .14f, 3.0f)), Lit("Pigment", new Color(.34f, .2f, .14f), .3f), new Vector3(.3f, .06f, 0));
-            Obj("Choroid (beneath)", microRoot, Box("MicroChoroid", new Vector3(9.4f, .5f, 3.0f)), Lit("MicroChoroid", new Color(.55f, .13f, .13f), .25f), new Vector3(.3f, -.26f, 0));
+            Obj("Choroid (beneath)", microRoot, Box("MicroChoroid", new Vector3(9.4f, .5f, 3.0f)), Lit("MicroChoroid", new Color(.52f, .17f, .15f), .25f), new Vector3(.3f, -.26f, 0));
 
             Material Cell(string name, Color colour, Color rim) => Anatomy(name, colour, m =>
             {
-                m.SetFloat("_Wrap", .6f); m.SetFloat("_Gloss", .5f); m.SetFloat("_Specular", .3f); m.SetFloat("_Rim", .35f); m.SetColor("_RimColor", rim);
+                m.SetFloat("_Wrap", .45f); m.SetFloat("_Gloss", .4f); m.SetFloat("_Specular", .18f); m.SetFloat("_Rim", .3f); m.SetColor("_RimColor", rim);
             });
-            var rodOuter = Cell("Rod_Outer", new Color(.6f, .52f, .92f), new Color(.8f, .75f, 1f));
-            var rodInner = Cell("Rod_Inner", new Color(.78f, .74f, .95f), new Color(.8f, .75f, 1f));
+            var rodOuter = Cell("Rod_Outer", new Color(.55f, .47f, .9f), new Color(.8f, .75f, 1f));
+            var rodInner = Cell("Rod_Inner", new Color(.68f, .62f, .9f), new Color(.8f, .75f, 1f));
             var coneOuter = Cell("Cone_Outer", new Color(1f, .68f, .36f), new Color(1f, .85f, .6f));
+            // the three cone classes in the colours they sense best (long, medium, short wavelength), as on the art boards
+            var coneOuters = new[] { Cell("Cone_Outer_L", new Color(.95f, .27f, .22f), new Color(1f, .7f, .6f)), Cell("Cone_Outer_M", new Color(.3f, .82f, .38f), new Color(.7f, 1f, .75f)), Cell("Cone_Outer_S", new Color(.28f, .47f, 1f), new Color(.7f, .8f, 1f)) };
             var coneInner = Cell("Cone_Inner", new Color(1f, .8f, .5f), new Color(1f, .85f, .6f));
             var neuron = Cell("Neuron", new Color(.6f, .76f, .94f), new Color(.7f, .9f, 1f));
             var ganglion = Cell("Ganglion", new Color(.95f, .88f, .6f), new Color(1f, .95f, .7f));
             var fibre = Anatomy("NerveFibre", new Color(.96f, .86f, .58f), m => { m.SetFloat("_Wrap", .6f); m.SetFloat("_Flow", 1); m.SetFloat("_Rim", .25f); });
 
-            var rodOuterMesh = Capsule("RodOuter", .085f, .78f); var rodInnerMesh = Ellipsoid("RodInner", .075f, .2f, 20);
-            var coneProfile = new List<Vector2[]> { Lathe.Line(new Vector2(0, 0), new Vector2(.15f, .52f), 8), Lathe.Line(new Vector2(.15f, .52f), new Vector2(0, .52f)) };
-            var coneOuterMesh = SaveMesh(Lathe.Revolve(coneProfile, 0, 360, 24), "ConeOuter");
+            var rodOuterMesh = Ridged("RodOuter", .085f, .085f, .78f, 18); var rodInnerMesh = Ellipsoid("RodInner", .08f, .2f, 20);
+            var coneOuterMesh = Ridged("ConeOuter", .035f, .15f, .52f, 9);   // narrow toward the pigment layer, as a real cone outer segment
+            // synaptic terminals: the rod spherule, and the cone pedicle whose flat face meets the bipolar dendrites
+            var spherule = Ellipsoid("RodSpherule", .065f, .06f, 14);
+            var pedicle = SaveMesh(Lathe.Revolve(new List<Vector2[]> { Lathe.Line(new Vector2(0, 0), new Vector2(.05f, 0)), Lathe.Line(new Vector2(.05f, 0), new Vector2(.13f, .12f)), Lathe.Line(new Vector2(.13f, .12f), new Vector2(0, .12f)) }, 0, 360, 20), "ConePedicle");
             var coneInnerMesh = Ellipsoid("ConeInner", .13f, .2f, 20);
             var nucleus = Ellipsoid("Nucleus", .09f, .09f, 16); var coneNucleus = Ellipsoid("ConeNucleus", .1f, .1f, 16);
             var axonMesh = SaveMesh(Lathe.Tube(new List<Vector3> { new(0, 0, 0), new(0, .55f, 0) }, .02f, 8), "PhotoreceptorAxon");
@@ -114,11 +135,12 @@ namespace HumanEye.EditorTools
                     Renderer tipR;
                     if (cone)
                     {
-                        tipR = R("Outer segment", coneOuterMesh, coneOuter, .12f, Upright);
+                        tipR = R("Outer segment", coneOuterMesh, coneOuters[coneTips.Count % 3], .12f, Upright);
                         coneR.Add(tipR); coneTips.Add(tipR);
                         coneR.Add(R("Inner segment", coneInnerMesh, coneInner, .86f, Upright));
                         coneR.Add(R("Nucleus", coneNucleus, coneInner, 1.26f, Upright));
                         coneR.Add(R("Axon", axonMesh, coneInner, 1.36f, Quaternion.identity));
+                        coneR.Add(R("Synaptic terminal", pedicle, coneInner, 1.9f, Upright));
                     }
                     else
                     {
@@ -127,6 +149,7 @@ namespace HumanEye.EditorTools
                         rodR.Add(R("Inner segment", rodInnerMesh, rodInner, 1.1f, Upright));
                         rodR.Add(R("Nucleus", nucleus, rodInner, 1.45f, Upright));
                         rodR.Add(R("Axon", axonMesh, rodInner, 1.5f, Quaternion.identity));
+                        rodR.Add(R("Synaptic terminal", spherule, rodInner, 2.07f, Upright));
                     }
                     var col = Obj("pick", cell.transform, pos: new Vector3(0, .95f, 0), layer: PickLayer).AddComponent<CapsuleCollider>();
                     col.height = 1.9f; col.radius = .22f;
@@ -180,8 +203,8 @@ namespace HumanEye.EditorTools
                 l.type = LightType.Point; l.intensity = intensity; l.range = range; l.color = colour; l.shadows = LightShadows.None; return l;
             }
             L("Micro Key", new Vector3(0, 4.5f, -3), 7, 14, new Color(1, .96f, .9f));
-            L("Micro Fill", new Vector3(-4.5f, 2.5f, -3.5f), 3.5f, 12, new Color(.55f, .75f, 1f));
-            L("Micro Rim", new Vector3(4, 3, 3), 2.5f, 10, new Color(.9f, .8f, 1f));
+            L("Micro Fill", new Vector3(-4.5f, 2.5f, -3.5f), 3.5f, 12, new Color(.6f, .78f, 1f));
+            L("Micro Rim", new Vector3(4, 3, 3), 3, 10, new Color(.9f, .8f, 1f));
 
             field.rods = rods; field.cones = cones; field.rodTips = rodTips.ToArray(); field.coneTips = coneTips.ToArray();
             field.incoming = incoming.ToArray(); field.signals = stage.signals; field.signalPaths = paths.Select(p => p.id).ToArray();
@@ -190,6 +213,12 @@ namespace HumanEye.EditorTools
                 Obj("Light (from the vitreous side)", microRoot, pos: new Vector3(-1.6f, 4.3f, -.7f)).transform,
                 Obj("Electrical signals", microRoot, pos: new Vector3(1.4f, 3.55f, -.7f)).transform,
                 Obj("Toward the optic nerve", microRoot, pos: new Vector3(4.7f, .2f, -.5f)).transform,
+                // one rod (column 5, front row) carries the part labels: outer segment, inner segment, nucleus, terminal
+                Obj("Outer segment (discs)", microRoot, pos: new Vector3(.75f, .5f, -.85f)).transform,
+                Obj("Inner segment", microRoot, pos: new Vector3(.75f, 1.1f, -.85f)).transform,
+                Obj("Nucleus", microRoot, pos: new Vector3(.75f, 1.45f, -.85f)).transform,
+                Obj("Synaptic terminal", microRoot, pos: new Vector3(.75f, 2.07f, -.85f)).transform,
+                Obj("Pigment epithelium", microRoot, pos: new Vector3(-2.4f, .08f, -1.5f)).transform,
             };
             stage.micro = field;
             microRoot.gameObject.SetActive(false);

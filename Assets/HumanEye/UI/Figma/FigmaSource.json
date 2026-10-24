@@ -1,0 +1,706 @@
+{
+  "fileKey": "wLgTj7N6mpfRONuYkmZac0",
+  "fileUrl": "https://www.figma.com/design/wLgTj7N6mpfRONuYkmZac0",
+  "sessionId": "b8dc7c5d-8bf4-45eb-b1fa-b0eec9c5dab7",
+  "exportBoardId": "75:478",
+  "exportPolicy": "Direct native Figma PNG artwork with transparency: 36 node.exportAsync exports and 7 browser PNG exports. Existing Unity controls retain live labels; StartBrand includes static typography. No UI artwork is redrawn in Unity.",
+  "assets": [
+    {
+      "name": "PanelPearl",
+      "sourceNodeId": "12:225",
+      "exportNodeId": "75:479",
+      "width": 520,
+      "height": 775,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "PanelCaption",
+      "sourceNodeId": "29:95",
+      "exportNodeId": "75:556",
+      "width": 960,
+      "height": 128,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "PanelObservation",
+      "sourceNodeId": "12:287",
+      "exportNodeId": "75:561",
+      "width": 464,
+      "height": 104,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "PanelInset",
+      "sourceNodeId": "12:289",
+      "exportNodeId": "75:564",
+      "width": 464,
+      "height": 242,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "SpeakerTag",
+      "sourceNodeId": "49:73",
+      "exportNodeId": "75:571",
+      "width": 83,
+      "height": 53,
+      "border": [
+        24.9,
+        21.200000000000003,
+        24.9,
+        21.200000000000003
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Default",
+      "sourceNodeId": "2:7",
+      "exportNodeId": "75:574",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Hover",
+      "sourceNodeId": "2:9",
+      "exportNodeId": "75:577",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Pressed",
+      "sourceNodeId": "2:11",
+      "exportNodeId": "75:580",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Focus",
+      "sourceNodeId": "2:13",
+      "exportNodeId": "75:583",
+      "width": 324,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Selected",
+      "sourceNodeId": "2:15",
+      "exportNodeId": "75:586",
+      "width": 324,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonPrimary_Disabled",
+      "sourceNodeId": "2:17",
+      "exportNodeId": "75:589",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Default",
+      "sourceNodeId": "2:20",
+      "exportNodeId": "75:592",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Hover",
+      "sourceNodeId": "2:22",
+      "exportNodeId": "75:595",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Pressed",
+      "sourceNodeId": "2:24",
+      "exportNodeId": "75:598",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Focus",
+      "sourceNodeId": "2:26",
+      "exportNodeId": "75:601",
+      "width": 324,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Selected",
+      "sourceNodeId": "2:28",
+      "exportNodeId": "75:604",
+      "width": 324,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonSecondary_Disabled",
+      "sourceNodeId": "2:30",
+      "exportNodeId": "75:607",
+      "width": 316,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonStart_Default",
+      "sourceNodeId": "2:59",
+      "exportNodeId": "75:610",
+      "width": 504,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "ButtonStart_Hover",
+      "sourceNodeId": "2:61",
+      "exportNodeId": "75:615",
+      "width": 504,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "ButtonStart_Pressed",
+      "sourceNodeId": "2:63",
+      "exportNodeId": "75:620",
+      "width": 504,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ButtonStart_Focus",
+      "sourceNodeId": "2:65",
+      "exportNodeId": "75:625",
+      "width": 512,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "ButtonStart_Selected",
+      "sourceNodeId": "2:67",
+      "exportNodeId": "75:630",
+      "width": 512,
+      "height": 142,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "ButtonStart_Disabled",
+      "sourceNodeId": "2:69",
+      "exportNodeId": "75:635",
+      "width": 504,
+      "height": 134,
+      "border": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "kind": "surface",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "PartNormal",
+      "sourceNodeId": "12:211",
+      "exportNodeId": "75:640",
+      "width": 464,
+      "height": 71,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "PartSelected",
+      "sourceNodeId": "12:213",
+      "exportNodeId": "75:645",
+      "width": 464,
+      "height": 73,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "kind": "surface",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ProgressIdle",
+      "sourceNodeId": "62:238",
+      "exportNodeId": "75:650",
+      "width": 40,
+      "height": 40,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "ProgressActive",
+      "sourceNodeId": "62:240",
+      "exportNodeId": "75:652",
+      "width": 40,
+      "height": 40,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "SliderTrack",
+      "sourceNodeId": "12:283",
+      "exportNodeId": "75:654",
+      "width": 896,
+      "height": 20,
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "SliderFill",
+      "sourceNodeId": "12:284",
+      "exportNodeId": "75:656",
+      "width": 314,
+      "height": 20,
+      "border": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "SliderHandle",
+      "sourceNodeId": "12:285",
+      "exportNodeId": "75:658",
+      "width": 64,
+      "height": 64,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IrisCrest",
+      "sourceNodeId": "62:79",
+      "exportNodeId": "75:660",
+      "width": 200,
+      "height": 200,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "IconHome",
+      "sourceNodeId": "13:177",
+      "exportNodeId": "75:701",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconPause",
+      "sourceNodeId": "13:180",
+      "exportNodeId": "75:704",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconSettings",
+      "sourceNodeId": "13:183",
+      "exportNodeId": "75:707",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconClose",
+      "sourceNodeId": "13:186",
+      "exportNodeId": "75:710",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconNext",
+      "sourceNodeId": "13:189",
+      "exportNodeId": "75:713",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconBack",
+      "sourceNodeId": "13:192",
+      "exportNodeId": "75:716",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconZoomIn",
+      "sourceNodeId": "13:195",
+      "exportNodeId": "75:719",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconZoomOut",
+      "sourceNodeId": "13:198",
+      "exportNodeId": "75:722",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconChapters",
+      "sourceNodeId": "13:201",
+      "exportNodeId": "75:725",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "IconReset",
+      "sourceNodeId": "13:204",
+      "exportNodeId": "75:728",
+      "width": 48,
+      "height": 48,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 2,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "name": "StartBrand",
+      "sourceNodeId": "12:148",
+      "sourceChildren": [
+        "62:590",
+        "12:141",
+        "12:142"
+      ],
+      "exportNodeId": "75:731",
+      "width": 668,
+      "height": 265,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 1,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "name": "HeaderArt",
+      "sourceNodeId": "12:225",
+      "sourceChildren": [
+        "62:233",
+        "62:192"
+      ],
+      "exportNodeId": "75:776",
+      "width": 200,
+      "height": 200,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "art",
+      "scale": 1,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    }
+  ]
+}

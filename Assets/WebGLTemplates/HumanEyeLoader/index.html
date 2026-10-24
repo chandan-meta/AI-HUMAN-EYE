@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <title>Human Eye Module</title>
+    <meta name="description" content="The Human Eye: an interactive journey through how we see.">
+    <meta name="theme-color" content="#011634">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="preload" href="TemplateData/human-eye-loading.webp" as="image">
+    <link rel="stylesheet" href="TemplateData/loader.css?v=20261024-fullscreen">
+  </head>
+  <body>
+    <div id="he-player">
+      <canvas id="unity-canvas" tabindex="-1" aria-label="Human Eye Module"></canvas>
+      <button id="he-fullscreen" type="button" aria-label="Enter fullscreen" aria-pressed="false" aria-controls="unity-canvas" title="Enter fullscreen" hidden>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path id="he-fullscreen-icon" d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>
+      </button>
+      <div id="he-fullscreen-status" role="status" aria-live="polite" hidden></div>
+    </div>
+
+    <!-- The supplied loading artwork, untouched; the live bar and the light effects sit above it. -->
+    <div id="he-loader">
+      <div id="he-stage">
+        <img id="he-art" src="TemplateData/human-eye-loading.webp" alt="" draggable="false">
+        <div id="he-iris-glow"></div>
+        <div id="he-glint"></div>
+        <div id="he-bar" role="progressbar" aria-label="Loading Human Eye Module" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="he-track"></div>
+          <div class="he-fill"><div class="he-gloss"></div><div class="he-sheen"></div></div>
+        </div>
+      </div>
+      <canvas id="he-particles" aria-hidden="true"></canvas>
+      <div id="he-message" role="alert"></div>
+    </div>
+    <noscript><p class="he-noscript">The Human Eye module needs JavaScript and WebGL 2.</p></noscript>
+
+    <script>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+        workerUrl: buildUrl + "/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      };
+    </script>
+    <script src="TemplateData/fullscreen.js"></script>
+    <script src="TemplateData/loader.js"></script>
+  </body>
+</html>

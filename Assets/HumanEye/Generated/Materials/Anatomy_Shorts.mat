@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Anatomy_Shorts
+  m_Shader: {fileID: 4800000, guid: 88e3a4381be930c4bb8cc9c3bb0164a4, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 1809e6c22d090b94abaaeaa6d1102682, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 1de95690d811b654382fbe20b9b8bde3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecMap:
+        m_Texture: {fileID: 2800000, guid: ef3194aa3594e4041a37c2896fe63636, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AboveBodyFade: 0
+    - _Alpha: 1
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0
+    - _DetailSpan: 1.6
+    - _DetailStrength: 0
+    - _DstBlend: 0
+    - _F0: 0.028
+    - _Flow: 0
+    - _Glass: 0
+    - _Gloss: 0.2
+    - _Highlight: 0
+    - _HighlightTint: 0.1
+    - _InteriorDark: 0
+    - _IrisRoot: 0
+    - _PupilBase: 0.18
+    - _PupilNow: 0.18
+    - _ReceiveShadows: 1
+    - _Reveal: 1
+    - _RevealFrom: 0
+    - _RevealUV: 0
+    - _Rim: 0.04
+    - _Specular: 0.06
+    - _SrcBlend: 1
+    - _Wet: 0
+    - _WipeEdge: 0.008
+    - _WipeFloor: -1000
+    - _Wrap: 0.35
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BodyFade: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailAxis: {r: 0, g: 0, b: -1, a: 0}
+    - _DetailColor: {r: 0.6, g: 0.049999982, b: 0.049999982, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _HighlightColor: {r: 0.14999998, g: 0.85, b: 1, a: 1}
+    - _RimColor: {r: 0.54999995, g: 0.8, b: 1, a: 1}
+    - _Wipe: {r: 0, g: 1, b: 1, a: 0}
+    - _WipeColor: {r: 1, g: 0.93, b: 0.8, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -34,7 +34,7 @@ Material:
     - _Intensity: 2
     - _LengthFade: 0
     m_Colors:
-    - _Color: {r: 0.4, g: 0.9, b: 1, a: 1}
+    - _Color: {r: 0.149, g: 0.776, b: 0.961, a: 1}
     - _Scroll: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

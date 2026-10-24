@@ -13,11 +13,18 @@ namespace HumanEye
         public readonly List<(string id, string label, bool selected)> options = new();
         public readonly List<string> buttons = new();
         public bool tapParts;
+        /// Options already tried and wrong (shown crossed out, no longer clickable), the correct one once found or shown,
+        /// and whether the feedback line is praise (teal) or a gentle retry (warm).
+        public readonly HashSet<string> wrong = new();
+        public string answer;
+        public bool good;
     }
 
     /// Runs the quick checks at the approved checkpoints. There is no Skip: a wrong answer leads to help
-    /// (attention → comparison → worked demonstration), and after three misses the answer is shown with Continue,
-    /// so the check can never lock the learner. "Continue anyway" only appears after a real attempt.
+    /// (attention → comparison → worked demonstration), and after three misses the demonstration plays and the answer is
+    /// shown with Continue, so the check can never lock the learner. "Continue anyway" only appears after a real attempt.
+    /// Niko reads each question and answers every try in his own voice (22 October 2026 brief: the old checks were silent
+    /// text with a flat "not right"); a correct answer moves on by itself after the praise.
     public class ActivityController : MonoBehaviour
     {
         public QuestionBank bank;
@@ -53,9 +60,11 @@ namespace HumanEye
             {
                 if (LearnerModel.Repetitive(previous, firstTry, item)) break;
                 Card = new ActivityCard { title = Title(item) };
+                if (previous == null) Speak("fb_quiz_intro");
                 yield return Ask(item);
                 previous = item;
             }
+            if (previous != null) stage.sfx.Play("quizcomplete", .55f);   // a check with at least one question is finished
             Cancel();
         }
 
@@ -83,21 +92,41 @@ namespace HumanEye
             return list;
         }
 
+        /// A supplemental line (question or feedback) in Niko's voice; a newer one replaces one still playing, never a lesson cue.
+        void Speak(string key)
+        {
+            var cue = narrator.database.Get(key);
+            if (cue == null || !cue.clip) return;
+            if (narrator.Current != null && narrator.Current.type == "Supplemental") narrator.Stop();
+            StartCoroutine(narrator.Play(key, NarrationSource.Answer));
+        }
+
+        static int praise;
+        ActivityCard Next(QuestionBank.Item item, HashSet<string> wrong, string feedback, string hint, string answer = null, bool good = false)
+        {
+            var card = new ActivityCard { title = Card?.title ?? "Quick check", tag = item.tag, prompt = item.prompt, feedback = feedback, hint = hint,
+                                          tapParts = item.mode == QuestionMode.TapPart && answer == null, answer = answer, good = good };
+            card.wrong.UnionWith(wrong);
+            foreach (var o in item.options) card.options.Add((o.text, o.text, false));   // TapPart: buttons are the accessible alternative to tapping the model
+            return card;
+        }
+
         IEnumerator Ask(QuestionBank.Item item)
         {
             Item = item;
             int mistakes = 0; bool assisted = false;
             firstTry = false;
+            var wrong = new HashSet<string>();
             // Tap-part questions: the answer structures must be pickable on the model, not only via the option buttons.
             var tappable = item.mode != QuestionMode.TapPart ? new List<AnatomyPart>()
                 : item.options.Select(o => stage.Part(o.partId)).Where(p => p && !p.Selectable).ToList();
             foreach (var p in tappable) p.Selectable = true;
             string feedback = null, hint = null;
-            stage.sfx.Play("popup", .5f);
+            if (!stage.sfx.Recently("quizcomplete", 1.5f)) stage.sfx.Play("quizopen", .5f);   // a check straight after another: the fanfare is enough
+            Speak("q_" + item.id);
             while (true)
             {
-                Card = new ActivityCard { title = Card?.title ?? "Quick check", tag = item.tag, prompt = item.prompt, feedback = feedback, hint = hint, tapParts = item.mode == QuestionMode.TapPart };
-                foreach (var o in item.options) Card.options.Add((o.text, o.text, false));   // TapPart: buttons are the accessible alternative to tapping the model
+                Card = Next(item, wrong, feedback, hint);
                 if (mistakes >= 2 && !string.IsNullOrEmpty(item.demo)) Card.buttons.Add("Show me");
                 if (mistakes > 0) Card.buttons.Add("Continue anyway");
                 yield return WaitClick();
@@ -118,20 +147,27 @@ namespace HumanEye
                     yield return Demo(item, "trial");
                 }
 
+                var right = item.options.FirstOrDefault(o => o.correct)?.text;
                 if (correct)
                 {
                     LearnerModel.Record(SaveSystem.Data, item, true, assisted || mistakes > 0);
                     firstTry = !assisted && mistakes == 0;
-                    stage.sfx.Play("confirm", .7f);
+                    stage.sfx.Play("quizcorrect", .7f);
+                    stage.niko.Play("Celebrate", 1.8f);
+                    Speak("fb_correct_" + (praise++ % 4 + 1));
                     SaveSystem.Save();
-                    Card = new ActivityCard { title = Card.title, tag = item.tag, prompt = item.prompt, feedback = "✓ " + item.correctFeedback };
-                    Card.buttons.Add("Next");
-                    yield return WaitClick();
+                    Card = Next(item, wrong, "✓ " + item.correctFeedback, null, right, true);
+                    Changed?.Invoke();
+                    yield return new Wait(.6f, true);
+                    yield return new Until(() => narrator.Current == null || narrator.Current.type != "Supplemental");   // the praise, then on
+                    yield return new Wait(Mathf.Clamp(item.correctFeedback.Length * .035f, 1.2f, 2.6f), true);           // time to read the line
                     break;
                 }
 
                 mistakes++;
-                stage.sfx.Play("deny", .45f);
+                if (answer != null) wrong.Add(answer.text);
+                stage.sfx.Play("quizwrong", .5f);
+                stage.niko.Play("Encourage", 1.8f);
                 LearnerModel.Record(SaveSystem.Data, item, false, assisted);
                 int tier = LearnerModel.SupportTier(mistakes);
                 feedback = wrongFeedback;
@@ -139,19 +175,22 @@ namespace HumanEye
                 if (tier >= 3)
                 {
                     MarkNeedsPractice(item);
-                    var right = string.Join(", ", item.options.Where(o => o.correct).Select(o => o.text));
-                    Card = new ActivityCard { title = Card.title, tag = item.tag, prompt = item.prompt, feedback = feedback, hint = "Answer: " + right + ". We've noted this topic for a little more practice in the Review panel." };
+                    Speak("fb_retry_3");
+                    Card = Next(item, wrong, feedback, null);
+                    Changed?.Invoke();
+                    if (!string.IsNullOrEmpty(item.demo) && !assisted) { assisted = true; yield return Demo(item, "hint"); }   // shown, not only told
+                    Card = Next(item, wrong, item.correctFeedback, "Answer: " + right + ". We've noted this topic for a little more practice in Review.", right, true);
                     Card.buttons.Add("Continue");
                     yield return WaitClick();
                     break;
                 }
+                Speak(tier == 1 ? "fb_retry_1" : "fb_retry_2");
                 hint = item.hints.Length >= tier ? item.hints[tier - 1] : null;
                 if (tier == 2) assisted = true;   // a retry after comparison help counts as assisted
-                stage.ShowHint(item, tier);
+                stage.ShowHint(item, tier); stage.sfx.Play("quizhint", .45f);   // the clip starts after a short breath, behind the try-again tone
             }
             stage.ShowHint(null, 0);
-            foreach (var p in tappable) p.Selectable = false;
-            stage.sfx.Play("popdown", .4f);
+            foreach (var p in tappable) p.Selectable = false;   // no close sound per card: the next card's open or the check's completion follows at once
             Item = null;
         }
 

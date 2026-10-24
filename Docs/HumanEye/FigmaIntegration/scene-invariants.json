@@ -1,0 +1,20 @@
+{
+  "preservedObjects": {
+    "Camera": 2,
+    "Light": 29,
+    "MeshRenderer": 352,
+    "SkinnedMeshRenderer": 2,
+    "MeshFilter": 352,
+    "AudioSource": 8,
+    "Animator": 1
+  },
+  "preservedAssociatedObjects": {
+    "GameObject": 393,
+    "Transform": 393
+  },
+  "checkedWholeBlocks": 1532,
+  "changedNonUIObjects": [],
+  "comparison": "Exact byte equality of complete serialized YAML blocks and identical tracked fileIDs",
+  "beforeSceneSha256": "ff438e5e2fbd94b8d2f2afe2160b35d4d02304ebc3d7d62f6d27ac39d8aa3ef0",
+  "afterSceneSha256": "06b1959f51739f0fc2abd0521b08c79e956efa580791ccff74dd510b8bb97707"
+}

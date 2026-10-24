@@ -21,9 +21,9 @@ MonoBehaviour:
   - inverted_image
   steps:
   - kind: 0
-    key: S10_Complete
+    key: S10_Journey
     arg: 
-    value: 2.2
+    value: 2.4
     async: 1
     note: 
   - kind: 1
@@ -31,18 +31,6 @@ MonoBehaviour:
     arg: 
     value: 0
     async: 0
-    note: 
-  - kind: 1
-    key: S10_L02
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 0
-    key: S10_Journey
-    arg: 
-    value: 2
-    async: 1
     note: 
   - kind: 2
     key: journey
@@ -56,9 +44,9 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: journey
-    arg: overview
+  - kind: 1
+    key: S10_L02
+    arg: 
     value: 0
     async: 0
     note: 

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: HumanEye.Runtime::HumanEye.ChapterDefinition
   id: Scene02
   title: Meet Niko
-  checkpoint: Dark corridor facing the closed gate; the entrance (skippable) opens
-    the gate, moves in, flies Niko to his anchor and ends on the establishing view
-    with the spotlit human; the selected eye in its socket; nothing explored.
+  checkpoint: Dark corridor facing the closed gate; the opening (skippable) lifts
+    the gate, enters the lab, scans the subject once, flies the selected eye to the
+    central display and brings Niko in beside it; nothing explored.
   topics:
   - external_structures
   steps:
@@ -50,30 +50,6 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: nikoLook
-    arg: human
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: niko
-    arg: Present
-    value: 2.4
-    async: 0
-    note: 
-  - kind: 0
-    key: S02_DisplayWide
-    arg: 
-    value: 1.6
-    async: 1
-    note: 
-  - kind: 2
-    key: humanReveal
-    arg: 
-    value: 1.4
-    async: 1
-    note: 
   - kind: 1
     key: S02_L03
     arg: 
@@ -87,76 +63,27 @@ MonoBehaviour:
     async: 0
     note: 
   - kind: 2
-    key: info
-    arg: Niko's scanner is ready. Press Scan Eye in the panel to look inside the
-      subject.
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: niko
-    arg: RaiseHand
-    value: 30
-    async: 0
-    note: 
-  - kind: 1
-    key: S02_L05
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 3
-    key: scan
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 0
-    key: S02_ScanFront
-    arg: 
-    value: 1
-    async: 0
-    note: 
-  - kind: 2
-    key: scan
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: illuminate
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 0
-    key: S02_EyeInSkull
-    arg: 
-    value: 1.6
-    async: 1
-    note: 
-  - kind: 1
-    key: S02_L06
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 1
-    key: S02_L07
-    arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
     key: nikoLook
     arg: eye
     value: 0
     async: 0
     note: 
   - kind: 2
-    key: pinch
-    arg: 
+    key: niko
+    arg: Present
+    value: 2.4
+    async: 0
+    note: 
+  - kind: 2
+    key: music
+    arg: eye
     value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: sfx
+    arg: eyeappear
+    value: 0.5
     async: 0
     note: 
   - kind: 0
@@ -166,19 +93,25 @@ MonoBehaviour:
     async: 1
     note: 
   - kind: 2
-    key: enlarge
-    arg: 
-    value: 2.2
-    async: 0
-    note: 
-  - kind: 2
     key: nikoMove
     arg: EyeLeft
     value: 1.2
     async: 1
     note: 
   - kind: 2
-    key: info
+    key: turntable
+    arg: on
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L06
+    arg: 
+    value: 0
+    async: 0
+    note: 
+  - kind: 1
+    key: S02_L07
     arg: 
     value: 0
     async: 0
@@ -246,12 +179,6 @@ MonoBehaviour:
   - kind: 1
     key: S02_L15
     arg: 
-    value: 0
-    async: 0
-    note: 
-  - kind: 2
-    key: info
-    arg: Press Explore Inside in the panel to open the eye.
     value: 0
     async: 0
     note: 

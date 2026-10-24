@@ -12,8 +12,11 @@ namespace HumanEye
         public static bool Paused, Frozen;
         /// Test/autoplay hook only (narration and waits run faster); 1 for learners.
         public static float FastForward = 1;
-        public static float Delta => Paused ? 0 : Time.unscaledDeltaTime * FastForward;
-        public static float VizDelta => Paused || Frozen ? 0 : Time.unscaledDeltaTime * FastForward;
+        /// Capture hook only: the longest step one frame may take (a batch editor compiling shaders stalls for seconds and would
+        /// jump the cinematics past whole beats). Unlimited for learners.
+        public static float MaxStep = float.PositiveInfinity;
+        public static float Delta => Paused ? 0 : Mathf.Min(Time.unscaledDeltaTime, MaxStep) * FastForward;
+        public static float VizDelta => Paused || Frozen ? 0 : Mathf.Min(Time.unscaledDeltaTime, MaxStep) * FastForward;
     }
 
     public sealed class Wait

@@ -1,4 +1,4 @@
-# Generates PROVISIONAL development narration for every row of Docs/HumanEye/VO/HumanEye_VO.csv
+﻿# Generates PROVISIONAL development narration for every row of Docs/HumanEye/VO/HumanEye_VO.csv
 # using a locally installed, Windows-licensed OneCore voice. Spoken text is exactly the CSV text;
 # SSML is used only for delivery (per-sentence rate/pitch, emphasis on anatomy terms, short breaks), never to change words.
 # Clips are then trimmed (60 ms lead-in, 120 ms tail, internal pauses capped at 220 ms) and loudness-normalised,
@@ -38,8 +38,9 @@ function Markup([string]$text, [string]$kind) {
     foreach ($s in $sentences) {
         $i++
         $r = $Rate; $p = $Pitch
-        if ($s -match '!\s*$') { $r = ([double]$Rate + 0.06).ToString([Globalization.CultureInfo]::InvariantCulture); $p = "+9%" }
-        elseif ($s -match '\?\s*$') { $r = ([double]$Rate - 0.03).ToString([Globalization.CultureInfo]::InvariantCulture); $p = "+7%" }
+        $pb = [double]($Pitch.TrimEnd('%'))   # exclamations and questions sit above the base pitch (defaults: +9 % and +7 %)
+        if ($s -match '!\s*$') { $r = ([double]$Rate + 0.06).ToString([Globalization.CultureInfo]::InvariantCulture); $p = ("{0:+0;-0}%" -f ($pb + 4)) }
+        elseif ($s -match '\?\s*$') { $r = ([double]$Rate - 0.03).ToString([Globalization.CultureInfo]::InvariantCulture); $p = ("{0:+0;-0}%" -f ($pb + 2)) }
         elseif ($kind -eq "PromptVO") { $r = ([double]$Rate - 0.05).ToString([Globalization.CultureInfo]::InvariantCulture) }
         if ($s.Length -gt 90) { $r = ([double]$r - 0.02).ToString([Globalization.CultureInfo]::InvariantCulture) }
         $null = $sb.Append("<prosody rate='$r' pitch='$p'>$s</prosody>")

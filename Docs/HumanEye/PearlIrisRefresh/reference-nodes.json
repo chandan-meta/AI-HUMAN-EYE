@@ -1,0 +1,202 @@
+[
+  {
+    "source": "references/ui_sheet/00_Pearl_Iris_UI_Sheet.png",
+    "result": {
+      "success": true,
+      "imageHash": "4deddfe1cf529b8d4df022da0a973a5290e4113e",
+      "sizeBytes": 2737753,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:2"
+    }
+  },
+  {
+    "source": "references/gameplay/01_Start.png",
+    "result": {
+      "success": true,
+      "imageHash": "6b27cc54ca7510ad0477759ebf797be184a83a44",
+      "sizeBytes": 1739116,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:3"
+    }
+  },
+  {
+    "source": "references/gameplay/02_Opening_Cinematic.png",
+    "result": {
+      "success": true,
+      "imageHash": "184a284d0f3c56f8c4d26bcb4013ef7322f93ad1",
+      "sizeBytes": 1612701,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:4"
+    }
+  },
+  {
+    "source": "references/gameplay/03_Meet_Niko.png",
+    "result": {
+      "success": true,
+      "imageHash": "533f6e27641102db3d379992db19f6f0afd9fdde",
+      "sizeBytes": 1795669,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:5"
+    }
+  },
+  {
+    "source": "references/gameplay/04_Exterior_Sclera.png",
+    "result": {
+      "success": true,
+      "imageHash": "e76679f1d3db6ef90dc3121cfb1a425817e1dfeb",
+      "sizeBytes": 1835323,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:6"
+    }
+  },
+  {
+    "source": "references/gameplay/05_Inside_Eye_Lens.png",
+    "result": {
+      "success": true,
+      "imageHash": "bbee2790233a9640a6662a683153b57c59ed61fa",
+      "sizeBytes": 1680529,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:7"
+    }
+  },
+  {
+    "source": "references/gameplay/06_Brightness_Experiment.png",
+    "result": {
+      "success": true,
+      "imageHash": "aacb0ad71058d9b6cee0d6398e0bb55c76f9dec4",
+      "sizeBytes": 1819797,
+      "contentType": "image/png",
+      "placedOnNodeId": "3:8"
+    }
+  },
+  {
+    "source": "references/gameplay/07_Accommodation_Corrected.png",
+    "result": {
+      "success": true,
+      "imageHash": "00df026dc206acd1018349b747bfd4fe5c013ea2",
+      "sizeBytes": 1896517,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:2"
+    }
+  },
+  {
+    "source": "references/gameplay/08_Rods_And_Cones.png",
+    "result": {
+      "success": true,
+      "imageHash": "a312430f301faba47782f54d2a4d6db00f37180e",
+      "sizeBytes": 2000754,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:3"
+    }
+  },
+  {
+    "source": "references/gameplay/09_Light_To_Brain_Journey.png",
+    "result": {
+      "success": true,
+      "imageHash": "dbfb1793d7f9a519777489750e600ab5748b6cf4",
+      "sizeBytes": 1934292,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:4"
+    }
+  },
+  {
+    "source": "references/gameplay/10_Quick_Check.png",
+    "result": {
+      "success": true,
+      "imageHash": "38fa6de3b3ca466518f3fc55d163209b13456883",
+      "sizeBytes": 1709056,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:5"
+    }
+  },
+  {
+    "source": "references/gameplay/11_Free_Explore.png",
+    "result": {
+      "success": true,
+      "imageHash": "6e9196a44c9751a997eeab6e1228c5f19928cce8",
+      "sizeBytes": 1777055,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:6"
+    }
+  },
+  {
+    "source": "references/gameplay/12_Investigation_Complete.png",
+    "result": {
+      "success": true,
+      "imageHash": "11c79cfe64b23834ca83e0ded348e4237d588682",
+      "sizeBytes": 1731073,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:7"
+    }
+  },
+  {
+    "source": "references/original/01_Start_And_Opening.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "0a6ccd9f51587272cfa8bdb9458332c00e049688",
+      "sizeBytes": 356871,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:8"
+    }
+  },
+  {
+    "source": "references/original/02_Niko_And_Lesson.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "4c1193ab3d88523dd175f3ec89a8f6df97a7f68f",
+      "sizeBytes": 572063,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:298"
+    }
+  },
+  {
+    "source": "references/original/03_Accommodation_And_Journey.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "4293d0e37bef4fc46b5be84b90b96c5fbeda20d5",
+      "sizeBytes": 567229,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:299"
+    }
+  },
+  {
+    "source": "references/original/04_More_Chapters.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "b7a8de2506e093af72887f5080cb042c6158887b",
+      "sizeBytes": 627401,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:300"
+    }
+  },
+  {
+    "source": "references/original/05_Free_Explore.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "2da357e34badf9d99b163806e23e5793fd5a86f1",
+      "sizeBytes": 555755,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:301"
+    }
+  },
+  {
+    "source": "references/texture_source/01_Current_Inside_Eye.png",
+    "result": {
+      "success": true,
+      "imageHash": "1974760cf2dfe13a6c4a2b0392c33eea744b3763",
+      "sizeBytes": 522642,
+      "contentType": "image/png",
+      "placedOnNodeId": "4:302"
+    }
+  },
+  {
+    "source": "references/texture_source/02_Current_Accommodation.jpg",
+    "result": {
+      "success": true,
+      "imageHash": "e6febac6c2498d11e321130160afda23fd623db8",
+      "sizeBytes": 116255,
+      "contentType": "image/jpeg",
+      "placedOnNodeId": "4:303"
+    }
+  }
+]

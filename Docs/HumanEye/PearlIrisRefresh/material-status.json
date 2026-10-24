@@ -1,0 +1,21 @@
+{
+  "status": "Model-tested candidate: Blender UV preview and Unity shader comparison at 1024",
+  "source_resolution": [
+    1254,
+    1254
+  ],
+  "runtime_variants": "2048 and 1024 resampled from actual source; 2048 may be upscaled",
+  "normal": "Conservative tangent-space estimate from high-pass luminance; not geometry baked",
+  "roughness": "Art-directed estimate, not measured",
+  "ao": "Omitted: cannot infer geometric occlusion from colour",
+  "shader": "HumanEye/Anatomy: _BaseMap sRGB, _BumpMap normal import, _SpecMap linear red. _Gloss is scalar; roughness is handoff only.",
+  "vessels": "Original geometry and projected overlay must remain separate and unchanged",
+  "unity_renderer_count": 6,
+  "unity_cameras": [
+    "S03_Lens_Close",
+    "S06_LensClose"
+  ],
+  "candidate_material": "Assets/HumanEye/PearlIrisPreview/Retina_PearlIris_Candidate.mat",
+  "boundary_diagnosis": "Vitreous transparency/cutaway: disappears when vitreous is hidden",
+  "remaining": "Compression, complete seam/pole/mip review and runtime performance"
+}

@@ -113,7 +113,7 @@ namespace HumanEye.Tests
             SaveSystem.Data.settings.skipCameraMotion = false;
             stage.timing = Stage.CinematicTiming.Production;
 
-            foreach (var introPoint in new[] { 0f, 17.15f, 27f })
+            foreach (var introPoint in new[] { 0f, 8.75f, 19.5f })   // the dark, the cutaway burst, the hand-over
             {
                 hud.StartModule(0);
                 yield return null; yield return null;
@@ -129,8 +129,8 @@ namespace HumanEye.Tests
                     bool transition = introPoint < 18;
                     if (transition)
                     {
-                        Assert.IsNotNull(stage.anatomyTransition, "The muscle reveal needs particles");
-                        Assert.Greater(stage.anatomyTransition.particleCount, 0, "The first anatomy burst is alive before Pause");
+                        Assert.IsNotNull(stage.anatomyTransition, "The cutaway needs particles");
+                        Assert.Greater(stage.anatomyTransition.particleCount, 0, "The cutaway burst is alive before Pause");
                     }
                     var overlay = hud.Element("intro-overlay"); var topbar = hud.Element("topbar");
                     Assert.AreEqual(overlay.parent, topbar.parent);
@@ -144,7 +144,7 @@ namespace HumanEye.Tests
                     yield return new WaitForSecondsRealtime(.2f);
                     Assert.AreEqual(held, stage.IntroTime, "Settings holds the cinematic");
                     if (transition) Assert.AreEqual(particleTime, stage.anatomyTransition.time, .001f, "Settings holds particle simulation time");
-                    if (introPoint > 26)
+                    if (introPoint > 19)
                     {
                         hud.Element("settings-panel").GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 0;
                         yield return null;
@@ -191,7 +191,7 @@ namespace HumanEye.Tests
                 Assert.AreEqual(0, stage.introVolume.weight);
                 Assert.AreEqual(0, hud.Element("fade").GetComponent<CanvasGroup>().alpha);
                 Assert.IsTrue(hud.Element("chapter-title").gameObject.activeInHierarchy, "Lesson heading returns after Skip");
-                Assert.IsTrue(hud.Element("btn-home").gameObject.activeInHierarchy, "Home returns after Skip");
+                Assert.IsTrue(hud.Element("btn-chapters").gameObject.activeInHierarchy, "The tools return after Skip");
                 for (float wait = 0; !stage.narrator.Speaking && wait < 8; wait += Time.unscaledDeltaTime) yield return null;
                 yield return null; yield return null;
                 Assert.IsTrue(stage.narrator.Speaking && !stage.NikoWaiting && stage.niko.gameObject.activeSelf, "His first line brings Niko in");

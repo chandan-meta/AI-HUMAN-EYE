@@ -20,6 +20,7 @@ namespace HumanEye
         Vector2 origin, last;
         float pressedAt, pinch;
         bool held, dragging, blocked;
+        AnatomyPart hovered;
         readonly RaycastHit[] hits = new RaycastHit[24];
 
         float Slop => tapSlop * Mathf.Max(1, Screen.dpi > 0 ? Screen.dpi / 160f : 1);
@@ -36,9 +37,11 @@ namespace HumanEye
 
         void Update()
         {
-            if (!runner.Started || (stage.navigation && stage.navigation.Active) || Clock.Paused) { held = false; pinch = 0; return; }
+            if (!runner.Started || (stage.navigation && stage.navigation.Active) || Clock.Paused) { held = false; pinch = 0; Hover(null); return; }
             var p = point.ReadValue<Vector2>();
-            bool canOrbit = LessonRules.Orbit(runner.State) && !Clock.Paused;
+            bool touching = Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed;
+            Hover(!held && !touching && Mouse.current != null && !hud.IsOverUI(p) ? Pick(p) : null);
+            bool canOrbit = (LessonRules.Orbit(runner.State) || stage.FreeExploring) && !Clock.Paused;
             if (Pinching(canOrbit)) return;
             if (press.WasPressedThisFrame())
             {
@@ -69,6 +72,15 @@ namespace HumanEye
             if (pinch > 0 && canOrbit && !blocked) stage.Zoom((pinch - d) * .05f);
             pinch = d; held = false; dragging = true;
             return true;
+        }
+
+        /// Hover acknowledges a selectable structure before the click (mouse only; touch has no hover).
+        void Hover(AnatomyPart part)
+        {
+            if (hovered == part) return;
+            if (hovered) hovered.Hovered = false;
+            hovered = part;
+            if (part) part.Hovered = true;
         }
 
         void Tap(Vector2 screen)

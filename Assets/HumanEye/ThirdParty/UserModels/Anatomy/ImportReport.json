@@ -1,0 +1,268 @@
+{
+  "source": "D:\\AI unity project\\models\\ANATOMY.blend",
+  "scale": 0.01,
+  "frame": "metres, feet at z=0 (Unity y), skin bbox centre at x=y=0, faces -Y (Unity -Z)",
+  "eyes": {
+    "L": {
+      "centre": [
+        0.02927358871007332,
+        -0.08321240226319249,
+        1.5999393683784469
+      ],
+      "shell_radius": 0.01677361127059478,
+      "apex": 0.018364849886389423,
+      "socket_radius": 0.01630981339821441
+    },
+    "R": {
+      "centre": [
+        -0.028627984088208804,
+        -0.08504443073700985,
+        1.6002595791964376
+      ],
+      "shell_radius": 0.016937904346258647,
+      "apex": 0.018856858666428722,
+      "socket_radius": 0.01674676613359567
+    }
+  },
+  "landmarks": {
+    "EyeSocket_L": [
+      0.02927358871007332,
+      -0.08321240226319249,
+      1.5999393683784469
+    ],
+    "EyeSocket_R": [
+      -0.028627984088208804,
+      -0.08504443073700985,
+      1.6002595791964376
+    ],
+    "EyeFront_L": [
+      0.02927358871007332,
+      -0.10157725214958191,
+      1.5999393683784469
+    ],
+    "EyeFront_R": [
+      -0.028627984088208804,
+      -0.10390128940343857,
+      1.6002595791964376
+    ],
+    "FaceDirection": [
+      0.00032280199229717255,
+      -1.0841284170746803,
+      1.6000994443893433
+    ],
+    "BodyBase": [
+      0,
+      0,
+      0
+    ],
+    "BodyTop": [
+      0,
+      0,
+      1.702902913093567
+    ],
+    "BrainMin": [
+      -0.06327952444553375,
+      -0.10229507833719254,
+      1.556203007698059
+    ],
+    "BrainMax": [
+      0.0664171576499939,
+      0.06973297148942947,
+      1.6934820413589478
+    ]
+  },
+  "lashes_kept": true,
+  "skin_uv_loops_in_opacity_region": 0,
+  "systems": {
+    "Skin": {
+      "objects": [
+        "Body",
+        "Shorts"
+      ],
+      "triangles": 30388,
+      "vertices": 16882,
+      "materials": [
+        [
+          "HumanSkin"
+        ],
+        [
+          "Shorts"
+        ]
+      ]
+    },
+    "Muscles": {
+      "objects": [
+        "Muscles"
+      ],
+      "triangles": 57784,
+      "vertices": 50803,
+      "materials": [
+        "Muscles_Part1",
+        "Muscles_Part3",
+        "Muscles_Part2"
+      ]
+    },
+    "Skeleton": {
+      "objects": [
+        "Skeleton"
+      ],
+      "triangles": 85276,
+      "vertices": 57049,
+      "materials": [
+        "Skull",
+        "Legs",
+        "Pelvis",
+        "Hands",
+        "Ribcage",
+        "Spine"
+      ]
+    },
+    "Organs": {
+      "objects": [
+        "Organs"
+      ],
+      "triangles": 79509,
+      "vertices": 43249,
+      "materials": [
+        "Lungs",
+        "Diaphragm",
+        "Gallbladder",
+        "Liver",
+        "Urinary",
+        "Digestive",
+        "Heart"
+      ]
+    },
+    "Vessels": {
+      "objects": [
+        "Vessels"
+      ],
+      "triangles": 48330,
+      "vertices": 24519,
+      "materials": [
+        "Vessels"
+      ]
+    }
+  },
+  "textures": {
+    "HumanSkin": {
+      "albedo": "HumanSkin_Albedo.png",
+      "normal": "HumanSkin_Normal.png",
+      "normal_was_directx": false,
+      "spec": "HumanSkin_Spec.jpg"
+    },
+    "Muscles_Part1": {
+      "albedo": "Muscles_Part1_Albedo.jpg",
+      "normal": "Muscles_Part1_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Muscles_Part1_Spec.jpg"
+    },
+    "Muscles_Part2": {
+      "albedo": "Muscles_Part2_Albedo.jpg",
+      "normal": "Muscles_Part2_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Muscles_Part2_Spec.jpg"
+    },
+    "Muscles_Part3": {
+      "albedo": "Muscles_Part3_Albedo.jpg",
+      "normal": "Muscles_Part3_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Muscles_Part3_Spec.jpg"
+    },
+    "Skull": {
+      "albedo": "Skull_Albedo.jpg",
+      "normal": "Skull_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Skull_Spec.jpg"
+    },
+    "Spine": {
+      "albedo": "Spine_Albedo.jpg",
+      "normal": "Spine_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Spine_Spec.jpg"
+    },
+    "Ribcage": {
+      "albedo": "Ribcage_Albedo.jpg",
+      "normal": "Ribcage_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Ribcage_Spec.jpg"
+    },
+    "Pelvis": {
+      "albedo": "Pelvis_Albedo.jpg",
+      "normal": "Pelvis_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Pelvis_Spec.jpg"
+    },
+    "Legs": {
+      "albedo": "Legs_Albedo.jpg",
+      "normal": "Legs_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Legs_Spec.jpg"
+    },
+    "Hands": {
+      "albedo": "Hands_Albedo.jpg",
+      "normal": "Hands_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Hands_Spec.jpg"
+    },
+    "Lungs": {
+      "albedo": "Lungs_Albedo.jpg",
+      "normal": "Lungs_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Lungs_Spec.jpg"
+    },
+    "Diaphragm": {
+      "albedo": "Diaphragm_Albedo.jpg",
+      "normal": "Diaphragm_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Diaphragm_Spec.jpg"
+    },
+    "Heart": {
+      "albedo": "Heart_Albedo.jpg",
+      "normal": "Heart_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Heart_Spec.jpg"
+    },
+    "Liver": {
+      "albedo": "Liver_Albedo.jpg"
+    },
+    "Gallbladder": {
+      "albedo": "Gallbladder_Albedo.jpg",
+      "normal": "Gallbladder_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Gallbladder_Spec.jpg"
+    },
+    "Digestive": {
+      "albedo": "Digestive_Albedo.jpg",
+      "normal": "Digestive_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Digestive_Spec.jpg"
+    },
+    "Urinary": {
+      "albedo": "Urinary_Albedo.jpg",
+      "normal": "Urinary_Normal.png",
+      "normal_was_directx": true,
+      "spec": "Urinary_Spec.jpg"
+    },
+    "Vessels": {
+      "albedo": "Vessels_Albedo.jpg",
+      "normal": "Vessels_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Vessels_Spec.jpg"
+    },
+    "Shorts": {
+      "albedo": "Shorts_Albedo.jpg",
+      "normal": "Shorts_Normal.png",
+      "normal_was_directx": false,
+      "spec": "Shorts_Spec.jpg"
+    }
+  },
+  "not_exported": {
+    "brain": "Brain_Brain_0: 29920 polygons; Rack 06 (77,882 triangles, lobe-split) stays the module brain",
+    "eye": "Eye_Eye_0: measured for the sockets; the lesson cross-section eye sits in them"
+  },
+  "blink": {
+    "moved_vertices": 580,
+    "rule": "lid band 0.05..0.9 r -> -0.42 r (30 % compression), brow fade to 1.7 r, lower lid +0.12 r"
+  }
+}

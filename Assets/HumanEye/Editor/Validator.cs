@@ -20,12 +20,14 @@ namespace HumanEye.EditorTools
     /// Batch: -executeMethod HumanEye.EditorTools.Validator.RunBatch (exit code 1 on failure).
     public static class Validator
     {
+        static bool Ledgered(string key) => System.Text.RegularExpressions.Regex.IsMatch(key ?? "", @"^S\d\d_L\d\d$");
+
         [Serializable] class LedgerCue { public string id, scene, type, text, filename; public int sequence, docxParagraph; }
         [Serializable] class Ledger { public LedgerCue[] cues; }
 
         static readonly Dictionary<string, int> SceneCounts = new()
         { ["Scene02"] = 16, ["Scene03"] = 12, ["Scene04"] = 8, ["Scene05"] = 8, ["Scene06"] = 4, ["Scene07"] = 3, ["Scene08"] = 6, ["Scene09"] = 4, ["Scene10"] = 2, ["Scene11"] = 3 };
-        static readonly string[] AwaitKeys = { "scan", "inside", "brighter", "dimmer", "near", "distant" };
+        static readonly string[] AwaitKeys = { "inside", "brighter", "dimmer", "near", "distant" };
         static readonly string[] FreeModes = { "brightness", "photoreceptors" };
         static readonly string[] PartIds = { "sclera", "cornea", "iris", "pupil", "aqueous", "lens", "vitreous", "retina", "choroid", "optic_nerve", "brain", "visual_area", "rods", "cones" };
 
@@ -125,13 +127,13 @@ namespace HumanEye.EditorTools
             var said = new List<(string cue, string chapter, string where)>();
             foreach (var ch in chapters.Where(c => c))
             {
-                foreach (var s in ch.steps.Where(s => s.kind == StepKind.Say)) said.Add((s.key, ch.id, "main"));
-                foreach (var e in ch.explore) foreach (var s in e.steps.Where(s => s.kind == StepKind.Say)) said.Add((s.key, ch.id, e.partId));
-                var mainSeq = ch.steps.Where(s => s.kind == StepKind.Say).Select(s => ledger.First(l => l.id == s.key).sequence).ToList();
+                foreach (var s in ch.steps.Where(s => s.kind == StepKind.Say && Ledgered(s.key))) said.Add((s.key, ch.id, "main"));
+                foreach (var e in ch.explore) foreach (var s in e.steps.Where(s => s.kind == StepKind.Say && Ledgered(s.key))) said.Add((s.key, ch.id, e.partId));
+                var mainSeq = ch.steps.Where(s => s.kind == StepKind.Say && Ledgered(s.key)).Select(s => ledger.First(l => l.id == s.key).sequence).ToList();
                 Check(r, mainSeq.SequenceEqual(mainSeq.OrderBy(x => x)), $"{ch.id}: narration steps follow ledger order");
                 foreach (var e in ch.explore)
                 {
-                    var es = e.steps.Where(s => s.kind == StepKind.Say).Select(s => ledger.First(l => l.id == s.key).sequence).ToList();
+                    var es = e.steps.Where(s => s.kind == StepKind.Say && Ledgered(s.key)).Select(s => ledger.First(l => l.id == s.key).sequence).ToList();
                     Check(r, es.SequenceEqual(es.OrderBy(x => x)), $"{ch.id}/{e.partId}: part explanation lines stay together in order");
                 }
                 foreach (var s in ch.steps.Concat(ch.explore.SelectMany(e => e.steps)))
@@ -144,11 +146,17 @@ namespace HumanEye.EditorTools
             foreach (var c in ledger)
             {
                 var uses = said.Where(x => x.cue == c.id).ToList();
-                if (uses.Count != 1) r.errors.Add($"{c.id} is spoken {uses.Count} times in chapter steps (must be exactly once)");
+                bool retired = HumanEyeContent.RetiredCues.Contains(c.id);
+                if (retired) { if (uses.Count > 0) r.errors.Add($"{c.id} is retired (single-scan brief) but still spoken {uses.Count} times"); }
+                else if (uses.Count != 1) r.errors.Add($"{c.id} is spoken {uses.Count} times in chapter steps (must be exactly once)");
                 else if (uses[0].chapter != c.scene) r.errors.Add($"{c.id} belongs to {c.scene} but is used in {uses[0].chapter}");
             }
-            r.passed.Add($"Coverage: {said.Select(x => x.cue).Distinct().Count()} of 66 cues placed exactly once in their own chapter");
+            Check(r, HumanEyeContent.RetiredCues.All(id => ledger.Any(l => l.id == id)), "Retired cues exist in the ledger (kept there, unspoken)");
+            r.passed.Add($"Coverage: {said.Select(x => x.cue).Distinct().Count()} of {ledger.Length - HumanEyeContent.RetiredCues.Length} cues placed exactly once in their own chapter ({string.Join(", ", HumanEyeContent.RetiredCues)} retired)");
             Check(r, said.All(x => ledger.Any(l => l.id == x.cue)), "No chapter references an unknown cue");
+            // Supplemental lines (Docs/HumanEye/VO/SUPPLEMENTAL_VO.csv, never ledger cues) are spoken by key from the database's extra set.
+            var extraSaid = chapters.Where(c => c).SelectMany(c => c.steps.Concat(c.explore.SelectMany(e => e.steps))).Where(s => s.kind == StepKind.Say && !Ledgered(s.key)).Select(s => s.key).Distinct().ToList();
+            Check(r, extraSaid.All(k => db && db.extra.Any(x => x.id == k && x.clip)), $"Supplemental lines spoken in chapters have clips ({string.Join(", ", extraSaid)})");
 
             // ---- questions and Ask Niko ----
             foreach (var t in LearnerModel.Topics) Check(r, bank.items.Count(i => i.topic == t) >= 2, $"Topic '{t}' has at least two distinct items");
@@ -169,6 +177,18 @@ namespace HumanEye.EditorTools
 
             // ---- scene: shots, stage whitelist, references, build settings ----
             var scene = EditorSceneManager.OpenScene(Builder.ScenePath);
+            int missingScripts = 0;
+            foreach (var root in scene.GetRootGameObjects())
+                foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                {
+                    int count = GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject);
+                    if (count == 0) continue;
+                    missingScripts += count;
+                    var path = t.name;
+                    for (var parent = t.parent; parent; parent = parent.parent) path = parent.name + "/" + path;
+                    r.errors.Add($"{count} missing script(s) on {scene.path}/{path}");
+                }
+            Check(r, missingScripts == 0, "Scene GameObjects have no missing scripts (including inactive children and prefab instances)");
             var stage = Object.FindFirstObjectByType<Stage>(FindObjectsInactive.Include);
             var cams = Object.FindFirstObjectByType<CameraDirector>(FindObjectsInactive.Include);
             stage.EnsureActions();
@@ -184,14 +204,19 @@ namespace HumanEye.EditorTools
             r.passed.Add("All chapter shots exist and all chapter/question actions are whitelisted");
             foreach (var shot in new[] { "S02_EstablishA", "S02_EyeHero", "S03_InsideHero", "S05_ObjectWide", "S05_AqueousPupil", "S06_Vitreous", "S07_RetinaCloser", "S08_MicroWide", "S09_RetinaNerve", "S09_Wide", "S10_Complete" })
                 Check(r, shotNames.Contains(shot), $"Checkpoint shot {shot} exists");
-            var allowNull = new HashSet<string> { "irisPick", "lookTarget", "gestureTarget", "focusCut", "labelAnchorCut", "focus", "labelAnchor", "font", "lamp", "lampLight", "targetTop", "targetBottom", "space", "imageQuad" };
+            var allowNull = new HashSet<string> { "displayEye", "irisPick", "lookTarget", "gestureTarget", "focusCut", "labelAnchorCut", "focus", "labelAnchor", "font", "lamp", "lampLight", "targetTop", "targetBottom", "space", "imageQuad" };
             int nulls = 0;
             foreach (var mb in Object.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(m => m.GetType().Namespace == "HumanEye"))
                 foreach (var f in mb.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
                 {
                     if (allowNull.Contains(f.Name)) continue;
-                    // Plain text state slots have no glass surface; buttons and progress dots do.
-                    if (mb is HudState state && f.Name == nameof(HudState.surface) && state.target is UnityEngine.UI.Text && !state.GetComponent<GlassPanel>()) continue;
+                    if (mb is HudState state)
+                    {
+                        bool exported = state.target is UnityEngine.UI.Image image && image.sprite && AssetDatabase.GetAssetPath(image.sprite).StartsWith(FigmaSkin.Folder, StringComparison.Ordinal);
+                        // PNG controls replace glass; passive indicators do not have pointer-state sprites.
+                        if (f.Name == nameof(HudState.surface) && (exported || state.target is UnityEngine.UI.Text && !state.GetComponent<GlassPanel>())) continue;
+                        if (f.FieldType == typeof(Sprite) && (!exported || !state.GetComponent<UnityEngine.UI.Selectable>() && f.Name is nameof(HudState.hoverSprite) or nameof(HudState.pressedSprite) or nameof(HudState.focusSprite))) continue;
+                    }
                     var v = f.GetValue(mb);
                     if (typeof(Object).IsAssignableFrom(f.FieldType) && !(Object)v) { r.errors.Add($"Missing reference {mb.GetType().Name}.{f.Name} on {mb.name}"); nulls++; }
                     if (f.FieldType.IsArray && typeof(Object).IsAssignableFrom(f.FieldType.GetElementType()) && v is Array arr)
@@ -224,8 +249,9 @@ namespace HumanEye.EditorTools
         {
             ["S02_EstablishA"] = "Dark room from the door end (intro start)", ["S02_IntroThreshold"] = "Dark room from the door end", ["S02_IntroIgnite"] = "Pushing toward the pedestal as the room powers up",
             ["S02_IntroCrane"] = "Crane above the pedestal: beam strike", ["S02_EstablishB"] = "Establishing view of the pedestal display",
-            ["S02_IntroDolly"] = "Entrance dolly: approach, gate opens, move in, Niko enters, settle on the first lesson shot",
-            ["S02_NikoMedium"] = "Niko introduction", ["S02_DisplayWide"] = "Niko and the revealed human", ["S02_ScanFront"] = "Full figure for the scan wave",
+            ["S02_IntroDolly"] = "Production opening (32.5 s): dark lab, centered body/title, head-and-shoulders push, skin to muscles to organs, vessels and the brain (ANATOMY.blend layers), shoulder fade and transition particles, continuous eye extraction, Niko; optional reference-match timing retained",
+            ["S02_Arrival"] = "Lab establishing after the interior: the human on the pedestal, Niko's Intro anchor clear on the left; blends to S02_NikoMedium",
+            ["S02_NikoMedium"] = "Niko introduction", ["S02_DisplayWide"] = "Niko and the revealed human", ["S02_ScanFront"] = "Full figure for the scan wave", ["S02_Face"] = "Head and shoulders for the scan, then the push into the eye",
             ["S02_EyeInSkull"] = "Selected eye inside the skull (anatomical position)", ["S02_PinchNiko"] = "Niko's pinch gesture", ["S02_EyeHero"] = "Enlarged complete eye",
             ["S02_Part_sclera"] = "Sclera surface", ["S02_Part_cornea"] = "Cornea in profile", ["S02_Part_iris"] = "Iris, front", ["S02_Part_pupil"] = "Pupil opening, front",
             ["S03_InsideHero"] = "Complete cutaway eye", ["S03_Part_aqueous"] = "Aqueous humour region", ["S03_Part_lens"] = "Lens in position", ["S03_Lens_Close"] = "Biconvex lens close-up",
@@ -239,8 +265,10 @@ namespace HumanEye.EditorTools
             ["S08_RetinaPush"] = "Into the retina", ["S08_MicroWide"] = "Magnified retina: photoreceptors", ["S08_Rods"] = "Rods", ["S08_Cones"] = "Cones", ["S08_Signals"] = "Signals through retinal cells",
             ["S08_PullBack"] = "Photoreceptors, retina and optic nerve together", ["S09_RetinaNerve"] = "Signals leaving through the optic nerve", ["S09_Perception"] = "Original object, clearly (perception)",
             ["S09_Wide"] = "Eye, nerve and brain (Scene 4 continuity)", ["S10_Complete"] = "Complete eye", ["S10_Journey"] = "Whole pathway: object → eye → nerve → brain",
+            ["S09_Follow"] = "Eye-to-brain cinematic (code-driven): light to the retina, signals along the optic nerve, the visual pathway in an X-ray head, the visual system floats out", ["S09_BrainInside"] = "Inside the ghosted brain: the visual processing area",
             ["S11_Eye"] = "Complete eye", ["S11_NearFar"] = "Near apple and distant tree together (both sharp)",
             ["S10_Overview"] = "Overhead teaching layout: object, eye, route and brain together", ["S11_Closing"] = "Niko beside the eye for the closing line",
+            ["S08_Transduce"] = "One photoreceptor column: light arriving, a signal leaving (phototransduction)",
         };
 
         static string Framing(CinemachineCamera c) => c.Lens.FieldOfView >= 38 ? "wide" : c.Lens.FieldOfView >= 29 ? "medium" : c.Lens.FieldOfView >= 21 ? "close-up" : "extreme close-up";
@@ -287,7 +315,8 @@ namespace HumanEye.EditorTools
                         subject = (Subjects.TryGetValue(s.key, out var sub) ? sub : s.key) + " · " + Framing(cam);
                         pose = $"{current} → {s.key} ({Pose(cam)})"; transition = $"Ease-in-out blend {s.value:0.#} s (reduced motion: fade cut)"; current = s.key;
                     }
-                    if (s.kind == StepKind.Say) { var l = ledger.First(x => x.id == s.key); dialogue = $"{l.id}{(l.type == "PromptVO" ? " [PROMPT VO]" : "")}: “{l.text}”"; }
+                    if (s.kind == StepKind.Say && !Ledgered(s.key)) dialogue = $"{s.key} [supplemental]";
+                    else if (s.kind == StepKind.Say) { var l = ledger.First(x => x.id == s.key); dialogue = $"{l.id}{(l.type == "PromptVO" ? " [PROMPT VO]" : "")}: “{l.text}”"; }
                     if (s.kind == StepKind.Do) anim = s.key + (string.IsNullOrEmpty(s.arg) ? "" : $"({s.arg})");
                     if (s.kind is StepKind.Offer or StepKind.Free or StepKind.Await) anim = s.key;
                     sb.Append($"| {prefix}{n++} | {s.kind} | {subject} | {pose} | {transition} | {dialogue.Replace("|", "/")} | {anim} | {Input(s.kind)} | {Exit(s)} |\n");

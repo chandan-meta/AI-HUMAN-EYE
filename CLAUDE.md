@@ -14,24 +14,42 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
 
 ## UX / UI principles
 
-- The UI never interrupts or covers the main subject. Persistent controls live at the screen edges: chapter chip with
-  progress top-left, icon tools top-right, captions bottom-centre under the subject, Talk to Niko bottom-right, and a
-  right-hand column that holds only the current instruction and activity (sized to its content, hidden when empty).
-  The subject is composed inside the area left of the column (`ViewportShift` lens shift, 440 px).
+- The UI never interrupts or covers the main subject. Vision-journey HUD (redesign, 22 October 2026, `UiJourney`, applied
+  by `Builder.ApplyRedesign` to the scene's Canvas, which it unpacks from `ObservatoryCanvas.prefab`: the scene Canvas is the
+  HUD's authority now, and the older prefab passes (CanvasAuthoring, UiPass…) no longer reach it): top-left the journey bar (ten nodes on a line of light named
+  for what each chapter teaches, `Hud.StageNames`; passed = warm light, current = cyan) with the chapter title; top-right
+  only Chapters, Pause and Settings (Replay line, How to play, Review and Sound live in the pause card; Home is the pause
+  card's Main menu); bottom-centre one breathing Next-step card (`Hud.Objective`, short and action-first) above Niko's
+  caption bubble; Talk to Niko bottom-right; a right-hand column for the activity's tools only, hidden when empty. A quick
+  check fills that column (big lettered answer tiles); the finale card is centred and leads with Free Explore. The
+  subject is composed inside the area left of the column (`ViewportShift` lens shift, 440 px).
 - During cinematic moments the lesson interface is hidden, but Pause and Settings stay visible in the upper bar.
   The intro is letterboxed (title above the subject; caption and Skip below); the lesson UI fades in afterwards
   (`Hud.RevealSpeed`, ~0.6 s). Never place the full UI over it. A cinematic hides the caption panel and its Read &
   Continue button, so Wait for Continue never holds a line inside a cinematic (`ModuleBoot`).
-- Surfaces are the art boards' caption navy (#07385D, controls #092D50) with a hairline border; cyan (#26C6F5)
-  rim/halo only for hover, focus and the one required action (`UIGlass.shader`). Amber is reserved for BEGIN. No neon,
-  no heavy glass. Palette tokens (visual-match pass): `Builder.VisualMatch.cs` and `UI_STYLE_GUIDE.md`.
+- Current visual direction (24 October 2026): retain the saved Pearl + Iris Figma PNG surfaces/icons, pearl-white and
+  violet controls, navy text and amber BEGIN. The landing eyebrow/title/tagline are live Unity text; its old baked
+  StartBrand image is disabled. Preserve the functional scene Canvas and bindings. Earlier navy/glass authoring passes
+  are historical and must not overwrite this UI. Evidence: `Docs/HumanEye/LandingReference20261024/README.md`.
 - Hierarchy: subject → current instruction / Niko → supporting tools. Cyan filled = the one required action.
 - Every unavailable action explains why (toast or disabled state), never a dead end.
 - Design system and component rules: `Docs/HumanEye/UI_STYLE_GUIDE.md`. Figma IDs: `Docs/HumanEye/Polish/FIGMA_STATE.md`.
 
 ## Flow, animation and camera rules
 
-- Current production direction (latest gate-to-face correction, 14 October 2026): begin behind the closed gate,
+- Current opening (redesign, 22 October 2026, supersedes the gate-to-face opening below): "the eye awakens", 21 s,
+  `Stage.Opening.cs` (`Opening`, `AwakeningFrame`, a pure function of time). No corridor, no human figure, no organ
+  layers. The start screen is now a separate brighter `Stage.Landing.cs` composition with a resting pupil, controlled
+  warm key/cyan rim and calm idle motion; reduced motion uses a still pose. BEGIN hands over to the darker awakening:
+  light arrives and the wide pupil tightens; the camera swings to the side as the room wakes; the eye opens into its
+  cross-section in a cyan burst; light from the apple is bent by the cornea and lens to a spark on the retina; THE HUMAN
+  EYE / HOW LIGHT BECOMES SIGHT; the cutaway closes and the camera settles on S02_NikoMedium. Reduced motion: four stills
+  of it. The gate-to-face text below describes the retired opening and the patches that still author its assets.
+- Reference eye finish (24 October 2026): keep the supplied meshes and UV-matched 2K blue iris/sclera/normal sources.
+  `Anatomy.shader` has optional physical dielectric surfaces and transmitting clear media, with a static studio probe;
+  shared eye materials affect every chapter. Do not replace them with bloom-only highlights or redraw the anatomy.
+  Niko's shared placement reserves visible activity, Ask and next-step panels; verify native tablet clearance after edits.
+- Former production direction (gate-to-face correction, 14 October 2026): begin behind the closed gate,
   open it, then dolly slowly on a straight rail toward the character's face. Hold a shoulder/head portrait for two
   seconds with a real eyelid blink before skin -> muscle -> organ transitions. Omit the skeleton beat. Keep the portrait
   steady through the reveals, with the electric-cyan breakup on each layer change and a soft fade below the shoulders.
@@ -41,7 +59,7 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
   follows it, `Builder.ApplyAnatomyModels` (15 October 2026) comes next, then `Builder.ApplyCorridorGate` (the gate rule
   below), `Builder.ApplyAudioOverhaul` (audio only), and `Builder.ApplyFloatingNiko` (16 October 2026: the companion card
   out, the floating companion in; it undoes what WowPatch/UiPass would re-create) and `Builder.ApplyRodConeModels` (16 October
-  2026, Scene 8 cells; it undoes a later `RebuildMicro`) are the final patches. `ApplyAnatomyModels` installs the owner's
+  2026, Scene 8 cells; it undoes a later `RebuildMicro`) come next, and `Builder.ApplyRedesign` (22 October 2026: cap, ciliary ring, FX_Orbit, the journey HUD, the inset blur, the content rebuild) is the final patch. `ApplyAnatomyModels` installs the owner's
   `D:\AI unity project\models\ANATOMY.blend` systems (skin with shorts, lashes and a built Blink; muscles; skeleton;
   organs; vessels, exported into one frame by `Tools/HumanEye/export_anatomy_blend.py` into
   `ThirdParty/UserModels/Anatomy/`) in place of the Rocketbox skin and the Rack 01/02/04 layers, moves the eye sockets to
@@ -50,6 +68,9 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
   (`AnatomyLook`); never tint the muscle layer red. Never regenerate the scene. The owner's subject transform and lab
   remain intact. See `Docs/HumanEye/Polish/GATE_FACE_OPENING_2026-10-14.md`, for the layer-change effect
   `ELECTRIC_BREAKUP_2026-10-14.md`, for Niko `NIKO_CHARACTER_2026-10-14.md`, and for the models `ANATOMY_MODELS_2026-10-15.md`.
+- Niko wears a navy investigator cap with a cyan piping ring and a glowing eye badge, attached to his head bone and sized
+  from his own head mesh (`Builder.NikoCap`, from ApplyNikoCharacter and ApplyRedesign); his head texture has the red
+  veins painted out (`Tools/HumanEye/niko_no_veins.py`, run after export_niko.py). 22 October 2026 brief: he looked creepy.
 - Niko first appears with his first line (21 October 2026 brief): the start screen and the opening are without him
   (`Stage.NikoWaiting`), and the first line after BEGIN, Continue or a chapter picked on the menu brings him in
   (`Stage.NikoArrive`: the `nikoappear` chime, he grows in with a slight overshoot through `NikoFloatingCompanion.Grow`
@@ -98,10 +119,23 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
   to V1, each stage labelled (L02) → the visual system floats out under FROM EYE TO BRAIN (L03). Light and signals
   never share a colour or a path. Lines stay content steps; `cineBeat` and the cinematic wait for each other.
 - Camera moves are eased, motivated, and never drift while nothing happens. Named Cinemachine shots are the cue sheet;
-  code-driven motion is allowed only on `S02_IntroDolly`, `S09_Follow` (signal tracking, the eye-to-brain cinematic) and
-  the authored replay/overview moves. Human → eye is one progression, inside the opening: closed gate → direct face
+  code-driven motion is allowed only on `S02_IntroDolly`, `S09_Follow` (signal tracking, the eye-to-brain cinematic),
+  `FX_Orbit` (Free Explore, the learner's own view) and the authored replay/overview moves. Human → eye is one progression, inside the opening: closed gate → direct face
   approach → blink → skin/muscle/organs → eye in the orbit → the eye on the display.
 - Gameplay never asks the learner to tap moving anatomy: the turntable stops when exploration starts.
+- A selected part must read at a glance: `_Highlight` above one half adds a stronger cyan rim, a body tint, a pulse and
+  scan lines (`Anatomy.shader`); `Stage.Isolate` gives the chosen part the full selection look.
+- The complete working (light → cornea → … → brain) is shown once, in Scene 10, with the camera riding the light through
+  the lesson's own shots (`Stage.JourneyShots`), then the labelled overview under S10_L02 (22 October 2026 brief).
+- Accommodation is shown, not only said (Scene 6): the retinal-image popup blurs with the live focus error
+  (`UIBlur.shader`, `Hud`), the ciliary muscle ring (`CiliaryRig`, `Builder.CiliaryRing`) tightens and relaxes with the
+  lens and is labelled, and the supplemental line `acc_ciliary` names it before S06_L04.
+- Free Explore (after the finale; `Stage.FreeExplore.cs`): orbit, zoom (through the cornea into the eye), cut open, look
+  from inside, tap or pick any part to isolate it and hear its lesson lines again, replay the light journey, Near / Distant
+  / slider for accommodation. `AutoPilot -heFreeExplore` tours it.
+- Quick checks are voiced and gentle: Niko reads each question and answers every try (supplemental clips `q_<id>`,
+  `fb_correct_N`, `fb_retry_N`); a wrong tile is crossed out, never a red "wrong"; a correct answer moves on by itself;
+  after three misses the demonstration plays and the answer shows with Continue.
 - Anatomy close-ups get background-only depth of field (`ShotLook`): a small Gaussian blur starting behind the whole
   globe, only while the eye's walls are opaque (URP blurs by opaque depth, so a faded or clear part would take the room's
   blur). The opening, cinematics, eye-to-brain and micro shots stay sharp. The explained structure and Niko are never blurred.
@@ -206,8 +240,13 @@ No excessive sci-fi noise. The 3D subject is the hero; the interface serves it.
 - Do not close or touch the owner's open Unity Editor; verify in the sandbox copy (`C:\he-sandbox`, see memory notes).
 - Do not claim a change, asset, voice or test is done unless it ran; report failures with their output.
 - Do not add Continue buttons, Skip on quizzes, mid-sequence questions, or a "rebuild the journey" ending.
-- Do not use unlicensed online TTS. Authorised: the owner's ElevenLabs account through `Tools/HumanEye/generate_elevenlabs_vo.py` (key only from the ELEVENLABS_API_KEY user environment variable, never in files or logs) and the local
-  `Tools/HumanEye/generate_tts.ps1`.
+- Do not use unlicensed online TTS. Authorised: Niko's voice is the local Kokoro-82M (Apache-2.0; voice am_fenrir at 1.05,
+  environment `C:\he-tools\kokoro\env312`) through
+  `Tools/HumanEye/generate_kokoro_vo.py` (owner's choice, 22 October 2026; pronunciation overrides in its PRONOUNCE map;
+  supplemental lines in `Docs/HumanEye/VO/SUPPLEMENTAL_VO.csv`, clips `Audio/VO/Extra/`, spoken by key from the dialogue
+  database's `extra` set and never ledger cues); also the owner's ElevenLabs account through
+  `Tools/HumanEye/generate_elevenlabs_vo.py` (key only from the ELEVENLABS_API_KEY user environment variable, never in
+  files or logs) and the local `Tools/HumanEye/generate_tts.ps1` (superseded Windows voice).
 - Do not put the apple image on the retina model; the retinal image is a panel popup.
 - Do not re-import the MisterH closed-eye surface (superseded; it would hide the cross-section eye).
 - Figma: the connected account is Starter/View (about 20 MCP calls a month); the design spec lives in

@@ -54,12 +54,14 @@ namespace HumanEye
         Renderer[] subjects;
         ShotLook look;
         readonly List<(Rect rect, float weight)> avoid = new(), ui = new();
+        Rect objective;
         float columnLeft = float.MaxValue;
         readonly Plane[] frustum = new Plane[6];
         readonly Vector3[] corners = new Vector3[4];
         MaterialPropertyBlock block;
         static readonly int EmissionId = Shader.PropertyToID("_EmissionColor"), AlphaId = Shader.PropertyToID("_Alpha");
-        static readonly string[] Panels = { "subtitle-panel", "right-column", "btn-ask", "toast", "topbar" };
+        static readonly string[] Panels = { "subtitle-panel", "next-step", "right-column", "activity", "ask-panel", "btn-ask", "toast", "topbar" };
+        static readonly string[] Columns = { "right-column", "activity", "ask-panel" };
 
         void Start()
         {
@@ -81,7 +83,7 @@ namespace HumanEye
             bool running = stage.IntroPlaying || stage.runner.Started;
             var shot = stage.cams.Active;
             // His own shots (the closing shot frames the eye: he floats there, as the picture did before him)
-            bool ownShot = shot && (shot.name.Contains("Niko") || stage.IntroPlaying && stage.IntroTime >= 29.5f);
+            bool ownShot = shot && (shot.name.Contains("Niko") || stage.IntroPlaying && stage.IntroTime >= stage.IntroLength - 2.5f);
             // His spot in the room seen through this frame's camera (the head joint's live height, so a gesture changes nothing).
             if (niko.head && niko.transform.localScale.y > .01f) headUp = niko.transform.InverseTransformPoint(niko.head.position).y;   // not while he grows from nothing
             var head = niko.HomePosition + niko.HomeRotation * Vector3.up * (headUp * niko.HomeScale);
@@ -209,9 +211,10 @@ namespace HumanEye
                 foreach (var name in Panels) Add(stage.hud.Element(name), 4);
                 labelRects.Clear(); stage.hud.labels?.ScreenRects(labelRects);   // a plain class, not a UnityEngine.Object
                 foreach (var r in labelRects) ui.Add((r, 2));
-                var column = stage.hud.Element("right-column");
-                if (column && column.gameObject.activeInHierarchy) { column.GetWorldCorners(corners); columnLeft = corners[0].x; }
-                else columnLeft = Screen.width;
+                columnLeft = Screen.width;
+                foreach (var name in Columns)
+                    if (PanelRect(stage.hud.Element(name), out var rect)) columnLeft = Mathf.Min(columnLeft, rect.xMin);
+                objective = PanelRect(stage.hud.Element("next-step"), out var next) ? next : Rect.zero;
             }
             avoid.Clear(); avoid.AddRange(ui);
             foreach (var r in seen) avoid.Add((r, 2));
@@ -221,7 +224,7 @@ namespace HumanEye
                     if (r && r.enabled && r.gameObject.activeInHierarchy) { var box = Projected(cam, r.bounds); if (box.width > 0) avoid.Add((box, 3)); }
             bool cinematic = stage.CinematicPlaying;
             float px = 24f / Screen.width, floor = cinematic ? Letterbox + .02f : 24f / Screen.height;
-            float right = Mathf.Max((cinematic ? 1 : Mathf.Clamp01(columnLeft / Screen.width)) - px - w * .5f, px + w * .5f);
+            float right = Mathf.Max(Mathf.Clamp01(columnLeft / Screen.width) - px - w * .5f, px + w * .5f);
             Vector2 best = slot; float bestScore = float.MaxValue; bool bestRight = targetRight;
             for (int side = 0; side < 2; side++)
                 foreach (float lift in Lifts)
@@ -231,7 +234,9 @@ namespace HumanEye
                     float score = Score(at, w, floor, onRight, preferRight);
                     if (score < bestScore) { bestScore = score; best = at; bestRight = onRight; }
                 }
-            if (cut || slot.x < 0) { slot = target = best; targetRight = bestRight; slotVelocity = Vector2.zero; return; }
+            // A check replaces the tools column: never ease through the new card while it covers him.
+            bool coveredByColumn = columnLeft < Screen.width && slot.x + w * .5f > columnLeft / Screen.width - px + .002f;
+            if (cut || slot.x < 0 || coveredByColumn || ObjectiveCovered(slot, w)) { slot = target = best; targetRight = bestRight; slotVelocity = Vector2.zero; return; }
             float now = slot.y < floor - .005f ? float.MaxValue : Score(slot, w, floor, targetRight, preferRight);   // under a letterbox that came in: move
             if (bestRight != targetRight)
             {
@@ -245,7 +250,15 @@ namespace HumanEye
         bool targetRight;
         static readonly float[] Lifts = { 0, .08f, .16f, .24f };
 
-        float Score(Vector2 at, float w, float floor, bool onRight, bool preferRight) => Covered(at, w) + (at.y - floor) * .5f + (onRight != preferRight ? .2f : 0);
+        float Score(Vector2 at, float w, float floor, bool onRight, bool preferRight) => ObjectiveCovered(at, w) ? float.MaxValue
+            : Covered(at, w) + (at.y - floor) * .5f + (onRight != preferRight ? .2f : 0);
+
+        bool ObjectiveCovered(Vector2 at, float w)
+        {
+            float margin = heightShare * Screen.height * .06f;
+            return objective.width > 0 && new Rect((at.x - w * .5f) * Screen.width - margin, at.y * Screen.height - margin,
+                w * Screen.width + margin * 2, heightShare * Screen.height + margin * 2).Overlaps(objective);
+        }
 
         float Covered(Vector2 at, float w)
         {
@@ -264,9 +277,18 @@ namespace HumanEye
 
         void Add(RectTransform e, float weight)
         {
-            if (!e || !e.gameObject.activeInHierarchy) return;
+            if (PanelRect(e, out var rect)) ui.Add((rect, weight));
+        }
+
+        bool PanelRect(RectTransform e, out Rect rect)
+        {
+            rect = Rect.zero;
+            if (!e || !e.gameObject.activeInHierarchy) return false;
+            var group = e.GetComponent<CanvasGroup>();
+            if (group && group.alpha <= .1f) return false;
             e.GetWorldCorners(corners);   // a screen-space overlay canvas: world corners are pixels
-            ui.Add((Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y), weight));
+            rect = Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
+            return rect.width > 0 && rect.height > 0 && rect.xMax > 0 && rect.yMax > 0 && rect.xMin < Screen.width && rect.yMin < Screen.height;
         }
 
         static Rect Projected(Camera cam, Renderer[] renderers)

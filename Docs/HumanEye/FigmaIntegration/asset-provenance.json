@@ -1,0 +1,354 @@
+{
+  "fileKey": "wLgTj7N6mpfRONuYkmZac0",
+  "exportBoardId": "75:478",
+  "count": 43,
+  "pngBytes": 743447,
+  "assets": [
+    {
+      "file": "Assets/HumanEye/UI/Figma/PanelPearl.png",
+      "sourceNodeId": "12:225",
+      "exportNodeId": "75:479",
+      "sha256": "edd438160414536f8b87e919ed88e8def4b29458ca8ac73ed3a17f6d9a89857a",
+      "bytes": 138796,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/PanelCaption.png",
+      "sourceNodeId": "29:95",
+      "exportNodeId": "75:556",
+      "sha256": "cd2a98f0b940ab0d948ca891272731cf7a06d30793a5fdcf4e5b41444dd9eb5b",
+      "bytes": 4609,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/PanelObservation.png",
+      "sourceNodeId": "12:287",
+      "exportNodeId": "75:561",
+      "sha256": "cf18fa9992c29491ffcc784b5f44fa005d080e481bc0234117b2cd0cba326945",
+      "bytes": 1798,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/PanelInset.png",
+      "sourceNodeId": "12:289",
+      "exportNodeId": "75:564",
+      "sha256": "af48e5acc3c20c5335158e04bf19e00b6cf7f4efc3541a03f35bdcbdb3b65c75",
+      "bytes": 1859,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/SpeakerTag.png",
+      "sourceNodeId": "49:73",
+      "exportNodeId": "75:571",
+      "sha256": "190bc64b859920855033f2bf1461fe0158d2ed47ea430e32732dc130333a789f",
+      "bytes": 770,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Default.png",
+      "sourceNodeId": "2:7",
+      "exportNodeId": "75:574",
+      "sha256": "e059d1062c820147242b243ec30eeac586c9d24cd8a1831b941b16c6d7deab83",
+      "bytes": 28904,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Hover.png",
+      "sourceNodeId": "2:9",
+      "exportNodeId": "75:577",
+      "sha256": "97acfd8dfceea2e6ed8a4f13f16042f61c553e6522be4c4f36ad618c5508cca1",
+      "bytes": 27822,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Pressed.png",
+      "sourceNodeId": "2:11",
+      "exportNodeId": "75:580",
+      "sha256": "e579d28c27f7792f5255d68b2e6036445839187fb599094e07f495b34cf8e66e",
+      "bytes": 25163,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Focus.png",
+      "sourceNodeId": "2:13",
+      "exportNodeId": "75:583",
+      "sha256": "4462f52806e27826bdafb106456a1e3e4a2ac5d24ed1faaf7f8280ae217860f4",
+      "bytes": 29894,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Selected.png",
+      "sourceNodeId": "2:15",
+      "exportNodeId": "75:586",
+      "sha256": "ea5afa23ceece199a7d5bf3b7846cdaf641c459fb80f541d9cb21345e56763de",
+      "bytes": 29706,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonPrimary_Disabled.png",
+      "sourceNodeId": "2:17",
+      "exportNodeId": "75:589",
+      "sha256": "74b8a36d3d4123fa853e526c27554fb102bff3152738c1baf547c4addcec2a3b",
+      "bytes": 26881,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Default.png",
+      "sourceNodeId": "2:20",
+      "exportNodeId": "75:592",
+      "sha256": "5ec5b367ad6e41f63cd8c9fabb62abd8211a3f39fa57e65d49b38a882d0e75c9",
+      "bytes": 23798,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Hover.png",
+      "sourceNodeId": "2:22",
+      "exportNodeId": "75:595",
+      "sha256": "6feb4c8593e6f1cf75cf61595119c93202986bfe8ece74d2f535f7191a719fbb",
+      "bytes": 26831,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Pressed.png",
+      "sourceNodeId": "2:24",
+      "exportNodeId": "75:598",
+      "sha256": "d2d95b2c80ad9099322bb346b412f49c82542d15465f722ec934ce928c3bd7d4",
+      "bytes": 23839,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Focus.png",
+      "sourceNodeId": "2:26",
+      "exportNodeId": "75:601",
+      "sha256": "066241cfb76754ad94dc91c45cd98cd9a6fc2eadd01ea3e272d4ca2b637ea21b",
+      "bytes": 24729,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Selected.png",
+      "sourceNodeId": "2:28",
+      "exportNodeId": "75:604",
+      "sha256": "0bda5a0ef456e308f9ee669f8b8ca85851799a627c598906273fb0add9d05224",
+      "bytes": 24196,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonSecondary_Disabled.png",
+      "sourceNodeId": "2:30",
+      "exportNodeId": "75:607",
+      "sha256": "6713b044372aebd8ff03da47b3c9d59798b5cf6babd0abf3a9339af01f32af5f",
+      "bytes": 18786,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Default.png",
+      "sourceNodeId": "2:59",
+      "exportNodeId": "75:610",
+      "sha256": "1c160bb048bc763a0e4d84b77e451f487e375272f49e8e74ceb8eb6955d70c72",
+      "bytes": 34428,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Hover.png",
+      "sourceNodeId": "2:61",
+      "exportNodeId": "75:615",
+      "sha256": "f0701daff89f2d7e4470ab2f4942fad882754a49c7daf63d1c0cf36f6646f9e9",
+      "bytes": 33477,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Pressed.png",
+      "sourceNodeId": "2:63",
+      "exportNodeId": "75:620",
+      "sha256": "7f9d665ef63964aad223ebbc551dea9e51904f9640733780790326f51baa800e",
+      "bytes": 29239,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Focus.png",
+      "sourceNodeId": "2:65",
+      "exportNodeId": "75:625",
+      "sha256": "01d1b40999d57702dea0d81e11221ed304c733b3dc9d52b7fa634aeb4cdd8895",
+      "bytes": 35075,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Selected.png",
+      "sourceNodeId": "2:67",
+      "exportNodeId": "75:630",
+      "sha256": "9d915c6bee6d44376d60f11efeb59f6e847ae0a29b5363600e2eb1b756f78bac",
+      "bytes": 34592,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ButtonStart_Disabled.png",
+      "sourceNodeId": "2:69",
+      "exportNodeId": "75:635",
+      "sha256": "9f4ee6d52c3aac76a4ced191718aee4286204df7ef70dacd8864a0a5c1ca181d",
+      "bytes": 27040,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/PartNormal.png",
+      "sourceNodeId": "12:211",
+      "exportNodeId": "75:640",
+      "sha256": "b9f2dff37c014ba6b653d3ce985f4d553219227b77931517b1467be9c0cdf397",
+      "bytes": 1325,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/PartSelected.png",
+      "sourceNodeId": "12:213",
+      "exportNodeId": "75:645",
+      "sha256": "9351762979276d0a618af62a3d1c6f37987347b5a537429d36fc70f7d5e374c5",
+      "bytes": 1514,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ProgressIdle.png",
+      "sourceNodeId": "62:238",
+      "exportNodeId": "75:650",
+      "sha256": "ca4a229d9f1de306630acdcca7e2d7994adfc8888eed3f7370b9807a7a6146fe",
+      "bytes": 1369,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/ProgressActive.png",
+      "sourceNodeId": "62:240",
+      "exportNodeId": "75:652",
+      "sha256": "a4a002759aa5a8d4f3158c36f8b0631f2f0ebad1fc818d7fac136465474921fa",
+      "bytes": 874,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/SliderTrack.png",
+      "sourceNodeId": "12:283",
+      "exportNodeId": "75:654",
+      "sha256": "58f668ff6c50bf4c090500c6deaf78e614b6df69d40b4fd488f21eab1f35264e",
+      "bytes": 601,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/SliderFill.png",
+      "sourceNodeId": "12:284",
+      "exportNodeId": "75:656",
+      "sha256": "10c1998a01acbc402b490a1a81d9b4160b029074a07a07f8bc47a751d2f3d490",
+      "bytes": 572,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/SliderHandle.png",
+      "sourceNodeId": "12:285",
+      "exportNodeId": "75:658",
+      "sha256": "6e7ff0843ec49690b47e7fa135e57582354d2f9fa81126c5e754c866ee7403cd",
+      "bytes": 1272,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IrisCrest.png",
+      "sourceNodeId": "62:79",
+      "exportNodeId": "75:660",
+      "sha256": "83e3a79dcd1e208e632f8448d94ecf3a744ab3afd5a2ef57cdb6575c8e25fc8c",
+      "bytes": 34646,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconHome.png",
+      "sourceNodeId": "13:177",
+      "exportNodeId": "75:701",
+      "sha256": "118120f4a7afcc8587371f4704de48d371830ecc3cee4ae789107df164cac1b4",
+      "bytes": 805,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconPause.png",
+      "sourceNodeId": "13:180",
+      "exportNodeId": "75:704",
+      "sha256": "5d8654cf3307cec30c1f324e01ded44e7fae5e4fb8ae35da76989efb5d3da5b0",
+      "bytes": 308,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconSettings.png",
+      "sourceNodeId": "13:183",
+      "exportNodeId": "75:707",
+      "sha256": "5ea7134ce0594fd203b48de7de5d6e978267c91170457b964fbc2f056acb6d25",
+      "bytes": 1133,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconClose.png",
+      "sourceNodeId": "13:186",
+      "exportNodeId": "75:710",
+      "sha256": "7b546dbf589e945298805c3753e79062f257998aaaa68055052447a67da238d4",
+      "bytes": 561,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconNext.png",
+      "sourceNodeId": "13:189",
+      "exportNodeId": "75:713",
+      "sha256": "b7e0b718144a70dc67a7529b367cc160632893304c0d46a796c12aca81c16be8",
+      "bytes": 462,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconBack.png",
+      "sourceNodeId": "13:192",
+      "exportNodeId": "75:716",
+      "sha256": "6cc6e2f4a2f061810791fac860b1daa0e1b0c06e531b9c31f995fc7178bd77eb",
+      "bytes": 462,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconZoomIn.png",
+      "sourceNodeId": "13:195",
+      "exportNodeId": "75:719",
+      "sha256": "b14c5aef0b9358e3e87284c84c0be8cd01c077be20bbca553b02070f4be3531c",
+      "bytes": 1172,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconZoomOut.png",
+      "sourceNodeId": "13:198",
+      "exportNodeId": "75:722",
+      "sha256": "6b144f20595f763c88223d1cfa448baff6009d5f6815be003047a0c5cd92ceeb",
+      "bytes": 1133,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconChapters.png",
+      "sourceNodeId": "13:201",
+      "exportNodeId": "75:725",
+      "sha256": "7ce20bcbec398f33a2d2337043f142e92070622f01e6a96789f4e731875e3611",
+      "bytes": 296,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/IconReset.png",
+      "sourceNodeId": "13:204",
+      "exportNodeId": "75:728",
+      "sha256": "f001cd29f3f75c88b2004076e60acc5edbd848abb1ebd58abeb0eec7b75277b0",
+      "bytes": 1316,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/StartBrand.png",
+      "sourceNodeId": "12:148",
+      "exportNodeId": "75:731",
+      "sha256": "c814223044c63f6807c5d6bd29f4da76de421706c51d4b46b7b050d2b746d441",
+      "bytes": 30443,
+      "exportMethod": "figma-browser-native-png"
+    },
+    {
+      "file": "Assets/HumanEye/UI/Figma/HeaderArt.png",
+      "sourceNodeId": "12:225",
+      "exportNodeId": "75:776",
+      "sha256": "92557d41eee5b3ac89c67b4a28aee15be4485a1c76af9837e15a086ac23c9ca5",
+      "bytes": 10951,
+      "exportMethod": "native-exportAsync-contentsOnly"
+    }
+  ],
+  "nativeTransparentCount": 43,
+  "pendingExports": []
+}

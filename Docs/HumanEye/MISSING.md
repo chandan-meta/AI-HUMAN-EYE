@@ -20,7 +20,7 @@
 - No remote AI provider, no speech-to-text/push-to-talk, no analytics, no backend. "Talk to Niko" is the labelled local curated text mode (typed questions and suggestions); the status line says so and never shows "listening". A remote provider would need a server proxy for any secret. None is supplied, so none is wired.
 
 ## Platforms and devices
-- **Web build:** the WebGL module is not installed for Unity 6000.3.0f1, so no Web build was made or tested. Install it via Unity Hub (Add modules > Web Build Support) only if a Web target is wanted.
+- **Web build:** WebGL support is installed for Unity 6000.3.0f1 as of 14 October 2026. See the reference-v2 report for the current build/browser result. Physical tablet verification remains pending.
 - **Android tablet:** a Development APK builds (`Builds/HumanEye/Android/HumanEye.apk`, about 80 MB, ARM64, API 29). **No physical tablet was available**, so installation, touch, safe areas, audio start and frame rate on a tablet are **unverified**.
 - **iPad/iOS:** not configured (requires macOS/Xcode/signing).
 - **Windows touchscreen:** not tested (no touch hardware used).

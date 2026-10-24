@@ -7,10 +7,49 @@ namespace HumanEye
     {
         [Header("Ending")]
         public AudioClip closingLine;   // supplemental spoken closing (not a ledger cue); the text is shown in the info panel
+        [Tooltip("The closing line's mouth keys (Builder.ApplyNikoCharacter), so Niko's lips follow it like a ledger line.")]
+        public DialogueDatabase.Cue closingCue;
         public const string ClosingText = "Now you've seen the whole journey. Every part has a role, and together they help you see the world.";
         public static readonly string[] Journey =
             { "Light from the object", "Cornea", "Aqueous humour", "Pupil", "Crystalline lens", "Vitreous humour", "Retina (photoreceptors)", "Optic nerve", "Brain" };
         static readonly string[] JourneyParts = { null, "cornea", "aqueous", "pupil", "lens", "vitreous", "retina", "optic_nerve", "visual_area" };
+        // The camera rides along with the light (FX_Orbit, placed from the eye wherever the chapter has put it): the object and
+        // the eye together, each structure from the cut side (eye radii from its focus), the eye and brain, the visual area.
+        static readonly float[] JourneyDistance = { 0, 2.2f, 2f, 2f, 2.2f, 2.6f, 2.4f, 0, 0 };
+        bool riding;
+
+        (Vector3 pos, Vector3 look) JourneyView(int i)
+        {
+            var e = eye.transform; float r = e.lossyScale.x; Vector3 side = -e.right, up = Vector3.up;
+            if (i == 0) { var mid = e.TransformPoint(new Vector3(0, 0, EyeGeometry.LensZ + 3.6f)); return (mid + side * 12 * r + up * 2 * r, mid); }
+            if (i <= 6) { var focus = eye.FocusOf(Part(JourneyParts[i])).position; return (focus + side * JourneyDistance[i] * r + up * .3f * r, focus); }
+            var brainAt = visualArea ? visualArea.focus ? visualArea.focus.position : visualArea.transform.position : brainRoot.position;
+            if (i == 8 && cams.Has("S04_BrainClose")) { var b = cams.Get("S04_BrainClose").transform; return (b.position, b.position + b.forward * 2); }
+            var centre = Vector3.Lerp(e.position, brainAt, .5f); float sep = Vector3.Distance(e.position, brainAt);
+            return (centre + side * sep * .95f + up * sep * .25f, centre);
+        }
+
+        /// Glide the code-driven FX_Orbit camera to a view (cutting onto it first, at the current picture, if another shot is live).
+        IEnumerator Ride(Vector3 pos, Vector3 look, float seconds)
+        {
+            var shot = cams.Get(OrbitShot); if (!shot) yield break;
+            riding = true;
+            if (cams.Active != shot)
+            {
+                var b = hud.mainCamera.transform; shot.transform.SetPositionAndRotation(b.position, b.rotation);
+                var lens = shot.Lens; lens.FieldOfView = hud.mainCamera.fieldOfView; shot.Lens = lens;
+                yield return cams.MoveTo(OrbitShot, 0);
+            }
+            Vector3 p0 = shot.transform.position; var q0 = shot.transform.rotation; var q1 = Quaternion.LookRotation(look - pos, Vector3.up);
+            float f0 = shot.Lens.FieldOfView, f1 = cams.Fitted(34);
+            yield return Routine.Tween(Short ? .01f : seconds, t =>
+            {
+                float u = Mathf.SmoothStep(0, 1, t);
+                shot.transform.SetPositionAndRotation(Vector3.Lerp(p0, pos, u), Quaternion.Slerp(q0, q1, u));
+                var l = shot.Lens; l.FieldOfView = Mathf.Lerp(f0, f1, u); shot.Lens = l;
+            }, true);
+            riding = false;
+        }
 
         void RegisterEnding()
         {
@@ -61,8 +100,6 @@ namespace HumanEye
 
         public void OnAwait(string key, bool on)
         {
-            if (key == "scan" && on) { niko.Play("RaiseHand", 30); hud.Pulse("SCAN"); }
-            if (key == "scan" && !on) niko.Play("Idle", .1f);
             if (key == "inside" && on) hud.Pulse("INSIDE");
             if (key is "brighter" or "dimmer" && on) { Simulation = "brightness"; brightnessLive = true; }
             if (key is "near" or "distant" && on) Simulation = "distance";
@@ -85,26 +122,29 @@ namespace HumanEye
 
         /// The complete process as one connected demonstration: light from the object through every structure to the brain.
         /// In overview mode (the overhead teaching layout) each stage is also labelled on the model.
+        public bool JourneyPlaying { get; private set; }
         IEnumerator JourneyReplay(bool overview)
         {
+            JourneyPlaying = true;
             hud.ShowJourney(Journey, -1);
             if (overview) ShowLabels("journey");
             rays.gameObject.SetActive(true); rays.reach = 0; rays.showImage = false;
             for (int i = 0; i < Journey.Length; i++)
             {
                 hud.ShowJourney(Journey, i);
+                if (!overview && (i == 0 || JourneyParts[i] != null)) { var (pos, look) = JourneyView(i); runner.RunSide(Ride(pos, look, 1.2f)); }
                 var part = JourneyParts[i] == null ? null : Part(JourneyParts[i]);
-                if (part) part.SetGlow(.85f);
-                sfx.Play("tick", .35f);
+                if (part) part.SetGlow(.85f);   // one sound per step: the light's move (0-5), the retinal image, the signal, the visual area
                 if (i <= 5) yield return LightTravel(Mathf.Min(5, new[] { 1f, 1.5f, 1.8f, 2f, 4f, 5f }[i]), overview ? 1.0f : 1.1f);
                 if (i == 6) { rays.showImage = true; sfx.Play("cell", .6f); yield return new Wait(1.0f, true); }
                 if (i == 7) { bool done = false; sfx.Play("pulse", .5f); signals.Fire("nerve", 1, () => done = true); yield return new Until(() => done); }
-                if (i == 8) { visualArea.SetGlow(.9f); yield return new Wait(1.0f, true); }
+                if (i == 8) { visualArea.SetGlow(.9f); sfx.Play("cortex", .45f); yield return new Wait(1.0f, true); }
                 if (part) part.SetGlow(.2f);
             }
             yield return new Wait(.8f, true);
             foreach (var id in JourneyParts) if (id != null) Part(id)?.SetGlow(0);
             hud.ShowJourney(null, -1);
+            JourneyPlaying = false;
         }
 
         /// Pull back into the stable overhead layout where object, eye, route and brain read together.
@@ -122,11 +162,19 @@ namespace HumanEye
         IEnumerator Closing()
         {
             ShowLabels(null);
+            bed = "finale";   // the warm ending bed through the closing and the end menu
             runner.RunSide(niko.MoveTo(Anchor("Closing"), Short ? .2f : 1.2f, Short));
             yield return cams.MoveTo("S11_Closing", Short ? 0 : 1.8f);
-            niko.lookTarget = lookCamera; niko.Play("Wave", 3.5f);
+            niko.lookTarget = lookCamera; niko.Play("Goodbye", 3.5f); niko.Express("Happy", 6);
             hud.Info(ClosingText);
-            if (closingLine) { narrator.voice.PlayOneShot(closingLine); yield return new Wait(closingLine.length + .3f); }
+            if (closingLine)
+            {   // through the voice's own clip (not a one-shot), so voice.time follows it and the mouth keys line up; after any
+                // replay or answer still playing, and while it plays the narrator counts as busy, so those queue behind it
+                yield return new Until(() => !narrator.Busy);
+                narrator.voice.clip = closingLine; narrator.voice.time = 0; narrator.voice.Play(); narrator.Supplemental = closingCue;
+                yield return new Wait(closingLine.length + .3f);
+                narrator.Supplemental = null;
+            }
             else yield return new Wait(2.5f);
             sfx.Play("complete", .8f);
             yield return new Wait(1.2f);

@@ -1,0 +1,264 @@
+{
+  "date": "2026-10-24",
+  "account": "Vaibhav Sharma",
+  "figmaFile": "wLgTj7N6mpfRONuYkmZac0",
+  "scope": "Visual polish of existing Figma UI; no Unity runtime or texture changes",
+  "designChecks": {
+    "horizontalTextOverflow": 0,
+    "brokenPrototypeDestinations": 0,
+    "prototypeRoutes": 139,
+    "desktopScreens": 12,
+    "tabletScreens": 8,
+    "exportedPreviewNodes": 38,
+    "irisCrestSvg": "UIAssets/IrisCrest.svg"
+  },
+  "contrastRatios": {
+    "white_on_lightest_primary_gradient": 4.75,
+    "white_on_dark_primary_gradient": 6.69,
+    "primary_text_on_lightest_amber": 10.65,
+    "primary_text_on_amber": 7.77,
+    "primary_text_on_pearl": 12.29,
+    "secondary_text_on_pearl": 4.68,
+    "white_on_hover_gradient": 5.26
+  },
+  "visualReview": [
+    "Start, inside eye, focus, completion, tablet inside and free explore reviewed",
+    "Correct/retry supporting copy changed to plain text",
+    "Tablet reset label and lens callout corrected",
+    "Button default/hover/pressed/focus/selected/disabled sheet reviewed"
+  ],
+  "notChecked": [
+    "Full Present-mode mouse/touch click-through",
+    "Unity runtime implementation of this Figma design"
+  ],
+  "previews": [
+    {
+      "file": "01_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2373294
+    },
+    {
+      "file": "02_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2531628
+    },
+    {
+      "file": "03_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2273339
+    },
+    {
+      "file": "04_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2085904
+    },
+    {
+      "file": "05_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2207247
+    },
+    {
+      "file": "06_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2234959
+    },
+    {
+      "file": "07_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2216623
+    },
+    {
+      "file": "08_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2548376
+    },
+    {
+      "file": "09_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2284935
+    },
+    {
+      "file": "10_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1992058
+    },
+    {
+      "file": "11_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2080773
+    },
+    {
+      "file": "12_Desktop.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2046314
+    },
+    {
+      "file": "AskNiko.png",
+      "width": 569,
+      "height": 545,
+      "bytes": 170083
+    },
+    {
+      "file": "Brightness_Bright_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2182459
+    },
+    {
+      "file": "Brightness_Dim_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2228915
+    },
+    {
+      "file": "Chapters.png",
+      "width": 654,
+      "height": 1074,
+      "bytes": 365513
+    },
+    {
+      "file": "ComponentSheet.png",
+      "width": 1720,
+      "height": 1144,
+      "bytes": 311939
+    },
+    {
+      "file": "Correct.png",
+      "width": 507,
+      "height": 339,
+      "bytes": 95300
+    },
+    {
+      "file": "DistantFocus_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2245541
+    },
+    {
+      "file": "Exterior_View_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2138789
+    },
+    {
+      "file": "FreeExplore_View_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2079989
+    },
+    {
+      "file": "Help.png",
+      "width": 631,
+      "height": 552,
+      "bytes": 181391
+    },
+    {
+      "file": "Inside_View_State.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2276566
+    },
+    {
+      "file": "Loading.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2546564
+    },
+    {
+      "file": "Pause.png",
+      "width": 343,
+      "height": 632,
+      "bytes": 156780
+    },
+    {
+      "file": "Quiz_IncorrectSelection.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1988212
+    },
+    {
+      "file": "Quiz_Pupil_Selection.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1988552
+    },
+    {
+      "file": "Quiz_Sclera_Selection.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1988358
+    },
+    {
+      "file": "Retry.png",
+      "width": 716,
+      "height": 394,
+      "bytes": 134735
+    },
+    {
+      "file": "Settings.png",
+      "width": 708,
+      "height": 901,
+      "bytes": 270429
+    },
+    {
+      "file": "Tablet_1024_Accommodation.png",
+      "width": 1024,
+      "height": 768,
+      "bytes": 844984
+    },
+    {
+      "file": "Tablet_1024_FreeExplore.png",
+      "width": 1024,
+      "height": 768,
+      "bytes": 747344
+    },
+    {
+      "file": "Tablet_1024_Inside.png",
+      "width": 1024,
+      "height": 768,
+      "bytes": 784702
+    },
+    {
+      "file": "Tablet_1024_Quiz.png",
+      "width": 1024,
+      "height": 768,
+      "bytes": 707741
+    },
+    {
+      "file": "Tablet_1280_Accommodation.png",
+      "width": 1280,
+      "height": 800,
+      "bytes": 1148211
+    },
+    {
+      "file": "Tablet_1280_FreeExplore.png",
+      "width": 1280,
+      "height": 800,
+      "bytes": 1019059
+    },
+    {
+      "file": "Tablet_1280_Inside.png",
+      "width": 1280,
+      "height": 800,
+      "bytes": 1098631
+    },
+    {
+      "file": "Tablet_1280_Quiz.png",
+      "width": 1280,
+      "height": 800,
+      "bytes": 1029017
+    }
+  ]
+}

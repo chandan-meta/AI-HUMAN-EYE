@@ -12,13 +12,15 @@ namespace HumanEye
 
 
         public static int PointerFailures { get; private set; }
+        public int CheckFailures { get; private set; }
         readonly HashSet<int> pointerChecked = new();
         // Exercise the real EventSystem hit ordering before delivering a left pointer click.
         // This is in-engine pointer evidence, not OS mouse automation.
         IEnumerator ClickUI(string name)
         {
-            var b = hud.Control<Button>(name);
-            if (b == null) { Log("FAIL", "Missing button " + name); yield break; }
+            var element = hud.Element(name);
+            var b = element ? element.GetComponentInChildren<Button>(true) : null;
+            if (b == null) { Check(false, "Missing button " + name); yield break; }
             yield return ClickUI(b);
         }
         PointerEventData PointerAt(Button b, out GameObject hit)
@@ -70,6 +72,7 @@ namespace HumanEye
             {
                 if (!b.IsInteractable()) continue;
                 if (((RectTransform)b.transform).rect.width < 1) continue;   // activated this frame; its layout group has not placed it yet
+                var group = b.GetComponent<CanvasGroup>(); if (group && group.alpha < .05f) continue;   // a world label made this frame: not drawn or placed yet
                 var pointer = PointerAt(b, out var hit);
                 var scroll = b.GetComponentInParent<ScrollRect>();
                 var cam = hud.canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : hud.canvas.worldCamera;
@@ -88,7 +91,13 @@ namespace HumanEye
         }
 
         bool Visible(string name) => hud.Element(name).gameObject.activeInHierarchy;
-        void Check(bool result, string description) => Log(result ? "PASS" : "FAIL", description);
+        void Check(bool result, string description)
+        {
+            Log(result ? "PASS" : "FAIL", description);
+            if (result) return;
+            CheckFailures++;
+            Exit(1);
+        }
 
         IEnumerator CheckMenuUI()
         {
@@ -106,6 +115,7 @@ namespace HumanEye
         IEnumerator CheckFlowUI()
         {
             flowChecked = true;
+            yield return ClickUI("btn-pause");   // How to play lives in the pause card (journey HUD, 22 October 2026)
             yield return ClickUI("btn-help");
             Check(Visible("help-panel") && Clock.Paused && !Visible("pause-overlay"), "Help pauses behind the modal without covering it");
             Check(hud.IsOverUI(new Vector2(10, 10)), "Modal blocks world input outside card");
@@ -115,8 +125,11 @@ namespace HumanEye
             Check(stage.observatory.GetComponentsInChildren<ParticleSystem>().All(p => !p.isPlaying), "Pause holds ambient particles behind Help");
             yield return Capture("help_modal");
             yield return ClickUI("help-close");
-            Check(!Clock.Paused, "Closing Help restores running state");
+            Check(Clock.Paused && Visible("pause-overlay"), "Closing Help returns to the pause card");
+            yield return ClickUI("pause-resume");
+            Check(!Clock.Paused, "Resume restores running state");
             yield return ClickUI("btn-settings");
+            yield return CheckAudioSettings();
             yield return ClickUI("set-size-3");
             Check(SaveSystem.Data.settings.subtitleSize == 3 && Clock.Paused, "XL caption setting stays paused and saves");
             yield return Capture("settings_xl");
@@ -133,8 +146,10 @@ namespace HumanEye
             yield return ClickUI("ask-close");
             Check(!runner.AskHold, "Closing Ask Niko releases flow hold");
             yield return ClickUI("btn-pause");
+            Check(!stage.sfx.MusicPlaying && stage.sfx.MixState == "Paused", "Pause holds the music");
             yield return ClickUI("pause-resume");
             Check(!Clock.Paused && Time.timeScale == 1, "Pause/resume UI bindings preserve timeScale");
+            Check(stage.sfx.MusicPlaying, "Resume continues the music");
         }
 
         IEnumerator CheckDemoStress()
@@ -155,8 +170,10 @@ namespace HumanEye
             // Leave while delayed demo work exists, then resume its chapter checkpoint from saved data.
             string checkpoint = SaveSystem.Data.checkpoint;
             int index = runner.Index, cues = SaveSystem.Data.cues.Count;
-            yield return ClickUI("btn-home");
+            yield return ClickUI("btn-pause"); yield return ClickUI("pause-menu");   // Home is the pause card's Main menu (journey HUD)
             Check(!runner.Started && stage.signals.Live == 0 && !Clock.Paused && !Clock.Frozen, "Return to menu cancels active effects and restores clocks");
+            yield return null;
+            Check(stage.sfx.ActiveLoops == 0 && stage.sfx.MusicKey == "start", "Return to menu stops every loop and plays the start theme");
             SaveSystem.Load();
             Check(SaveSystem.Data.checkpoint == checkpoint && SaveSystem.Data.cues.Count == cues, "Save/reload preserves checkpoint and completed cues");
             hud.ShowStart();
@@ -176,7 +193,7 @@ namespace HumanEye
             savedChecked = true;
             yield return ClickUI("end-menu-button");
             SaveSystem.Load(); hud.ShowStart();
-            Check(SaveSystem.Data.completedChapters.Count == 10 && SaveSystem.Data.cues.Count == 66, "Full saved investigation reloads with all chapters and cues");
+            Check(SaveSystem.Data.completedChapters.Count == 10 && SaveSystem.Data.cues.Count == 65, "Full saved investigation reloads with all chapters and cues (65: S02_L05 retired)");
             yield return Capture("completed_resume_menu");
             yield return ClickUI("start-continue");
             Check(runner.Started && runner.Index == 9, "Completed save resumes Scene 11");

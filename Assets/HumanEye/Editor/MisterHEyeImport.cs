@@ -16,6 +16,13 @@ namespace HumanEye.EditorTools
         [MenuItem("Tools/Human Eye/Authoring/Apply supplied MisterH eye")]
         public static void Apply()
         {
+            // Superseded on 7 October 2026: the cross-section eye (Builder.ApplyProduction) is the closed eye too, so a
+            // second closed-eye surface would hide it. Kept for the record; it no longer changes the scene.
+            Debug.LogWarning("MisterH exterior is superseded by Tools > Human Eye > Authoring > Apply production eye + human.");
+        }
+
+        static void ApplySuperseded()
+        {
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             var source = JsonUtility.FromJson<Source>(File.ReadAllText("Tools/HumanEye/MisterH_Eye.json"));
             var scene = EditorSceneManager.OpenScene(Builder.ScenePath);

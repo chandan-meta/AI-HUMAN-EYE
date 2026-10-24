@@ -164,8 +164,9 @@ namespace HumanEye
         /// Restores the documented start state of a chapter: materials, pupil, lens, object distance, cast, cameras, UI.
         public void Enter(ChapterDefinition c)
         {
+            LandingReset();
             if (navigation) navigation.Leave();
-            demo = null; orbitYaw = orbitPitch = 0;
+            demo = null; orbitYaw = orbitPitch = 0; JourneyPlaying = false;
             brightnessLive = false;
             guide.Invalidate();
             signals.StopAll();
@@ -218,6 +219,12 @@ namespace HumanEye
             human.gameObject.SetActive(false); appleRoot.gameObject.SetActive(false); lampRoot.gameObject.SetActive(false);
             pedestal.gameObject.SetActive(false); rays.gameObject.SetActive(false); signals.StopAll();
             cams.Snap(cams.Has("Menu") ? "Menu" : "S04_Wide");
+            if (timing == CinematicTiming.Production)
+            {   // the start screen is the opening's first frame: the learner's eye, rim-lit in the dark observatory
+                LandingSetup();
+                hud.HideInsets(); hud.labels.Clear();
+                return;
+            }
             if (entrance)
             {
                 entrance.SetGate(0); entrance.SetAccents(0);
@@ -320,7 +327,7 @@ namespace HumanEye
                 if (id == "pupil" && p.id != "cornea") a = 1;   // an opening only reads as dark if the iris and everything behind it stay solid
                 if (!eye.IsCut && p.id is "aqueous" or "lens" or "vitreous" or "retina" or "choroid") a = 1;   // closed eye: the interior is only seen through the pupil, where it must stay dark
                 p.SetAlpha(a);
-                p.SetGlow(me ? (clear ? .85f : .55f) : 0);
+                p.SetGlow(me ? 1 : 0);   // full selection look (Anatomy.shader): rim, tint, pulse and scan lines
             }
         }
 
@@ -342,6 +349,7 @@ namespace HumanEye
         // ---------- input routed from PointerSelector / HUD ----------
         public void OnPartTapped(AnatomyPart part)
         {
+            if (FreeExploring) { FreeSelect(part.id); return; }
             if (activities.PartTapped(part.id)) return;
             if (runner.State == LessonState.Exploring && runner.ExploreSet != null)
             {
@@ -353,12 +361,14 @@ namespace HumanEye
 
         public void RequestPartFromList(string id)
         {
+            if (FreeExploring) { FreeSelect(id); return; }
             if (activities.PartTapped(id)) return;
             if (!runner.RequestPart(id, out var reason)) hud.Toast(reason);
         }
 
         public void Orbit(Vector2 delta)
         {
+            if (!Clock.Paused && FreeOrbit(delta)) return;
             if (runner.Chapter == null || Clock.Paused || !LessonRules.Orbit(runner.State) || runner.Focused != null) return;
             if (runner.Chapter.id is "Scene02" or "Scene03")
             {
@@ -370,12 +380,13 @@ namespace HumanEye
             }
         }
 
-        public void Zoom(float delta) { if (!Clock.Paused && LessonRules.Orbit(runner.State) && runner.Focused == null) cams.Zoom(delta); }
+        public void Zoom(float delta) { if (!Clock.Paused && FreeZoom(delta)) return; if (!Clock.Paused && LessonRules.Orbit(runner.State) && runner.Focused == null) cams.Zoom(delta); }
 
         public void ResetView()
         {
             if (Clock.Paused) return;
             if (navigation && navigation.Active) { navigation.Leave(); return; }
+            if (FreeExploring) { FreeResetView(); return; }
             spin = false; orbitYaw = orbitPitch = 0;
             if (runner.Chapter?.id is "Scene02" or "Scene03")
             {
@@ -387,10 +398,11 @@ namespace HumanEye
             runner.RunSide(Routine.Tween(.6f, t => eye.transform.localRotation = Quaternion.Slerp(eye.transform.localRotation, Quaternion.identity, t)));
         }
 
-        public bool CanInspectLayers => !Clock.Paused && runner.State == LessonState.Exploring && runner.Focused == null &&
-            runner.Chapter != null && (runner.Chapter.id is "Scene02" or "Scene03") && !(navigation && navigation.Active);
+        public bool CanInspectLayers => !Clock.Paused && (FreeExploring ? !fxBusy : runner.State == LessonState.Exploring && runner.Focused == null &&
+            runner.Chapter != null && (runner.Chapter.id is "Scene02" or "Scene03") && !(navigation && navigation.Active));
         public void ToggleSection()
         {
+            if (FreeExploring) { FreeToggleSection(); return; }
             if (!CanInspectLayers) return;
             eye.SetCutInstant(!eye.IsCut); ShowLabels("explore"); hud.Refresh();
         }
@@ -402,7 +414,10 @@ namespace HumanEye
 
         void Update()
         {
+            LandingFrame();
+            InteriorFillFrame();
             if (NikoWaiting && narrator.Speaking) NikoArrive();   // a lesson line or an answer: either is his first
+            if (FreeExploring && !riding && !fxBusy) FreeFrame();   // the journey and the cutaway hold the learner's view
             AudioFrame();
             if (spin) { swayTime += Clock.VizDelta; eye.transform.localRotation = Quaternion.AngleAxis(Mathf.Sin(swayTime * .35f) * (Short ? 8 : 28), eyeRig.InverseTransformDirection(Vector3.up)); }
             foreach (var particles in ambientParticles)

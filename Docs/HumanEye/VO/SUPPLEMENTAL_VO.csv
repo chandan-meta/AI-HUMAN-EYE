@@ -1,0 +1,45 @@
+key,text
+q_ext_iris_role,Which part controls the size of the pupil?
+q_ext_cornea_job,"Which transparent, curved layer at the front protects the eye and bends incoming light?"
+q_ext_sclera_shape,What does the sclera do?
+q_ext_pupil_opening,Tap the opening that light enters the eye through.
+q_int_aqueous,Which space between the cornea and the lens contains a clear fluid?
+q_int_vitreous,What does the vitreous humour help to do?
+q_int_choroid,Which layer is rich in blood vessels and supplies the eye with oxygen and nutrients?
+q_int_retina,Which inner layer at the back contains light-sensitive cells?
+q_nerve_tap,Tap the structure that carries information from the retina to the brain.
+q_nerve_carries,What carries information from the retina to the brain?
+q_nerve_signals,What travels along the optic nerve to the brain?
+q_pupil_predict,"Prediction (then we'll test it): if the light becomes brighter, what will the pupil do?"
+q_pupil_bright,What happens to the pupil in brighter light?
+q_pupil_iris_role,"By controlling the size of the pupil, what does the iris regulate?"
+q_acc_near,How does the lens change for a nearby object?
+q_acc_distant,Prediction: an object moves far away. What will the lens do?
+q_acc_name,What is the continuous adjustment of the lens to focus objects at different distances called?
+q_img_orientation,What kind of image does the lens form on the retina?
+q_img_perception,The image on the retina is inverted. What does Niko say produces our visual experience?
+q_rc_dim,Which photoreceptors help us see in dim conditions?
+q_rc_colour,Which cells allow us to see colours and fine details?
+q_rc_predict,"Prediction: in very dim light, which photoreceptors will respond better?"
+q_path_after_retina,"When light reaches the photoreceptors, what happens next?"
+q_img_predict,Prediction: the light from the apple is about to reach the retina. How will the image there look?
+q_brain_predict,Prediction: the signals are about to reach the brain. Tap where you think they are processed for vision.
+q_app_ext_torch,Challenge: a doctor shines a small torch into a patient's eye and the black centre shrinks. Which part made it shrink?
+q_app_int_clear,Challenge: an eye doctor looks through the pupil at the retina. Which clear parts inside the eye does the light pass through on the way?
+q_app_nerve_damage,"Challenge: imagine an eye focuses light perfectly, but its optic nerve is damaged. What goes wrong?"
+q_app_pupil_cinema,Challenge: you walk from a sunny playground into a dark cinema hall. What do your pupils do?
+q_app_acc_clock,Challenge: you look up from your phone to read a clock on the far wall. How does your lens change?
+q_app_img_world,"Challenge: the image on your retina is inverted, yet the world never looks upside down to you. Why?"
+q_app_rc_night,"Challenge: at night, under a dim streetlight, it's hard to tell the colour of a parked car. Why?"
+q_app_path_convert,"Challenge: light reaches the photoreceptors, but they can't convert it. Which step of seeing fails?"
+fb_correct_1,Yes! That's it!
+fb_correct_2,Exactly right!
+fb_correct_3,Brilliant! You got it.
+fb_correct_4,"Spot on, investigator!"
+fb_retry_1,Not quite. Have another look.
+fb_retry_2,So close! Look at the glowing part.
+fb_retry_3,Good try. Let me show you.
+fb_quiz_intro,Quick check!
+fb_quiz_done,Great work! Let's keep going.
+acc_ciliary,"See the ring of ciliary muscle around the lens? It tightens to make the lens rounder for near things, and relaxes to flatten it for faraway things."
+free_intro,"Now the eye is all yours! Spin it around, zoom right inside, and tap any part to learn about it."

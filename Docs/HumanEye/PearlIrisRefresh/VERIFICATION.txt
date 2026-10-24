@@ -1,0 +1,58 @@
+PEARL + IRIS VERIFICATION
+
+UNITY FOLLOW-UP — 24 OCTOBER 2026
+Exported Figma PNG panels and buttons are now applied to the existing saved Canvas.
+The already-unpacked scene Canvas remains the UI authority; no runtime UI generation
+was added. Current import evidence and validation status are recorded separately in
+Docs/HumanEye/FigmaIntegration/README.md. Earlier checks below do not certify this
+integration's runtime appearance or interaction.
+
+Figma: real Design file under Vaibhav Sharma's account.
+20 supplied images uploaded; all supplied SHA256 checksums verified; eight requested pages created.
+12 desktop compositions at 1920x1080; four tablet subjects at both 1280x800 and 1024x768.
+Native text, vector icons, components and instances inspected.
+Desktop contextual panel bounds measured. Free Explore clipping corrected.
+Priority inside-eye, accommodation, tablet and component-state visual reviews performed.
+Prototype graph: 99 edges at first audit; Start reached completion and Free Explore.
+Additional View tab states subsequently connected, plus dim/bright and near/distant states.
+Selected answers remain distinct from confirmed correct/retry feedback.
+Full Present-mode mouse/touch click-through was not performed.
+
+Contrast checks:
+Primary text/Pearl: 13.89:1; white/primary action: 5.34:1;
+secondary text/white: 5.00:1; caption: 15.11:1.
+
+Material derivation: aligned shapes, finite unit normals asserted.
+Blender: original exported retina UVs and original vessel geometry rendered at fixed camera/light.
+Unity 6000.3.0f1: preview helper compiled and executed successfully.
+PEARL_IRIS_PREVIEW_PASS retinaRenderers=6 shader=HumanEye/Anatomy
+Two actual scene cameras, matching original/candidate comparisons, 1920x1080.
+Mean pixel delta original/candidate: S03 3.037 and S06 2.564 (0–255 scale).
+No C# exceptions or shader errors found in the final preview log.
+Vitreous-hidden diagnostic removed the vertical grey boundary: transparency/cutaway effect.
+Original scene timestamp remained 22 October 2026; source retina material remained 14 October 2026.
+Preview-only textures/material and editor helper are in Assets/HumanEye/PearlIrisPreview
+and Assets/HumanEye/Editor/PearlIrisPreview.cs. Production scene was not saved.
+
+Limits: normal/roughness are estimates; generated source 1254x1254, 2048 variants upscaled.
+Unity preview used uncompressed 1024 textures with mipmaps. Mobile compression,
+all seams/poles/mip levels, full build and runtime performance were not checked.
+No release-readiness claim. No native .fig binary export was available.
+
+VISUAL POLISH — 24 OCTOBER 2026
+Editable iris crest and orbital line motifs; layered pearl fills, lilac edges and
+surface depth; raised violet and amber actions with distinct hover/pressed states.
+Start screen has an iris brand row, violet EYE emphasis, full-width amber action
+and one secondary action row. Chapter and panel headers carry iris details.
+Selected part rows have pearl markers and violet borders. Menus use icon badges;
+success and retry retain separate mint and warm surfaces, with supporting copy
+as plain text. Tablet tabs, reset labels, slider rails and lens callouts fit.
+All 38 preview nodes were re-exported; IrisCrest.svg is included in UIAssets/.
+Six paint styles and two effect styles are recorded in visual-polish-styles.json.
+Start display title is 64 px; existing lesson typography remains in use.
+Final structural check: zero horizontal text overflow, zero missing destinations
+across 139 prototype routes. New gradient/text contrast pairs meet 4.5:1.
+Secondary text was refined to 5E6B82 for contrast on the pearl gradient.
+This revision changed Figma/UI artifacts only. Unity scenes, materials and
+texture maps were not changed or retested. Full Present-mode click-through
+remains unperformed. See design-polish-check.json for exact evidence.

@@ -37,11 +37,11 @@ namespace HumanEye
         int pendingChapter = -1;
         float vizTime;
 
-        public void Begin(int chapterIndex) { Started = true; pendingChapter = Mathf.Clamp(chapterIndex, 0, chapters.Length - 1); }
-        public void RestartChapter() { if (Index >= 0) pendingChapter = Index; }
+        public void Begin(int chapterIndex) { if (Started && audioDirector) audioDirector.StopEffects(); Started = true; pendingChapter = Mathf.Clamp(chapterIndex, 0, chapters.Length - 1); }
+        public void RestartChapter() { if (Index < 0) return; if (audioDirector) audioDirector.StopEffects(); pendingChapter = Index; }
         public void ReturnToMenu()
         {
-            SetPaused(false); Cancel(); pendingChapter = -1; Index = -1; Started = false; AskHold = false;
+            SetPaused(false); if (audioDirector) audioDirector.StopEffects(); Cancel(); pendingChapter = -1; Index = -1; Started = false; AskHold = false;
             State = LessonState.Entering; stage.ShowMenu(); Changed?.Invoke();
         }
 

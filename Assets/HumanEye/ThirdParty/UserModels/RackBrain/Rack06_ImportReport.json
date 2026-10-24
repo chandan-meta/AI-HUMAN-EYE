@@ -1,0 +1,70 @@
+{
+  "source": "C:\\Users\\ADMIN\\Documents\\Received Files\\Rack 06.fbx",
+  "sha256": "2ecc840ce5fe81aedf01e902ac667486fe1d7883fa672f03c68cd722050c3d41",
+  "triangles": 77882,
+  "meshes": [
+    "Frontal_Lobe",
+    "Parietal_Lobe",
+    "Temporal_Lobe",
+    "Occipital_Lobe",
+    "HINDBRAIN",
+    "Midbraind",
+    "Hippocampus",
+    "Amyglada"
+  ],
+  "textures": {
+    "HindBrain_AO": [
+      2048,
+      2048
+    ],
+    "Hindbrain_NM": [
+      2048,
+      2048
+    ],
+    "Hindbrain_Center_AO": [
+      2048,
+      2048
+    ],
+    "Hindbrain_Center_Diff": [
+      2048,
+      2048
+    ],
+    "Hindbrain_Center_NM": [
+      2048,
+      2048
+    ],
+    "Forebrain_Brain_NM": [
+      2048,
+      2048
+    ],
+    "Midbrain_AO": [
+      2048,
+      2048
+    ],
+    "Midbrain_NM": [
+      2048,
+      2048
+    ],
+    "Forebrain_Brain_Diff": [
+      2048,
+      2048
+    ],
+    "Forebrain_AO": [
+      2048,
+      2048
+    ],
+    "Hindbrain_Diff": [
+      2048,
+      2048
+    ],
+    "Midbrain_Diff": [
+      2048,
+      2048
+    ]
+  },
+  "uv": "Original UVs retained",
+  "excluded": "Cabinet, glass, rack, lights",
+  "orientation": "Frontal lobe toward BrainFront; BrainUp is superior",
+  "nerve": "No complete optic pathway in supplied brain; existing labeled pathway retained",
+  "license": "User supplied; no new download or inferred redistribution permission"
+}

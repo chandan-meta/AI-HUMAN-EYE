@@ -24,12 +24,18 @@ namespace HumanEye
             SaveSystem.Load();
             LearnerModel.SecureThreshold = config.secureThreshold;
             ApplyQuality();
-            narrator.waitForContinue = () => SaveSystem.Data.settings.waitForContinue;
+            // Read & Continue lives in the caption panel, which a cinematic hides (its line is the letterbox caption): a line
+            // ending inside a cinematic moves on by itself, or the eye-to-brain beats would wait on a button nobody can see.
+            narrator.waitForContinue = () => SaveSystem.Data.settings.waitForContinue && !stage.CinematicPlaying;
             // Exposure (heard via audio, or read via an explicit Continue) is tracked separately from mastery.
-            narrator.Completed += (cue, source, how) => { if (source == NarrationSource.Core) SaveSystem.MarkCue(cue.id, how); };
+            narrator.Completed += (cue, source, how) => { if (source == NarrationSource.Core && cue.type != "Supplemental") SaveSystem.MarkCue(cue.id, how); };
             cams.shortMoves = () => stage.Short;
             cams.fade = hud.Fade;
         }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [System.Runtime.InteropServices.DllImport("__Internal")] static extern void HumanEyePageReady();
+#endif
 
         void Start()
         {
@@ -40,11 +46,21 @@ namespace HumanEye
             stage.ShowMenu();
             hud.ShowStart();
             hud.Refresh();
+            StartCoroutine(PageReady());
             if (Debug.isDebugBuild && Array.Exists(Environment.GetCommandLineArgs(), a => a == "-heAutopilot")) gameObject.AddComponent<AutoPilot>();
 #if UNITY_EDITOR
             // Editor-only chapter preview (Tools > Human Eye > Preview Chapter); never compiled into players.
             int preview = UnityEditor.EditorPrefs.GetInt("HumanEye.Preview", -1);
             if (preview >= 0) { UnityEditor.EditorPrefs.DeleteKey("HumanEye.Preview"); hud.StartModule(preview); }
+#endif
+        }
+
+        /// The web page's loader fades into the module once the start screen has really been drawn (HumanEyePage.jslib).
+        System.Collections.IEnumerator PageReady()
+        {
+            yield return null; yield return new WaitForEndOfFrame(); yield return new WaitForEndOfFrame();
+#if UNITY_WEBGL && !UNITY_EDITOR
+            HumanEyePageReady();
 #endif
         }
 

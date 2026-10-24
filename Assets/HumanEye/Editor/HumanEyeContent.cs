@@ -22,25 +22,25 @@ namespace HumanEye.EditorTools
 
         public class Chapter { public string id, title, checkpoint; public string[] topics; public Step[] steps; public ExploreEntry[] explore; }
 
+        /// Ledger cues kept in the ledger (and its audio) but no longer spoken. Visual-match brief, 8 October 2026: the only
+        /// scan is the opening's, so Niko's prompt for the old Scan Eye button has nothing to point at.
+        public static readonly string[] RetiredCues = { "S02_L05" };
+
         public static List<Chapter> Chapters() => new()
         {
             new Chapter
             {
                 id = "Scene02", title = "Meet Niko", topics = new[] { "external_structures" },
-                checkpoint = "Dark corridor facing the closed gate; the entrance (skippable) opens the gate, moves in, flies Niko to his anchor and ends on the establishing view with the spotlit human; the selected eye in its socket; nothing explored.",
+                checkpoint = "Dark corridor facing the closed gate; the opening (skippable) lifts the gate, enters the lab, scans the subject once, flies the selected eye to the central display and brings Niko in beside it; nothing explored.",
                 steps = new[]
                 {
                     Do("intro"),
                     Do("niko", "Wave", 2.4f), Shot("S02_NikoMedium", 1.6f, true),
                     Say("S02_L01"), Say("S02_L02"),
-                    Do("nikoLook", "human"), Do("niko", "Present", 2.4f), Shot("S02_DisplayWide", 1.6f, true), Do("humanReveal", null, 1.4f, true), Say("S02_L03"),
+                    Say("S02_L03"),
                     Say("S02_L04"),
-                    Do("info", "Niko's scanner is ready. Press Scan Eye in the panel to look inside the subject."), Do("niko", "RaiseHand", 30), Say("S02_L05"), Await("scan"),
-                    Shot("S02_ScanFront", 1.0f), Do("scan"),
-                    Do("illuminate"), Shot("S02_EyeInSkull", 1.6f, true), Say("S02_L06"),
+                    Do("nikoLook", "eye"), Do("niko", "Present", 2.4f), Do("music", "eye"), Do("sfx", "eyeappear", .5f), Shot("S02_EyeHero", 2.2f, true), Do("nikoMove", "EyeLeft", 1.2f, true), Do("turntable", "on"), Say("S02_L06"),
                     Say("S02_L07"),
-                    Do("nikoLook", "eye"), Do("pinch"),
-                    Shot("S02_EyeHero", 2.2f, true), Do("enlarge", null, 2.2f), Do("nikoMove", "EyeLeft", 1.2f, true), Do("info", ""),
                     Say("S02_L08"),
                     Do("niko", "Present", 2), Say("S02_L09"),
                     Do("niko", "Snap", 1.5f), Do("sequence", "sclera,cornea,iris,pupil", .5f, true),
@@ -48,7 +48,7 @@ namespace HumanEye.EditorTools
                     Explore(),
                     Offer("topic:external_structures"),
                     Shot("S02_EyeHero", 1, true), Do("niko", "Present", 2), Say("S02_L15"),
-                    Do("info", "Press Explore Inside in the panel to open the eye."), Say("S02_L16"), Await("inside"),
+                    Say("S02_L16"), Await("inside"),
                     Do("sfx", "unlock"),
                 },
                 explore = new[]
@@ -92,9 +92,11 @@ namespace HumanEye.EditorTools
                     Do("nerveReveal", null, 2.2f, true), Say("S04_L03"),
                     Do("glow", "optic_nerve", .8f), Do("labels", "focus:optic_nerve"), Say("S04_L04"),
                     Shot("S04_NerveClose", 1.4f, true), Say("S04_L05"),
-                    Do("brainReveal", null, 1.4f, true), Shot("S04_NerveMid", 2.2f, true), Say("S04_L06"),
-                    Shot("S04_BrainClose", 2.0f, true), Do("glow", "visual_area", .9f), Do("labels", "focus:visual_area"), Say("S04_L07"),
-                    Do("glow", "optic_nerve,visual_area", 0), Shot("S04_Wide", 2.2f, true), Do("labels", "scan"), Say("S04_L08"),
+                    // L06–L07: the brain appears ghosted and a stream of comet pulses is seen travelling along the nerve into it;
+                    // each arrival lights the visual area. Restored before the wide view at L08.
+                    Do("brainReveal", null, 1.4f, true), Shot("S04_NerveMid", 2.2f, true), Do("brainGhost", "on"), Do("signals", "nerve", 1), Say("S04_L06"),
+                    Shot("S04_BrainClose", 2.0f, true), Do("sfx", "cortex", .5f), Do("glow", "visual_area", .9f), Do("labels", "focus:visual_area"), Say("S04_L07"),
+                    Do("signals", "nerve", 0), Do("brainGhost", "off"), Do("glow", "optic_nerve,visual_area", 0), Shot("S04_Wide", 2.2f, true), Do("labels", "focus:optic_nerve,brain"), Say("S04_L08"),
                     Do("labels", ""),
                     Offer("item:nerve_tap"),
                 },
@@ -108,11 +110,11 @@ namespace HumanEye.EditorTools
                     Do("objectAppear", null, 1.0f), Say("S05_L01"),
                     Do("lightTravel", "1", 2.5f, true), Shot("S05_FollowLight", 2.5f, true), Say("S05_L02"),
                     Shot("S05_Cornea", 1.4f, true), Do("isolate", "cornea"), Do("labels", "focus:cornea"), Do("lightTravel", "1.5", 1.0f, true), Say("S05_L03"),
-                    Shot("S05_AqueousPupil", 1.2f, true), Do("isolate", "aqueous"), Do("labels", "focus:aqueous"), Do("lightTravel", "2", 1.3f, true), Say("S05_L04"),
+                    Shot("S05_AqueousPupil", 1.2f, true), Do("isolateKeep", "aqueous,pupil,iris", .3f), Do("labels", "focus:aqueous"), Do("lightTravel", "2", 1.3f, true), Say("S05_L04"),
                     Do("restore"), Do("labels", ""), Do("pupilView"), Do("brightnessLive"),
-                    Do("info", "Use the brightness controls in the panel: make it brighter, then dimmer, and watch the pupil."), Say("S05_L05"), Await("brighter"), Do("pupilSettle"), Say("S05_L06"),
+                    Say("S05_L05"), Await("brighter"), Do("pupilSettle"), Say("S05_L06"),
                     Await("dimmer"), Do("pupilSettle"), Say("S05_L07"),
-                    Do("glow", "iris", .8f), Do("labels", "focus:iris"), Say("S05_L08"), Do("glow", "iris", 0), Do("labels", ""),
+                    Do("sfx", "iris", .5f), Do("glow", "iris", .8f), Do("labels", "focus:iris"), Say("S05_L08"), Do("glow", "iris", 0), Do("labels", ""),
                     Offer("item:pupil_predict"),
                     Free("brightness"),
                 },
@@ -125,11 +127,14 @@ namespace HumanEye.EditorTools
                 {
                     Shot("S06_LensClose", 1.8f, true), Do("isolate", "lens"), Do("labels", "focus:lens"), Do("lightTravel", "4", 2.2f, true), Say("S06_L01"),
                     Do("restore"),
-                    Do("distanceControls"), Do("info", "Press Near object in the panel to bring the apple close."), Await("near"),
-                    Shot("S06_NearWide", 1.2f, true), Do("nearDemo"), Shot("S06_LensClose", 1.2f, true), Say("S06_L02"),
-                    Do("info", "Now press Distant object."), Await("distant"),
-                    Shot("S06_FarView", 1.4f, true), Do("distantDemo"), Shot("S06_LensClose", 1.2f, true), Say("S06_L03"),
-                    Say("S06_L04"), Do("labels", ""),
+                    // Shown, not only said (22 October 2026 brief): the retinal image goes soft when the object moves and sharp as
+                    // the lens adapts, the ciliary muscle tightens and relaxes with it, then a short line names the muscle.
+                    Do("distanceControls"), Await("near"),
+                    Shot("S06_NearWide", 1.2f, true), Do("focusView", "on"), Do("nearApproach"), Shot("S06_LensClose", 1.2f), Do("lensFocus", "near", 0, true), Say("S06_L02"),
+                    Await("distant"),
+                    Shot("S06_FarView", 1.4f, true), Do("distantApproach"), Shot("S06_LensClose", 1.2f), Do("lensFocus", "distant", 0, true), Say("S06_L03"),
+                    Do("ciliaryDemo", null, 0, true), Say("acc_ciliary"),
+                    Say("S06_L04"), Do("glow", "lens", 0), Do("labels", ""), Do("focusView", "off"),
                     Shot("S06_Vitreous", 2.0f, true), Do("lightTravel", "5", 2.2f),
                     Offer("topic:accommodation"),
                 },
@@ -140,7 +145,7 @@ namespace HumanEye.EditorTools
                 checkpoint = "Cutaway eye; apple at 6 eye-radii with the lens matched; light through the lens; no image yet; camera S06_Vitreous.",
                 steps = new[]
                 {
-                    Shot("S07_Vitreous", 2.2f, true), Do("isolate", "vitreous"), Do("labels", "focus:vitreous"), Do("lightTravel", "5", 2.2f, true), Say("S07_L01"),
+                    Shot("S07_Vitreous", 2.2f, true), Do("isolateKeep", "vitreous,lens,retina", .25f), Do("labels", "focus:vitreous"), Do("lightTravel", "5", 2.2f, true), Say("S07_L01"),
                     Do("isolate", "retina"), Do("labels", "focus:retina"), Shot("S07_Retina", 1.4f, true), Do("imageForm", null, 1.2f, true), Do("imageInset"), Say("S07_L02"),
                     Do("restore"), Do("imageInset", "hide"), Shot("S07_RetinaCloser", 1.6f, true), Say("S07_L03"),
                     Do("labels", ""),
@@ -155,7 +160,7 @@ namespace HumanEye.EditorTools
                     Do("intoRetina"), Say("S08_L01"),
                     Do("microLight", "0.3", 1), Do("microFocus", "rods"), Shot("S08_Rods", 1.4f, true), Do("labels", "focus:rods"), Say("S08_L02"), Say("S08_L03"),
                     Do("microLight", "0.95", 1), Do("microFocus", "cones"), Shot("S08_Cones", 1.4f, true), Do("labels", "focus:cones"), Say("S08_L04"),
-                    Do("microFocus", "all"), Shot("S08_MicroWide", 1.4f, true), Do("microLight", "0.65", 1), Do("labels", "scan"), Do("microSignals", null, 1), Say("S08_L05"),
+                    Do("microFocus", "all"), Shot("S08_Transduce", 1.4f, true), Do("microLight", "0.65", 1), Do("labels", "scan"), Do("microSignals", null, 1), Say("S08_L05"),
                     Shot("S08_Signals", 1.8f, true), Say("S08_L06"),
                     Shot("S08_PullBack", 2.2f, true),
                     Offer("topic:rods_cones"),
@@ -168,10 +173,15 @@ namespace HumanEye.EditorTools
                 checkpoint = "Cutaway eye, full optic nerve and brain; apple placed at medium distance; camera on the back of the eye.",
                 steps = new[]
                 {
-                    Do("labels", "focus:optic_nerve"), Do("signals", "nerve", 1), Say("S09_L01"),
-                    Do("followSignal", "nerve", 1, true), Say("S09_L02"),
-                    Shot("S04_BrainClose", 2, true), Do("glow", "visual_area", .9f), Do("labels", "focus:visual_area"), Say("S09_L03"),
-                    Do("signals", "nerve", 0), Do("perception"), Say("S09_L04"),
+                    // The eye-to-brain cinematic (Stage.EyeBrain.cs, reference pass): light reaches the retina, signals leave
+                    // along the optic nerve (L01), the eye returns to an X-ray head and the pulses follow the visual pathway —
+                    // chiasm, tract, LGN, radiation — to the visual cortex (L02), the visual system floats out of the head under
+                    // FROM EYE TO BRAIN (L03). Each line waits for its beat (cineBeat); the cinematic waits for each line to end.
+                    Do("eyeToBrain", null, 0, true),
+                    Do("cineBeat", "signals"), Say("S09_L01"),
+                    Do("cineBeat", "pathway"), Say("S09_L02"),
+                    Do("cineBeat", "brain"), Say("S09_L03"),
+                    Do("cineBeat", "end"), Do("perception"), Say("S09_L04"),
                     Do("glow", "visual_area", 0), Do("labels", ""), Do("imageInset", "hide"), Shot("S09_Wide", 2, true),
                     Offer("topic:optic_nerve"),
                     Offer("topic:inverted_image"),
@@ -183,10 +193,11 @@ namespace HumanEye.EditorTools
                 checkpoint = "Complete scene: apple, light path to the retina, eye, optic nerve and brain; camera S09_Wide.",
                 steps = new[]
                 {
-                    Shot("S10_Complete", 2.2f, true), Say("S10_L01"), Say("S10_L02"),
-                    Shot("S10_Journey", 2, true), Do("journey"),
-                    Do("overview"),
-                    Do("journey", "overview"),
+                    // The complete working, once (22 October 2026 brief): the camera follows the light through every stage to the
+                    // brain, then pulls back to the labelled overview for the closing line.
+                    Shot("S10_Journey", 2.4f, true), Say("S10_L01"),
+                    Do("journey"),
+                    Do("overview"), Say("S10_L02"),
                 },
             },
             new Chapter
@@ -195,8 +206,8 @@ namespace HumanEye.EditorTools
                 checkpoint = "Cutaway eye closing to the complete eye; near apple and a distant tree placed, both sharp; camera S10_Complete.",
                 steps = new[]
                 {
-                    Do("closeEye", null, 1.2f), Shot("S11_Eye", 1.8f, true), Say("S11_L01"),
-                    Shot("S11_NearFar", 2.2f, true), Say("S11_L02"), Say("S11_L03"),
+                    Do("closeEye", null, 1.2f), Do("faceLearner", null, 1.6f, true), Shot("S11_Eye", 1.8f, true), Say("S11_L01"),
+                    Do("turnToSide", null, 1.6f, true), Shot("S11_NearFar", 2.2f, true), Say("S11_L02"), Say("S11_L03"),
                     Do("closing"),
                 },
             },
@@ -399,7 +410,6 @@ namespace HumanEye.EditorTools
             I("act_near", IntentKind.Action, @"\b(near|closer|nearby)\b", "near", null, "Bringing the object closer."),
             I("act_far", IntentKind.Action, @"\b(far|distant|further|farther)\b", "distant", null, "Moving the object far away."),
             I("act_freeze", IntentKind.Action, @"\b(freeze|unfreeze|hold it)\b", "FREEZE", null, "Freezing the biology mid-action."),
-            I("act_scan", IntentKind.Action, @"\b(scan|labels?)\b", "SCAN", null, "Scanning — identifying the structures."),
             I("act_inside", IntentKind.Action, @"\binside\b", "INSIDE", null, "Moving inside the eye."),
             I("act_reset", IntentKind.Action, @"\b(reset (the )?view|zoom out)\b", "resetView", null, "Resetting the view."),
 

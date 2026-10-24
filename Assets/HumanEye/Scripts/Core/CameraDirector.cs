@@ -15,6 +15,8 @@ namespace HumanEye
         public Func<bool> shortMoves = () => false;
         public Func<float, float, IEnumerator> fade;   // (targetAlpha, seconds), provided by the HUD
         public CinemachineCamera Active { get; private set; }
+        /// Aspect the lenses are fitted for when set (batch-mode captures render 16:9 frames from a 4:3 game view).
+        public static float? AspectOverride;
 
         Dictionary<string, CinemachineCamera> byName;
         readonly Dictionary<CinemachineCamera, float> baseFov = new();
@@ -24,7 +26,7 @@ namespace HumanEye
         static float Fit(float fov, float scale) => 2 * Mathf.Atan(Mathf.Tan(fov * Mathf.Deg2Rad * .5f) * scale) * Mathf.Rad2Deg;
         void LateUpdate()
         {
-            float next = Mathf.Max(1, (16f / 9) / (Screen.width / (float)Mathf.Max(1, Screen.height)));
+            float next = Mathf.Max(1, (16f / 9) / (AspectOverride ?? Screen.width / (float)Mathf.Max(1, Screen.height)));
             if (Mathf.Approximately(next, aspectScale)) return;
             foreach (var s in shots) { var lens = s.Lens; lens.FieldOfView = Fit(lens.FieldOfView, next / aspectScale); s.Lens = lens; }
             aspectScale = next;
@@ -38,6 +40,7 @@ namespace HumanEye
 
         /// The vertical FOV a shot authored for 16:9 gets at the current aspect (code-driven lenses must write this).
         public float Fitted(float fov) => Fit(fov, aspectScale);
+        public float AuthoredFov(CinemachineCamera shot) => baseFov[shot];
         public bool Has(string name) => byName.ContainsKey(name);
         public CinemachineCamera Get(string name) => byName.TryGetValue(name, out var cam) ? cam : null;
 

@@ -1,0 +1,22 @@
+[
+  {
+    "source": "Rack 01",
+    "output": "Skeleton",
+    "source_triangles": 99798,
+    "triangles": 64868,
+    "materials": 1,
+    "atlas": 2048,
+    "rigged": false,
+    "yaw_correction": 0
+  },
+  {
+    "source": "Rack 02",
+    "output": "Muscles",
+    "source_triangles": 445804,
+    "triangles": 156019,
+    "materials": 1,
+    "atlas": 2048,
+    "rigged": false,
+    "yaw_correction": 25
+  }
+]

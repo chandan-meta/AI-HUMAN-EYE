@@ -1,0 +1,93 @@
+{
+  "source": "C:\\Users\\ADMIN\\Documents\\Received Files\\Rack 04.fbx",
+  "output": "Organs",
+  "source_triangles": 225580,
+  "triangles": 90754,
+  "materials": 1,
+  "atlas": 2048,
+  "rigged": false,
+  "yaw_correction": 105,
+  "source_meshes": [
+    "Rig_Respiratoy_Lung_Geo_Left1",
+    "Rig_Respiratoy_Lung_Geo_Right1",
+    "Rig_Male_Endocrine_Thymus_Gland_Geo1",
+    "Rig_Respiratoy_Trachea_Geo1",
+    "Rig_Digestive_Stomach_Geo1",
+    "Rig_Male_Skeletal_Lower_Central_Incisor_Right_Geo1",
+    "Rig_Male_Skeletal_Upper_Central_Incisor_Left_Geo1",
+    "Rig_Male_Skeletal_Upper_Canine_Right_Geo2",
+    "Rig_Male_Skeletal_Upper_Premolar_2_Left_Geo1",
+    "Rig_Male_Skeletal_Upper_Lateral_Incisor_Left_Geo1",
+    "Rig_Respiratoy_Upper_Central_Incisor_Right_Geo1",
+    "Rig_Male_Skeletal_Upper_Canine_Left_Geo2",
+    "Rig_Male_Skeletal_Upper_Lateral_Incisor_Right_Geo1",
+    "Rig_Male_Skeletal_Upper_Molar_2_Left_Geo1",
+    "Rig_Respiratoy_Upper_Molar_2_Right_Geo1",
+    "Rig_Male_Skeletal_Upper_Molar_1_Left_Geo1",
+    "Rig_Respiratoy_Upper_Molar_1_Right_Geo1",
+    "Rig_Digestive_Mouth_Geo1",
+    "Rig_Respiratoyl_Upper_Premolar_1_Right_Geo1",
+    "Rig_Male_Skeletal_Upper_Premolar_2_Right_Geo1",
+    "Rig_Digestive_Colon_Geo1",
+    "Rig_Digestive_Small_Intestine_Geo1",
+    "Rig_Digestive_Liver_Geo1",
+    "Rig_Male_Urinary_Kidney_Geo_Left1",
+    "Rig_Male_Urinary_Kidney_Geo_Right1",
+    "Rig_Male_Endocrine_Adrenal_Gland_Geo_Right1",
+    "Rig_Male_Endocrine_Adrenal_Gland_Geo_Left1",
+    "Rig_Lymphatic_Spleen_Geo1",
+    "Rig_Male_Urinary_Ureter_Geo_Right1",
+    "Rig_Male_Urinary_Ureter_Geo_Left1"
+  ],
+  "source_materials": [
+    "Respiratoy_Lungs_Dif",
+    "Male_Urinary_Dif",
+    "Respiratoy_Trachea_Dif",
+    "Digestive_Stomach_Dif",
+    "Digestive_Colon_Dif",
+    "Digestive_Small_Intestines_Dif",
+    "Digestive_Liver_Dif",
+    "Female_Urinary_Dif",
+    "Lymphatic_Spleen_Dif"
+  ],
+  "included": "Lungs, trachea, stomach, liver, colon, small intestine, kidneys, ureters, adrenal glands, thymus, spleen (mouth and teeth excluded)",
+  "absent": "Eyes, brain, skull, external head, skin, feet; mouth and teeth left out on purpose",
+  "registration_markers": {
+    "EyeSocket_L": [
+      0.032,
+      -0.047,
+      1.654
+    ],
+    "EyeSocket_R": [
+      -0.032,
+      -0.047,
+      1.654
+    ],
+    "FaceDirection": [
+      0,
+      -1,
+      1.654
+    ],
+    "BodyBase": [
+      0,
+      0,
+      0
+    ],
+    "BodyTop": [
+      0,
+      0,
+      1.75
+    ]
+  },
+  "registration": "Inferred whole-body frame; mouth center=(0,-0.075,1.56), source scale=0.32. Use BodyBase/BodyTop for vertical fitting; supply the existing project eye separately.",
+  "bounds_min": [
+    -0.17471951246261597,
+    -0.12258616834878922,
+    0.7093262076377869
+  ],
+  "bounds_max": [
+    0.17159831523895264,
+    0.13440696895122528,
+    1.5102176666259766
+  ]
+}

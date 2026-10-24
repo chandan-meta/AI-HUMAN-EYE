@@ -1,0 +1,81 @@
+{
+  "fileKey": "wLgTj7N6mpfRONuYkmZac0",
+  "url": "https://www.figma.com/design/wLgTj7N6mpfRONuYkmZac0",
+  "account": "Vaibhav Sharma",
+  "sessionId": "6069b959-f4e8-4240-b155-c045ad9311ca",
+  "pages": {
+    "references": "0:1",
+    "foundations": "1:2",
+    "components": "1:3",
+    "gameplay": "1:4",
+    "menus": "1:5",
+    "prototype": "1:6",
+    "textureLab": "1:7",
+    "handoff": "1:8"
+  },
+  "desktopFrames": [
+    "4:9",
+    "4:30",
+    "4:43",
+    "4:63",
+    "4:89",
+    "4:115",
+    "4:141",
+    "4:171",
+    "4:195",
+    "4:217",
+    "4:245",
+    "4:277"
+  ],
+  "tabletFrames": [
+    "14:289",
+    "14:344",
+    "14:399",
+    "14:456",
+    "14:513",
+    "14:554",
+    "14:595",
+    "14:658"
+  ],
+  "stateFrames": [
+    "23:302",
+    "26:309",
+    "27:314",
+    "27:369",
+    "42:425",
+    "42:514",
+    "42:602",
+    "55:467",
+    "55:509"
+  ],
+  "componentSheet": "20:25",
+  "prototypeStart": "4:9",
+  "prototypeGraphCheck": {
+    "completionReachable": true,
+    "freeExploreReachable": true,
+    "viewStatesAdded": true
+  },
+  "unityCandidate": "Assets/HumanEye/PearlIrisPreview/Retina_PearlIris_Candidate.mat",
+  "loadingScreen": "48:37",
+  "captionComponent": "29:95",
+  "speakerComponent": "49:73",
+  "tokenBindingCount": 251,
+  "styledTextNodes": 55,
+  "visualPolish": {
+    "date": "2026-10-24",
+    "irisCrest": "62:79",
+    "paintStyleCount": 6,
+    "effectStyleCount": 2,
+    "desktopStartDisplayFontSize": 64,
+    "previewExports": 38,
+    "prototypeRoutesVerified": 139,
+    "changes": [
+      "Iris crest and corner orbital motifs",
+      "Layered pearl cards and raised violet/amber actions",
+      "Start card action hierarchy and secondary row",
+      "Selected part markers and chapter header emblems",
+      "Tablet text and lens callout fit",
+      "Plain semantic feedback messages"
+    ]
+  }
+}

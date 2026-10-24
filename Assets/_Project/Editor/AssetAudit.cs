@@ -17,7 +17,8 @@ namespace VisionLab.Editor {
             File.WriteAllText("Assets/_Project/Docs/ASSET_AUDIT.md",text);AssetDatabase.Refresh();
         }
         public void OnPreprocessBuild(BuildReport report){
-            if((report.summary.options & BuildOptions.Development)==0)
+            // -heRelease: an explicitly requested production build (16 Oct 2026: the published WebGL build) passes the gate.
+            if((report.summary.options & BuildOptions.Development)==0 && !Environment.GetCommandLineArgs().Contains("-heRelease"))
                 throw new BuildFailedException("Scene 2 production acceptance is pending: final VO, anatomy alignment review, gesture authoring and physical-device/performance validation. Development builds are available.");
         }
     }

@@ -54,12 +54,52 @@ namespace HumanEye.EditorTools
             Populate(hud);
             Position();
             AddScrollbars(canvasRect);
+            PinSettingsFooter(canvasRect);
             var old = hud.GetComponent<UnityEngine.UIElements.UIDocument>();
             if (old) Object.DestroyImmediate(old);
             PrefabUtility.SaveAsPrefabAssetAndConnect(canvasRect.gameObject, PrefabPath, InteractionMode.AutomatedAction);
             hud.canvas = canvas; hud.bindings = bindings.ToArray();
             EditorUtility.SetDirty(hud);
         }
+
+        [MenuItem("Tools/Human Eye/Authoring/Pin Settings Close button")]
+        public static void FixSettingsLayout()
+        {
+            var prefab = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                PinSettingsFooter(prefab.transform);
+                PrefabUtility.SaveAsPrefabAsset(prefab, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            AssetDatabase.SaveAssets();
+            Debug.Log("HE_SETTINGS_LAYOUT saved scrollable settings with pinned Reset / Close footer");
+        }
+
+        static void PinSettingsFooter(Transform canvas)
+        {
+            var panel = canvas.GetComponentsInChildren<RectTransform>(true).Single(t => t.name == "settings-panel");
+            var scroll = panel.GetComponentInChildren<ScrollRect>(true);
+            var card = (RectTransform)scroll.transform;
+            var close = panel.GetComponentsInChildren<Button>(true).Single(b => b.name == "settings-close");
+            var footer = (RectTransform)close.transform.parent;
+            var viewport = card.Find("Settings Viewport") as RectTransform;
+            if (!viewport) { viewport = Rect("Settings Viewport", card); viewport.gameObject.AddComponent<RectMask2D>(); }
+            Stretch(viewport); viewport.offsetMin = new Vector2(0, 92);
+            scroll.content.SetParent(viewport, false);
+            scroll.content.anchoredPosition = new Vector2(scroll.content.anchoredPosition.x, 0);
+            scroll.viewport = viewport;
+            footer.SetParent(card, false);
+            footer.anchorMin = Vector2.zero; footer.anchorMax = Vector2.right; footer.pivot = new Vector2(.5f, 0);
+            footer.offsetMin = new Vector2(24, 16); footer.offsetMax = new Vector2(-24, 80);
+            if (scroll.verticalScrollbar)
+            {
+                var bar = (RectTransform)scroll.verticalScrollbar.transform;
+                bar.offsetMin = new Vector2(bar.offsetMin.x, 100);
+                bar.SetAsLastSibling();
+            }
+        }
+
         static RectTransform Rect(string name, Transform parent)
         {
             var r = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>(); r.SetParent(parent, false); return r;

@@ -69,14 +69,6 @@ MonoBehaviour:
     availableFromChapter: 0
     supplemental: Freezing the biology mid-action.
     notYet: 
-  - id: act_scan
-    kind: 2
-    pattern: \b(scan|labels?)\b
-    target: SCAN
-    cues: []
-    availableFromChapter: 0
-    supplemental: "Scanning \u2014 identifying the structures."
-    notYet: 
   - id: act_inside
     kind: 2
     pattern: \binside\b

@@ -86,9 +86,9 @@ MonoBehaviour:
     async: 1
     note: 
   - kind: 2
-    key: isolate
-    arg: aqueous
-    value: 0
+    key: isolateKeep
+    arg: aqueous,pupil,iris
+    value: 0.3
     async: 0
     note: 
   - kind: 2
@@ -133,13 +133,6 @@ MonoBehaviour:
     value: 0
     async: 0
     note: 
-  - kind: 2
-    key: info
-    arg: 'Use the brightness controls in the panel: make it brighter, then dimmer,
-      and watch the pupil.'
-    value: 0
-    async: 0
-    note: 
   - kind: 1
     key: S05_L05
     arg: 
@@ -180,6 +173,12 @@ MonoBehaviour:
     key: S05_L07
     arg: 
     value: 0
+    async: 0
+    note: 
+  - kind: 2
+    key: sfx
+    arg: iris
+    value: 0.5
     async: 0
     note: 
   - kind: 2

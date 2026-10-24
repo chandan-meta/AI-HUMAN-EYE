@@ -169,10 +169,123 @@ namespace HumanEye.EditorTools
                         c.clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
                     }
                 }
+                var align = Path.ChangeExtension(path, ".align.json");   // character timing from the TTS (generate_elevenlabs_vo.py)
+                if (c.clip && File.Exists(align)) MouthKeys(c, File.ReadAllText(align));
+                else if (c.clip) AudioKeys(c, path);
             }
             var db = ScriptableObject.CreateInstance<DialogueDatabase>();
             db.cues = ledger.cues;
+            db.extra = ExtraLines();
             return Upsert(db, Gen + "Data/DialogueDatabase.asset");
+        }
+
+        /// Supplemental lines (Docs/HumanEye/VO/SUPPLEMENTAL_VO.csv: key,text; clips Audio/VO/Extra/<key>.wav, Tools/HumanEye/
+        /// generate_kokoro_vo.py): spoken by key like a cue, with the same import settings and mouth keys.
+        static DialogueDatabase.Cue[] ExtraLines()
+        {
+            const string csv = "Docs/HumanEye/VO/SUPPLEMENTAL_VO.csv";
+            if (!File.Exists(csv)) return new DialogueDatabase.Cue[0];
+            var list = new List<DialogueDatabase.Cue>();
+            foreach (var row in File.ReadAllLines(csv).Skip(1).Where(l => l.Length > 0))
+            {
+                int comma = row.IndexOf(',');
+                var key = row.Substring(0, comma); var text = row.Substring(comma + 1).Trim();
+                if (text.Length > 1 && text[0] == '"') text = text.Substring(1, text.Length - 2).Replace("\"\"", "\"");
+                var path = $"{Root}Audio/VO/Extra/{key}.wav";
+                var c = new DialogueDatabase.Cue { id = key, speaker = "Niko", type = "Supplemental", text = text, clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path) };
+                if (c.clip)
+                {
+                    var importer = (AudioImporter)AssetImporter.GetAtPath(path);
+                    var s = importer.defaultSampleSettings;
+                    if (s.loadType != AudioClipLoadType.CompressedInMemory || s.compressionFormat != AudioCompressionFormat.Vorbis)
+                    {
+                        s.loadType = AudioClipLoadType.CompressedInMemory; s.compressionFormat = AudioCompressionFormat.Vorbis; s.quality = .7f;
+                        importer.defaultSampleSettings = s; importer.forceToMono = true; importer.SaveAndReimport();
+                        c.clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+                    }
+                    AudioKeys(c, path);
+                }
+                else Debug.LogWarning("HE_VO supplemental line without a clip (caption only): " + path);
+                list.Add(c);
+            }
+            return list.ToArray();
+        }
+
+        [Serializable] class Alignment { public string[] characters; public float[] character_start_times_seconds, character_end_times_seconds; }
+
+        /// Mouth keys from character timing: each letter becomes an approximate viseme (jaw opening, lip rounding) a third of the
+        /// way into its span; spaces close the mouth only on a real pause (> 80 ms). An approximation from spelling, not phonemes.
+        public static void MouthKeys(DialogueDatabase.Cue c, string json)
+        {
+            var a = JsonUtility.FromJson<Alignment>(json);
+            if (a?.characters == null || a.character_start_times_seconds == null || a.characters.Length != a.character_start_times_seconds.Length) return;
+            (float open, float round) Pose(char ch) => char.ToLowerInvariant(ch) switch
+            {
+                'a' => (1f, 0f), 'e' => (.55f, 0f), 'i' => (.5f, 0f), 'y' => (.45f, 0f), 'o' => (.75f, .75f), 'u' => (.5f, 1f),
+                'w' => (.35f, 1f), 'q' => (.35f, .9f), 'r' => (.4f, .35f), 'l' => (.5f, 0f), 'm' or 'b' or 'p' => (0f, 0f),
+                'f' or 'v' => (.12f, 0f), _ when char.IsLetterOrDigit(ch) => (.3f, 0f), _ => (-1f, 0f),
+            };
+            var times = new List<float>(); var opens = new List<float>(); var rounds = new List<float>();
+            void Key(float t, float o, float r) { if (times.Count > 0 && t <= times[^1]) t = times[^1] + .001f; times.Add(t); opens.Add(o); rounds.Add(r); }
+            Key(0, 0, 0);
+            for (int i = 0; i < a.characters.Length; i++)
+            {
+                if (string.IsNullOrEmpty(a.characters[i])) continue;
+                float s = a.character_start_times_seconds[i], e = a.character_end_times_seconds[i];
+                var (o, r) = Pose(a.characters[i][0]);
+                if (o >= 0) Key(s + (e - s) * .33f, o, r);
+                else if (e - s > .08f) { Key(s + .02f, 0, 0); Key(e - .02f, 0, 0); }
+            }
+            Key(a.character_end_times_seconds[^1] + .05f, 0, 0);
+            c.mouthTimes = times.ToArray(); c.mouthOpen = opens.ToArray(); c.mouthRound = rounds.ToArray();
+        }
+
+        /// Mouth keys from a clip's own audio (16-bit PCM WAV) when no TTS timing exists: loudness against the clip's voiced
+        /// level opens the jaw; the share of energy around 200-800 Hz against 1-4 kHz rounds the lips (rounded vowels sit low).
+        /// Precomputed because WebGL cannot read audio output at runtime. Audio-driven, not phoneme-accurate.
+        public static void AudioKeys(DialogueDatabase.Cue c, string wavPath)
+        {
+            var b = File.ReadAllBytes(wavPath);
+            int rate = 0, channels = 0, bits = 0, data = -1, size = 0;
+            for (int p = 12; p + 8 <= b.Length;)
+            {
+                var id = System.Text.Encoding.ASCII.GetString(b, p, 4); int len = BitConverter.ToInt32(b, p + 4);
+                if (id == "fmt ") { channels = BitConverter.ToInt16(b, p + 10); rate = BitConverter.ToInt32(b, p + 12); bits = BitConverter.ToInt16(b, p + 22); }
+                else if (id == "data") { data = p + 8; size = Math.Min(len, b.Length - data); break; }
+                p += 8 + len + (len & 1);
+            }
+            if (data < 0 || bits != 16 || rate <= 0 || channels < 1) { Debug.LogWarning("HE_MOUTH not a 16-bit PCM WAV, no mouth keys: " + wavPath); return; }
+            var x = new float[size / (2 * channels)];
+            for (int i = 0; i < x.Length; i++) x[i] = BitConverter.ToInt16(b, data + i * 2 * channels) / 32768f;   // first channel
+            float[] Band(float f0, float q)   // RBJ band-pass
+            {
+                double w = 2 * Math.PI * f0 / rate, al = Math.Sin(w) / (2 * q), a0 = 1 + al, a1 = -2 * Math.Cos(w) / a0, a2 = (1 - al) / a0, b0 = al / a0, x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+                var y = new float[x.Length];
+                for (int i = 0; i < x.Length; i++) { double v = b0 * (x[i] - x2) - a1 * y1 - a2 * y2; x2 = x1; x1 = x[i]; y2 = y1; y1 = v; y[i] = (float)v; }
+                return y;
+            }
+            float[] low = Band(400, .67f), high = Band(2000, .67f);
+            int hop = rate * 3 / 100, win = hop * 2;   // 30 ms steps over 60 ms windows
+            var at = new List<float>(); var level = new List<float>(); var share = new List<float>();
+            for (int s = 0; s + win <= x.Length; s += hop)
+            {
+                double e = 0, lo = 0, hi = 0;
+                for (int i = s; i < s + win; i++) { e += x[i] * x[i]; lo += low[i] * low[i]; hi += high[i] * high[i]; }
+                at.Add((s + win * .5f) / rate); level.Add((float)Math.Sqrt(e / win)); share.Add((float)(lo / Math.Max(1e-12, lo + hi)));
+            }
+            var sorted = level.OrderBy(v => v).ToArray();
+            float peak = sorted.Length > 0 ? sorted[(int)(.9f * (sorted.Length - 1))] : 0;
+            if (at.Count < 2 || peak <= 1e-5f) return;
+            // ponytail: the rounding range (0.87-0.93 low-band share) is calibrated on the OneCore VO (voiced p60-p95); a new
+            // voice gets character timing from the TTS instead, which takes precedence (MouthKeys).
+            var t = new List<float> { 0 }; var o = new List<float> { 0 }; var r = new List<float> { 0 };
+            for (int i = 0; i < at.Count; i++)
+            {
+                float open = Mathf.Clamp01((level[i] / peak - .12f) * 1.15f), round = level[i] > peak * .25f ? Mathf.Clamp01((share[i] - .87f) / .06f) : 0;
+                if (Mathf.Abs(open - o[^1]) > .06f || Mathf.Abs(round - r[^1]) > .1f || at[i] - t[^1] >= .15f) { t.Add(Mathf.Max(at[i], t[^1] + .001f)); o.Add(open); r.Add(round); }
+            }
+            t.Add(t[^1] + .05f); o.Add(0); r.Add(0);
+            c.mouthTimes = t.ToArray(); c.mouthOpen = o.ToArray(); c.mouthRound = r.ToArray();
         }
 
         static ChapterDefinition[] BuildChapters() => HumanEyeContent.Chapters().Select(c =>
@@ -232,7 +345,7 @@ namespace HumanEye.EditorTools
 
             var camGo = new GameObject("Main Camera") { tag = "MainCamera" };
             var cam = camGo.AddComponent<Camera>();
-            cam.nearClipPlane = .01f; cam.farClipPlane = 140; cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(.008f, .012f, .025f);
+            cam.nearClipPlane = .01f; cam.farClipPlane = 140; cam.clearFlags = CameraClearFlags.Skybox; cam.backgroundColor = new Color(.008f, .012f, .025f);
             cam.allowHDR = true;
             camGo.AddComponent<AudioListener>();
             var camData = camGo.AddComponent<UniversalAdditionalCameraData>(); camData.renderPostProcessing = true; camData.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;

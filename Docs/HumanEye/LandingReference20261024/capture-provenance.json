@@ -1,0 +1,62 @@
+[
+  {
+    "source": "Builds/Checks/reference-before-full/001_start_screen.png",
+    "copy": "Before.png",
+    "sha256": "F3DEC2C87013FFE920BCDAE25D07DED0145F5DD10579BCAA51532DEB106F1EE1"
+  },
+  {
+    "source": "Builds/Checks/reference-complete-record/Full_Module_Review.mp4",
+    "copy": "After.png",
+    "sha256": "0D57DBAA375BC6A28E891DB85D2ED6F183CF2CA212F1405F69EDBD94617815F0",
+    "sourceType": "exact_movie_frame",
+    "sourceSHA256": "BE9B3A37DE15DCDA280582CC8A959D1E6D8CB75E496A1419DFC5532ED012C2C5",
+    "frameIndex": 14,
+    "seconds": 0.4666666666666667,
+    "method": "ffmpeg frame select, native 1920x1080, no resampling or retouching"
+  },
+  {
+    "source": "C:/Users/ADMIN/AppData/Local/Temp/codex-clipboard-52ff9bc1-8483-4253-9195-f60f6699e958.png",
+    "copy": "Reference-Landing.png",
+    "sha256": "99980D7E7D78EC8DAF1BF5A7DD2E81D9CF4A28A2BC5FDBA88D08A93E0EC009BC"
+  },
+  {
+    "source": "C:/Users/ADMIN/AppData/Local/Temp/codex-clipboard-2720506a-b5ad-437d-b346-2855a1bef58c.png",
+    "copy": "Reference-Cutaway.png",
+    "sha256": "62980E9470BDA224F1AB9FC5614914146938AD2A4DDB7E082F4C260F5D8D46BA"
+  },
+  {
+    "source": "Builds/Checks/reference-complete-record/Full_Module_Review.mp4",
+    "copy": "Lens.png",
+    "sha256": "D3F398D24372E37F782898626EAAD06D66A0C3E63F1402F8388AF9F567CAC7F8",
+    "sourceType": "exact_movie_frame",
+    "sourceSHA256": "BE9B3A37DE15DCDA280582CC8A959D1E6D8CB75E496A1419DFC5532ED012C2C5",
+    "frameIndex": 900,
+    "seconds": 30,
+    "method": "ffmpeg frame select, native 1920x1080, no resampling or retouching"
+  },
+  {
+    "source": "Builds/Checks/reference-complete-record/Full_Module_Review.mp4",
+    "copy": "Retina.png",
+    "sha256": "47AD48C4FB4352B90B619697BBBCBEB1E4266E49FCF96DF76969DC1FB882050E",
+    "sourceType": "exact_movie_frame",
+    "sourceSHA256": "BE9B3A37DE15DCDA280582CC8A959D1E6D8CB75E496A1419DFC5532ED012C2C5",
+    "frameIndex": 1084,
+    "seconds": 36.13333333333333,
+    "method": "ffmpeg frame select, native 1920x1080, no resampling or retouching"
+  },
+  {
+    "source": "Builds/Checks/reference-complete-record/Full_Module_Review.mp4",
+    "copy": "Photoreceptors.png",
+    "sha256": "9E72F17D659DB0182F992274098C06855B20AF0FC641703A176A9DDC3E944087",
+    "sourceType": "exact_movie_frame",
+    "sourceSHA256": "BE9B3A37DE15DCDA280582CC8A959D1E6D8CB75E496A1419DFC5532ED012C2C5",
+    "frameIndex": 2268,
+    "seconds": 75.6,
+    "method": "ffmpeg frame select, native 1920x1080, no resampling or retouching"
+  },
+  {
+    "source": "Builds/Checks/reference-complete-tablet/001_start_screen.png",
+    "copy": "After-Tablet.png",
+    "sha256": "16BBBA5505D16B49394196E6D807B815D49C7EF5ECCA59E2DEFAD47935369974"
+  }
+]

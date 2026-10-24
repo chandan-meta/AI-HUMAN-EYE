@@ -124,7 +124,7 @@ namespace HumanEye.EditorTools
         static void Human()
         {
             float dy = DiscTarget.y - HumanPosition.y;
-            var hd = File.Exists(UM + "Matt/Matt_Display.fbx") ? HumanMatt() : stage.human;
+            var hd = File.Exists(UM + "Rocketbox/Rocketbox_Display.fbx") ? HumanRocketbox() : File.Exists(UM + "Matt/Matt_Display.fbx") ? HumanMatt() : stage.human;
             hd.transform.position = new Vector3(0, DiscTarget.y, HumanPosition.z);   // feet on the disc, toward its back edge
             var head = hd.eyeRight.position;
             Aim("S02_EstablishA", new Vector3(0, 2.7f + dy, -10.5f), new Vector3(0, 2.6f + dy, 3));

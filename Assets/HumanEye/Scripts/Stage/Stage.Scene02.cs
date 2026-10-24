@@ -23,6 +23,13 @@ namespace HumanEye
 
         void EnterScene02()
         {
+            if (timing == CinematicTiming.Production)
+            {   // the eye-awakens opening: its first frame is the start state (no corridor, no figure, no black hold)
+                niko.Place(Anchor("Intro")); NikoWait();
+                AwakeningSetup(); GradeOn(true);
+                var first = cams.Get("S02_IntroDolly"); AwakeningFrame(first, 0); if (first) cams.Snap("S02_IntroDolly");
+                return;
+            }
             eyeRig.gameObject.SetActive(true);
             human.ResetVisual(true, 1);
             displayLight.intensity = displayIntensity * .15f;
@@ -185,17 +192,19 @@ namespace HumanEye
             CaptureIntroState(); BindGrade();
             var anchor = Anchor("Intro");
             // Common start: black frame, dark hall, beams off, music out, Niko's spot at his anchor (he waits for his first line), both eyes closed in their sockets.
-            hud.Fade(1); Room(.08f); keyLight.intensity = 0; displayLight.intensity = 0;
+            bool production = timing == CinematicTiming.Production;
             foreach (var b in beamRenderers) b.enabled = false;
-            human.ResetVisual(true, 1);
             niko.Place(anchor);
-            ReturnEye();
-            FrameIntro();
-            sfx.SetMusic("start", 1.2f);   // the start screen's theme carries on through the gate (Stage.Opening switches at the face hold)
-            gateCrossed = false; revealHeard = AnatomyRevealController.RevealState.Skin;
+            if (production) AwakeningSetup();   // the eye at the display, from the start screen's own view (no black hold)
+            else
+            {
+                hud.Fade(1); Room(.08f); keyLight.intensity = 0; displayLight.intensity = 0;
+                human.ResetVisual(true, 1); ReturnEye(); FrameIntro();
+            }
+            sfx.SetMusic("start", 1.2f);   // the start screen's theme carries on into the opening (Stage.Opening switches at the cutaway)
             var dolly = cams.Get("S02_IntroDolly");
             if (Short || !dolly) yield return IntroShort(dolly, anchor);
-            else if (timing == CinematicTiming.Production) yield return Opening(dolly, anchor);
+            else if (production) yield return Opening(dolly);
             else yield return IntroFull(dolly, anchor);
             IntroEnd(anchor);
         }
@@ -418,13 +427,13 @@ namespace HumanEye
             if (entrance) { entrance.SetGate(1); entrance.SetAccents(1); }
             if (dolly) cams.Snap("S02_IntroDolly");
             bool production = timing == CinematicTiming.Production;
-            if (production) BuildOpeningPath();
-            sfx.SetMusic("transition", 1);   // reduced motion: the layer stills on the transition bed, the lab bed for Niko
-            var stills = production ? new[] { (15f, 1.5f), (19f, 1.4f), (24.7f, 1.6f), (29.5f, 1.5f) }
+            if (production) AwakeningSetup();
+            sfx.SetMusic("transition", 1);   // reduced motion: the stills on the transition bed, the lab bed for Niko
+            var stills = production ? new[] { (3.6f, 1.5f), (10.6f, 1.5f), (14.6f, 1.6f), (16.6f, 1.6f) }
                 : new[] { (29.5f, 1.6f), (64f, 1.8f), (80.5f, 2.4f) };
             foreach (var (tau, seconds) in stills)
             {
-                if (dolly) { if (production) OpeningFrame(dolly, tau); else IntroFrame(dolly, tau); }
+                if (dolly) { if (production) AwakeningFrame(dolly, tau); else IntroFrame(dolly, tau); }
                 spin = false; LabLevels(); GradeOn(true);
                 yield return Still(seconds);
                 if (skipIntro) yield break;
@@ -453,6 +462,8 @@ namespace HumanEye
         {
             bed = "lab"; sfx.SetMusic("lab", 1.2f); sfx.EndIntroMusic();   // every path (full, skipped, reduced) lands on the lab bed
             NikoCut(!Short && !skipIntro);   // reduced motion already cut to Niko (and sounded it); Skip has its own sound
+            ShowObject("apple", false); rays.gameObject.SetActive(false);
+            var retina = eye.Get("retina"); if (retina) retina.SetGlow(0, true);
             RestoreIntroState(); LabLevels();
             cams.Snap(SettleShot);
             if (entrance) { entrance.SetGate(1); entrance.SetAccents(1); }
@@ -560,7 +571,7 @@ namespace HumanEye
         {
             if (introStored) return;
             introStored = true;
-            var dolly = cams.Get("S02_IntroDolly"); if (dolly) dollyNear0 = dolly.Lens.NearClipPlane;
+            var dolly = cams.Get("S02_IntroDolly"); if (dolly && dollyNear0 < 0) dollyNear0 = dolly.Lens.NearClipPlane;
             movedLights[0] = faceKey; movedLights[1] = eyeKey; movedLights[2] = eyeRim; movedLights[3] = eyeFill;
             for (int i = 0; i < movedLights.Length; i++) if (movedLights[i]) { lightPos[i] = movedLights[i].transform.position; lightRot[i] = movedLights[i].transform.rotation; }
             var skullMat = human.skull.main.Length > 0 && human.skull.main[0] ? human.skull.main[0].sharedMaterial : null;
@@ -583,6 +594,7 @@ namespace HumanEye
             }
             foreach (var ps in new[] { gateSparks, gateDust, extractMotes, titleBurst, nikoVortex, depthDust, nikoSparkle, anatomyTransition, anatomyMotes }) Particles(ps, false);
             if (human && human.reveal) human.reveal.ResetVisual();   // clears the breakup field, motes and haze deterministically
+            RestoreAwakeningSky();
             GradeOn(false);
         }
 
@@ -664,6 +676,7 @@ namespace HumanEye
 
         void Dolly(CinemachineCamera dolly, Vector3 pos, Vector3 look, float fov, float near)
         {
+            if (dolly.name == "S02_IntroDolly" && dollyNear0 < 0) dollyNear0 = dolly.Lens.NearClipPlane;
             dolly.transform.SetPositionAndRotation(pos, Quaternion.LookRotation(look - pos, Vector3.up));
             var lens = dolly.Lens; lens.FieldOfView = cams.Fitted(fov); lens.NearClipPlane = near; dolly.Lens = lens;
         }

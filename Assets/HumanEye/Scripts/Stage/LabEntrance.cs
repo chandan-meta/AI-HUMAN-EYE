@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace HumanEye
 {
-    /// Futuristic sliding gate. Leaves are driven by absolute local poses, so skip, replay and the menu are deterministic.
-    /// Convention (authored by IntroPatch): leaves[0] and [1] are the two door halves that slide apart sideways;
-    /// a third leaf, when present, is the floor bolt that retracts first. Each stage eases in and out.
+    /// Futuristic lifting gate. Leaves are driven by absolute local poses, so skip, replay and the menu are deterministic.
+    /// Convention (IntroPatch bakes the leaves, Builder.ApplyReference sets their open poses): leaves[0] and [1] are the
+    /// two panel halves, which rise together (the room's own Door01Up motion, as in the reference); a third leaf, when
+    /// present, is the floor bolt that retracts first. Each stage eases in and out.
     public class LabEntrance : MonoBehaviour
     {
         public Transform[] leaves;
@@ -21,6 +22,7 @@ namespace HumanEye
             bool hasBolt = leaves.Length == 3;
             for (int i = 0; i < leaves.Length; i++)
             {
+                if (!leaves[i]) continue;   // a leaf removed from the scene (the retired lifting door) must not stop the menu or the opening
                 bool bolt = hasBolt && i == 2;
                 float k = !hasBolt ? OpenAmount
                         : bolt ? Mathf.InverseLerp(0, boltShare, OpenAmount)

@@ -69,6 +69,7 @@ namespace HumanEye
             Lathe.Revolve(profile, EyeGeometry.CutFrom, EyeGeometry.CutTo, 36, cutMesh);
             Lathe.Caps(profile, EyeGeometry.KeepFrom, EyeGeometry.KeepTo, capsMesh);
             pupil.localScale = pupilCut.localScale = new Vector3(PupilRadius, PupilRadius, 1);
+            Get("iris")?.SetFloat("_PupilNow", PupilRadius);   // the detailed iris slides its inner edge to the same opening
             builtPupil = PupilRadius;
         }
 
@@ -93,6 +94,13 @@ namespace HumanEye
             foreach (var c in caps) c.enabled = open;
             SetCutAmount(open ? 1 : 0);
             IsCut = open;
+        }
+
+        /// The cutaway at any point of its travel (0 closed, 1 open), for time-driven cinematics.
+        public void SetCut(float k)
+        {
+            foreach (var c in caps) c.enabled = k > .001f;
+            SetCutAmount(k); IsCut = k >= .5f;
         }
 
         void SetCutAmount(float k)

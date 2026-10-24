@@ -1,0 +1,16 @@
+{
+  "S03_Lens_Close": {
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_pixel_delta": 3.037
+  },
+  "S06_LensClose": {
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_pixel_delta": 2.564
+  }
+}

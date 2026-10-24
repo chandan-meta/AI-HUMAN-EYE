@@ -27,6 +27,8 @@ namespace HumanEye
         public string Question { get; private set; }
         public NikoAnswer Answer { get; private set; }
         public bool Thinking { get; private set; }
+        /// The beat Niko spends thinking (his Think gesture) before a voiced answer starts.
+        public const float ThinkSeconds = .7f;
         public event Action Changed;
         int token;
 
@@ -119,6 +121,9 @@ namespace HumanEye
 
         IEnumerator Replay(string[] cues, int mine)
         {
+            yield return new Wait(stage.Short ? .15f : ThinkSeconds);
+            while (mine == token && narrator.Busy) yield return null;   // a lesson line still playing finishes first
+            if (mine == token) stage.sfx.Play("nikoreply", .35f);   // the answer begins (the voice and its lip sync follow at once)
             foreach (var c in cues)
             {
                 if (mine != token) yield break;

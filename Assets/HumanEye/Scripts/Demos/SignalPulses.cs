@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace HumanEye
 {
-    /// Electrical signals: discrete cyan zig-zag pulses that hop along nerve/cell paths. Deliberately unlike the
-    /// smooth warm light streaks, and always labelled, so light and signals never rely on colour alone.
+    /// Neural signals: separated warm-white packets with tapered gold trails along nerve/cell paths.
+    /// Deliberately unlike the smooth, warm-white light beams (continuous straight streaks, never comets), and always
+    /// labelled, so light and signals never rely on colour alone. A point light rides on the lead pulse of the "nerve" path so the nerve and
+    /// the ghosted brain are lit by the signal as it passes. Motion uses the visualization clock (FREEZE/Pause hold it).
     public class SignalPulses : MonoBehaviour
     {
         [Serializable]
@@ -18,21 +20,59 @@ namespace HumanEye
             [NonSerialized] public float total;
         }
 
+        /// A live pulse: the handle a tracking shot follows. HeadArrived turns true when the head reaches the end of the
+        /// path (the trail then shrinks into that point); Alive turns false once the trail has gone.
+        public class Pulse
+        {
+            public Path Path { get; internal set; }
+            public float Distance { get; internal set; }      // head position along the path (path units)
+            public bool HeadArrived { get; internal set; }
+            public bool Alive { get; internal set; }
+            public float Progress => Path != null && Path.total > 0 ? Mathf.Clamp01(Distance / Path.total) : 1;
+            internal LineRenderer line; internal float speedScale = 1; internal Action done;
+        }
+
         public Path[] paths;
         public LineRenderer[] pool;
-        public float speed = .6f, pulseLength = .12f, interval = .55f;
+        public float speed = .6f, interval = .55f;
         public float widthScale = 1;
 
-        class Pulse { public Path path; public float s; public LineRenderer line; public float speedScale = 1; public Action done; }
+        [Header("Comet")]
+        [Tooltip("Trail behind the head, in path units (world metres on the nerve).")] public float trailLength = .5f;
+        [Tooltip("Head width in path units; the trail tapers to zero.")] public float headWidth = .07f;
+        [Tooltip("Point light riding on the lead pulse of the 'nerve' path (created by the cinematic patch); off when none is live.")]
+        public Light headLight;
+        public float headLightIntensity = 6;
+        public const int TrailPoints = 16;
+
+        /// Raised with the path id when a pulse's head reaches the end of its path.
+        public event Action<string> Arrived;
+        /// Raised by StopAll (chapter checkpoints, demo cancel, menu) so the stage can restore anything tied to the signals.
+        public event Action Stopped;
+
         readonly List<Pulse> live = new();
         readonly HashSet<string> emitting = new();
         readonly Dictionary<string, float> nextEmit = new();
-        readonly Vector3[] buffer = new Vector3[6];
+        readonly Vector3[] buffer = new Vector3[TrailPoints];
+        Pulse lightPulse; float lightLevel;
 
         void Awake()
         {
             foreach (var p in paths) Measure(p);
-            foreach (var l in pool) l.enabled = false;
+            // The material supplies the restrained HDR core; taper and alpha keep packets distinct.
+            var width = new AnimationCurve(new Keyframe(0, 1), new Keyframe(.1f, .6f), new Keyframe(.45f, .22f), new Keyframe(1, 0));
+            var colour = new Gradient();
+            colour.SetKeys(
+                new[] { new GradientColorKey(new Color(1f, .98f, .86f), 0), new GradientColorKey(new Color(1f, .77f, .27f), .18f), new GradientColorKey(new Color(1f, .43f, .07f), 1) },
+                new[] { new GradientAlphaKey(1, 0), new GradientAlphaKey(.75f, .2f), new GradientAlphaKey(.25f, .6f), new GradientAlphaKey(0, 1) });
+            foreach (var l in pool)
+            {
+                if (!l) continue;
+                l.enabled = false; l.positionCount = 0;
+                l.widthCurve = width; l.colorGradient = colour;
+                l.alignment = LineAlignment.View; l.textureMode = LineTextureMode.Stretch;
+            }
+            if (headLight) headLight.enabled = false;
         }
 
         static void Measure(Path p)
@@ -44,19 +84,34 @@ namespace HumanEye
         public Path Get(string id) => Array.Find(paths, p => p.id == id);
 
         public void Emit(string id, bool on) { if (on) emitting.Add(id); else emitting.Remove(id); }
-        public void StopAll() { emitting.Clear(); foreach (var p in live) p.line.enabled = false; live.Clear(); }
+
+        public void StopAll()
+        {
+            emitting.Clear();
+            nextEmit.Clear();
+            foreach (var p in live) { if (p.line) p.line.enabled = false; p.Alive = false; }
+            live.Clear();
+            lightPulse = null; lightLevel = 0;
+            if (headLight) headLight.enabled = false;
+            Stopped?.Invoke();
+        }
+
         public int Live => live.Count;
 
-        /// One pulse; returns false if the pool is exhausted (repeated requests never pile up beyond the pool).
-        public bool Fire(string id, float speedScale = 1, Action done = null)
+        /// One pulse with a handle; null if the pool is exhausted (repeated requests never pile up beyond the pool).
+        public Pulse Launch(string id, float speedScale = 1, Action done = null)
         {
             var path = Get(id);
-            var line = Array.Find(pool, l => !l.enabled);
-            if (path == null || !line) return false;
+            var line = Array.Find(pool, l => l && !l.enabled);
+            if (path == null || !line) return null;
             line.enabled = true;
-            live.Add(new Pulse { path = path, s = 0, line = line, speedScale = speedScale, done = done });
-            return true;
+            var pulse = new Pulse { Path = path, Distance = 0, Alive = true, line = line, speedScale = speedScale, done = done };
+            live.Add(pulse);
+            return pulse;
         }
+
+        /// One pulse; returns false if the pool is exhausted.
+        public bool Fire(string id, float speedScale = 1, Action done = null) => Launch(id, speedScale, done) != null;
 
         public Vector3 PointAt(Path p, float s)
         {
@@ -69,12 +124,27 @@ namespace HumanEye
             return p.space ? p.space.TransformPoint(local) : local;
         }
 
-        /// Position of the newest pulse on a path (camera follow during TRACE).
+        /// The pulse furthest along a path whose head is still travelling (what a camera or light should follow).
+        public Pulse LeadPulse(string id)
+        {
+            Pulse best = null;
+            foreach (var p in live) if (p.Path.id == id && !p.HeadArrived && (best == null || p.Distance > best.Distance)) best = p;
+            return best;
+        }
+
+        /// Position of the lead pulse on a path.
         public bool Lead(string id, out Vector3 position)
         {
-            position = default;
-            for (int i = live.Count - 1; i >= 0; i--) if (live[i].path.id == id) { position = PointAt(live[i].path, live[i].s); return true; }
-            return false;
+            var p = LeadPulse(id);
+            position = p != null ? PointAt(p.Path, p.Distance) : default;
+            return p != null;
+        }
+
+        /// The most recently launched pulse on a path (nearest its start).
+        public Pulse Newest(string id)
+        {
+            for (int i = live.Count - 1; i >= 0; i--) if (live[i].Path.id == id) return live[i];
+            return null;
         }
 
         void Update()
@@ -90,21 +160,35 @@ namespace HumanEye
             for (int i = live.Count - 1; i >= 0; i--)
             {
                 var p = live[i];
-                float scale = p.path.space ? p.path.space.lossyScale.x : 1;
-                p.s += speed * p.speedScale * dt;
-                if (p.s - pulseLength > p.path.total) { p.line.enabled = false; live.RemoveAt(i); p.done?.Invoke(); continue; }
-                for (int k = 0; k < buffer.Length; k++)
+                float scale = p.Path.space ? p.Path.space.lossyScale.x : 1;
+                p.Distance += speed * p.speedScale * dt;
+                if (!p.HeadArrived && p.Distance >= p.Path.total) { p.HeadArrived = true; Arrived?.Invoke(p.Path.id); }
+                if (p.Distance - trailLength >= p.Path.total)
                 {
-                    float s = p.s - pulseLength * k / (buffer.Length - 1);
-                    var a = PointAt(p.path, s);
-                    var b = PointAt(p.path, s + .01f);
-                    var side = Vector3.Cross((b - a).normalized, Camera.main ? Camera.main.transform.forward : Vector3.forward).normalized;
-                    buffer[k] = a + side * ((k % 2 == 0 ? 1 : -1) * pulseLength * .18f * scale);
+                    // the head has sat at the end while the trail caught up: the signal is absorbed, not cut off
+                    p.line.enabled = false; p.Alive = false; live.RemoveAt(i);
+                    p.done?.Invoke();
+                    continue;
                 }
-                p.line.positionCount = buffer.Length;
+                for (int k = 0; k < TrailPoints; k++) buffer[k] = PointAt(p.Path, p.Distance - trailLength * k / (TrailPoints - 1));
+                p.line.positionCount = TrailPoints;
                 p.line.SetPositions(buffer);
-                p.line.widthMultiplier = .02f * scale * widthScale;
+                p.line.widthMultiplier = headWidth * scale * widthScale;
             }
+            UpdateHeadLight(dt);
+        }
+
+        /// The light rides one nerve pulse to the end, fades out there, then picks up the next lead (no jumps back).
+        void UpdateHeadLight(float dt)
+        {
+            if (!headLight) return;
+            bool riding = lightPulse != null && lightPulse.Alive && !lightPulse.HeadArrived;
+            if (!riding && lightLevel <= 0) { lightPulse = LeadPulse("nerve"); riding = lightPulse != null; }
+            lightLevel = Mathf.MoveTowards(lightLevel, riding ? 1 : 0, dt * 5);
+            if (lightPulse != null) headLight.transform.position = PointAt(lightPulse.Path, lightPulse.Distance);
+            headLight.intensity = headLightIntensity * lightLevel;
+            bool on = lightLevel > .001f;
+            if (headLight.enabled != on) headLight.enabled = on;
         }
     }
 }

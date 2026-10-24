@@ -8,7 +8,7 @@ A playable Unity learning module. Niko, the Vision Investigator Officer, guides 
 
 - **Unity 6000.3.0f1** (the project's existing version; nothing was upgraded). URP 17.3, Input System 1.16, Cinemachine 3.1.5, UI Toolkit, Test Framework. No new packages were added.
 - **Windows build support** (installed) for PC. **Android build support** (installed) for the configured native tablet target (API 29, ARM64).
-- **WebGL build support is not installed** for 6000.3. The code is Web-safe (PlayerPrefs saves, a visible Start button that unlocks audio, no threads), but no Web build was produced or tested.
+- **WebGL build support is installed** for 6000.3 as of 14 October 2026. See the reference-v2 report for the current build and browser test result; earlier reports predate this installation.
 - Optional, only to regenerate source data: Python 3.11, ffmpeg, Blender 5.1, and Windows OneCore voices (TTS).
 
 ## Run it
