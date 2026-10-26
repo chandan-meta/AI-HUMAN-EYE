@@ -1,0 +1,2 @@
+bk-validate.log:HUMAN_EYE_VALIDATION passed=72 warnings=0 errors=0
+bk-audio.log:HUMAN_EYE_AUDIO_APPLIED tracks=8 effects=93 keys=63 buses=Voice,Music,Ambience,SFX,UI,Cinematic

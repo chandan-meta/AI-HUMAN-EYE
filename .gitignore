@@ -23,3 +23,13 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Local scratch and caches
+/tmp/
+__pycache__/
+*.blend1
+# Unity crash-recovery scene copies (never project content)
+/Assets/_Recovery/
+/Assets/_Recovery.meta
+# Delivery archive over GitHub's 100 MB file limit (kept on disk only)
+/Docs/HumanEye/HumanEye_PearlIris_Delivery.zip

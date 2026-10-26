@@ -1,0 +1,37 @@
+    0.01s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1600x900 quality=PC fast=1
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    1.53s	pointer-reachable	start-actions/start-begin
+    1.53s	pointer-reachable	start-actions/start-help
+    1.53s	pointer-reachable	start-actions/start-chapters
+    1.53s	pointer-reachable	start-more/start-settings
+    1.53s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    3.03s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-nikoposes\001_start_screen.png
+    3.03s	layout	start_screen: controls=4 small=0 outside=0 size=1600x900
+    3.07s	ui	Pointer clicked start-settings
+    3.07s	PASS	Settings opens from menu
+    3.08s	pointer-reachable	VisualElement/set-size-0
+    3.08s	pointer-reachable	VisualElement/set-size-1
+    3.08s	pointer-reachable	VisualElement/set-size-2
+    3.08s	pointer-reachable	VisualElement/set-size-3
+    3.08s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    3.19s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-nikoposes\002_menu_settings.png
+    3.19s	layout	menu_settings: controls=4 small=0 outside=0 size=1600x900
+    3.24s	ui	Pointer clicked settings-close
+    3.24s	PASS	Settings closes
+    3.24s	layout	menu: controls=4 small=0 outside=0 size=1600x900
+    4.91s	niko_pose	Idle state=Niko_Idle_Breathing expression=Happy elbowR=(-0.251,0.459,0.004) handR=(-0.329,0.358,0.033) elbowL=(0.247,0.459,0.012) handL=(0.325,0.358,0.041)
+    6.51s	niko_pose	Wave state=Niko_Wave expression=Happy elbowR=(-0.299,0.544,0.003) handR=(-0.388,0.635,0.033) elbowL=(0.247,0.453,0.010) handL=(0.325,0.352,0.039)
+    8.11s	niko_pose	Greet state=Niko_Greet expression=Happy elbowR=(-0.299,0.545,0.021) handR=(-0.401,0.622,0.050) elbowL=(0.247,0.454,0.023) handL=(0.325,0.353,0.051)
+    9.72s	niko_pose	RaiseHand state=Niko_RaiseHand expression=Happy elbowR=(-0.300,0.557,0.015) handR=(-0.385,0.652,0.047) elbowL=(0.246,0.460,0.006) handL=(0.324,0.359,0.034)
+   11.33s	niko_pose	Present state=Niko_Present expression=Happy elbowR=(-0.270,0.500,0.065) handR=(-0.334,0.473,0.175) elbowL=(0.252,0.467,0.043) handL=(0.326,0.395,0.123)
+   12.95s	niko_pose	Point state=Niko_Point expression=Happy elbowR=(-0.252,0.463,0.012) handR=(-0.330,0.362,0.041) elbowL=(0.284,0.527,0.030) handL=(0.402,0.491,0.074)
+   14.56s	niko_pose	PointLeft state=Niko_PointLeft expression=Happy elbowR=(-0.251,0.447,0.004) handR=(-0.329,0.346,0.033) elbowL=(0.289,0.517,0.016) handL=(0.412,0.485,0.047)
+   16.18s	niko_pose	PointRight state=Niko_PointRight expression=Happy elbowR=(-0.294,0.529,0.016) handR=(-0.417,0.497,0.046) elbowL=(0.247,0.459,0.013) handL=(0.325,0.358,0.041)
+   17.78s	niko_pose	Pinch state=Niko_Pinch expression=Happy elbowR=(-0.269,0.508,0.057) handR=(-0.306,0.494,0.182) elbowL=(0.247,0.453,0.010) handL=(0.325,0.352,0.038)
+   19.39s	niko_pose	Snap state=Niko_Snap expression=Happy elbowR=(-0.293,0.535,0.029) handR=(-0.376,0.616,0.090) elbowL=(0.247,0.452,0.009) handL=(0.325,0.351,0.037)
+   21.00s	niko_pose	Think state=Niko_Think expression=Thinking elbowR=(-0.295,0.523,0.019) handR=(-0.372,0.615,0.071) elbowL=(0.281,0.495,-0.023) handL=(0.334,0.375,-0.022)
+   22.61s	niko_pose	Surprise state=Niko_Surprise expression=Surprised elbowR=(-0.293,0.521,0.024) handR=(-0.381,0.609,0.065) elbowL=(0.287,0.520,0.015) handL=(0.375,0.608,0.056)
+   24.21s	niko_pose	Celebrate state=Niko_Celebrate expression=Excited elbowR=(-0.299,0.573,0.016) handR=(-0.392,0.659,0.049) elbowL=(0.294,0.573,0.010) handL=(0.392,0.653,0.042)
+   25.83s	niko_pose	Encourage state=Niko_Encourage expression=Encouraging elbowR=(-0.255,0.497,0.073) handR=(-0.244,0.502,0.203) elbowL=(0.247,0.448,0.005) handL=(0.325,0.347,0.033)
+   27.44s	niko_pose	Listen state=Niko_Listen expression=Listening elbowR=(-0.248,0.462,0.038) handR=(-0.288,0.395,0.142) elbowL=(0.244,0.462,0.045) handL=(0.284,0.394,0.149)
+   27.44s	done	niko poses

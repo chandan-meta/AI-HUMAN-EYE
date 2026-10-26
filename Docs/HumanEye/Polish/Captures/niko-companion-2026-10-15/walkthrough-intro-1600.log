@@ -1,0 +1,425 @@
+    0.01s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1600x900 quality=PC fast=1
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    1.54s	pointer-reachable	start-actions/start-begin
+    1.54s	pointer-reachable	start-actions/start-help
+    1.54s	pointer-reachable	start-actions/start-chapters
+    1.54s	pointer-reachable	start-more/start-settings
+    1.54s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    2.18s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\001_start_screen.png
+    2.18s	layout	start_screen: controls=4 small=0 outside=0 size=1600x900
+    2.22s	ui	Pointer clicked start-settings
+    2.22s	PASS	Settings opens from menu
+    2.23s	pointer-reachable	VisualElement/set-size-0
+    2.23s	pointer-reachable	VisualElement/set-size-1
+    2.23s	pointer-reachable	VisualElement/set-size-2
+    2.23s	pointer-reachable	VisualElement/set-size-3
+    2.23s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    2.37s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\002_menu_settings.png
+    2.37s	layout	menu_settings: controls=4 small=0 outside=0 size=1600x900
+    2.42s	ui	Pointer clicked settings-close
+    2.42s	PASS	Settings closes
+    2.42s	layout	menu: controls=4 small=0 outside=0 size=1600x900
+    2.47s	chapter	Scene02
+    2.57s	state	Cinematic
+    2.57s	ui	Pointer clicked start-begin
+    2.57s	action	Start pressed
+    2.59s	pointer-reachable	letterbox-bottom/btn-skip-intro
+    2.59s	pointer-reachable	top-buttons/btn-pause
+    2.59s	pointer-reachable	top-buttons/btn-settings
+    2.59s	pointer-audit	intro_00.1s reachable=3 cumulativeFailures=0
+    2.76s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\003_intro_00.1s.png
+    2.76s	layout	intro_00.1s: controls=3 small=0 outside=0 size=1600x900
+    2.84s	pointer-audit	intro_00.4s reachable=3 cumulativeFailures=0
+    3.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\004_intro_00.4s.png
+    3.00s	layout	intro_00.4s: controls=3 small=0 outside=0 size=1600x900
+    3.10s	pointer-audit	intro_00.6s reachable=3 cumulativeFailures=0
+    3.25s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\005_intro_00.6s.png
+    3.25s	layout	intro_00.6s: controls=3 small=0 outside=0 size=1600x900
+    3.35s	pointer-audit	intro_00.9s reachable=3 cumulativeFailures=0
+    3.55s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\006_intro_00.9s.png
+    3.56s	layout	intro_00.9s: controls=3 small=0 outside=0 size=1600x900
+    3.61s	pointer-audit	intro_01.1s reachable=3 cumulativeFailures=0
+    3.80s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\007_intro_01.1s.png
+    3.80s	layout	intro_01.1s: controls=3 small=0 outside=0 size=1600x900
+    3.87s	pointer-audit	intro_01.4s reachable=3 cumulativeFailures=0
+    4.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\008_intro_01.4s.png
+    4.00s	layout	intro_01.4s: controls=3 small=0 outside=0 size=1600x900
+    4.14s	pointer-audit	intro_01.7s reachable=3 cumulativeFailures=0
+    4.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\009_intro_01.7s.png
+    4.27s	layout	intro_01.7s: controls=3 small=0 outside=0 size=1600x900
+    4.40s	pointer-audit	intro_01.9s reachable=3 cumulativeFailures=0
+    4.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\010_intro_01.9s.png
+    4.53s	layout	intro_01.9s: controls=3 small=0 outside=0 size=1600x900
+    4.66s	pointer-audit	intro_02.2s reachable=3 cumulativeFailures=0
+    4.82s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\011_intro_02.2s.png
+    4.82s	layout	intro_02.2s: controls=3 small=0 outside=0 size=1600x900
+    4.92s	pointer-audit	intro_02.4s reachable=3 cumulativeFailures=0
+    5.06s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\012_intro_02.4s.png
+    5.06s	layout	intro_02.4s: controls=3 small=0 outside=0 size=1600x900
+    5.18s	pointer-audit	intro_02.7s reachable=3 cumulativeFailures=0
+    5.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\013_intro_02.7s.png
+    5.32s	layout	intro_02.7s: controls=3 small=0 outside=0 size=1600x900
+    5.43s	pointer-audit	intro_03.0s reachable=3 cumulativeFailures=0
+    5.57s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\014_intro_03.0s.png
+    5.57s	layout	intro_03.0s: controls=3 small=0 outside=0 size=1600x900
+    5.69s	pointer-audit	intro_03.2s reachable=3 cumulativeFailures=0
+    5.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\015_intro_03.2s.png
+    5.86s	layout	intro_03.2s: controls=3 small=0 outside=0 size=1600x900
+    5.95s	pointer-audit	intro_03.5s reachable=3 cumulativeFailures=0
+    6.10s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\016_intro_03.5s.png
+    6.10s	layout	intro_03.5s: controls=3 small=0 outside=0 size=1600x900
+    6.21s	pointer-audit	intro_03.7s reachable=3 cumulativeFailures=0
+    6.34s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\017_intro_03.7s.png
+    6.34s	layout	intro_03.7s: controls=3 small=0 outside=0 size=1600x900
+    6.46s	pointer-audit	intro_04.0s reachable=3 cumulativeFailures=0
+    6.62s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\018_intro_04.0s.png
+    6.62s	layout	intro_04.0s: controls=3 small=0 outside=0 size=1600x900
+    6.72s	pointer-audit	intro_04.2s reachable=3 cumulativeFailures=0
+    6.85s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\019_intro_04.2s.png
+    6.85s	layout	intro_04.2s: controls=3 small=0 outside=0 size=1600x900
+    6.97s	pointer-audit	intro_04.5s reachable=3 cumulativeFailures=0
+    7.11s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\020_intro_04.5s.png
+    7.11s	layout	intro_04.5s: controls=3 small=0 outside=0 size=1600x900
+    7.22s	pointer-audit	intro_04.8s reachable=3 cumulativeFailures=0
+    7.36s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\021_intro_04.8s.png
+    7.36s	layout	intro_04.8s: controls=3 small=0 outside=0 size=1600x900
+    7.48s	pointer-audit	intro_05.0s reachable=3 cumulativeFailures=0
+    7.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\022_intro_05.0s.png
+    7.61s	layout	intro_05.0s: controls=3 small=0 outside=0 size=1600x900
+    7.73s	pointer-audit	intro_05.3s reachable=3 cumulativeFailures=0
+    7.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\023_intro_05.3s.png
+    7.86s	layout	intro_05.3s: controls=3 small=0 outside=0 size=1600x900
+    7.98s	pointer-audit	intro_05.5s reachable=3 cumulativeFailures=0
+    8.11s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\024_intro_05.5s.png
+    8.11s	layout	intro_05.5s: controls=3 small=0 outside=0 size=1600x900
+    8.23s	pointer-audit	intro_05.8s reachable=3 cumulativeFailures=0
+    8.36s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\025_intro_05.8s.png
+    8.36s	layout	intro_05.8s: controls=3 small=0 outside=0 size=1600x900
+    8.49s	pointer-audit	intro_06.0s reachable=3 cumulativeFailures=0
+    8.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\026_intro_06.0s.png
+    8.66s	layout	intro_06.0s: controls=3 small=0 outside=0 size=1600x900
+    8.75s	pointer-audit	intro_06.3s reachable=3 cumulativeFailures=0
+    8.87s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\027_intro_06.3s.png
+    8.87s	layout	intro_06.3s: controls=3 small=0 outside=0 size=1600x900
+    9.00s	pointer-audit	intro_06.5s reachable=3 cumulativeFailures=0
+    9.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\028_intro_06.5s.png
+    9.13s	layout	intro_06.5s: controls=3 small=0 outside=0 size=1600x900
+    9.25s	pointer-audit	intro_06.8s reachable=3 cumulativeFailures=0
+    9.37s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\029_intro_06.8s.png
+    9.37s	layout	intro_06.8s: controls=3 small=0 outside=0 size=1600x900
+    9.51s	pointer-audit	intro_07.0s reachable=3 cumulativeFailures=0
+    9.63s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\030_intro_07.0s.png
+    9.63s	layout	intro_07.0s: controls=3 small=0 outside=0 size=1600x900
+    9.76s	pointer-audit	intro_07.3s reachable=3 cumulativeFailures=0
+    9.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\031_intro_07.3s.png
+    9.88s	layout	intro_07.3s: controls=3 small=0 outside=0 size=1600x900
+   10.01s	pointer-audit	intro_07.5s reachable=3 cumulativeFailures=0
+   10.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\032_intro_07.5s.png
+   10.13s	layout	intro_07.5s: controls=3 small=0 outside=0 size=1600x900
+   10.28s	pointer-audit	intro_07.8s reachable=3 cumulativeFailures=0
+   10.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\033_intro_07.8s.png
+   10.39s	layout	intro_07.8s: controls=3 small=0 outside=0 size=1600x900
+   10.54s	pointer-audit	intro_08.1s reachable=3 cumulativeFailures=0
+   10.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\034_intro_08.1s.png
+   10.66s	layout	intro_08.1s: controls=3 small=0 outside=0 size=1600x900
+   10.80s	pointer-audit	intro_08.3s reachable=3 cumulativeFailures=0
+   10.91s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\035_intro_08.3s.png
+   10.91s	layout	intro_08.3s: controls=3 small=0 outside=0 size=1600x900
+   11.06s	pointer-audit	intro_08.6s reachable=3 cumulativeFailures=0
+   11.18s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\036_intro_08.6s.png
+   11.18s	layout	intro_08.6s: controls=3 small=0 outside=0 size=1600x900
+   11.31s	pointer-audit	intro_08.8s reachable=3 cumulativeFailures=0
+   11.43s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\037_intro_08.8s.png
+   11.43s	layout	intro_08.8s: controls=3 small=0 outside=0 size=1600x900
+   11.57s	pointer-audit	intro_09.1s reachable=3 cumulativeFailures=0
+   11.69s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\038_intro_09.1s.png
+   11.69s	layout	intro_09.1s: controls=3 small=0 outside=0 size=1600x900
+   11.83s	pointer-audit	intro_09.4s reachable=3 cumulativeFailures=0
+   11.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\039_intro_09.4s.png
+   11.94s	layout	intro_09.4s: controls=3 small=0 outside=0 size=1600x900
+   12.09s	pointer-audit	intro_09.6s reachable=3 cumulativeFailures=0
+   12.20s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\040_intro_09.6s.png
+   12.20s	layout	intro_09.6s: controls=3 small=0 outside=0 size=1600x900
+   12.35s	pointer-audit	intro_09.9s reachable=3 cumulativeFailures=0
+   12.47s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\041_intro_09.9s.png
+   12.47s	layout	intro_09.9s: controls=3 small=0 outside=0 size=1600x900
+   12.62s	pointer-audit	intro_10.1s reachable=3 cumulativeFailures=0
+   12.74s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\042_intro_10.1s.png
+   12.74s	layout	intro_10.1s: controls=3 small=0 outside=0 size=1600x900
+   12.87s	pointer-audit	intro_10.4s reachable=3 cumulativeFailures=0
+   12.99s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\043_intro_10.4s.png
+   12.99s	layout	intro_10.4s: controls=3 small=0 outside=0 size=1600x900
+   13.13s	pointer-audit	intro_10.7s reachable=3 cumulativeFailures=0
+   13.25s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\044_intro_10.7s.png
+   13.25s	layout	intro_10.7s: controls=3 small=0 outside=0 size=1600x900
+   13.38s	pointer-audit	intro_10.9s reachable=3 cumulativeFailures=0
+   13.50s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\045_intro_10.9s.png
+   13.50s	layout	intro_10.9s: controls=3 small=0 outside=0 size=1600x900
+   13.64s	pointer-audit	intro_11.2s reachable=3 cumulativeFailures=0
+   13.76s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\046_intro_11.2s.png
+   13.76s	layout	intro_11.2s: controls=3 small=0 outside=0 size=1600x900
+   13.89s	pointer-audit	intro_11.4s reachable=3 cumulativeFailures=0
+   14.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\047_intro_11.4s.png
+   14.00s	layout	intro_11.4s: controls=3 small=0 outside=0 size=1600x900
+   14.16s	pointer-audit	intro_11.7s reachable=3 cumulativeFailures=0
+   14.29s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\048_intro_11.7s.png
+   14.29s	layout	intro_11.7s: controls=3 small=0 outside=0 size=1600x900
+   14.41s	pointer-audit	intro_11.9s reachable=3 cumulativeFailures=0
+   14.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\049_intro_11.9s.png
+   14.53s	layout	intro_11.9s: controls=3 small=0 outside=0 size=1600x900
+   14.67s	pointer-audit	intro_12.2s reachable=3 cumulativeFailures=0
+   14.79s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\050_intro_12.2s.png
+   14.79s	layout	intro_12.2s: controls=3 small=0 outside=0 size=1600x900
+   14.92s	pointer-audit	intro_12.5s reachable=3 cumulativeFailures=0
+   15.04s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\051_intro_12.5s.png
+   15.04s	layout	intro_12.5s: controls=3 small=0 outside=0 size=1600x900
+   15.17s	pointer-audit	intro_12.7s reachable=3 cumulativeFailures=0
+   15.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\052_intro_12.7s.png
+   15.30s	layout	intro_12.7s: controls=3 small=0 outside=0 size=1600x900
+   15.43s	pointer-audit	intro_13.0s reachable=3 cumulativeFailures=0
+   15.55s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\053_intro_13.0s.png
+   15.55s	layout	intro_13.0s: controls=3 small=0 outside=0 size=1600x900
+   15.70s	pointer-audit	intro_13.2s reachable=3 cumulativeFailures=0
+   15.81s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\054_intro_13.2s.png
+   15.81s	layout	intro_13.2s: controls=3 small=0 outside=0 size=1600x900
+   15.96s	pointer-audit	intro_13.5s reachable=3 cumulativeFailures=0
+   16.08s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\055_intro_13.5s.png
+   16.08s	layout	intro_13.5s: controls=3 small=0 outside=0 size=1600x900
+   16.22s	pointer-audit	intro_13.7s reachable=3 cumulativeFailures=0
+   16.34s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\056_intro_13.7s.png
+   16.34s	layout	intro_13.7s: controls=3 small=0 outside=0 size=1600x900
+   16.47s	pointer-audit	intro_14.0s reachable=3 cumulativeFailures=0
+   16.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\057_intro_14.0s.png
+   16.61s	layout	intro_14.0s: controls=3 small=0 outside=0 size=1600x900
+   16.73s	pointer-audit	intro_14.3s reachable=3 cumulativeFailures=0
+   16.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\058_intro_14.3s.png
+   16.88s	layout	intro_14.3s: controls=3 small=0 outside=0 size=1600x900
+   17.00s	pointer-audit	intro_14.5s reachable=3 cumulativeFailures=0
+   17.15s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\059_intro_14.5s.png
+   17.15s	layout	intro_14.5s: controls=3 small=0 outside=0 size=1600x900
+   17.25s	pointer-audit	intro_14.8s reachable=3 cumulativeFailures=0
+   17.37s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\060_intro_14.8s.png
+   17.37s	layout	intro_14.8s: controls=3 small=0 outside=0 size=1600x900
+   17.50s	pointer-audit	intro_15.0s reachable=3 cumulativeFailures=0
+   17.63s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\061_intro_15.0s.png
+   17.63s	layout	intro_15.0s: controls=3 small=0 outside=0 size=1600x900
+   17.76s	pointer-audit	intro_15.3s reachable=3 cumulativeFailures=0
+   17.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\062_intro_15.3s.png
+   17.88s	layout	intro_15.3s: controls=3 small=0 outside=0 size=1600x900
+   18.01s	pointer-audit	intro_15.5s reachable=3 cumulativeFailures=0
+   18.15s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\063_intro_15.5s.png
+   18.15s	layout	intro_15.5s: controls=3 small=0 outside=0 size=1600x900
+   18.27s	pointer-audit	intro_15.8s reachable=3 cumulativeFailures=0
+   18.40s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\064_intro_15.8s.png
+   18.40s	layout	intro_15.8s: controls=3 small=0 outside=0 size=1600x900
+   18.53s	pointer-audit	intro_16.1s reachable=3 cumulativeFailures=0
+   18.70s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\065_intro_16.1s.png
+   18.70s	layout	intro_16.1s: controls=3 small=0 outside=0 size=1600x900
+   18.80s	pointer-audit	intro_16.3s reachable=3 cumulativeFailures=0
+   18.91s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\066_intro_16.3s.png
+   18.91s	layout	intro_16.3s: controls=3 small=0 outside=0 size=1600x900
+   19.06s	pointer-audit	intro_16.6s reachable=3 cumulativeFailures=0
+   19.17s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\067_intro_16.6s.png
+   19.17s	layout	intro_16.6s: controls=3 small=0 outside=0 size=1600x900
+   19.32s	pointer-audit	intro_16.9s reachable=3 cumulativeFailures=0
+   19.43s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\068_intro_16.9s.png
+   19.43s	layout	intro_16.9s: controls=3 small=0 outside=0 size=1600x900
+   19.59s	pointer-audit	intro_17.1s reachable=3 cumulativeFailures=0
+   19.70s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\069_intro_17.1s.png
+   19.70s	layout	intro_17.1s: controls=3 small=0 outside=0 size=1600x900
+   19.85s	pointer-audit	intro_17.4s reachable=3 cumulativeFailures=0
+   19.96s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\070_intro_17.4s.png
+   19.96s	layout	intro_17.4s: controls=3 small=0 outside=0 size=1600x900
+   20.11s	pointer-audit	intro_17.6s reachable=3 cumulativeFailures=0
+   20.23s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\071_intro_17.6s.png
+   20.23s	layout	intro_17.6s: controls=3 small=0 outside=0 size=1600x900
+   20.38s	pointer-audit	intro_17.9s reachable=3 cumulativeFailures=0
+   20.50s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\072_intro_17.9s.png
+   20.50s	layout	intro_17.9s: controls=3 small=0 outside=0 size=1600x900
+   20.63s	pointer-audit	intro_18.2s reachable=3 cumulativeFailures=0
+   20.75s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\073_intro_18.2s.png
+   20.75s	layout	intro_18.2s: controls=3 small=0 outside=0 size=1600x900
+   20.88s	pointer-audit	intro_18.4s reachable=3 cumulativeFailures=0
+   21.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\074_intro_18.4s.png
+   21.00s	layout	intro_18.4s: controls=3 small=0 outside=0 size=1600x900
+   21.15s	pointer-audit	intro_18.7s reachable=3 cumulativeFailures=0
+   21.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\075_intro_18.7s.png
+   21.26s	layout	intro_18.7s: controls=3 small=0 outside=0 size=1600x900
+   21.41s	pointer-audit	intro_18.9s reachable=3 cumulativeFailures=0
+   21.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\076_intro_18.9s.png
+   21.53s	layout	intro_18.9s: controls=3 small=0 outside=0 size=1600x900
+   21.66s	pointer-audit	intro_19.2s reachable=3 cumulativeFailures=0
+   21.78s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\077_intro_19.2s.png
+   21.78s	layout	intro_19.2s: controls=3 small=0 outside=0 size=1600x900
+   21.92s	pointer-audit	intro_19.4s reachable=3 cumulativeFailures=0
+   22.03s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\078_intro_19.4s.png
+   22.03s	layout	intro_19.4s: controls=3 small=0 outside=0 size=1600x900
+   22.18s	pointer-audit	intro_19.7s reachable=3 cumulativeFailures=0
+   22.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\079_intro_19.7s.png
+   22.32s	layout	intro_19.7s: controls=3 small=0 outside=0 size=1600x900
+   22.43s	pointer-audit	intro_20.0s reachable=3 cumulativeFailures=0
+   22.57s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\080_intro_20.0s.png
+   22.57s	layout	intro_20.0s: controls=3 small=0 outside=0 size=1600x900
+   22.69s	pointer-audit	intro_20.2s reachable=3 cumulativeFailures=0
+   22.81s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\081_intro_20.2s.png
+   22.81s	layout	intro_20.2s: controls=3 small=0 outside=0 size=1600x900
+   22.94s	pointer-audit	intro_20.5s reachable=3 cumulativeFailures=0
+   23.10s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\082_intro_20.5s.png
+   23.10s	layout	intro_20.5s: controls=3 small=0 outside=0 size=1600x900
+   23.20s	pointer-audit	intro_20.7s reachable=3 cumulativeFailures=0
+   23.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\083_intro_20.7s.png
+   23.32s	layout	intro_20.7s: controls=3 small=0 outside=0 size=1600x900
+   23.45s	pointer-audit	intro_21.0s reachable=3 cumulativeFailures=0
+   23.58s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\084_intro_21.0s.png
+   23.58s	layout	intro_21.0s: controls=3 small=0 outside=0 size=1600x900
+   23.71s	pointer-audit	intro_21.2s reachable=3 cumulativeFailures=0
+   23.84s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\085_intro_21.2s.png
+   23.84s	layout	intro_21.2s: controls=3 small=0 outside=0 size=1600x900
+   23.97s	pointer-audit	intro_21.5s reachable=3 cumulativeFailures=0
+   24.10s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\086_intro_21.5s.png
+   24.10s	layout	intro_21.5s: controls=3 small=0 outside=0 size=1600x900
+   24.23s	pointer-audit	intro_21.8s reachable=3 cumulativeFailures=0
+   24.35s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\087_intro_21.8s.png
+   24.35s	layout	intro_21.8s: controls=3 small=0 outside=0 size=1600x900
+   24.49s	pointer-audit	intro_22.0s reachable=3 cumulativeFailures=0
+   24.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\088_intro_22.0s.png
+   24.66s	layout	intro_22.0s: controls=3 small=0 outside=0 size=1600x900
+   24.75s	pointer-audit	intro_22.3s reachable=3 cumulativeFailures=0
+   24.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\089_intro_22.3s.png
+   24.86s	layout	intro_22.3s: controls=3 small=0 outside=0 size=1600x900
+   25.01s	pointer-audit	intro_22.5s reachable=3 cumulativeFailures=0
+   25.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\090_intro_22.5s.png
+   25.13s	layout	intro_22.5s: controls=3 small=0 outside=0 size=1600x900
+   25.28s	pointer-audit	intro_22.8s reachable=3 cumulativeFailures=0
+   25.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\091_intro_22.8s.png
+   25.39s	layout	intro_22.8s: controls=3 small=0 outside=0 size=1600x900
+   25.54s	pointer-audit	intro_23.1s reachable=3 cumulativeFailures=0
+   25.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\092_intro_23.1s.png
+   25.66s	layout	intro_23.1s: controls=3 small=0 outside=0 size=1600x900
+   25.79s	pointer-audit	intro_23.3s reachable=3 cumulativeFailures=0
+   25.91s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\093_intro_23.3s.png
+   25.91s	layout	intro_23.3s: controls=3 small=0 outside=0 size=1600x900
+   26.06s	pointer-audit	intro_23.6s reachable=3 cumulativeFailures=0
+   26.17s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\094_intro_23.6s.png
+   26.17s	layout	intro_23.6s: controls=3 small=0 outside=0 size=1600x900
+   26.32s	pointer-audit	intro_23.9s reachable=3 cumulativeFailures=0
+   26.44s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\095_intro_23.9s.png
+   26.44s	layout	intro_23.9s: controls=3 small=0 outside=0 size=1600x900
+   26.59s	pointer-audit	intro_24.1s reachable=3 cumulativeFailures=0
+   26.70s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\096_intro_24.1s.png
+   26.70s	layout	intro_24.1s: controls=3 small=0 outside=0 size=1600x900
+   26.85s	pointer-audit	intro_24.4s reachable=3 cumulativeFailures=0
+   26.97s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\097_intro_24.4s.png
+   26.97s	layout	intro_24.4s: controls=3 small=0 outside=0 size=1600x900
+   27.11s	pointer-audit	intro_24.6s reachable=3 cumulativeFailures=0
+   27.23s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\098_intro_24.6s.png
+   27.23s	layout	intro_24.6s: controls=3 small=0 outside=0 size=1600x900
+   27.36s	pointer-audit	intro_24.9s reachable=3 cumulativeFailures=0
+   27.49s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\099_intro_24.9s.png
+   27.49s	layout	intro_24.9s: controls=3 small=0 outside=0 size=1600x900
+   27.62s	pointer-audit	intro_25.1s reachable=3 cumulativeFailures=0
+   27.74s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\100_intro_25.1s.png
+   27.74s	layout	intro_25.1s: controls=3 small=0 outside=0 size=1600x900
+   27.88s	pointer-audit	intro_25.4s reachable=3 cumulativeFailures=0
+   27.99s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\101_intro_25.4s.png
+   27.99s	layout	intro_25.4s: controls=3 small=0 outside=0 size=1600x900
+   28.13s	pointer-audit	intro_25.7s reachable=3 cumulativeFailures=0
+   28.24s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\102_intro_25.7s.png
+   28.24s	layout	intro_25.7s: controls=3 small=0 outside=0 size=1600x900
+   28.39s	pointer-audit	intro_25.9s reachable=3 cumulativeFailures=0
+   28.51s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\103_intro_25.9s.png
+   28.51s	layout	intro_25.9s: controls=3 small=0 outside=0 size=1600x900
+   28.64s	pointer-audit	intro_26.2s reachable=3 cumulativeFailures=0
+   28.76s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\104_intro_26.2s.png
+   28.76s	layout	intro_26.2s: controls=3 small=0 outside=0 size=1600x900
+   28.90s	pointer-audit	intro_26.4s reachable=3 cumulativeFailures=0
+   29.04s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\105_intro_26.4s.png
+   29.04s	layout	intro_26.4s: controls=3 small=0 outside=0 size=1600x900
+   29.16s	pointer-audit	intro_26.7s reachable=3 cumulativeFailures=0
+   29.28s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\106_intro_26.7s.png
+   29.28s	layout	intro_26.7s: controls=3 small=0 outside=0 size=1600x900
+   29.42s	pointer-audit	intro_26.9s reachable=3 cumulativeFailures=0
+   29.54s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\107_intro_26.9s.png
+   29.54s	layout	intro_26.9s: controls=3 small=0 outside=0 size=1600x900
+   29.67s	pointer-audit	intro_27.2s reachable=3 cumulativeFailures=0
+   29.79s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\108_intro_27.2s.png
+   29.79s	layout	intro_27.2s: controls=3 small=0 outside=0 size=1600x900
+   29.93s	pointer-audit	intro_27.5s reachable=3 cumulativeFailures=0
+   30.05s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\109_intro_27.5s.png
+   30.05s	layout	intro_27.5s: controls=3 small=0 outside=0 size=1600x900
+   30.18s	pointer-audit	intro_27.7s reachable=3 cumulativeFailures=0
+   30.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\110_intro_27.7s.png
+   30.30s	layout	intro_27.7s: controls=3 small=0 outside=0 size=1600x900
+   30.44s	pointer-audit	intro_28.0s reachable=3 cumulativeFailures=0
+   30.56s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\111_intro_28.0s.png
+   30.56s	layout	intro_28.0s: controls=3 small=0 outside=0 size=1600x900
+   30.70s	pointer-audit	intro_28.2s reachable=3 cumulativeFailures=0
+   30.82s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\112_intro_28.2s.png
+   30.82s	layout	intro_28.2s: controls=3 small=0 outside=0 size=1600x900
+   30.95s	pointer-audit	intro_28.5s reachable=3 cumulativeFailures=0
+   31.09s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\113_intro_28.5s.png
+   31.09s	layout	intro_28.5s: controls=3 small=0 outside=0 size=1600x900
+   31.21s	pointer-audit	intro_28.7s reachable=3 cumulativeFailures=0
+   31.33s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\114_intro_28.7s.png
+   31.33s	layout	intro_28.7s: controls=3 small=0 outside=0 size=1600x900
+   31.46s	pointer-audit	intro_29.0s reachable=3 cumulativeFailures=0
+   31.59s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\115_intro_29.0s.png
+   31.59s	layout	intro_29.0s: controls=3 small=0 outside=0 size=1600x900
+   31.73s	pointer-audit	intro_29.3s reachable=3 cumulativeFailures=0
+   31.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\116_intro_29.3s.png
+   31.86s	layout	intro_29.3s: controls=3 small=0 outside=0 size=1600x900
+   31.99s	pointer-audit	intro_29.5s reachable=3 cumulativeFailures=0
+   32.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\117_intro_29.5s.png
+   32.13s	layout	intro_29.5s: controls=3 small=0 outside=0 size=1600x900
+   32.25s	pointer-audit	intro_29.8s reachable=3 cumulativeFailures=0
+   32.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\118_intro_29.8s.png
+   32.39s	layout	intro_29.8s: controls=3 small=0 outside=0 size=1600x900
+   32.51s	pointer-audit	intro_30.0s reachable=3 cumulativeFailures=0
+   32.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\119_intro_30.0s.png
+   32.66s	layout	intro_30.0s: controls=3 small=0 outside=0 size=1600x900
+   32.76s	pointer-audit	intro_30.3s reachable=3 cumulativeFailures=0
+   32.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\120_intro_30.3s.png
+   32.88s	layout	intro_30.3s: controls=3 small=0 outside=0 size=1600x900
+   33.01s	pointer-audit	intro_30.5s reachable=3 cumulativeFailures=0
+   33.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\121_intro_30.5s.png
+   33.13s	layout	intro_30.5s: controls=3 small=0 outside=0 size=1600x900
+   33.26s	pointer-audit	intro_30.8s reachable=3 cumulativeFailures=0
+   33.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\122_intro_30.8s.png
+   33.39s	layout	intro_30.8s: controls=3 small=0 outside=0 size=1600x900
+   33.52s	pointer-audit	intro_31.1s reachable=3 cumulativeFailures=0
+   33.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\123_intro_31.1s.png
+   33.66s	layout	intro_31.1s: controls=3 small=0 outside=0 size=1600x900
+   33.78s	pointer-audit	intro_31.3s reachable=3 cumulativeFailures=0
+   33.90s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\124_intro_31.3s.png
+   33.90s	layout	intro_31.3s: controls=3 small=0 outside=0 size=1600x900
+   34.03s	pointer-audit	intro_31.6s reachable=3 cumulativeFailures=0
+   34.16s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\125_intro_31.6s.png
+   34.16s	layout	intro_31.6s: controls=3 small=0 outside=0 size=1600x900
+   34.30s	pointer-audit	intro_31.8s reachable=3 cumulativeFailures=0
+   34.42s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\126_intro_31.8s.png
+   34.42s	layout	intro_31.8s: controls=3 small=0 outside=0 size=1600x900
+   34.55s	pointer-audit	intro_32.1s reachable=3 cumulativeFailures=0
+   34.68s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\127_intro_32.1s.png
+   34.68s	layout	intro_32.1s: controls=3 small=0 outside=0 size=1600x900
+   34.81s	pointer-audit	intro_32.3s reachable=3 cumulativeFailures=0
+   34.93s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\128_intro_32.3s.png
+   34.93s	layout	intro_32.3s: controls=3 small=0 outside=0 size=1600x900
+   34.99s	state	Narrating
+   34.99s	cue_start	S02_L01 [Core] clip=ok
+   34.99s	framing	S02_L01 shot=S02_NikoMedium blending=False part=- (no structure named)
+   35.08s	framing_settled	S02_L01 shot=S02_NikoMedium blending=False part=- (no structure named)
+   36.20s	pointer-reachable	top-buttons/btn-home
+   36.20s	pointer-reachable	top-buttons/btn-chapters
+   36.20s	pointer-reachable	top-buttons/btn-replay-expl
+   36.20s	pointer-reachable	top-buttons/btn-help
+   36.20s	pointer-reachable	top-buttons/btn-review
+   36.20s	pointer-reachable	top-buttons/btn-sound
+   36.20s	pointer-reachable	safe/btn-ask
+   36.20s	pointer-audit	intro_done_ui reachable=9 cumulativeFailures=0
+   36.33s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-intro-1600\129_intro_done_ui.png
+   36.33s	layout	intro_done_ui: controls=9 small=0 outside=0 size=1600x900
+   36.33s	check	intro finished: gate=1 niko=True shot=S02_NikoMedium
+   36.33s	presenter_coverage	frames=75 failures=0
+   36.33s	presence_coverage	frames=1299 failures=0 mouthSpeakingMean=0.365 mouthSilentMax=0.000
+   36.33s	perf	Scene02 avg 38.4 fps, worst frame 190 ms, main thread 26.0 ms, draw calls avg 62 max 969, SetPass 10, triangles 211k, system memory peak 571 MB, GC allocated/frame avg 136458 max 1953696 bytes (1297 samples), GPU unavailable (counter registered, no usable timing samples)
+   36.33s	done	intro only

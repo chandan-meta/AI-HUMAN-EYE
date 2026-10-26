@@ -1,0 +1,233 @@
+    1.21s	PASS	Settings opens from menu
+    1.41s	PASS	Settings closes
+    1.45s	chapter	Scene02
+    6.90s	cue_start	S02_L01 [Core] clip=ok
+    7.38s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+    7.53s	cue_start	S02_L02 [Core] clip=ok
+    7.54s	ui	Pointer clicked btn-read-continue
+    7.88s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+    8.03s	cue_start	S02_L03 [Core] clip=ok
+    8.04s	ui	Pointer clicked btn-read-continue
+    8.33s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+    8.48s	cue_start	S02_L04 [Core] clip=ok
+    8.49s	ui	Pointer clicked btn-read-continue
+    8.88s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+    9.03s	cue_start	S02_L06 [Core] clip=ok
+    9.04s	ui	Pointer clicked btn-read-continue
+   11.61s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   11.74s	cue_start	S02_L07 [Core] clip=ok
+   11.76s	ui	Pointer clicked btn-read-continue
+   11.96s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   12.11s	cue_start	S02_L08 [Core] clip=ok
+   12.13s	ui	Pointer clicked btn-read-continue
+   12.38s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   12.53s	cue_start	S02_L09 [Core] clip=ok
+   12.54s	ui	Pointer clicked btn-read-continue
+   13.04s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   13.19s	cue_start	S02_L10 [Core] clip=ok
+   13.21s	ui	Pointer clicked btn-read-continue
+   13.71s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   13.88s	ui	Pointer clicked btn-read-continue
+   14.03s	cue_start	S02_L11 [Core] clip=ok
+   15.38s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   15.53s	ui	Pointer clicked btn-read-continue
+   16.92s	cue_start	S02_L12 [Core] clip=ok
+   18.17s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   18.32s	ui	Pointer clicked btn-read-continue
+   19.69s	cue_start	S02_L13 [Core] clip=ok
+   20.98s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   21.13s	ui	Pointer clicked btn-read-continue
+   22.48s	cue_start	S02_L14 [Core] clip=ok
+   23.77s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   23.92s	ui	Pointer clicked btn-read-continue
+   25.64s	PASS	Quick checks have no Skip button
+   26.68s	PASS	Quick checks have no Skip button
+   28.24s	PASS	Quick checks have no Skip button
+   29.02s	cue_start	S02_L15 [Core] clip=ok
+   29.62s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   29.77s	cue_start	S02_L16 [Core] clip=ok
+   29.79s	ui	Pointer clicked btn-read-continue
+   30.34s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   30.51s	ui	Pointer clicked btn-read-continue
+   31.07s	presence_coverage	frames=1692 failures=0 mouthSpeakingMean=0.574 mouthSilentMax=0.000
+   31.07s	chapter	Scene03
+   31.81s	cue_start	S03_L01 [Core] clip=ok
+   33.76s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   33.91s	ui	Pointer clicked btn-read-continue
+   34.06s	cue_start	S03_L02 [Core] clip=ok
+   35.43s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   35.56s	cue_start	S03_L03 [Core] clip=ok
+   35.58s	ui	Pointer clicked btn-read-continue
+   35.58s	PASS	Music ducks under Niko (-9.9 dB)
+   37.10s	PASS	Pause holds the music and loops
+   37.76s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   37.93s	ui	Pointer clicked btn-read-continue
+   39.33s	cue_start	S03_L04 [Core] clip=ok
+   40.57s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   40.70s	cue_start	S03_L05 [Core] clip=ok
+   40.72s	ui	Pointer clicked btn-read-continue
+   42.23s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   42.36s	cue_start	S03_L06 [Core] clip=ok
+   42.38s	ui	Pointer clicked btn-read-continue
+   43.03s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   43.20s	ui	Pointer clicked btn-read-continue
+   44.58s	cue_start	S03_L07 [Core] clip=ok
+   46.72s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   46.86s	cue_start	S03_L08 [Core] clip=ok
+   46.87s	ui	Pointer clicked btn-read-continue
+   47.16s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   47.32s	ui	Pointer clicked btn-read-continue
+   48.68s	cue_start	S03_L09 [Core] clip=ok
+   50.03s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   50.16s	cue_start	S03_L10 [Core] clip=ok
+   50.18s	ui	Pointer clicked btn-read-continue
+   51.67s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   51.82s	ui	Pointer clicked btn-read-continue
+   53.20s	cue_start	S03_L11 [Core] clip=ok
+   54.94s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   55.09s	ui	Pointer clicked btn-read-continue
+   56.84s	PASS	Quick checks have no Skip button
+   57.65s	cue_start	S03_L12 [Core] clip=ok
+   57.98s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   58.15s	presence_coverage	frames=3145 failures=0 mouthSpeakingMean=0.550 mouthSilentMax=0.000
+   58.15s	chapter	Scene04
+   58.15s	ui	Pointer clicked btn-read-continue
+   58.16s	cue_start	S04_L01 [Core] clip=ok
+   60.89s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   61.03s	cue_start	S04_L02 [Core] clip=ok
+   61.04s	ui	Pointer clicked btn-read-continue
+   63.16s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   63.29s	cue_start	S04_L03 [Core] clip=ok
+   63.31s	ui	Pointer clicked btn-read-continue
+   63.69s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   63.84s	cue_start	S04_L04 [Core] clip=ok
+   63.86s	ui	Pointer clicked btn-read-continue
+   63.97s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   64.12s	cue_start	S04_L05 [Core] clip=ok
+   64.14s	ui	Pointer clicked btn-read-continue
+   65.87s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   66.01s	cue_start	S04_L06 [Core] clip=ok
+   66.03s	ui	Pointer clicked btn-read-continue
+   68.52s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   68.65s	cue_start	S04_L07 [Core] clip=ok
+   68.67s	ui	Pointer clicked btn-read-continue
+   71.00s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   71.13s	cue_start	S04_L08 [Core] clip=ok
+   71.15s	ui	Pointer clicked btn-read-continue
+   73.68s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   73.83s	ui	Pointer clicked btn-read-continue
+   74.30s	PASS	Quick checks have no Skip button
+   75.10s	presence_coverage	frames=4122 failures=0 mouthSpeakingMean=0.549 mouthSilentMax=0.000
+   75.10s	chapter	Scene05
+   75.28s	cue_start	S05_L01 [Core] clip=ok
+   75.94s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   76.09s	cue_start	S05_L02 [Core] clip=ok
+   76.11s	ui	Pointer clicked btn-read-continue
+   78.92s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   79.05s	cue_start	S05_L03 [Core] clip=ok
+   79.07s	ui	Pointer clicked btn-read-continue
+   80.79s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   80.93s	cue_start	S05_L04 [Core] clip=ok
+   80.94s	ui	Pointer clicked btn-read-continue
+   82.46s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   82.61s	ui	Pointer clicked btn-read-continue
+   83.48s	cue_start	S05_L05 [Core] clip=ok
+   84.91s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   85.06s	ui	Pointer clicked btn-read-continue
+   85.81s	cue_start	S05_L06 [Core] clip=ok
+   86.23s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   86.40s	ui	Pointer clicked btn-read-continue
+   87.28s	cue_start	S05_L07 [Core] clip=ok
+   87.70s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   87.83s	cue_start	S05_L08 [Core] clip=ok
+   87.85s	ui	Pointer clicked btn-read-continue
+   88.65s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   88.81s	ui	Pointer clicked btn-read-continue
+   89.28s	PASS	Quick checks have no Skip button
+   96.59s	presence_coverage	frames=5348 failures=0 mouthSpeakingMean=0.543 mouthSilentMax=0.000
+   96.59s	chapter	Scene06
+   96.61s	cue_start	S06_L01 [Core] clip=ok
+   98.75s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   98.90s	ui	Pointer clicked btn-read-continue
+   99.87s	cue_start	S06_L02 [Core] clip=ok
+  100.68s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  100.85s	ui	Pointer clicked btn-read-continue
+  101.88s	cue_start	S06_L03 [Core] clip=ok
+  102.53s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  102.67s	cue_start	S06_L04 [Core] clip=ok
+  102.68s	ui	Pointer clicked btn-read-continue
+  103.60s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  103.77s	ui	Pointer clicked btn-read-continue
+  106.55s	PASS	Quick checks have no Skip button
+  108.16s	PASS	Quick checks have no Skip button
+  108.98s	presence_coverage	frames=6037 failures=0 mouthSpeakingMean=0.547 mouthSilentMax=0.000
+  108.98s	chapter	Scene07
+  108.99s	cue_start	S07_L01 [Core] clip=ok
+  111.53s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  111.66s	cue_start	S07_L02 [Core] clip=ok
+  111.68s	ui	Pointer clicked btn-read-continue
+  113.39s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  113.53s	cue_start	S07_L03 [Core] clip=ok
+  113.54s	ui	Pointer clicked btn-read-continue
+  115.46s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  115.61s	presence_coverage	frames=6420 failures=0 mouthSpeakingMean=0.545 mouthSilentMax=0.000
+  115.61s	chapter	Scene08
+  115.61s	ui	Pointer clicked btn-read-continue
+  116.61s	cue_start	S08_L01 [Core] clip=ok
+  117.30s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  117.46s	cue_start	S08_L02 [Core] clip=ok
+  117.47s	ui	Pointer clicked btn-read-continue
+  119.15s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  119.28s	cue_start	S08_L03 [Core] clip=ok
+  119.30s	ui	Pointer clicked btn-read-continue
+  119.81s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  119.96s	cue_start	S08_L04 [Core] clip=ok
+  119.98s	ui	Pointer clicked btn-read-continue
+  121.65s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  121.79s	cue_start	S08_L05 [Core] clip=ok
+  121.80s	ui	Pointer clicked btn-read-continue
+  123.49s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  123.62s	cue_start	S08_L06 [Core] clip=ok
+  123.64s	ui	Pointer clicked btn-read-continue
+  125.71s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  125.86s	ui	Pointer clicked btn-read-continue
+  128.74s	PASS	Quick checks have no Skip button
+  130.42s	cue_start	S08_L02 [Replay] clip=ok
+  133.24s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  133.37s	cue_start	S08_L03 [Replay] clip=ok
+  133.39s	ui	Pointer clicked btn-read-continue
+  133.91s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  134.07s	ui	Pointer clicked btn-read-continue
+  134.11s	presence_coverage	frames=7500 failures=0 mouthSpeakingMean=0.567 mouthSilentMax=0.000
+  134.11s	chapter	Scene09
+  134.64s	cue_start	S09_L01 [Core] clip=ok
+  135.74s	cue_start	S09_L02 [Core] clip=ok
+  136.92s	cue_start	S09_L03 [Core] clip=ok
+  138.15s	cue_start	S09_L04 [Core] clip=ok
+  139.83s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  140.00s	ui	Pointer clicked btn-read-continue
+  142.77s	PASS	Quick checks have no Skip button
+  144.33s	PASS	Quick checks have no Skip button
+  145.90s	PASS	Quick checks have no Skip button
+  147.50s	PASS	Quick checks have no Skip button
+  148.30s	presence_coverage	frames=8283 failures=0 mouthSpeakingMean=0.570 mouthSilentMax=0.000
+  148.30s	chapter	Scene10
+  148.31s	cue_start	S10_L01 [Core] clip=ok
+  151.04s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  151.18s	cue_start	S10_L02 [Core] clip=ok
+  151.20s	ui	Pointer clicked btn-read-continue
+  152.08s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  152.25s	ui	Pointer clicked btn-read-continue
+  157.52s	presence_coverage	frames=8827 failures=0 mouthSpeakingMean=0.573 mouthSilentMax=0.000
+  157.52s	chapter	Scene11
+  157.72s	cue_start	S11_L01 [Core] clip=ok
+  159.86s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  159.99s	cue_start	S11_L02 [Core] clip=ok
+  160.01s	ui	Pointer clicked btn-read-continue
+  162.54s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  162.67s	cue_start	S11_L03 [Core] clip=ok
+  162.69s	ui	Pointer clicked btn-read-continue
+  163.21s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+  163.37s	ui	Pointer clicked btn-read-continue
+  166.62s	presence_coverage	frames=9348 failures=0 mouthSpeakingMean=0.584 mouthSilentMax=0.000
+  166.62s	done	completed=Scene02,Scene03,Scene04,Scene05,Scene06,Scene07,Scene08,Scene09,Scene10,Scene11 cues=65 evidence=13

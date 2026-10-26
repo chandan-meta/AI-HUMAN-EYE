@@ -1,0 +1,284 @@
+    0.01s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1600x900 quality=PC fast=1
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    0.06s	audio	music:start chapter=menu state=Entering
+    0.06s	audio	ambience:amblab chapter=menu state=Entering
+    0.11s	audio_mix	Intro
+    1.54s	pointer-reachable	start-actions/start-begin
+    1.54s	pointer-reachable	start-actions/start-help
+    1.54s	pointer-reachable	start-actions/start-chapters
+    1.54s	pointer-reachable	start-more/start-settings
+    1.54s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    2.21s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\001_start_screen.png
+    2.21s	layout	start_screen: controls=4 small=0 outside=0 size=1600x900
+    2.22s	audio	open chapter=menu state=Entering
+    2.23s	audio	click chapter=menu state=Entering
+    2.25s	audio_mix	Paused
+    2.27s	ui	Pointer clicked start-settings
+    2.27s	PASS	Settings opens from menu
+    2.27s	pointer-reachable	VisualElement/set-size-0
+    2.27s	pointer-reachable	VisualElement/set-size-1
+    2.27s	pointer-reachable	VisualElement/set-size-2
+    2.27s	pointer-reachable	VisualElement/set-size-3
+    2.27s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    2.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\002_menu_settings.png
+    2.39s	layout	menu_settings: controls=4 small=0 outside=0 size=1600x900
+    2.41s	audio	close chapter=menu state=Entering
+    2.41s	audio	click chapter=menu state=Entering
+    2.41s	audio_mix	Intro
+    2.44s	ui	Pointer clicked settings-close
+    2.44s	PASS	Settings closes
+    2.44s	layout	menu: controls=4 small=0 outside=0 size=1600x900
+    2.45s	audio	gatestart chapter=menu state=Entering
+    2.45s	action	Start pressed
+    2.47s	audio	chapter chapter=Scene09 state=Entering
+    2.47s	chapter	Scene09
+    2.48s	audio	music:pulse chapter=Scene09 state=Entering
+    2.49s	audio	lightmove chapter=Scene09 state=Cinematic
+    2.49s	state	Cinematic
+    2.49s	audio_mix	Exploration
+    2.49s	audio	ambience:off chapter=Scene09 state=Cinematic
+    3.93s	pointer-reachable	letterbox-bottom/btn-skip-intro
+    3.93s	pointer-reachable	top-buttons/btn-pause
+    3.93s	pointer-reachable	top-buttons/btn-settings
+    3.93s	pointer-audit	Scene09_S02_IntroThreshold reachable=3 cumulativeFailures=0
+    4.06s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\003_Scene09_S02_IntroThreshold.png
+    4.06s	layout	Scene09_S02_IntroThreshold: controls=3 small=0 outside=0 size=1600x900
+    4.07s	pointer-audit	cine_Scene09_004.1s reachable=3 cumulativeFailures=0
+    4.19s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\004_cine_Scene09_004.1s.png
+    4.19s	layout	cine_Scene09_004.1s: controls=3 small=0 outside=0 size=1600x900
+    4.59s	pointer-audit	Scene09_S09_Follow reachable=3 cumulativeFailures=0
+    4.72s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\005_Scene09_S09_Follow.png
+    4.72s	layout	Scene09_S09_Follow: controls=3 small=0 outside=0 size=1600x900
+    4.77s	pointer-audit	cine_Scene09_004.8s reachable=3 cumulativeFailures=0
+    4.89s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\006_cine_Scene09_004.8s.png
+    4.89s	layout	cine_Scene09_004.8s: controls=3 small=0 outside=0 size=1600x900
+    5.48s	pointer-audit	cine_Scene09_005.5s reachable=3 cumulativeFailures=0
+    5.50s	audio	signaltravel chapter=Scene09 state=Cinematic
+    5.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\007_cine_Scene09_005.5s.png
+    5.61s	layout	cine_Scene09_005.5s: controls=3 small=0 outside=0 size=1600x900
+    5.63s	audio	pulsetravel (loop) chapter=Scene09 state=Cinematic
+    5.63s	state	Narrating
+    5.63s	cue_start	S09_L01 [Core] clip=ok
+    5.63s	framing	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    5.72s	framing_settled	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    5.82s	audio_mix	NikoSpeaking
+    6.19s	pointer-audit	cine_Scene09_006.2s reachable=3 cumulativeFailures=0
+    6.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\008_cine_Scene09_006.2s.png
+    6.32s	layout	cine_Scene09_006.2s: controls=3 small=0 outside=0 size=1600x900
+    6.90s	pointer-audit	cine_Scene09_006.9s reachable=3 cumulativeFailures=0
+    7.09s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\009_cine_Scene09_006.9s.png
+    7.09s	layout	cine_Scene09_006.9s: controls=3 small=0 outside=0 size=1600x900
+    7.61s	pointer-audit	cine_Scene09_007.6s reachable=3 cumulativeFailures=0
+    7.74s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\010_cine_Scene09_007.6s.png
+    7.74s	layout	cine_Scene09_007.6s: controls=3 small=0 outside=0 size=1600x900
+    7.93s	audio	pulsenear chapter=Scene09 state=Narrating
+    8.33s	pointer-audit	cine_Scene09_008.3s reachable=3 cumulativeFailures=0
+    8.45s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\011_cine_Scene09_008.3s.png
+    8.45s	layout	cine_Scene09_008.3s: controls=3 small=0 outside=0 size=1600x900
+    9.03s	pointer-audit	cine_Scene09_009.0s reachable=3 cumulativeFailures=0
+    9.19s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\012_cine_Scene09_009.0s.png
+    9.19s	layout	cine_Scene09_009.0s: controls=3 small=0 outside=0 size=1600x900
+    9.19s	audio	signalarrive chapter=Scene09 state=Narrating
+    9.54s	cue_end	S09_L01
+    9.74s	pointer-audit	cine_Scene09_009.7s reachable=3 cumulativeFailures=0
+    9.74s	audio_mix	Exploration
+    9.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\013_cine_Scene09_009.7s.png
+    9.86s	layout	cine_Scene09_009.7s: controls=3 small=0 outside=0 size=1600x900
+   10.45s	pointer-audit	cine_Scene09_010.4s reachable=3 cumulativeFailures=0
+   10.58s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\014_cine_Scene09_010.4s.png
+   10.58s	layout	cine_Scene09_010.4s: controls=3 small=0 outside=0 size=1600x900
+   11.16s	pointer-audit	cine_Scene09_011.2s reachable=3 cumulativeFailures=0
+   11.29s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\015_cine_Scene09_011.2s.png
+   11.29s	layout	cine_Scene09_011.2s: controls=3 small=0 outside=0 size=1600x900
+   11.88s	pointer-audit	cine_Scene09_011.9s reachable=3 cumulativeFailures=0
+   12.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\016_cine_Scene09_011.9s.png
+   12.00s	layout	cine_Scene09_011.9s: controls=3 small=0 outside=0 size=1600x900
+   12.00s	audio	softwhoosh chapter=Scene09 state=Narrating
+   12.02s	cue_start	S09_L02 [Core] clip=ok
+   12.02s	framing	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.49,0.51) depth=3.45 visibleCentreDx=-0.01 sizeFrac=0.01 inView=True visible=False alpha=0.00 glow=0.00
+   12.11s	framing_settled	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.49,0.51) depth=3.45 visibleCentreDx=-0.01 sizeFrac=0.01 inView=True visible=False alpha=0.00 glow=0.00
+   12.21s	audio_mix	NikoSpeaking
+   12.58s	pointer-audit	cine_Scene09_012.6s reachable=3 cumulativeFailures=0
+   12.71s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\017_cine_Scene09_012.6s.png
+   12.71s	layout	cine_Scene09_012.6s: controls=3 small=0 outside=0 size=1600x900
+   13.26s	audio	label chapter=Scene09 state=Narrating
+   13.29s	pointer-audit	cine_Scene09_013.3s reachable=3 cumulativeFailures=0
+   13.40s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\018_cine_Scene09_013.3s.png
+   13.40s	layout	cine_Scene09_013.3s: controls=4 small=0 outside=0 size=1600x900
+   14.00s	pointer-audit	cine_Scene09_014.0s reachable=3 cumulativeFailures=0
+   14.12s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\019_cine_Scene09_014.0s.png
+   14.12s	layout	cine_Scene09_014.0s: controls=4 small=0 outside=0 size=1600x900
+   14.12s	audio	signaltravel chapter=Scene09 state=Narrating
+   14.13s	audio	pulsetravel (loop) chapter=Scene09 state=Narrating
+   14.52s	audio	label chapter=Scene09 state=Narrating
+   14.72s	pointer-audit	cine_Scene09_014.7s reachable=3 cumulativeFailures=0
+   14.82s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\020_cine_Scene09_014.7s.png
+   14.82s	layout	cine_Scene09_014.7s: controls=5 small=0 outside=0 size=1600x900
+   15.42s	pointer-audit	cine_Scene09_015.4s reachable=3 cumulativeFailures=0
+   15.52s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\021_cine_Scene09_015.4s.png
+   15.52s	layout	cine_Scene09_015.4s: controls=4 small=0 outside=0 size=1600x900
+   15.52s	audio	label chapter=Scene09 state=Narrating
+   15.56s	cue_end	S09_L02
+   15.66s	audio	pulsenear chapter=Scene09 state=Narrating
+   15.76s	audio_mix	Exploration
+   16.12s	pointer-audit	cine_Scene09_016.1s reachable=3 cumulativeFailures=0
+   16.27s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\022_cine_Scene09_016.1s.png
+   16.27s	layout	cine_Scene09_016.1s: controls=4 small=0 outside=0 size=1600x900
+   16.40s	audio	signalarrive chapter=Scene09 state=Narrating
+   16.48s	audio	label chapter=Scene09 state=Narrating
+   16.83s	pointer-audit	cine_Scene09_016.8s reachable=3 cumulativeFailures=0
+   16.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\023_cine_Scene09_016.8s.png
+   16.94s	layout	cine_Scene09_016.8s: controls=4 small=0 outside=0 size=1600x900
+   17.46s	audio	label chapter=Scene09 state=Narrating
+   17.54s	pointer-audit	cine_Scene09_017.5s reachable=3 cumulativeFailures=0
+   17.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\024_cine_Scene09_017.5s.png
+   17.66s	layout	cine_Scene09_017.5s: controls=5 small=0 outside=0 size=1600x900
+   18.26s	pointer-audit	cine_Scene09_018.3s reachable=3 cumulativeFailures=0
+   18.38s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\025_cine_Scene09_018.3s.png
+   18.38s	layout	cine_Scene09_018.3s: controls=4 small=0 outside=0 size=1600x900
+   18.38s	audio	cortex chapter=Scene09 state=Narrating
+   18.96s	pointer-audit	cine_Scene09_019.0s reachable=3 cumulativeFailures=0
+   19.11s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\026_cine_Scene09_019.0s.png
+   19.11s	layout	cine_Scene09_019.0s: controls=4 small=0 outside=0 size=1600x900
+   19.11s	audio	brainrise chapter=Scene09 state=Narrating
+   19.12s	cue_start	S09_L03 [Core] clip=ok
+   19.12s	framing	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.42,0.56) depth=0.47 visibleCentreDx=-0.08 sizeFrac=0.24 inView=True visible=True alpha=1.00 glow=0.41
+   19.22s	framing_settled	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.42,0.56) depth=0.47 visibleCentreDx=-0.08 sizeFrac=0.24 inView=True visible=True alpha=1.00 glow=0.27
+   19.32s	audio_mix	NikoSpeaking
+   19.67s	pointer-audit	cine_Scene09_019.7s reachable=3 cumulativeFailures=0
+   19.78s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\027_cine_Scene09_019.7s.png
+   19.78s	layout	cine_Scene09_019.7s: controls=3 small=0 outside=0 size=1600x900
+   20.39s	pointer-audit	cine_Scene09_020.4s reachable=3 cumulativeFailures=0
+   20.50s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\028_cine_Scene09_020.4s.png
+   20.50s	layout	cine_Scene09_020.4s: controls=3 small=0 outside=0 size=1600x900
+   21.09s	pointer-audit	cine_Scene09_021.1s reachable=3 cumulativeFailures=0
+   21.19s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\029_cine_Scene09_021.1s.png
+   21.19s	layout	cine_Scene09_021.1s: controls=3 small=0 outside=0 size=1600x900
+   21.79s	pointer-audit	cine_Scene09_021.8s reachable=3 cumulativeFailures=0
+   21.91s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\030_cine_Scene09_021.8s.png
+   21.91s	layout	cine_Scene09_021.8s: controls=3 small=0 outside=0 size=1600x900
+   22.50s	pointer-audit	cine_Scene09_022.5s reachable=3 cumulativeFailures=0
+   22.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\031_cine_Scene09_022.5s.png
+   22.61s	layout	cine_Scene09_022.5s: controls=3 small=0 outside=0 size=1600x900
+   22.61s	audio	titlehit chapter=Scene09 state=Narrating
+   23.19s	cue_end	S09_L03
+   23.21s	pointer-audit	cine_Scene09_023.2s reachable=3 cumulativeFailures=0
+   23.35s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\032_cine_Scene09_023.2s.png
+   23.35s	layout	cine_Scene09_023.2s: controls=3 small=0 outside=0 size=1600x900
+   23.40s	audio_mix	Exploration
+   23.91s	pointer-audit	cine_Scene09_023.9s reachable=3 cumulativeFailures=0
+   24.07s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\033_cine_Scene09_023.9s.png
+   24.07s	layout	cine_Scene09_023.9s: controls=3 small=0 outside=0 size=1600x900
+   24.62s	pointer-audit	cine_Scene09_024.6s reachable=3 cumulativeFailures=0
+   24.73s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\034_cine_Scene09_024.6s.png
+   24.73s	layout	cine_Scene09_024.6s: controls=3 small=0 outside=0 size=1600x900
+   25.33s	pointer-audit	cine_Scene09_025.3s reachable=3 cumulativeFailures=0
+   25.46s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\035_cine_Scene09_025.3s.png
+   25.46s	layout	cine_Scene09_025.3s: controls=3 small=0 outside=0 size=1600x900
+   26.04s	pointer-audit	cine_Scene09_026.0s reachable=3 cumulativeFailures=0
+   26.16s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\036_cine_Scene09_026.0s.png
+   26.16s	layout	cine_Scene09_026.0s: controls=3 small=0 outside=0 size=1600x900
+   26.44s	audio	ambience:amblab chapter=Scene09 state=Narrating
+   26.44s	audio	popup chapter=Scene09 state=Narrating
+   26.44s	cue_start	S09_L04 [Core] clip=ok
+   26.44s	framing	S09_L04 shot=S09_Perception blending=False object=apple vp=(2.50,-0.84) depth=1.41 sizeFrac=1.36 inView=False active=True retinalInset=[active=True,texture=bound,alpha=0.00] perceptionInset=[active=True,texture=bound,alpha=0.00]
+   26.54s	framing_settled	S09_L04 shot=S09_Perception blending=False object=apple vp=(0.42,0.50) depth=1.26 sizeFrac=3.08 inView=True active=True retinalInset=[active=True,texture=bound,alpha=0.09] perceptionInset=[active=True,texture=bound,alpha=0.09]
+   26.64s	audio_mix	NikoSpeaking
+   26.82s	pointer-reachable	top-buttons/btn-home
+   26.82s	pointer-reachable	top-buttons/btn-chapters
+   26.82s	pointer-reachable	top-buttons/btn-replay-expl
+   26.82s	pointer-reachable	top-buttons/btn-help
+   26.82s	pointer-reachable	top-buttons/btn-review
+   26.82s	pointer-reachable	top-buttons/btn-sound
+   26.82s	pointer-reachable	safe/btn-ask
+   26.82s	pointer-audit	Scene09_S09_Perception reachable=9 cumulativeFailures=0
+   26.95s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\037_Scene09_S09_Perception.png
+   26.95s	layout	Scene09_S09_Perception: controls=9 small=0 outside=0 size=1600x900
+   36.58s	PASS	Read & Continue never waits behind a cinematic (its button is hidden there)
+   36.92s	audio	click chapter=Scene09 state=Narrating
+   36.94s	audio	popdown chapter=Scene09 state=Narrating
+   36.94s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+   36.95s	state	SupplementalCheck
+   36.95s	cue_end	S09_L04
+   36.95s	audio	music:quiz chapter=Scene09 state=SupplementalCheck
+   36.95s	ui	Pointer clicked btn-read-continue
+   37.13s	audio_mix	Quiz
+   39.33s	pointer-reachable	act-options/act-options 01
+   39.33s	pointer-reachable	act-options/act-options 02
+   39.33s	pointer-reachable	act-options/act-options 03
+   39.33s	pointer-audit	Scene09_S09_Wide reachable=12 cumulativeFailures=0
+   39.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\038_Scene09_S09_Wide.png
+   39.53s	layout	Scene09_S09_Wide: controls=9 small=0 outside=0 size=1600x900
+   40.53s	pointer-audit	activity_nerve_carries reachable=12 cumulativeFailures=0
+   40.67s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\039_activity_nerve_carries.png
+   40.67s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   40.67s	PASS	Quick checks have no Skip button
+   40.67s	activity	nerve_carries deliberate wrong answer 'The crystalline lens'
+   40.67s	audio	quizwrong chapter=Scene09 state=SupplementalCheck
+   40.68s	audio	quizhint chapter=Scene09 state=SupplementalCheck
+   42.17s	pointer-audit	activity_hint_nerve_carries reachable=12 cumulativeFailures=0
+   42.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\040_activity_hint_nerve_carries.png
+   42.32s	layout	activity_hint_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   43.32s	pointer-audit	activity_nerve_carries reachable=12 cumulativeFailures=0
+   43.47s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\041_activity_nerve_carries.png
+   43.47s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   43.47s	PASS	Quick checks have no Skip button
+   43.47s	activity	nerve_carries answered 'The optic nerve'
+   43.47s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+   45.49s	pointer-reachable	act-buttons/act-buttons 01
+   45.49s	pointer-audit	activity_nerve_carries reachable=10 cumulativeFailures=0
+   45.63s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\042_activity_nerve_carries.png
+   45.63s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   45.63s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+   47.63s	pointer-audit	activity_nerve_tap reachable=12 cumulativeFailures=0
+   47.79s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\043_activity_nerve_tap.png
+   47.79s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1600x900
+   47.79s	PASS	Quick checks have no Skip button
+   47.79s	activity	nerve_tap answered 'Optic nerve'
+   47.79s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+   49.81s	pointer-audit	activity_nerve_tap reachable=10 cumulativeFailures=0
+   49.92s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\044_activity_nerve_tap.png
+   49.92s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1600x900
+   49.92s	audio	quizcomplete chapter=Scene09 state=SupplementalCheck
+   51.92s	pointer-audit	activity_img_orientation reachable=12 cumulativeFailures=0
+   52.02s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\045_activity_img_orientation.png
+   52.02s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1600x900
+   52.02s	PASS	Quick checks have no Skip button
+   52.02s	activity	img_orientation answered 'A real, inverted image'
+   52.02s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+   54.02s	pointer-audit	activity_img_orientation reachable=10 cumulativeFailures=0
+   54.21s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\046_activity_img_orientation.png
+   54.21s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1600x900
+   54.22s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+   56.23s	pointer-audit	activity_img_perception reachable=12 cumulativeFailures=0
+   56.37s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\047_activity_img_perception.png
+   56.37s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1600x900
+   56.37s	PASS	Quick checks have no Skip button
+   56.37s	activity	img_perception answered 'The brain processing the information carried by the signals'
+   56.37s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+   58.37s	pointer-audit	activity_img_perception reachable=10 cumulativeFailures=0
+   58.51s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\048_activity_img_perception.png
+   58.51s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1600x900
+   58.51s	audio	quizcomplete chapter=Scene09 state=SupplementalCheck
+   58.51s	state	Transitioning
+   58.53s	audio	music:pulse chapter=Scene09 state=Transitioning
+   58.53s	presenter_coverage	frames=1234 failures=0
+   58.54s	audio_summary	cues=38 distinct=22 repeats=0 maxLoops=1 music=[start,pulse,quiz] ambience=[amblab,off]
+   58.54s	audio_unplayed	scan,whoosh,reveal,discovery,unlock,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,gatescan,gateunlock,gateservo,gatewhoosh,gateentry,labsting,hologram,overview,ambeye,nikoappear,nikolisten,nikothink,nikoreply,nikoerror,complete,dissolve,crackle1,crackle2,layerdone,layerreveal,organs,eyeappear,eyezoom,dive,select,tick,isolate,hl_cornea,hl_iris,iris,hl_retina,cell,pupilwide,pupilnarrow,lensfocus,pulse,brainreveal,hover,tap,skip,menu,confirm,deny
+   58.54s	presence_coverage	frames=3093 failures=0 mouthSpeakingMean=0.524 mouthSilentMax=0.000
+   58.54s	perf	Scene09 avg 55.1 fps, worst frame 181 ms, main thread 18.1 ms, draw calls avg 9 max 1037, SetPass 2, triangles 31k, system memory peak 563 MB, GC allocated/frame avg 23501 max 1819048 bytes (3092 samples), GPU unavailable (counter registered, no usable timing samples)
+   58.54s	chapter	Scene10
+   58.54s	state	Entering
+   58.54s	audio_mix	Exploration
+   58.55s	audio	music:niko chapter=Scene10 state=Entering
+   58.55s	state	Narrating
+   58.55s	cue_start	S10_L01 [Core] clip=ok
+   58.55s	framing	S10_L01 shot=S10_Journey blending=False part=- (no structure named)
+   58.55s	audio	label chapter=Scene10 state=Narrating
+   58.75s	audio_mix	NikoSpeaking
+   59.51s	presenter_coverage	frames=1292 failures=0
+   59.51s	audio_summary	cues=39 distinct=22 repeats=0 maxLoops=1 music=[start,pulse,quiz,niko] ambience=[amblab,off]
+   59.51s	audio_unplayed	scan,whoosh,reveal,discovery,unlock,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,gatescan,gateunlock,gateservo,gatewhoosh,gateentry,labsting,hologram,overview,ambeye,nikoappear,nikolisten,nikothink,nikoreply,nikoerror,complete,dissolve,crackle1,crackle2,layerdone,layerreveal,organs,eyeappear,eyezoom,dive,select,tick,isolate,hl_cornea,hl_iris,iris,hl_retina,cell,pupilwide,pupilnarrow,lensfocus,pulse,brainreveal,hover,tap,skip,menu,confirm,deny
+   59.51s	presence_coverage	frames=3152 failures=0 mouthSpeakingMean=0.529 mouthSilentMax=0.000
+   59.51s	perf	Scene10 avg 60.0 fps, worst frame 17 ms, main thread 16.7 ms, draw calls avg 0 max 0, SetPass 0, triangles 0k, system memory peak 564 MB, GC allocated/frame avg 9303 max 446498 bytes (59 samples), GPU unavailable (counter registered, no usable timing samples)
+   59.51s	done	stopped after 1 chapter(s); cues=4 evidence=5

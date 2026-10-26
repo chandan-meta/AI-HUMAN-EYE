@@ -1,0 +1,82 @@
+    0.00s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1600x900 quality=PC fast=1
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    0.04s	audio	music:start chapter=menu state=Entering
+    0.04s	audio	ambience:amblab chapter=menu state=Entering
+    0.07s	audio_mix	Intro
+    1.52s	pointer-reachable	start-actions/start-begin
+    1.52s	pointer-reachable	start-actions/start-help
+    1.52s	pointer-reachable	start-actions/start-chapters
+    1.52s	pointer-reachable	start-more/start-settings
+    1.52s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    2.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\001_start_screen.png
+    2.53s	layout	start_screen: controls=4 small=0 outside=0 size=1600x900
+    2.54s	audio	open chapter=menu state=Entering
+    2.54s	audio	click chapter=menu state=Entering
+    2.56s	audio_mix	Paused
+    2.57s	ui	Pointer clicked start-settings
+    2.57s	PASS	Settings opens from menu
+    2.57s	pointer-reachable	VisualElement/set-size-0
+    2.57s	pointer-reachable	VisualElement/set-size-1
+    2.57s	pointer-reachable	VisualElement/set-size-2
+    2.57s	pointer-reachable	VisualElement/set-size-3
+    2.58s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    2.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\002_menu_settings.png
+    2.66s	layout	menu_settings: controls=4 small=0 outside=0 size=1600x900
+    2.68s	audio	close chapter=menu state=Entering
+    2.68s	audio	click chapter=menu state=Entering
+    2.68s	audio_mix	Intro
+    2.71s	ui	Pointer clicked settings-close
+    2.71s	PASS	Settings closes
+    2.71s	layout	menu: controls=4 small=0 outside=0 size=1600x900
+    2.72s	audio	gatestart chapter=menu state=Entering
+    2.72s	action	Start pressed
+    2.74s	audio	chapter chapter=Scene09 state=Entering
+    2.74s	chapter	Scene09
+    2.75s	audio	music:pulse chapter=Scene09 state=Entering
+    2.75s	audio	lightmove chapter=Scene09 state=Cinematic
+    2.75s	state	Cinematic
+    2.76s	audio_mix	Exploration
+    2.76s	audio	ambience:off chapter=Scene09 state=Cinematic
+    4.20s	pointer-reachable	letterbox-bottom/btn-skip-intro
+    4.20s	pointer-reachable	top-buttons/btn-pause
+    4.20s	pointer-reachable	top-buttons/btn-settings
+    4.20s	pointer-audit	Scene09_S02_IntroThreshold reachable=3 cumulativeFailures=0
+    4.31s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\003_Scene09_S02_IntroThreshold.png
+    4.31s	layout	Scene09_S02_IntroThreshold: controls=3 small=0 outside=0 size=1600x900
+    4.31s	pointer-audit	cine_Scene09_004.3s reachable=3 cumulativeFailures=0
+    4.42s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\004_cine_Scene09_004.3s.png
+    4.42s	layout	cine_Scene09_004.3s: controls=3 small=0 outside=0 size=1600x900
+    4.81s	pointer-audit	Scene09_S09_Follow reachable=3 cumulativeFailures=0
+    4.91s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\005_Scene09_S09_Follow.png
+    4.91s	layout	Scene09_S09_Follow: controls=3 small=0 outside=0 size=1600x900
+    5.02s	pointer-audit	cine_Scene09_005.0s reachable=3 cumulativeFailures=0
+    5.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\006_cine_Scene09_005.0s.png
+    5.13s	layout	cine_Scene09_005.0s: controls=3 small=0 outside=0 size=1600x900
+    5.73s	pointer-audit	cine_Scene09_005.7s reachable=3 cumulativeFailures=0
+    5.83s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\007_cine_Scene09_005.7s.png
+    5.83s	layout	cine_Scene09_005.7s: controls=3 small=0 outside=0 size=1600x900
+    5.83s	audio	signaltravel chapter=Scene09 state=Cinematic
+    5.85s	audio	pulsetravel (loop) chapter=Scene09 state=Cinematic
+    5.86s	state	Narrating
+    5.86s	cue_start	S09_L01 [Core] clip=ok
+    5.86s	framing	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    5.95s	framing_settled	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    6.05s	audio_mix	NikoSpeaking
+    6.43s	pointer-audit	cine_Scene09_006.4s reachable=3 cumulativeFailures=0
+    6.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\008_cine_Scene09_006.4s.png
+    6.53s	layout	cine_Scene09_006.4s: controls=3 small=0 outside=0 size=1600x900
+    7.13s	pointer-audit	cine_Scene09_007.1s reachable=3 cumulativeFailures=0
+    7.24s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\009_cine_Scene09_007.1s.png
+    7.24s	layout	cine_Scene09_007.1s: controls=3 small=0 outside=0 size=1600x900
+    7.84s	pointer-audit	cine_Scene09_007.8s reachable=3 cumulativeFailures=0
+    7.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\010_cine_Scene09_007.8s.png
+    7.94s	layout	cine_Scene09_007.8s: controls=3 small=0 outside=0 size=1600x900
+    8.26s	audio	pulsenear chapter=Scene09 state=Narrating
+    8.54s	pointer-audit	cine_Scene09_008.5s reachable=3 cumulativeFailures=0
+    8.65s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\011_cine_Scene09_008.5s.png
+    8.65s	layout	cine_Scene09_008.5s: controls=3 small=0 outside=0 size=1600x900
+    9.25s	pointer-audit	cine_Scene09_009.3s reachable=3 cumulativeFailures=0
+    9.36s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09-wait\012_cine_Scene09_009.3s.png
+    9.36s	layout	cine_Scene09_009.3s: controls=3 small=0 outside=0 size=1600x900
+    9.45s	audio	signalarrive chapter=Scene09 state=Narrating
+    9.88s	FAIL	Read & Continue never waits behind a cinematic (its button is hidden there)

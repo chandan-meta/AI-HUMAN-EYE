@@ -1,0 +1,4 @@
+Loop-point probe (sandbox-only PlayMode test, 15 October 2026, Unity 6000.3.0f1 on Windows)
+Clip: 8192-sample silent lead-in + 44100-sample tone, WAV smpl loop from 8192 to 52291, imported Vorbis / Decompress On Load, played with loop on for 4.5 s.
+Result: LOOPPROBE samples=52292 loadType=DecompressOnLoad wraps=4 minAfterWrap=8584
+Reading: after every wrap the play position stayed at or above 8192, so Unity loops at the smpl start, not at sample 0.

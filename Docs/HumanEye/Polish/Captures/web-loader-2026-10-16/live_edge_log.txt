@@ -1,0 +1,9 @@
+t=2.6s bar=28% instance=false loaderGone=false 
+t=7.7s bar=56% instance=false loaderGone=false 
+t=12.7s bar=99% instance=false loaderGone=false 
+console.warning: Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+
+t=32.9s bar=100% instance=true loaderGone=true 
+READY: loader faded into the module after 32.9 s
+clicked 231,590
+memory: 208 MB JS heap

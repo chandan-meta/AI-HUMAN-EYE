@@ -1,0 +1,665 @@
+    0.06s	audio	music:start chapter=menu state=Entering
+    0.06s	audio	ambience:amblab chapter=menu state=Entering
+    0.11s	audio_mix	Intro
+    0.21s	audio	hover chapter=menu state=Entering
+    1.18s	audio	hover chapter=menu state=Entering
+    1.19s	audio	open chapter=menu state=Entering
+    1.20s	audio	click chapter=menu state=Entering
+    1.21s	audio_mix	Paused
+    1.23s	PASS	Settings opens from menu
+    1.36s	audio	close chapter=menu state=Entering
+    1.36s	audio	click chapter=menu state=Entering
+    1.36s	audio_mix	Intro
+    1.39s	PASS	Settings closes
+    1.41s	audio	gatestart chapter=menu state=Entering
+    1.46s	state	Cinematic
+    1.50s	audio	gatescan chapter=Scene02 state=Cinematic intro=0.3
+    1.61s	audio	gateunlock chapter=Scene02 state=Cinematic intro=1.0
+    1.62s	audio	gateservo (loop) chapter=Scene02 state=Cinematic intro=1.0
+    2.02s	audio	gatewhoosh chapter=Scene02 state=Cinematic intro=3.5
+    2.48s	audio	gateentry chapter=Scene02 state=Cinematic intro=6.2
+    2.95s	audio	labsting chapter=Scene02 state=Cinematic intro=9.1
+    2.95s	audio	click chapter=Scene02 state=Cinematic intro=9.1
+    2.97s	audio	skip chapter=Scene02 state=Cinematic intro=9.1
+    2.97s	audio	music:lab chapter=Scene02 state=Cinematic intro=9.1
+    2.98s	state	Narrating
+    2.98s	cue_start	S02_L01 [Core] clip=ok
+    2.98s	audio_mix	Exploration
+    3.17s	PASS	Skip stops the opening's loops and hands over to the lab bed
+    3.17s	check	intro skip: playing=False fade=0.00 shot=S02_NikoMedium key=1.35
+    3.17s	audio_mix	NikoSpeaking
+    3.44s	cue_start	S02_L02 [Core] clip=ok
+    3.79s	cue_start	S02_L03 [Core] clip=ok
+    4.09s	cue_start	S02_L04 [Core] clip=ok
+    4.49s	audio	eyeappear chapter=Scene02 state=Narrating
+    4.50s	cue_start	S02_L06 [Core] clip=ok
+    4.51s	audio	music:eye chapter=Scene02 state=Narrating
+    4.56s	cue_start	S02_L07 [Core] clip=ok
+    4.78s	cue_start	S02_L08 [Core] clip=ok
+    5.04s	cue_start	S02_L09 [Core] clip=ok
+    5.56s	audio	tick chapter=Scene02 state=Narrating
+    5.56s	cue_start	S02_L10 [Core] clip=ok
+    5.73s	audio_repeat	tick again after 167 ms
+    5.73s	audio	tick chapter=Scene02 state=Narrating
+    6.08s	state	Exploring
+    6.28s	audio_mix	Exploration
+    7.04s	audio	select chapter=Scene02 state=Exploring
+    7.05s	audio	isolate chapter=Scene02 state=Exploring
+    7.11s	state	Narrating
+    7.11s	cue_start	S02_L11 [Core] clip=ok
+    7.11s	audio	label chapter=Scene02 state=Narrating
+    7.31s	audio_mix	NikoSpeaking
+    7.94s	audio	discovery chapter=Scene02 state=Narrating
+    8.14s	audio_mix	Exploration
+    8.64s	state	Exploring
+    9.25s	audio	select chapter=Scene02 state=Exploring
+    9.25s	audio	hl_cornea chapter=Scene02 state=Exploring
+    9.31s	state	Narrating
+    9.31s	cue_start	S02_L12 [Core] clip=ok
+    9.31s	audio	label chapter=Scene02 state=Narrating
+    9.51s	audio_mix	NikoSpeaking
+   10.23s	audio	discovery chapter=Scene02 state=Narrating
+   10.43s	audio_mix	Exploration
+   10.93s	state	Exploring
+   11.60s	audio	select chapter=Scene02 state=Exploring
+   11.61s	audio	hl_iris chapter=Scene02 state=Exploring
+   11.67s	state	Narrating
+   11.67s	cue_start	S02_L13 [Core] clip=ok
+   11.67s	audio	label chapter=Scene02 state=Narrating
+   11.87s	audio_mix	NikoSpeaking
+   12.37s	audio	discovery chapter=Scene02 state=Narrating
+   12.57s	audio_mix	Exploration
+   13.07s	state	Exploring
+   13.56s	audio	select chapter=Scene02 state=Exploring
+   13.56s	audio	isolate chapter=Scene02 state=Exploring
+   13.62s	state	Narrating
+   13.62s	cue_start	S02_L14 [Core] clip=ok
+   13.62s	audio	label chapter=Scene02 state=Narrating
+   13.82s	audio_mix	NikoSpeaking
+   14.12s	audio	discovery chapter=Scene02 state=Narrating
+   14.32s	audio_mix	Exploration
+   14.76s	audio	quizopen chapter=Scene02 state=SupplementalCheck
+   14.77s	state	SupplementalCheck
+   14.77s	audio	music:quiz chapter=Scene02 state=SupplementalCheck
+   14.77s	audio_mix	Quiz
+   15.61s	PASS	Quick checks have no Skip button
+   15.61s	audio	quizwrong chapter=Scene02 state=SupplementalCheck
+   15.61s	audio	quizhint chapter=Scene02 state=SupplementalCheck
+   17.10s	PASS	Quick checks have no Skip button
+   17.11s	audio	quizcorrect chapter=Scene02 state=SupplementalCheck
+   17.94s	audio	quizopen chapter=Scene02 state=SupplementalCheck
+   18.77s	PASS	Quick checks have no Skip button
+   18.77s	audio	quizcorrect chapter=Scene02 state=SupplementalCheck
+   19.66s	audio	quizcomplete chapter=Scene02 state=SupplementalCheck
+   19.67s	state	Narrating
+   19.67s	cue_start	S02_L15 [Core] clip=ok
+   19.68s	audio	music:eye chapter=Scene02 state=Narrating
+   19.68s	audio_mix	Exploration
+   19.86s	audio_mix	NikoSpeaking
+   20.14s	cue_start	S02_L16 [Core] clip=ok
+   20.14s	audio	label chapter=Scene02 state=Narrating
+   20.71s	state	AwaitingAction
+   20.73s	audio	open chapter=Scene02 state=AwaitingAction
+   20.73s	audio	click chapter=Scene02 state=AwaitingAction
+   20.73s	audio_mix	Paused
+   20.76s	PASS	Help pauses behind the modal without covering it
+   20.76s	PASS	Modal blocks world input outside card
+   21.13s	PASS	Narration held while Help is open
+   21.13s	PASS	Pause holds ambient particles behind Help
+   21.27s	audio	close chapter=Scene02 state=AwaitingAction
+   21.27s	audio	click chapter=Scene02 state=AwaitingAction
+   21.27s	audio_mix	Exploration
+   21.30s	PASS	Closing Help restores running state
+   21.32s	audio	open chapter=Scene02 state=AwaitingAction
+   21.32s	audio_mix	Paused
+   21.37s	PASS	Music and effects sliders at zero silence the bed, ambience and every effect channel
+   21.39s	PASS	Sound off silences voice, music and effects
+   21.40s	PASS	Sound on restores voice, music and effects
+   21.44s	audio	click chapter=Scene02 state=AwaitingAction
+   21.47s	PASS	XL caption setting stays paused and saves
+   21.58s	audio	click chapter=Scene02 state=AwaitingAction
+   21.65s	audio	close chapter=Scene02 state=AwaitingAction
+   21.65s	audio_mix	Exploration
+   21.70s	audio	open chapter=Scene02 state=AwaitingAction
+   21.71s	audio_mix	Paused
+   21.88s	audio_repeat	close again after 233 ms
+   21.88s	audio	close chapter=Scene02 state=AwaitingAction
+   21.88s	audio	click chapter=Scene02 state=AwaitingAction
+   21.88s	audio_mix	Exploration
+   21.93s	audio	nikolisten chapter=Scene02 state=AwaitingAction
+   21.95s	audio_mix	ChatbotListening
+   21.98s	audio	nikoerror chapter=Scene02 state=AwaitingAction
+   22.02s	PASS	Ask Niko unavailable answer retains usable text feedback
+   22.17s	audio_repeat	close again after 284 ms
+   22.17s	audio	close chapter=Scene02 state=AwaitingAction
+   22.17s	audio	click chapter=Scene02 state=AwaitingAction
+   22.18s	audio_mix	Exploration
+   22.20s	PASS	Closing Ask Niko releases flow hold
+   22.22s	audio_mix	Paused
+   22.23s	audio	hover chapter=Scene02 state=AwaitingAction
+   22.25s	PASS	Pause holds the music
+   22.27s	audio_mix	Exploration
+   22.30s	PASS	Pause/resume UI bindings preserve timeScale
+   22.30s	PASS	Resume continues the music
+   22.87s	audio	click chapter=Scene02 state=AwaitingAction
+   22.89s	audio	unlock chapter=Scene02 state=AwaitingAction
+   22.89s	state	Transitioning
+   22.91s	audio_summary	cues=60 distinct=28 repeats=3 maxLoops=1 music=[start,lab,eye,quiz] ambience=[amblab]
+   22.91s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,lightmove,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,softwhoosh,overview,ambeye,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,layerreveal,organs,eyezoom,dive,iris,hl_retina,cell,pupilwide,pupilnarrow,lensfocus,signaltravel,pulse,pulsetravel,pulsenear,signalarrive,brainreveal,brainrise,cortex,tap,popup,popdown,menu,confirm,deny
+   22.91s	perf	Scene02 avg 53.1 fps, worst frame 192 ms, main thread 18.8 ms, draw calls avg 10 max 962, SetPass 2, triangles 25k, system memory peak 571 MB, GC allocated/frame avg 36692 max 2075085 bytes (1140 samples), GPU unavailable (counter registered, no usable timing samples)
+   22.91s	state	Entering
+   22.92s	state	Cinematic
+   23.40s	audio	layerreveal chapter=Scene03 state=Cinematic
+   23.65s	audio	tick chapter=Scene03 state=Narrating
+   23.65s	state	Narrating
+   23.65s	cue_start	S03_L01 [Core] clip=ok
+   23.67s	audio	ambience:ambeye chapter=Scene03 state=Narrating
+   23.82s	audio_repeat	tick again after 167 ms
+   23.82s	audio	tick chapter=Scene03 state=Narrating
+   23.85s	audio_mix	NikoSpeaking
+   23.99s	audio_repeat	tick again after 167 ms
+   23.99s	audio	tick chapter=Scene03 state=Narrating
+   24.17s	state	Exploring
+   24.37s	audio_mix	Exploration
+   25.62s	audio	select chapter=Scene03 state=Exploring
+   25.62s	audio	isolate chapter=Scene03 state=Exploring
+   25.69s	state	Narrating
+   25.69s	cue_start	S03_L02 [Core] clip=ok
+   25.69s	audio	label chapter=Scene03 state=Narrating
+   25.89s	audio_mix	NikoSpeaking
+   26.57s	cue_start	S03_L03 [Core] clip=ok
+   26.98s	PASS	Music ducks under Niko (-9.9 dB)
+   26.98s	audio_mix	Paused
+   26.99s	audio	hover chapter=Scene03 state=Narrating
+   28.48s	PASS	Pause holds the music and loops
+   28.62s	check	pause: timeScale=1 voiceTimeBefore=0.43 after=0.43 stillPaused=True
+   28.62s	audio_mix	NikoSpeaking
+   28.88s	audio	discovery chapter=Scene03 state=Narrating
+   29.08s	audio_mix	Exploration
+   29.58s	state	Exploring
+   30.24s	audio	select chapter=Scene03 state=Exploring
+   30.24s	audio	isolate chapter=Scene03 state=Exploring
+   30.31s	state	Narrating
+   30.31s	cue_start	S03_L04 [Core] clip=ok
+   30.31s	audio	label chapter=Scene03 state=Narrating
+   30.51s	audio_mix	NikoSpeaking
+   30.91s	cue_start	S03_L05 [Core] clip=ok
+   31.78s	audio	lensfocus chapter=Scene03 state=Narrating
+   31.78s	cue_start	S03_L06 [Core] clip=ok
+   32.48s	audio	discovery chapter=Scene03 state=Narrating
+   32.68s	audio_mix	Exploration
+   33.18s	state	Exploring
+   33.73s	audio	select chapter=Scene03 state=Exploring
+   33.73s	audio	isolate chapter=Scene03 state=Exploring
+   33.79s	state	Narrating
+   33.79s	cue_start	S03_L07 [Core] clip=ok
+   33.79s	audio	label chapter=Scene03 state=Narrating
+   33.99s	audio_mix	NikoSpeaking
+   34.76s	cue_start	S03_L08 [Core] clip=ok
+   35.06s	audio	discovery chapter=Scene03 state=Narrating
+   35.26s	audio_mix	Exploration
+   35.76s	state	Exploring
+   36.43s	audio	select chapter=Scene03 state=Exploring
+   36.43s	audio	hl_retina chapter=Scene03 state=Exploring
+   36.50s	state	Narrating
+   36.50s	cue_start	S03_L09 [Core] clip=ok
+   36.50s	audio	label chapter=Scene03 state=Narrating
+   36.69s	audio_mix	NikoSpeaking
+   36.85s	cue_start	S03_L10 [Core] clip=ok
+   37.26s	audio	discovery chapter=Scene03 state=Narrating
+   37.46s	audio_mix	Exploration
+   37.96s	state	Exploring
+   38.63s	audio	select chapter=Scene03 state=Exploring
+   38.63s	audio	isolate chapter=Scene03 state=Exploring
+   38.69s	state	Narrating
+   38.69s	cue_start	S03_L11 [Core] clip=ok
+   38.69s	audio	label chapter=Scene03 state=Narrating
+   38.89s	audio_mix	NikoSpeaking
+   39.71s	audio	discovery chapter=Scene03 state=Narrating
+   39.91s	audio_mix	Exploration
+   40.41s	audio	quizopen chapter=Scene03 state=SupplementalCheck
+   40.41s	state	SupplementalCheck
+   40.43s	audio	music:quiz chapter=Scene03 state=SupplementalCheck
+   40.43s	audio_mix	Quiz
+   41.57s	PASS	Quick checks have no Skip button
+   41.57s	audio	quizcorrect chapter=Scene03 state=SupplementalCheck
+   42.45s	audio	quizcomplete chapter=Scene03 state=SupplementalCheck
+   42.45s	state	Narrating
+   42.45s	cue_start	S03_L12 [Core] clip=ok
+   42.46s	audio	music:eye chapter=Scene03 state=Narrating
+   42.46s	audio_mix	Exploration
+   42.65s	audio_mix	NikoSpeaking
+   42.68s	state	Transitioning
+   42.70s	audio_summary	cues=89 distinct=31 repeats=5 maxLoops=1 music=[start,lab,eye,quiz] ambience=[amblab,ambeye]
+   42.70s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,lightmove,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,softwhoosh,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,iris,cell,pupilwide,pupilnarrow,signaltravel,pulse,pulsetravel,pulsenear,signalarrive,brainreveal,brainrise,cortex,tap,popup,popdown,menu,confirm,deny
+   42.70s	perf	Scene03 avg 55.6 fps, worst frame 176 ms, main thread 18.0 ms, draw calls avg 5 max 479, SetPass 1, triangles 10k, system memory peak 579 MB, GC allocated/frame avg 21049 max 1825266 bytes (1100 samples), GPU unavailable (counter registered, no usable timing samples)
+   42.70s	state	Entering
+   42.71s	audio	music:niko chapter=Scene04 state=Entering
+   42.71s	audio	ambience:amblab chapter=Scene04 state=Entering
+   42.71s	state	Narrating
+   42.71s	cue_start	S04_L01 [Core] clip=ok
+   43.13s	cue_start	S04_L02 [Core] clip=ok
+   43.45s	cue_start	S04_L03 [Core] clip=ok
+   43.85s	cue_start	S04_L04 [Core] clip=ok
+   43.85s	audio	label chapter=Scene04 state=Narrating
+   43.98s	cue_start	S04_L05 [Core] clip=ok
+   44.33s	audio	brainreveal chapter=Scene04 state=Narrating
+   44.33s	cue_start	S04_L06 [Core] clip=ok
+   44.35s	audio	music:pulse chapter=Scene04 state=Narrating
+   44.35s	audio	pulsetravel (loop) chapter=Scene04 state=Narrating
+   44.75s	audio	pulsenear chapter=Scene04 state=Narrating
+   44.86s	audio	cortex chapter=Scene04 state=Narrating
+   44.86s	cue_start	S04_L07 [Core] clip=ok
+   44.95s	audio	signalarrive chapter=Scene04 state=Narrating
+   45.46s	cue_start	S04_L08 [Core] clip=ok
+   45.46s	audio	label chapter=Scene04 state=Narrating
+   45.48s	audio	music:niko chapter=Scene04 state=Narrating
+   46.01s	audio	quizopen chapter=Scene04 state=SupplementalCheck
+   46.01s	state	SupplementalCheck
+   46.03s	audio	music:quiz chapter=Scene04 state=SupplementalCheck
+   46.21s	audio_mix	Quiz
+   48.55s	PASS	Quick checks have no Skip button
+   48.55s	audio	quizcorrect chapter=Scene04 state=SupplementalCheck
+   49.41s	audio	quizcomplete chapter=Scene04 state=SupplementalCheck
+   49.41s	state	Transitioning
+   49.42s	audio	music:niko chapter=Scene04 state=Transitioning
+   49.43s	audio_summary	cues=99 distinct=36 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+   49.43s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,lightmove,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,softwhoosh,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,iris,cell,pupilwide,pupilnarrow,signaltravel,pulse,brainrise,tap,popup,popdown,menu,confirm,deny
+   49.43s	perf	Scene04 avg 55.1 fps, worst frame 170 ms, main thread 18.1 ms, draw calls avg 5 max 508, SetPass 1, triangles 18k, system memory peak 582 MB, GC allocated/frame avg 22176 max 1820131 bytes (371 samples), GPU unavailable (counter registered, no usable timing samples)
+   49.43s	state	Entering
+   49.43s	audio_mix	Exploration
+   49.44s	audio	layerreveal chapter=Scene05 state=Cinematic
+   49.44s	state	Cinematic
+   49.49s	audio	softwhoosh chapter=Scene05 state=Cinematic
+   49.61s	state	Narrating
+   49.61s	cue_start	S05_L01 [Core] clip=ok
+   49.81s	audio_mix	NikoSpeaking
+   50.28s	audio	lightmove chapter=Scene05 state=Narrating
+   50.28s	cue_start	S05_L02 [Core] clip=ok
+   50.73s	audio	hl_cornea chapter=Scene05 state=Narrating
+   50.73s	audio	lightmove chapter=Scene05 state=Narrating
+   50.73s	cue_start	S05_L03 [Core] clip=ok
+   51.28s	audio	isolate chapter=Scene05 state=Narrating
+   51.28s	audio	lightmove chapter=Scene05 state=Narrating
+   51.28s	cue_start	S05_L04 [Core] clip=ok
+   52.15s	audio_mix	Exploration
+   52.83s	cue_start	S05_L05 [Core] clip=ok
+   52.83s	audio	label chapter=Scene05 state=Narrating
+   53.03s	audio_mix	NikoSpeaking
+   53.33s	state	AwaitingAction
+   53.53s	audio_mix	Exploration
+   54.88s	audio	deny chapter=Scene05 state=AwaitingAction
+   54.88s	check	dimmer during 'brighter' was refused (reason toast)
+   54.90s	audio	pupilnarrow chapter=Scene05 state=AwaitingAction
+   54.91s	state	Cinematic
+   55.10s	state	Narrating
+   55.10s	cue_start	S05_L06 [Core] clip=ok
+   55.41s	audio_mix	NikoSpeaking
+   55.52s	state	AwaitingAction
+   55.72s	audio_mix	Exploration
+   56.11s	audio	pupilwide chapter=Scene05 state=AwaitingAction
+   56.11s	state	Cinematic
+   56.46s	state	Narrating
+   56.46s	cue_start	S05_L07 [Core] clip=ok
+   56.66s	audio_mix	NikoSpeaking
+   56.88s	audio	iris chapter=Scene05 state=Narrating
+   56.88s	cue_start	S05_L08 [Core] clip=ok
+   57.69s	audio	quizopen chapter=Scene05 state=SupplementalCheck
+   57.70s	state	SupplementalCheck
+   57.71s	audio	music:quiz chapter=Scene05 state=SupplementalCheck
+   57.89s	audio_mix	Quiz
+   58.22s	PASS	Quick checks have no Skip button
+   58.24s	audio	pupilnarrow chapter=Scene05 state=SupplementalCheck
+   58.32s	audio	quizcorrect chapter=Scene05 state=SupplementalCheck
+   59.06s	audio	quizcomplete chapter=Scene05 state=SupplementalCheck
+   59.06s	state	Exploring
+   59.07s	audio	music:niko chapter=Scene05 state=Exploring
+   59.07s	audio_mix	Exploration
+   59.41s	audio	click chapter=Scene05 state=Exploring
+   59.44s	audio	pupilwide chapter=Scene05 state=Exploring
+   59.44s	audio	deny chapter=Scene05 state=Exploring
+   59.44s	PASS	Rapid REPLAY requests cannot start overlapping demonstrations
+   59.62s	audio_mix	Paused
+   59.64s	audio	hover chapter=Scene05 state=Exploring
+   59.94s	PASS	Pause holds camera and biology during REPLAY
+   59.94s	PASS	FREEZE works while a demonstration plays
+   59.94s	audio_mix	Exploration
+   59.96s	audio	menu chapter=menu state=Entering
+   59.97s	audio	hover chapter=menu state=Entering
+   59.97s	audio	music:start chapter=menu state=Entering
+   59.97s	audio_summary	cues=121 distinct=43 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+   59.97s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,cell,signaltravel,pulse,brainrise,tap,popup,popdown,confirm
+   59.97s	perf	Scene05 avg 55.0 fps, worst frame 159 ms, main thread 18.2 ms, draw calls avg 6 max 497, SetPass 1, triangles 18k, system memory peak 584 MB, GC allocated/frame avg 64537 max 1964610 bytes (580 samples), GPU unavailable (counter registered, no usable timing samples)
+   59.97s	state	Entering
+   59.97s	audio_mix	Intro
+   59.99s	PASS	Return to menu cancels active effects and restores clocks
+   60.01s	PASS	Return to menu stops every loop and plays the start theme
+   60.01s	PASS	Save/reload preserves checkpoint and completed cues
+   60.15s	audio	open chapter=menu state=Entering
+   60.15s	audio	click chapter=menu state=Entering
+   60.15s	audio_mix	Paused
+   60.18s	PASS	Starting again requests confirmation before overwriting progress
+   60.32s	audio	hover chapter=menu state=Entering
+   60.32s	audio	close chapter=menu state=Entering
+   60.32s	audio	click chapter=menu state=Entering
+   60.32s	audio_mix	Intro
+   60.35s	PASS	Cancel protects existing progress
+   60.37s	audio	gatestart chapter=menu state=Entering
+   60.40s	audio	music:niko chapter=Scene05 state=Entering
+   60.40s	audio	layerreveal chapter=Scene05 state=Cinematic
+   60.40s	state	Cinematic
+   60.40s	audio_mix	Exploration
+   60.42s	PASS	Resume button returns to saved chapter
+   60.45s	audio	softwhoosh chapter=Scene05 state=Cinematic
+   60.57s	state	Narrating
+   60.57s	cue_start	S05_L01 [Core] clip=ok
+   60.77s	audio_mix	NikoSpeaking
+   61.24s	audio	lightmove chapter=Scene05 state=Narrating
+   61.24s	cue_start	S05_L02 [Core] clip=ok
+   61.69s	audio	hl_cornea chapter=Scene05 state=Narrating
+   61.69s	audio	lightmove chapter=Scene05 state=Narrating
+   61.69s	cue_start	S05_L03 [Core] clip=ok
+   62.24s	audio	isolate chapter=Scene05 state=Narrating
+   62.24s	audio	lightmove chapter=Scene05 state=Narrating
+   62.24s	cue_start	S05_L04 [Core] clip=ok
+   63.11s	audio_mix	Exploration
+   63.79s	cue_start	S05_L05 [Core] clip=ok
+   63.79s	audio	label chapter=Scene05 state=Narrating
+   63.99s	audio_mix	NikoSpeaking
+   64.29s	state	AwaitingAction
+   64.49s	audio_mix	Exploration
+   65.84s	audio	deny chapter=Scene05 state=AwaitingAction
+   65.84s	check	dimmer during 'brighter' was refused (reason toast)
+   65.86s	audio	pupilnarrow chapter=Scene05 state=AwaitingAction
+   65.86s	state	Cinematic
+   66.06s	state	Narrating
+   66.06s	cue_start	S05_L06 [Core] clip=ok
+   66.39s	audio_mix	NikoSpeaking
+   66.47s	state	AwaitingAction
+   66.67s	audio_mix	Exploration
+   67.06s	audio	pupilwide chapter=Scene05 state=AwaitingAction
+   67.06s	state	Cinematic
+   67.41s	state	Narrating
+   67.41s	cue_start	S05_L07 [Core] clip=ok
+   67.61s	audio_mix	NikoSpeaking
+   67.83s	audio	iris chapter=Scene05 state=Narrating
+   67.83s	cue_start	S05_L08 [Core] clip=ok
+   68.64s	audio	quizopen chapter=Scene05 state=SupplementalCheck
+   68.64s	state	SupplementalCheck
+   68.66s	audio	music:quiz chapter=Scene05 state=SupplementalCheck
+   68.84s	audio_mix	Quiz
+   69.20s	PASS	Quick checks have no Skip button
+   69.22s	audio	pupilnarrow chapter=Scene05 state=SupplementalCheck
+   69.30s	audio	quizcorrect chapter=Scene05 state=SupplementalCheck
+   70.02s	audio	quizcomplete chapter=Scene05 state=SupplementalCheck
+   70.02s	state	Exploring
+   70.04s	audio	music:niko chapter=Scene05 state=Exploring
+   70.04s	audio_mix	Exploration
+   71.05s	audio	pupilwide chapter=Scene05 state=Exploring
+   72.27s	audio	pupilnarrow chapter=Scene05 state=Exploring
+   73.42s	audio	pupilwide chapter=Scene05 state=Exploring
+   75.39s	check	freeze mid-change: pupil before=0.096 after 1.5 s=0.096 (equal = frozen)
+   76.76s	state	Transitioning
+   76.78s	audio	chapter chapter=Scene06 state=Entering
+   76.78s	audio_summary	cues=147 distinct=44 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+   76.78s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,cell,signaltravel,pulse,brainrise,tap,popup,popdown,confirm
+   76.78s	perf	Scene05 avg 54.6 fps, worst frame 203 ms, main thread 18.3 ms, draw calls avg 6 max 497, SetPass 2, triangles 19k, system memory peak 591 MB, GC allocated/frame avg 66917 max 1964982 bytes (894 samples), GPU unavailable (counter registered, no usable timing samples)
+   76.78s	state	Entering
+   76.79s	audio	music:eye chapter=Scene06 state=Entering
+   76.79s	audio	ambience:ambeye chapter=Scene06 state=Entering
+   76.79s	audio	isolate chapter=Scene06 state=Entering
+   76.79s	audio	lightmove chapter=Scene06 state=Narrating
+   76.79s	state	Narrating
+   76.79s	cue_start	S06_L01 [Core] clip=ok
+   76.99s	audio_mix	NikoSpeaking
+   77.56s	state	AwaitingAction
+   77.56s	audio	label chapter=Scene06 state=AwaitingAction
+   77.76s	audio_mix	Exploration
+   79.54s	audio	softwhoosh chapter=Scene06 state=Cinematic
+   79.54s	state	Cinematic
+   79.94s	audio	lensfocus chapter=Scene06 state=Narrating
+   79.94s	state	Narrating
+   79.94s	cue_start	S06_L02 [Core] clip=ok
+   80.14s	audio_mix	NikoSpeaking
+   80.76s	state	AwaitingAction
+   80.76s	audio	label chapter=Scene06 state=AwaitingAction
+   80.95s	audio_mix	Exploration
+   81.34s	audio	softwhoosh chapter=Scene06 state=Cinematic
+   81.34s	state	Cinematic
+   81.45s	audio	layerreveal chapter=Scene06 state=Cinematic
+   81.85s	audio	lensfocus chapter=Scene06 state=Narrating
+   81.85s	state	Narrating
+   81.85s	cue_start	S06_L03 [Core] clip=ok
+   82.05s	audio_mix	NikoSpeaking
+   82.39s	cue_start	S06_L04 [Core] clip=ok
+   83.32s	audio	lightmove chapter=Scene06 state=Narrating
+   83.52s	audio_mix	Exploration
+   83.67s	audio	quizopen chapter=Scene06 state=SupplementalCheck
+   83.67s	state	SupplementalCheck
+   83.69s	audio	music:quiz chapter=Scene06 state=SupplementalCheck
+   83.69s	audio_mix	Quiz
+   86.19s	PASS	Quick checks have no Skip button
+   86.19s	audio	quizcorrect chapter=Scene06 state=SupplementalCheck
+   87.04s	audio	quizopen chapter=Scene06 state=SupplementalCheck
+   87.87s	PASS	Quick checks have no Skip button
+   87.87s	audio	quizcorrect chapter=Scene06 state=SupplementalCheck
+   88.70s	audio	quizcomplete chapter=Scene06 state=SupplementalCheck
+   88.71s	state	Transitioning
+   88.72s	audio	music:eye chapter=Scene06 state=Transitioning
+   88.72s	audio_summary	cues=162 distinct=44 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+   88.72s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,cell,signaltravel,pulse,brainrise,tap,popup,popdown,confirm
+   88.72s	perf	Scene06 avg 53.3 fps, worst frame 155 ms, main thread 18.7 ms, draw calls avg 6 max 418, SetPass 2, triangles 23k, system memory peak 594 MB, GC allocated/frame avg 34608 max 2058375 bytes (637 samples), GPU unavailable (counter registered, no usable timing samples)
+   88.72s	state	Entering
+   88.72s	audio_mix	Exploration
+   88.74s	audio	isolate chapter=Scene07 state=Entering
+   88.74s	audio	lightmove chapter=Scene07 state=Narrating
+   88.74s	state	Narrating
+   88.74s	cue_start	S07_L01 [Core] clip=ok
+   88.94s	audio_mix	NikoSpeaking
+   89.52s	audio	hl_retina chapter=Scene07 state=Narrating
+   89.52s	audio	popup chapter=Scene07 state=Narrating
+   89.52s	cue_start	S07_L02 [Core] clip=ok
+   90.19s	audio	popdown chapter=Scene07 state=Narrating
+   90.19s	cue_start	S07_L03 [Core] clip=ok
+   90.62s	state	Transitioning
+   90.64s	audio	chapter chapter=Scene08 state=Entering
+   90.64s	audio_summary	cues=168 distinct=46 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+   90.64s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,dive,cell,signaltravel,pulse,brainrise,tap,confirm
+   90.64s	perf	Scene07 avg 60.0 fps, worst frame 17 ms, main thread 16.7 ms, draw calls avg 0 max 0, SetPass 0, triangles 0k, system memory peak 594 MB, GC allocated/frame avg 5556 max 445314 bytes (115 samples), GPU unavailable (counter registered, no usable timing samples)
+   90.64s	state	Entering
+   90.65s	audio	music:pulse chapter=Scene08 state=Entering
+   90.65s	audio	ambience:amblab chapter=Scene08 state=Entering
+   90.66s	audio	dive chapter=Scene08 state=Cinematic
+   90.66s	state	Cinematic
+   90.82s	audio_mix	Exploration
+   91.57s	audio	ambience:ambeye chapter=Scene08 state=Cinematic
+   91.64s	state	Narrating
+   91.64s	cue_start	S08_L01 [Core] clip=ok
+   91.88s	audio_mix	NikoSpeaking
+   92.34s	audio	cell chapter=Scene08 state=Narrating
+   92.34s	audio	isolate chapter=Scene08 state=Narrating
+   92.34s	cue_start	S08_L02 [Core] clip=ok
+   93.07s	cue_start	S08_L03 [Core] clip=ok
+   93.61s	audio	cell chapter=Scene08 state=Narrating
+   93.61s	audio	isolate chapter=Scene08 state=Narrating
+   93.61s	cue_start	S08_L04 [Core] clip=ok
+   94.29s	audio	cell chapter=Scene08 state=Narrating
+   94.29s	audio	pulse chapter=Scene08 state=Narrating
+   94.29s	cue_start	S08_L05 [Core] clip=ok
+   95.04s	cue_start	S08_L06 [Core] clip=ok
+   95.64s	audio	quizopen chapter=Scene08 state=SupplementalCheck
+   95.64s	state	SupplementalCheck
+   95.66s	audio	music:quiz chapter=Scene08 state=SupplementalCheck
+   95.84s	audio_mix	Quiz
+   98.60s	PASS	Quick checks have no Skip button
+   98.60s	audio	quizcorrect chapter=Scene08 state=SupplementalCheck
+   99.29s	audio	quizcomplete chapter=Scene08 state=SupplementalCheck
+   99.30s	state	Exploring
+   99.31s	audio	music:pulse chapter=Scene08 state=Exploring
+   99.31s	audio_mix	Exploration
+  100.23s	audio	isolate chapter=Scene08 state=Exploring
+  100.23s	cue_start	S08_L02 [Replay] clip=ok
+  100.43s	audio_mix	NikoSpeaking
+  100.90s	cue_start	S08_L03 [Replay] clip=ok
+  101.57s	audio	cell chapter=Scene08 state=Exploring
+  101.63s	audio_mix	Exploration
+  102.34s	audio	cell chapter=Scene08 state=Exploring
+  103.12s	state	Transitioning
+  103.14s	audio	chapter chapter=Scene09 state=Entering
+  103.14s	audio_summary	cues=182 distinct=49 repeats=5 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye]
+  103.14s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,signaltravel,brainrise,tap,confirm
+  103.14s	perf	Scene08 avg 57.4 fps, worst frame 100 ms, main thread 17.4 ms, draw calls avg 4 max 384, SetPass 1, triangles 3k, system memory peak 595 MB, GC allocated/frame avg 9962 max 651725 bytes (717 samples), GPU unavailable (counter registered, no usable timing samples)
+  103.14s	state	Entering
+  103.15s	audio	ambience:amblab chapter=Scene09 state=Entering
+  103.15s	audio	lightmove chapter=Scene09 state=Cinematic
+  103.15s	state	Cinematic
+  103.17s	audio	ambience:off chapter=Scene09 state=Cinematic
+  103.65s	audio	signaltravel chapter=Scene09 state=Cinematic
+  103.67s	audio	pulsetravel (loop) chapter=Scene09 state=Cinematic
+  103.67s	state	Narrating
+  103.67s	cue_start	S09_L01 [Core] clip=ok
+  103.87s	audio_mix	NikoSpeaking
+  104.07s	audio	pulsenear chapter=Scene09 state=Narrating
+  104.27s	audio	signalarrive chapter=Scene09 state=Narrating
+  104.55s	audio_mix	Exploration
+  104.74s	audio	softwhoosh chapter=Scene09 state=Narrating
+  104.76s	cue_start	S09_L02 [Core] clip=ok
+  104.96s	audio	label chapter=Scene09 state=Narrating
+  104.96s	audio_mix	NikoSpeaking
+  105.09s	audio	signaltravel chapter=Scene09 state=Narrating
+  105.11s	audio	pulsetravel (loop) chapter=Scene09 state=Narrating
+  105.17s	audio_repeat	label again after 217 ms
+  105.17s	audio	label chapter=Scene09 state=Narrating
+  105.32s	audio_repeat	label again after 150 ms
+  105.32s	audio	label chapter=Scene09 state=Narrating
+  105.36s	audio	pulsenear chapter=Scene09 state=Narrating
+  105.47s	audio	signalarrive chapter=Scene09 state=Narrating
+  105.49s	audio_repeat	label again after 167 ms
+  105.49s	audio	label chapter=Scene09 state=Narrating
+  105.54s	audio_mix	Exploration
+  105.69s	audio_repeat	label again after 202 ms
+  105.69s	audio	label chapter=Scene09 state=Narrating
+  105.79s	audio	cortex chapter=Scene09 state=Narrating
+  105.91s	audio	brainrise chapter=Scene09 state=Narrating
+  105.92s	cue_start	S09_L03 [Core] clip=ok
+  106.12s	audio_mix	NikoSpeaking
+  106.49s	audio	titlehit chapter=Scene09 state=Narrating
+  106.88s	audio_mix	Exploration
+  107.15s	audio	ambience:amblab chapter=Scene09 state=Narrating
+  107.15s	audio	popup chapter=Scene09 state=Narrating
+  107.15s	cue_start	S09_L04 [Core] clip=ok
+  107.35s	audio_mix	NikoSpeaking
+  108.82s	audio	popdown chapter=Scene09 state=Narrating
+  108.82s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+  108.83s	state	SupplementalCheck
+  108.84s	audio	music:quiz chapter=Scene09 state=SupplementalCheck
+  109.02s	audio_mix	Quiz
+  111.69s	PASS	Quick checks have no Skip button
+  111.69s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+  112.52s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+  113.35s	PASS	Quick checks have no Skip button
+  113.35s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+  114.17s	audio	quizcomplete chapter=Scene09 state=SupplementalCheck
+  115.01s	PASS	Quick checks have no Skip button
+  115.01s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+  115.84s	audio	quizopen chapter=Scene09 state=SupplementalCheck
+  116.67s	PASS	Quick checks have no Skip button
+  116.67s	audio	quizcorrect chapter=Scene09 state=SupplementalCheck
+  117.51s	audio	quizcomplete chapter=Scene09 state=SupplementalCheck
+  117.51s	state	Transitioning
+  117.52s	audio	music:pulse chapter=Scene09 state=Transitioning
+  117.53s	audio_summary	cues=211 distinct=52 repeats=9 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye,off]
+  117.53s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,hologram,overview,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,tap,confirm
+  117.53s	perf	Scene09 avg 52.8 fps, worst frame 141 ms, main thread 18.9 ms, draw calls avg 10 max 667, SetPass 2, triangles 32k, system memory peak 599 MB, GC allocated/frame avg 34935 max 1825061 bytes (760 samples), GPU unavailable (counter registered, no usable timing samples)
+  117.53s	state	Entering
+  117.53s	audio_mix	Exploration
+  117.54s	audio	music:niko chapter=Scene10 state=Entering
+  117.54s	state	Narrating
+  117.54s	cue_start	S10_L01 [Core] clip=ok
+  117.54s	audio	label chapter=Scene10 state=Narrating
+  117.74s	audio_mix	NikoSpeaking
+  117.86s	cue_start	S10_L02 [Core] clip=ok
+  118.76s	audio	lightmove chapter=Scene10 state=Narrating
+  118.92s	audio_repeat	lightmove again after 167 ms
+  118.92s	audio	lightmove chapter=Scene10 state=Narrating
+  118.96s	audio_mix	Exploration
+  119.09s	audio_repeat	lightmove again after 167 ms
+  119.09s	audio	lightmove chapter=Scene10 state=Narrating
+  119.26s	audio_repeat	lightmove again after 167 ms
+  119.26s	audio	lightmove chapter=Scene10 state=Narrating
+  119.42s	audio_repeat	lightmove again after 167 ms
+  119.42s	audio	lightmove chapter=Scene10 state=Narrating
+  119.59s	audio_repeat	lightmove again after 167 ms
+  119.59s	audio	lightmove chapter=Scene10 state=Narrating
+  119.76s	audio	cell chapter=Scene10 state=Narrating
+  119.92s	audio	pulse chapter=Scene10 state=Narrating
+  119.94s	audio	pulsetravel (loop) chapter=Scene10 state=Narrating
+  120.33s	audio	pulsenear chapter=Scene10 state=Narrating
+  120.60s	audio	cortex chapter=Scene10 state=Narrating
+  120.90s	audio	overview chapter=Scene10 state=Narrating
+  121.86s	audio	label chapter=Scene10 state=Narrating
+  121.96s	audio	lightmove chapter=Scene10 state=Narrating
+  122.11s	audio_repeat	lightmove again after 150 ms
+  122.11s	audio	lightmove chapter=Scene10 state=Narrating
+  122.26s	audio_repeat	lightmove again after 150 ms
+  122.26s	audio	lightmove chapter=Scene10 state=Narrating
+  122.41s	audio_repeat	lightmove again after 150 ms
+  122.41s	audio	lightmove chapter=Scene10 state=Narrating
+  122.56s	audio_repeat	lightmove again after 150 ms
+  122.56s	audio	lightmove chapter=Scene10 state=Narrating
+  122.71s	audio_repeat	lightmove again after 150 ms
+  122.71s	audio	lightmove chapter=Scene10 state=Narrating
+  122.86s	audio	cell chapter=Scene10 state=Narrating
+  123.03s	audio	pulse chapter=Scene10 state=Narrating
+  123.05s	audio	pulsetravel (loop) chapter=Scene10 state=Narrating
+  123.45s	audio	pulsenear chapter=Scene10 state=Narrating
+  123.71s	audio	cortex chapter=Scene10 state=Narrating
+  124.02s	state	Transitioning
+  124.04s	audio	chapter chapter=Scene11 state=Entering
+  124.04s	audio_summary	cues=237 distinct=53 repeats=19 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse] ambience=[amblab,ambeye,off]
+  124.04s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,hologram,nikoappear,nikothink,nikoreply,complete,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,tap,confirm
+  124.04s	perf	Scene10 avg 57.9 fps, worst frame 138 ms, main thread 17.3 ms, draw calls avg 3 max 631, SetPass 1, triangles 10k, system memory peak 600 MB, GC allocated/frame avg 11196 max 1699892 bytes (377 samples), GPU unavailable (counter registered, no usable timing samples)
+  124.04s	state	Entering
+  124.05s	state	Cinematic
+  124.24s	state	Narrating
+  124.24s	cue_start	S11_L01 [Core] clip=ok
+  124.44s	audio_mix	NikoSpeaking
+  124.97s	cue_start	S11_L02 [Core] clip=ok
+  125.71s	cue_start	S11_L03 [Core] clip=ok
+  126.26s	audio	music:finale chapter=Scene11 state=Narrating
+  126.44s	audio_mix	Finale
+  127.08s	audio	label chapter=Scene11 state=Narrating
+  127.27s	audio_mix	NikoSpeaking
+  127.93s	audio	complete chapter=Scene11 state=Narrating
+  128.13s	state	Complete
+  129.60s	audio	menu chapter=menu state=Entering
+  129.60s	audio	click chapter=menu state=Entering
+  129.61s	audio	hover chapter=menu state=Entering
+  129.61s	audio	music:start chapter=menu state=Entering
+  129.61s	audio_summary	cues=242 distinct=54 repeats=19 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse,finale] ambience=[amblab,ambeye,off]
+  129.61s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,hologram,nikoappear,nikothink,nikoreply,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,tap,confirm
+  129.61s	perf	Scene11 avg 56.1 fps, worst frame 138 ms, main thread 17.8 ms, draw calls avg 5 max 493, SetPass 1, triangles 12k, system memory peak 596 MB, GC allocated/frame avg 21574 max 1807682 bytes (313 samples), GPU unavailable (counter registered, no usable timing samples)
+  129.61s	state	Entering
+  129.63s	PASS	Full saved investigation reloads with all chapters and cues (65: S02_L05 retired)
+  129.78s	audio	gatestart chapter=menu state=Entering
+  129.78s	audio	click chapter=menu state=Entering
+  129.79s	audio	chapter chapter=Scene11 state=Entering
+  129.81s	audio	music:niko chapter=Scene11 state=Entering
+  129.81s	state	Cinematic
+  129.81s	PASS	Completed save resumes Scene 11
+  129.81s	audio_mix	Exploration
+  129.99s	state	Narrating
+  129.99s	cue_start	S11_L01 [Core] clip=ok
+  130.19s	audio_mix	NikoSpeaking
+  130.73s	cue_start	S11_L02 [Core] clip=ok
+  131.46s	cue_start	S11_L03 [Core] clip=ok
+  132.01s	audio	music:finale chapter=Scene11 state=Narrating
+  132.19s	audio_mix	Finale
+  132.83s	audio	label chapter=Scene11 state=Narrating
+  133.03s	audio_mix	NikoSpeaking
+  133.68s	audio	complete chapter=Scene11 state=Narrating
+  133.88s	state	Complete
+  135.39s	audio_summary	cues=247 distinct=54 repeats=19 maxLoops=1 music=[start,lab,eye,quiz,niko,pulse,finale] ambience=[amblab,ambeye,off]
+  135.39s	audio_unplayed	scan,whoosh,reveal,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,nikoscan,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,vortex,crackle,hologram,nikoappear,nikothink,nikoreply,dissolve,crackle1,crackle2,layerdone,organs,eyezoom,tap,confirm
+  135.39s	perf	Scene11 avg 56.9 fps, worst frame 175 ms, main thread 17.5 ms, draw calls avg 3 max 490, SetPass 1, triangles 8k, system memory peak 602 MB, GC allocated/frame avg 13987 max 1810211 bytes (311 samples), GPU unavailable (counter registered, no usable timing samples)
+  135.39s	done	completed=Scene02,Scene03,Scene04,Scene05,Scene06,Scene07,Scene08,Scene09,Scene10,Scene11 cues=65 evidence=14

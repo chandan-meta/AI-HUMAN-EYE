@@ -1,0 +1,803 @@
+    0.01s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1024x768 quality=PC fast=6
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    0.53s	pointer-reachable	start-actions/start-begin
+    0.53s	pointer-reachable	start-actions/start-help
+    0.53s	pointer-reachable	start-actions/start-chapters
+    0.53s	pointer-reachable	start-more/start-settings
+    0.53s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    1.17s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\001_start_screen.png
+    1.17s	layout	start_screen: controls=4 small=0 outside=0 size=1024x768
+    1.22s	ui	Pointer clicked start-settings
+    1.22s	PASS	Settings opens from menu
+    1.22s	pointer-reachable	VisualElement/set-size-0
+    1.22s	pointer-reachable	VisualElement/set-size-1
+    1.22s	pointer-reachable	VisualElement/set-size-2
+    1.22s	pointer-reachable	VisualElement/set-size-3
+    1.22s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    1.29s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\002_menu_settings.png
+    1.29s	layout	menu_settings: controls=4 small=0 outside=0 size=1024x768
+    1.34s	ui	Pointer clicked settings-close
+    1.34s	PASS	Settings closes
+    1.34s	layout	menu: controls=4 small=0 outside=0 size=1024x768
+    1.38s	chapter	Scene02
+    1.48s	state	Cinematic
+    1.48s	ui	Pointer clicked start-begin
+    1.48s	action	Start pressed
+    1.68s	pointer-reachable	top-buttons/btn-pause
+    1.68s	pointer-reachable	top-buttons/btn-settings
+    1.68s	pointer-audit	Scene02_S02_IntroDolly reachable=2 cumulativeFailures=0
+    1.77s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\003_Scene02_S02_IntroDolly.png
+    1.77s	layout	Scene02_S02_IntroDolly: controls=2 small=0 outside=0 size=1024x768
+    2.61s	pointer-audit	Scene02_S02_NikoMedium reachable=2 cumulativeFailures=0
+    2.70s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\004_Scene02_S02_NikoMedium.png
+    2.70s	layout	Scene02_S02_NikoMedium: controls=2 small=0 outside=0 size=1024x768
+    2.71s	state	Narrating
+    2.71s	cue_start	S02_L01 [Core] clip=ok
+    2.71s	framing	S02_L01 shot=S02_NikoMedium blending=False part=- (no structure named)
+    2.80s	framing_settled	S02_L01 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.12s	cue_end	S02_L01
+    3.12s	cue_start	S02_L02 [Core] clip=ok
+    3.12s	framing	S02_L02 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.22s	framing_settled	S02_L02 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.47s	cue_end	S02_L02
+    3.47s	cue_start	S02_L03 [Core] clip=ok
+    3.47s	framing	S02_L03 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.57s	framing_settled	S02_L03 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.77s	cue_end	S02_L03
+    3.77s	cue_start	S02_L04 [Core] clip=ok
+    3.77s	framing	S02_L04 shot=S02_NikoMedium blending=False part=- (no structure named)
+    3.87s	framing_settled	S02_L04 shot=S02_NikoMedium blending=False part=- (no structure named)
+    4.17s	cue_end	S02_L04
+    4.17s	cue_start	S02_L06 [Core] clip=ok
+    4.17s	framing	S02_L06 shot=S02_NikoMedium blending=False part=- (no structure named)
+    4.24s	cue_end	S02_L06
+    4.24s	cue_start	S02_L07 [Core] clip=ok
+    4.24s	framing	S02_L07 shot=S02_EyeHero blending=False part=- (no structure named)
+    4.27s	framing_settled	S02_L06 line ended before the camera settled
+    4.33s	framing_settled	S02_L07 shot=S02_EyeHero blending=False part=- (no structure named)
+    4.42s	pointer-reachable	top-buttons/btn-home
+    4.42s	pointer-reachable	top-buttons/btn-chapters
+    4.42s	pointer-reachable	top-buttons/btn-replay-expl
+    4.42s	pointer-reachable	top-buttons/btn-help
+    4.42s	pointer-reachable	top-buttons/btn-review
+    4.42s	pointer-reachable	top-buttons/btn-sound
+    4.42s	pointer-reachable	safe/btn-ask
+    4.42s	pointer-audit	Scene02_S02_EyeHero reachable=9 cumulativeFailures=0
+    4.52s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\005_Scene02_S02_EyeHero.png
+    4.52s	layout	Scene02_S02_EyeHero: controls=9 small=0 outside=0 size=1024x768
+    4.53s	cue_end	S02_L07
+    4.53s	cue_start	S02_L08 [Core] clip=ok
+    4.53s	framing	S02_L08 shot=S02_EyeHero blending=False part=- (no structure named)
+    4.63s	framing_settled	S02_L08 shot=S02_EyeHero blending=False part=- (no structure named)
+    4.73s	cue_end	S02_L08
+    4.73s	cue_start	S02_L09 [Core] clip=ok
+    4.73s	framing	S02_L09 shot=S02_EyeHero blending=False part=- (no structure named)
+    4.83s	framing_settled	S02_L09 shot=S02_EyeHero blending=False part=- (no structure named)
+    5.24s	cue_end	S02_L09
+    5.24s	cue_start	S02_L10 [Core] clip=ok
+    5.24s	framing	S02_L10 shot=S02_EyeHero blending=False part=- (no structure named)
+    5.34s	framing_settled	S02_L10 shot=S02_EyeHero blending=False part=- (no structure named)
+    5.76s	state	Exploring
+    5.76s	cue_end	S02_L10
+    5.81s	state	Narrating
+    5.81s	cue_start	S02_L11 [Core] clip=ok
+    5.81s	framing	S02_L11 shot=S02_EyeHero blending=False part=sclera vp=(0.38,0.61) depth=3.05 visibleCentreDx=+0.06 sizeFrac=0.38 inView=True visible=True alpha=1.00 glow=0.27
+    5.91s	framing_settled	S02_L11 shot=S02_Part_sclera blending=False part=sclera vp=(0.39,0.56) depth=1.26 visibleCentreDx=+0.07 sizeFrac=1.07 inView=True visible=True alpha=1.00 glow=0.55
+    6.31s	pointer-reachable	part-buttons/part-buttons 01
+    6.31s	pointer-reachable	part-buttons/part-buttons 02
+    6.31s	pointer-reachable	part-buttons/part-buttons 03
+    6.31s	pointer-reachable	part-buttons/part-buttons 04
+    6.31s	pointer-reachable	view-controls/view-left
+    6.31s	pointer-reachable	view-controls/view-right
+    6.31s	pointer-reachable	view-controls/view-in
+    6.31s	pointer-reachable	view-controls/view-out
+    6.31s	pointer-reachable	view-controls/view-reset
+    6.31s	pointer-audit	Scene02_S02_Part_sclera reachable=18 cumulativeFailures=0
+    6.40s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\006_Scene02_S02_Part_sclera.png
+    6.40s	layout	Scene02_S02_Part_sclera: controls=19 small=0 outside=0 size=1024x768
+    6.64s	cue_end	S02_L11
+    6.74s	state	Exploring
+    6.89s	pointer-reachable	labels-layer/World label 2
+    6.89s	pointer-reachable	labels-layer/World label 3
+    6.89s	pointer-reachable	labels-layer/World label 4
+    6.89s	pointer-reachable	labels-layer/World label 5
+    6.89s	pointer-reachable	lab-tools/btn-lab
+    6.89s	pointer-reachable	lab-tools/btn-intro-replay
+    6.89s	pointer-reachable	lab-tools/btn-section
+    6.89s	pointer-reachable	lab-tools/btn-shell
+    6.89s	pointer-audit	Scene02_S02_EyeHero reachable=26 cumulativeFailures=0
+    6.99s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\007_Scene02_S02_EyeHero.png
+    6.99s	layout	Scene02_S02_EyeHero: controls=26 small=0 outside=0 size=1024x768
+    7.01s	state	Narrating
+    7.01s	cue_start	S02_L12 [Core] clip=ok
+    7.01s	framing	S02_L12 shot=S02_Part_cornea blending=False part=cornea vp=(0.51,0.68) depth=0.94 visibleCentreDx=+0.19 sizeFrac=0.67 inView=True visible=True alpha=0.12 glow=0.55
+    7.11s	framing_settled	S02_L12 shot=S02_Part_cornea blending=False part=cornea vp=(0.51,0.68) depth=0.94 visibleCentreDx=+0.19 sizeFrac=0.67 inView=True visible=True alpha=0.12 glow=0.55
+    7.53s	pointer-audit	Scene02_S02_Part_cornea reachable=18 cumulativeFailures=0
+    7.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\008_Scene02_S02_Part_cornea.png
+    7.61s	layout	Scene02_S02_Part_cornea: controls=18 small=0 outside=0 size=1024x768
+    7.93s	cue_end	S02_L12
+    8.03s	state	Exploring
+    8.18s	pointer-reachable	labels-layer/World label 1
+    8.18s	pointer-audit	Scene02_S02_EyeHero reachable=26 cumulativeFailures=0
+    8.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\009_Scene02_S02_EyeHero.png
+    8.26s	layout	Scene02_S02_EyeHero: controls=26 small=0 outside=0 size=1024x768
+    8.27s	ask	'What does the coloured part do?' -> action=explore part=iris
+    8.28s	state	Narrating
+    8.28s	cue_start	S02_L13 [Core] clip=ok
+    8.28s	framing	S02_L13 shot=S02_Part_iris blending=False part=iris vp=(0.57,0.42) depth=0.86 visibleCentreDx=+0.25 sizeFrac=0.69 inView=True visible=True alpha=1.00 glow=0.55
+    8.38s	framing_settled	S02_L13 shot=S02_Part_iris blending=False part=iris vp=(0.57,0.42) depth=0.86 visibleCentreDx=+0.25 sizeFrac=0.69 inView=True visible=True alpha=1.00 glow=0.55
+    8.80s	pointer-audit	Scene02_S02_Part_iris reachable=18 cumulativeFailures=0
+    8.89s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\010_Scene02_S02_Part_iris.png
+    8.89s	layout	Scene02_S02_Part_iris: controls=18 small=0 outside=0 size=1024x768
+    8.99s	cue_end	S02_L13
+    9.09s	state	Exploring
+    9.24s	pointer-audit	Scene02_S02_EyeHero reachable=26 cumulativeFailures=0
+    9.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\011_Scene02_S02_EyeHero.png
+    9.32s	layout	Scene02_S02_EyeHero: controls=26 small=0 outside=0 size=1024x768
+    9.34s	state	Narrating
+    9.34s	cue_start	S02_L14 [Core] clip=ok
+    9.34s	framing	S02_L14 shot=S02_Part_pupil blending=False part=pupil vp=(0.40,0.50) depth=0.68 visibleCentreDx=+0.09 sizeFrac=0.48 inView=True visible=True alpha=1.00 glow=0.55
+    9.44s	framing_settled	S02_L14 shot=S02_Part_pupil blending=False part=pupil vp=(0.40,0.50) depth=0.68 visibleCentreDx=+0.09 sizeFrac=0.48 inView=True visible=True alpha=1.00 glow=0.55
+    9.84s	cue_end	S02_L14
+    9.87s	pointer-audit	Scene02_S02_Part_pupil reachable=18 cumulativeFailures=0
+    9.93s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\012_Scene02_S02_Part_pupil.png
+    9.93s	layout	Scene02_S02_Part_pupil: controls=18 small=0 outside=0 size=1024x768
+    9.97s	state	SupplementalCheck
+   10.14s	pointer-reachable	act-options/act-options 01
+   10.14s	pointer-reachable	act-options/act-options 02
+   10.14s	pointer-reachable	act-options/act-options 03
+   10.14s	pointer-audit	Scene02_S02_EyeHero reachable=12 cumulativeFailures=0
+   10.22s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\013_Scene02_S02_EyeHero.png
+   10.22s	layout	Scene02_S02_EyeHero: controls=9 small=0 outside=0 size=1024x768
+   10.56s	pointer-audit	activity_ext_iris_role reachable=12 cumulativeFailures=0
+   10.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\014_activity_ext_iris_role.png
+   10.67s	layout	activity_ext_iris_role: controls=9 small=0 outside=0 size=1024x768
+   10.67s	PASS	Quick checks have no Skip button
+   10.67s	activity	ext_iris_role deliberate wrong answer 'Cornea'
+   11.17s	pointer-audit	activity_hint_ext_iris_role reachable=12 cumulativeFailures=0
+   11.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\015_activity_hint_ext_iris_role.png
+   11.26s	layout	activity_hint_ext_iris_role: controls=9 small=0 outside=0 size=1024x768
+   11.59s	pointer-audit	activity_ext_iris_role reachable=12 cumulativeFailures=0
+   11.70s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\016_activity_ext_iris_role.png
+   11.70s	layout	activity_ext_iris_role: controls=9 small=0 outside=0 size=1024x768
+   11.70s	PASS	Quick checks have no Skip button
+   11.70s	activity	ext_iris_role answered 'Iris'
+   12.37s	pointer-reachable	act-buttons/act-buttons 01
+   12.37s	pointer-audit	activity_ext_iris_role reachable=10 cumulativeFailures=0
+   12.45s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\017_activity_ext_iris_role.png
+   12.45s	layout	activity_ext_iris_role: controls=9 small=0 outside=0 size=1024x768
+   13.14s	pointer-audit	activity_ext_pupil_opening reachable=12 cumulativeFailures=0
+   13.23s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\018_activity_ext_pupil_opening.png
+   13.23s	layout	activity_ext_pupil_opening: controls=9 small=0 outside=0 size=1024x768
+   13.23s	PASS	Quick checks have no Skip button
+   13.23s	activity	ext_pupil_opening answered 'Pupil'
+   13.89s	pointer-audit	activity_ext_pupil_opening reachable=10 cumulativeFailures=0
+   13.99s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\019_activity_ext_pupil_opening.png
+   13.99s	layout	activity_ext_pupil_opening: controls=9 small=0 outside=0 size=1024x768
+   13.99s	state	Narrating
+   13.99s	cue_start	S02_L15 [Core] clip=ok
+   13.99s	framing	S02_L15 shot=S02_EyeHero blending=False part=- (no structure named)
+   14.09s	framing_settled	S02_L15 shot=S02_EyeHero blending=False part=- (no structure named)
+   14.59s	cue_end	S02_L15
+   14.59s	cue_start	S02_L16 [Core] clip=ok
+   14.59s	framing	S02_L16 shot=S02_EyeHero blending=False part=- (no structure named)
+   14.69s	framing_settled	S02_L16 shot=S02_EyeHero blending=False part=- (no structure named)
+   15.15s	state	AwaitingAction
+   15.15s	cue_end	S02_L16
+   15.57s	pointer-reachable	abilities/ab-INSIDE
+   15.57s	pointer-audit	await_inside reachable=15 cumulativeFailures=0
+   15.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\020_await_inside.png
+   15.66s	layout	await_inside: controls=15 small=0 outside=0 size=1024x768
+   15.68s	state	Transitioning
+   15.70s	presenter_coverage	frames=416 failures=0
+   15.70s	presence_coverage	frames=792 failures=0 mouthSpeakingMean=0.586 mouthSilentMax=0.000
+   15.70s	perf	Scene02 avg 55.2 fps, worst frame 95 ms, main thread 18.1 ms, draw calls avg 11 max 589, SetPass 2, triangles 29k, system memory peak 535 MB, GC allocated/frame avg 26639 max 1058526 bytes (791 samples), GPU unavailable (counter registered, no usable timing samples)
+   15.70s	chapter	Scene03
+   15.70s	state	Entering
+   15.70s	ui	Pointer clicked ab-INSIDE
+   15.70s	action	await inside
+   15.71s	state	Cinematic
+   15.95s	state	Narrating
+   15.95s	cue_start	S03_L01 [Core] clip=ok
+   15.95s	framing	S03_L01 shot=S03_InsideHero blending=False part=- (no structure named)
+   16.05s	framing_settled	S03_L01 shot=S03_InsideHero blending=False part=- (no structure named)
+   16.10s	pointer-audit	Scene03_S03_InsideHero reachable=9 cumulativeFailures=0
+   16.19s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\021_Scene03_S03_InsideHero.png
+   16.19s	layout	Scene03_S03_InsideHero: controls=9 small=0 outside=0 size=1024x768
+   17.69s	pointer-reachable	VisualElement/pause-resume
+   17.69s	pointer-reachable	VisualElement/pause-restart
+   17.69s	pointer-reachable	VisualElement/pause-menu
+   17.69s	pointer-audit	pause_overlay reachable=3 cumulativeFailures=0
+   17.80s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\022_pause_overlay.png
+   17.80s	layout	pause_overlay: controls=12 small=0 outside=0 size=1024x768
+   17.81s	check	pause: timeScale=1 voiceTimeBefore=0.26 after=0.26 stillPaused=True
+   18.06s	state	Exploring
+   18.06s	cue_end	S03_L01
+   18.11s	state	Narrating
+   18.11s	cue_start	S03_L02 [Core] clip=ok
+   18.11s	framing	S03_L02 shot=S03_InsideHero blending=False part=aqueous vp=(0.34,0.58) depth=3.08 visibleCentreDx=+0.03 sizeFrac=0.13 inView=True visible=True alpha=0.11 glow=0.15
+   18.21s	framing_settled	S03_L02 shot=S03_Part_aqueous blending=False part=aqueous vp=(0.22,0.58) depth=1.15 visibleCentreDx=-0.09 sizeFrac=0.37 inView=True visible=True alpha=0.15 glow=0.55
+   18.62s	pointer-reachable	part-buttons/part-buttons 05
+   18.62s	pointer-audit	Scene03_S03_Part_aqueous reachable=19 cumulativeFailures=0
+   18.71s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\023_Scene03_S03_Part_aqueous.png
+   18.71s	layout	Scene03_S03_Part_aqueous: controls=20 small=0 outside=0 size=1024x768
+   18.99s	cue_end	S03_L02
+   18.99s	cue_start	S03_L03 [Core] clip=ok
+   18.99s	framing	S03_L03 shot=S03_Part_aqueous blending=False part=aqueous vp=(0.22,0.58) depth=1.15 visibleCentreDx=-0.09 sizeFrac=0.37 inView=True visible=True alpha=0.35 glow=0.85
+   19.09s	framing_settled	S03_L03 shot=S03_Part_aqueous blending=False part=aqueous vp=(0.22,0.58) depth=1.15 visibleCentreDx=-0.09 sizeFrac=0.37 inView=True visible=True alpha=0.35 glow=0.85
+   19.66s	cue_end	S03_L03
+   19.76s	state	Exploring
+   19.91s	pointer-reachable	labels-layer/World label 6
+   19.91s	pointer-audit	Scene03_S03_InsideHero reachable=28 cumulativeFailures=0
+   20.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\024_Scene03_S03_InsideHero.png
+   20.00s	layout	Scene03_S03_InsideHero: controls=28 small=0 outside=0 size=1024x768
+   20.02s	state	Narrating
+   20.02s	cue_start	S03_L04 [Core] clip=ok
+   20.02s	framing	S03_L04 shot=S03_Part_lens blending=False part=lens vp=(0.40,0.44) depth=1.08 visibleCentreDx=+0.09 sizeFrac=0.34 inView=True visible=True alpha=0.35 glow=0.57
+   20.12s	framing_settled	S03_L04 shot=S03_Part_lens blending=False part=lens vp=(0.40,0.44) depth=1.08 visibleCentreDx=+0.09 sizeFrac=0.34 inView=True visible=True alpha=0.35 glow=0.85
+   20.53s	pointer-audit	Scene03_S03_Part_lens reachable=19 cumulativeFailures=0
+   20.63s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\025_Scene03_S03_Part_lens.png
+   20.63s	layout	Scene03_S03_Part_lens: controls=19 small=0 outside=0 size=1024x768
+   20.63s	cue_end	S03_L04
+   20.63s	cue_start	S03_L05 [Core] clip=ok
+   20.63s	framing	S03_L05 shot=S03_Lens_Close blending=False part=lens vp=(0.40,0.44) depth=1.08 visibleCentreDx=+0.09 sizeFrac=0.34 inView=True visible=True alpha=0.35 glow=0.85
+   20.73s	framing_settled	S03_L05 shot=S03_Lens_Close blending=False part=lens vp=(0.40,0.47) depth=0.99 visibleCentreDx=+0.09 sizeFrac=0.42 inView=True visible=True alpha=0.35 glow=0.85
+   20.85s	pointer-audit	Scene03_S03_Lens_Close reachable=19 cumulativeFailures=0
+   20.93s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\026_Scene03_S03_Lens_Close.png
+   20.93s	layout	Scene03_S03_Lens_Close: controls=19 small=0 outside=0 size=1024x768
+   21.43s	cue_end	S03_L05
+   21.43s	cue_start	S03_L06 [Core] clip=ok
+   21.43s	framing	S03_L06 shot=S03_Lens_Close blending=False part=lens vp=(0.40,0.47) depth=0.99 visibleCentreDx=+0.09 sizeFrac=0.42 inView=True visible=True alpha=0.35 glow=0.78
+   21.53s	framing_settled	S03_L06 shot=S03_Lens_Close blending=False part=lens vp=(0.40,0.47) depth=0.99 visibleCentreDx=+0.09 sizeFrac=0.41 inView=True visible=True alpha=0.35 glow=0.60
+   22.10s	cue_end	S03_L06
+   22.20s	state	Exploring
+   22.33s	pointer-audit	Scene03_S03_InsideHero reachable=28 cumulativeFailures=0
+   22.43s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\027_Scene03_S03_InsideHero.png
+   22.43s	layout	Scene03_S03_InsideHero: controls=28 small=0 outside=0 size=1024x768
+   22.45s	state	Narrating
+   22.45s	cue_start	S03_L07 [Core] clip=ok
+   22.45s	framing	S03_L07 shot=S03_Part_vitreous blending=False part=vitreous vp=(0.41,0.58) depth=1.27 visibleCentreDx=+0.10 sizeFrac=0.63 inView=True visible=True alpha=0.13 glow=0.62
+   22.55s	framing_settled	S03_L07 shot=S03_Vitreous_Back blending=False part=vitreous vp=(0.41,0.58) depth=1.27 visibleCentreDx=+0.10 sizeFrac=0.63 inView=True visible=True alpha=0.16 glow=0.85
+   22.98s	pointer-audit	Scene03_S03_Vitreous_Back reachable=19 cumulativeFailures=0
+   23.08s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\028_Scene03_S03_Vitreous_Back.png
+   23.08s	layout	Scene03_S03_Vitreous_Back: controls=20 small=0 outside=0 size=1024x768
+   23.41s	cue_end	S03_L07
+   23.41s	cue_start	S03_L08 [Core] clip=ok
+   23.41s	framing	S03_L08 shot=S03_Vitreous_Back blending=False part=vitreous vp=(0.41,0.58) depth=1.27 visibleCentreDx=+0.10 sizeFrac=0.63 inView=True visible=True alpha=0.35 glow=0.85
+   23.51s	framing_settled	S03_L08 shot=S03_Vitreous_Back blending=False part=vitreous vp=(0.41,0.58) depth=1.27 visibleCentreDx=+0.10 sizeFrac=0.63 inView=True visible=True alpha=0.35 glow=0.85
+   23.71s	cue_end	S03_L08
+   23.81s	state	Exploring
+   23.95s	pointer-audit	Scene03_S03_InsideHero reachable=28 cumulativeFailures=0
+   24.03s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\029_Scene03_S03_InsideHero.png
+   24.03s	layout	Scene03_S03_InsideHero: controls=28 small=0 outside=0 size=1024x768
+   24.05s	state	Narrating
+   24.05s	cue_start	S03_L09 [Core] clip=ok
+   24.05s	framing	S03_L09 shot=S03_Part_retina blending=False part=retina vp=(0.34,0.29) depth=0.80 visibleCentreDx=+0.03 sizeFrac=1.63 inView=True visible=True alpha=1.00 glow=0.55
+   24.15s	framing_settled	S03_L09 shot=S03_Part_retina blending=False part=retina vp=(0.34,0.29) depth=0.80 visibleCentreDx=+0.03 sizeFrac=1.63 inView=True visible=True alpha=1.00 glow=0.55
+   24.40s	cue_end	S03_L09
+   24.40s	cue_start	S03_L10 [Core] clip=ok
+   24.40s	framing	S03_L10 shot=S03_Part_retina blending=False part=retina vp=(0.34,0.29) depth=0.80 visibleCentreDx=+0.03 sizeFrac=1.63 inView=True visible=True alpha=1.00 glow=0.50
+   24.50s	framing_settled	S03_L10 shot=S03_Retina_Close blending=False part=retina vp=(0.27,0.25) depth=0.52 visibleCentreDx=-0.05 sizeFrac=3.70 inView=True visible=True alpha=1.00 glow=0.50
+   24.59s	pointer-audit	Scene03_S03_Part_retina reachable=19 cumulativeFailures=0
+   24.67s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\030_Scene03_S03_Part_retina.png
+   24.67s	layout	Scene03_S03_Part_retina: controls=19 small=0 outside=0 size=1024x768
+   24.83s	cue_end	S03_L10
+   24.89s	pointer-audit	Scene03_S03_Retina_Close reachable=19 cumulativeFailures=0
+   24.98s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\031_Scene03_S03_Retina_Close.png
+   24.98s	layout	Scene03_S03_Retina_Close: controls=19 small=0 outside=0 size=1024x768
+   24.98s	state	Exploring
+   25.18s	pointer-audit	Scene03_S03_InsideHero reachable=28 cumulativeFailures=0
+   25.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\032_Scene03_S03_InsideHero.png
+   25.26s	layout	Scene03_S03_InsideHero: controls=28 small=0 outside=0 size=1024x768
+   25.28s	state	Narrating
+   25.28s	cue_start	S03_L11 [Core] clip=ok
+   25.28s	framing	S03_L11 shot=S03_Part_choroid blending=False part=choroid vp=(0.39,0.47) depth=0.50 visibleCentreDx=+0.07 sizeFrac=2.97 inView=True visible=True alpha=1.00 glow=0.55
+   25.38s	framing_settled	S03_L11 shot=S03_Choroid_Deep blending=False part=choroid vp=(0.39,0.47) depth=0.50 visibleCentreDx=+0.07 sizeFrac=2.97 inView=True visible=True alpha=1.00 glow=0.55
+   25.79s	pointer-audit	Scene03_S03_Choroid_Deep reachable=19 cumulativeFailures=0
+   25.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\033_Scene03_S03_Choroid_Deep.png
+   25.88s	layout	Scene03_S03_Choroid_Deep: controls=20 small=0 outside=0 size=1024x768
+   26.29s	cue_end	S03_L11
+   26.39s	state	SupplementalCheck
+   26.54s	pointer-audit	Scene03_S03_InsideHero reachable=12 cumulativeFailures=0
+   26.62s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\034_Scene03_S03_InsideHero.png
+   26.62s	layout	Scene03_S03_InsideHero: controls=9 small=0 outside=0 size=1024x768
+   26.96s	pointer-audit	activity_int_aqueous reachable=12 cumulativeFailures=0
+   27.07s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\035_activity_int_aqueous.png
+   27.07s	layout	activity_int_aqueous: controls=9 small=0 outside=0 size=1024x768
+   27.07s	PASS	Quick checks have no Skip button
+   27.07s	activity	int_aqueous answered 'Aqueous humour'
+   27.74s	pointer-audit	activity_int_aqueous reachable=10 cumulativeFailures=0
+   27.83s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\036_activity_int_aqueous.png
+   27.83s	layout	activity_int_aqueous: controls=9 small=0 outside=0 size=1024x768
+   27.83s	state	Narrating
+   27.83s	cue_start	S03_L12 [Core] clip=ok
+   27.83s	framing	S03_L12 shot=S03_InsideHero blending=False part=- (no structure named)
+   27.93s	framing_settled	S03_L12 shot=S03_InsideHero blending=False part=- (no structure named)
+   28.16s	state	Transitioning
+   28.16s	cue_end	S03_L12
+   28.18s	presenter_coverage	frames=934 failures=0
+   28.18s	presence_coverage	frames=1391 failures=0 mouthSpeakingMean=0.561 mouthSilentMax=0.000
+   28.18s	perf	Scene03 avg 55.4 fps, worst frame 97 ms, main thread 18.0 ms, draw calls avg 9 max 481, SetPass 2, triangles 22k, system memory peak 540 MB, GC allocated/frame avg 25768 max 1163379 bytes (691 samples), GPU unavailable (counter registered, no usable timing samples)
+   28.18s	chapter	Scene04
+   28.18s	state	Entering
+   28.19s	state	Narrating
+   28.19s	cue_start	S04_L01 [Core] clip=ok
+   28.19s	framing	S04_L01 shot=S03_InsideHero blending=False part=- (no structure named)
+   28.29s	framing_settled	S04_L01 shot=S04_EyeRear blending=False part=- (no structure named)
+   28.44s	pointer-audit	Scene04_S04_EyeRear reachable=9 cumulativeFailures=0
+   28.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\037_Scene04_S04_EyeRear.png
+   28.53s	layout	Scene04_S04_EyeRear: controls=9 small=0 outside=0 size=1024x768
+   28.62s	cue_end	S04_L01
+   28.62s	cue_start	S04_L02 [Core] clip=ok
+   28.62s	framing	S04_L02 shot=S04_EyeRear blending=False part=retina vp=(0.32,0.34) depth=1.89 visibleCentreDx=+0.01 sizeFrac=0.57 inView=True visible=True alpha=1.00 glow=0.00
+   28.71s	framing_settled	S04_L02 shot=S04_EyeRearClose blending=False part=retina vp=(0.27,0.30) depth=1.27 visibleCentreDx=-0.04 sizeFrac=0.95 inView=True visible=True alpha=1.00 glow=0.00
+   28.85s	pointer-audit	Scene04_S04_EyeRearClose reachable=9 cumulativeFailures=0
+   28.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\038_Scene04_S04_EyeRearClose.png
+   28.94s	layout	Scene04_S04_EyeRearClose: controls=9 small=0 outside=0 size=1024x768
+   28.94s	cue_end	S04_L02
+   28.94s	cue_start	S04_L03 [Core] clip=ok
+   28.94s	framing	S04_L03 shot=S04_EyeRearClose blending=False part=- (no structure named)
+   29.04s	framing_settled	S04_L03 shot=S04_EyeRearClose blending=False part=- (no structure named)
+   29.27s	cue_end	S04_L03
+   29.27s	cue_start	S04_L04 [Core] clip=ok
+   29.27s	framing	S04_L04 shot=S04_EyeRearClose blending=False part=optic_nerve vp=(1.15,0.22) depth=0.83 visibleCentreDx=+0.84 sizeFrac=2.67 inView=False visible=True alpha=1.00 glow=0.07
+   29.37s	framing_settled	S04_L04 shot=S04_EyeRearClose blending=False part=optic_nerve vp=(1.15,0.22) depth=0.83 visibleCentreDx=+0.84 sizeFrac=2.67 inView=False visible=True alpha=1.00 glow=0.47
+   29.41s	cue_end	S04_L04
+   29.41s	cue_start	S04_L05 [Core] clip=ok
+   29.41s	framing	S04_L05 shot=S04_EyeRearClose blending=False part=optic_nerve vp=(1.15,0.22) depth=0.83 visibleCentreDx=+0.84 sizeFrac=2.67 inView=False visible=True alpha=1.00 glow=0.60
+   29.51s	framing_settled	S04_L05 shot=S04_NerveClose blending=False part=optic_nerve vp=(1.33,0.09) depth=0.64 visibleCentreDx=+1.01 sizeFrac=1.86 inView=False visible=True alpha=1.00 glow=0.80
+   29.66s	pointer-audit	Scene04_S04_NerveClose reachable=9 cumulativeFailures=0
+   29.79s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\039_Scene04_S04_NerveClose.png
+   29.79s	layout	Scene04_S04_NerveClose: controls=9 small=0 outside=0 size=1024x768
+   29.80s	cue_end	S04_L05
+   29.80s	cue_start	S04_L06 [Core] clip=ok
+   29.80s	framing	S04_L06 shot=S04_NerveMid blending=False part=optic_nerve vp=(1.33,0.09) depth=0.64 visibleCentreDx=+1.01 sizeFrac=1.86 inView=False visible=True alpha=1.00 glow=0.80
+   29.89s	framing_settled	S04_L06 shot=S04_NerveMid blending=False part=optic_nerve vp=(0.20,0.41) depth=0.93 visibleCentreDx=-0.12 sizeFrac=1.08 inView=True visible=True alpha=1.00 glow=0.80
+   29.99s	pointer-audit	Scene04_S04_NerveMid reachable=9 cumulativeFailures=0
+   30.07s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\040_Scene04_S04_NerveMid.png
+   30.07s	layout	Scene04_S04_NerveMid: controls=10 small=0 outside=0 size=1024x768
+   30.22s	cue_end	S04_L06
+   30.22s	cue_start	S04_L07 [Core] clip=ok
+   30.22s	framing	S04_L07 shot=S04_NerveMid blending=False part=visual_area vp=(1.86,0.90) depth=1.01 visibleCentreDx=+1.55 sizeFrac=0.73 inView=False visible=True alpha=1.00 glow=0.07
+   30.32s	framing_settled	S04_L07 shot=S04_BrainClose blending=False part=visual_area vp=(0.69,0.50) depth=2.09 visibleCentreDx=+0.37 sizeFrac=0.29 inView=False visible=True alpha=1.00 glow=0.47
+   30.47s	pointer-audit	Scene04_S04_BrainClose reachable=9 cumulativeFailures=0
+   30.56s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\041_Scene04_S04_BrainClose.png
+   30.56s	layout	Scene04_S04_BrainClose: controls=10 small=0 outside=0 size=1024x768
+   30.81s	cue_end	S04_L07
+   30.81s	cue_start	S04_L08 [Core] clip=ok
+   30.81s	framing	S04_L08 shot=S04_BrainClose blending=False part=optic_nerve vp=(0.05,0.39) depth=2.60 visibleCentreDx=-0.27 sizeFrac=0.40 inView=True visible=True alpha=1.00 glow=0.73
+   30.91s	framing_settled	S04_L08 shot=S04_Wide blending=False part=optic_nerve vp=(0.38,0.45) depth=4.76 visibleCentreDx=+0.07 sizeFrac=0.14 inView=True visible=True alpha=1.00 glow=0.33
+   31.06s	pointer-audit	Scene04_S04_Wide reachable=9 cumulativeFailures=0
+   31.15s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\042_Scene04_S04_Wide.png
+   31.16s	layout	Scene04_S04_Wide: controls=11 small=0 outside=0 size=1024x768
+   31.36s	state	SupplementalCheck
+   31.36s	cue_end	S04_L08
+   31.71s	pointer-audit	activity_nerve_tap reachable=12 cumulativeFailures=0
+   31.80s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\043_activity_nerve_tap.png
+   31.80s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1024x768
+   31.80s	PASS	Quick checks have no Skip button
+   31.80s	activity	nerve_tap answered 'Optic nerve'
+   32.48s	pointer-audit	activity_nerve_tap reachable=10 cumulativeFailures=0
+   32.57s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\044_activity_nerve_tap.png
+   32.57s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1024x768
+   32.57s	state	Transitioning
+   32.59s	presenter_coverage	frames=1101 failures=0
+   32.59s	presence_coverage	frames=1626 failures=0 mouthSpeakingMean=0.557 mouthSilentMax=0.000
+   32.59s	perf	Scene04 avg 53.3 fps, worst frame 121 ms, main thread 18.7 ms, draw calls avg 15 max 520, SetPass 4, triangles 46k, system memory peak 542 MB, GC allocated/frame avg 39917 max 1124279 bytes (235 samples), GPU unavailable (counter registered, no usable timing samples)
+   32.59s	chapter	Scene05
+   32.59s	state	Entering
+   32.60s	state	Cinematic
+   32.67s	state	Narrating
+   32.67s	cue_start	S05_L01 [Core] clip=ok
+   32.67s	framing	S05_L01 shot=S05_ObjectWide blending=False part=- (no structure named)
+   32.77s	framing_settled	S05_L01 shot=S05_ObjectWide blending=False part=- (no structure named)
+   33.12s	pointer-audit	Scene05_S05_ObjectWide reachable=9 cumulativeFailures=0
+   33.21s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\045_Scene05_S05_ObjectWide.png
+   33.21s	layout	Scene05_S05_ObjectWide: controls=9 small=0 outside=0 size=1024x768
+   33.34s	cue_end	S05_L01
+   33.34s	cue_start	S05_L02 [Core] clip=ok
+   33.34s	framing	S05_L02 shot=S05_ObjectWide blending=False part=- (no structure named)
+   33.44s	framing_settled	S05_L02 shot=S05_FollowLight blending=False part=- (no structure named)
+   33.58s	pointer-audit	Scene05_S05_FollowLight reachable=9 cumulativeFailures=0
+   33.67s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\046_Scene05_S05_FollowLight.png
+   33.67s	layout	Scene05_S05_FollowLight: controls=9 small=0 outside=0 size=1024x768
+   33.79s	cue_end	S05_L02
+   33.79s	cue_start	S05_L03 [Core] clip=ok
+   33.79s	framing	S05_L03 shot=S05_FollowLight blending=False part=cornea vp=(0.58,0.56) depth=2.39 visibleCentreDx=+0.27 sizeFrac=0.18 inView=True visible=True alpha=0.13 glow=0.07
+   33.89s	framing_settled	S05_L03 shot=S05_Cornea blending=False part=cornea vp=(0.23,0.65) depth=1.01 visibleCentreDx=-0.09 sizeFrac=0.46 inView=True visible=True alpha=0.18 glow=0.47
+   34.04s	pointer-audit	Scene05_S05_Cornea reachable=9 cumulativeFailures=0
+   34.13s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\047_Scene05_S05_Cornea.png
+   34.13s	layout	Scene05_S05_Cornea: controls=10 small=0 outside=0 size=1024x768
+   34.34s	cue_end	S05_L03
+   34.34s	cue_start	S05_L04 [Core] clip=ok
+   34.34s	framing	S05_L04 shot=S05_Cornea blending=False part=aqueous vp=(0.25,0.59) depth=1.02 visibleCentreDx=-0.07 sizeFrac=0.45 inView=True visible=False alpha=0.04 glow=0.07
+   34.44s	framing_settled	S05_L04 shot=S05_AqueousPupil blending=False part=aqueous vp=(0.22,0.61) depth=0.86 visibleCentreDx=-0.10 sizeFrac=0.57 inView=True visible=True alpha=0.08 glow=0.47
+   34.57s	pointer-audit	Scene05_S05_AqueousPupil reachable=9 cumulativeFailures=0
+   34.68s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\048_Scene05_S05_AqueousPupil.png
+   34.68s	layout	Scene05_S05_AqueousPupil: controls=9 small=0 outside=0 size=1024x768
+   35.00s	cue_end	S05_L04
+   35.11s	cue_start	S05_L05 [Core] clip=ok
+   35.11s	framing	S05_L05 shot=S05_PupilFront blending=False part=- (no structure named)
+   35.21s	framing_settled	S05_L05 shot=S05_PupilFront blending=False part=- (no structure named)
+   35.24s	pointer-reachable	sim-brightness/sim-dim-preset
+   35.24s	pointer-reachable	sim-brightness/sim-minus
+   35.24s	pointer-reachable	sim-brightness/sim-plus
+   35.24s	pointer-reachable	sim-brightness/sim-bright-preset
+   35.24s	pointer-audit	Scene05_S05_PupilFront reachable=13 cumulativeFailures=0
+   35.33s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\049_Scene05_S05_PupilFront.png
+   35.33s	layout	Scene05_S05_PupilFront: controls=13 small=0 outside=0 size=1024x768
+   35.62s	state	AwaitingAction
+   35.62s	cue_end	S05_L05
+   36.03s	pointer-audit	await_brighter reachable=18 cumulativeFailures=0
+   36.12s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\050_await_brighter.png
+   36.12s	layout	await_brighter: controls=18 small=0 outside=0 size=1024x768
+   36.12s	check	dimmer during 'brighter' was refused (reason toast)
+   36.12s	action	await brighter
+   36.15s	state	Cinematic
+   36.34s	state	Narrating
+   36.34s	cue_start	S05_L06 [Core] clip=ok
+   36.34s	framing	S05_L06 shot=S05_PupilFront blending=False part=pupil vp=(0.40,0.50) depth=0.94 visibleCentreDx=+0.08 sizeFrac=0.12 inView=True visible=True alpha=1.00 glow=0.00
+   36.44s	framing_settled	S05_L06 shot=S05_PupilFront blending=False part=pupil vp=(0.40,0.50) depth=0.94 visibleCentreDx=+0.08 sizeFrac=0.12 inView=True visible=True alpha=1.00 glow=0.00
+   36.76s	state	AwaitingAction
+   36.76s	cue_end	S05_L06
+   37.17s	pointer-audit	await_dimmer reachable=18 cumulativeFailures=0
+   37.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\051_await_dimmer.png
+   37.26s	layout	await_dimmer: controls=18 small=0 outside=0 size=1024x768
+   37.26s	action	await dimmer
+   37.28s	state	Cinematic
+   37.62s	state	Narrating
+   37.62s	cue_start	S05_L07 [Core] clip=ok
+   37.62s	framing	S05_L07 shot=S05_PupilFront blending=False part=pupil vp=(0.40,0.50) depth=0.94 visibleCentreDx=+0.08 sizeFrac=0.33 inView=True visible=True alpha=1.00 glow=0.00
+   37.72s	framing_settled	S05_L07 shot=S05_PupilFront blending=False part=pupil vp=(0.40,0.50) depth=0.94 visibleCentreDx=+0.08 sizeFrac=0.33 inView=True visible=True alpha=1.00 glow=0.00
+   38.04s	cue_end	S05_L07
+   38.04s	cue_start	S05_L08 [Core] clip=ok
+   38.04s	framing	S05_L08 shot=S05_PupilFront blending=False part=iris vp=(0.52,0.42) depth=0.88 visibleCentreDx=+0.20 sizeFrac=0.50 inView=True visible=True alpha=1.00 glow=0.07
+   38.14s	framing_settled	S05_L08 shot=S05_PupilFront blending=False part=iris vp=(0.52,0.42) depth=0.88 visibleCentreDx=+0.20 sizeFrac=0.50 inView=True visible=True alpha=1.00 glow=0.47
+   38.86s	state	SupplementalCheck
+   38.86s	cue_end	S05_L08
+   39.21s	pointer-audit	activity_pupil_predict reachable=12 cumulativeFailures=0
+   39.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\052_activity_pupil_predict.png
+   39.30s	layout	activity_pupil_predict: controls=9 small=0 outside=0 size=1024x768
+   39.30s	PASS	Quick checks have no Skip button
+   39.30s	activity	pupil_predict answered 'Become smaller'
+   39.96s	pointer-audit	activity_pupil_predict reachable=9 cumulativeFailures=0
+   40.05s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\053_activity_pupil_predict.png
+   40.05s	layout	activity_pupil_predict: controls=9 small=0 outside=0 size=1024x768
+   40.06s	state	Exploring
+   40.39s	free	brightness
+   40.90s	pointer-reachable	action-row/btn-free-continue
+   40.90s	pointer-reachable	abilities/ab-FREEZE
+   40.90s	pointer-reachable	abilities/ab-REPLAY
+   40.90s	pointer-audit	free_brightness reachable=23 cumulativeFailures=0
+   41.00s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\054_free_brightness.png
+   41.00s	layout	free_brightness: controls=23 small=0 outside=0 size=1024x768
+   41.00s	ask	'make it brighter' -> brighter 'Making it brighter — watch the pupil.'
+   41.00s	ask	'why is the sky blue?' -> unsupported=True
+   42.00s	pointer-audit	brightness_dim reachable=23 cumulativeFailures=0
+   42.10s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\055_brightness_dim.png
+   42.10s	layout	brightness_dim: controls=23 small=0 outside=0 size=1024x768
+   43.10s	pointer-audit	brightness_bright reachable=23 cumulativeFailures=0
+   43.18s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\056_brightness_bright.png
+   43.18s	layout	brightness_bright: controls=23 small=0 outside=0 size=1024x768
+   43.18s	ask	'what should I do now?' -> 'Experiment with the brightness, then press Continue. (Brightness: 95%   Pupil: smaller)'
+   43.51s	pointer-audit	frozen_mid_pupil reachable=23 cumulativeFailures=0
+   43.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\057_frozen_mid_pupil.png
+   43.61s	layout	frozen_mid_pupil: controls=23 small=0 outside=0 size=1024x768
+   45.11s	check	freeze mid-change: pupil before=0.096 after 1.5 s=0.096 (equal = frozen)
+   46.46s	action	continue from brightness
+   46.48s	state	Transitioning
+   46.50s	presenter_coverage	frames=1351 failures=0
+   46.50s	presence_coverage	frames=2414 failures=0 mouthSpeakingMean=0.551 mouthSilentMax=0.000
+   46.50s	perf	Scene05 avg 56.7 fps, worst frame 92 ms, main thread 17.6 ms, draw calls avg 8 max 506, SetPass 2, triangles 26k, system memory peak 545 MB, GC allocated/frame avg 67294 max 1158315 bytes (788 samples), GPU unavailable (counter registered, no usable timing samples)
+   46.50s	chapter	Scene06
+   46.50s	state	Entering
+   46.51s	state	Narrating
+   46.51s	cue_start	S06_L01 [Core] clip=ok
+   46.51s	framing	S06_L01 shot=S05_AqueousPupil blending=False part=lens vp=(0.31,0.42) depth=0.87 visibleCentreDx=+0.00 sizeFrac=0.42 inView=True visible=True alpha=0.35 glow=0.07
+   46.61s	framing_settled	S06_L01 shot=S06_LensClose blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.23 inView=True visible=True alpha=0.35 glow=0.47
+   46.84s	pointer-audit	Scene06_S06_LensClose reachable=9 cumulativeFailures=0
+   46.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\058_Scene06_S06_LensClose.png
+   46.94s	layout	Scene06_S06_LensClose: controls=10 small=0 outside=0 size=1024x768
+   47.28s	state	AwaitingAction
+   47.28s	cue_end	S06_L01
+   47.69s	pointer-reachable	sim-distance/sim-near
+   47.69s	pointer-reachable	sim-distance/sim-distant
+   47.69s	pointer-audit	await_near reachable=16 cumulativeFailures=0
+   47.79s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\059_await_near.png
+   47.79s	layout	await_near: controls=17 small=0 outside=0 size=1024x768
+   47.80s	action	await near
+   47.80s	state	Narrating
+   47.80s	cue_start	S06_L02 [Core] clip=ok
+   47.80s	framing	S06_L02 shot=S06_NearWide blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.22 inView=True visible=True alpha=0.34 glow=0.35
+   47.90s	framing_settled	S06_L02 shot=S06_NearWide blending=False part=lens vp=(0.59,0.48) depth=3.03 visibleCentreDx=+0.28 sizeFrac=0.10 inView=True visible=True alpha=0.34 glow=0.50
+   48.16s	pointer-audit	Scene06_S06_NearWide reachable=11 cumulativeFailures=0
+   48.25s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\060_Scene06_S06_NearWide.png
+   48.25s	layout	Scene06_S06_NearWide: controls=12 small=0 outside=0 size=1024x768
+   48.56s	state	AwaitingAction
+   48.56s	cue_end	S06_L02
+   48.97s	pointer-audit	await_distant reachable=16 cumulativeFailures=0
+   49.07s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\061_await_distant.png
+   49.07s	layout	await_distant: controls=17 small=0 outside=0 size=1024x768
+   49.07s	action	await distant
+   49.07s	state	Cinematic
+   49.22s	state	Narrating
+   49.22s	cue_start	S06_L03 [Core] clip=ok
+   49.22s	framing	S06_L03 shot=S06_LensClose blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.22 inView=True visible=True alpha=0.34 glow=0.50
+   49.32s	framing_settled	S06_L03 shot=S06_LensClose blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.24 inView=True visible=True alpha=0.34 glow=0.50
+   49.45s	pointer-audit	Scene06_S06_LensClose reachable=11 cumulativeFailures=0
+   49.56s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\062_Scene06_S06_LensClose.png
+   49.56s	layout	Scene06_S06_LensClose: controls=12 small=0 outside=0 size=1024x768
+   49.74s	cue_end	S06_L03
+   49.74s	cue_start	S06_L04 [Core] clip=ok
+   49.74s	framing	S06_L04 shot=S06_LensClose blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.25 inView=True visible=True alpha=0.34 glow=0.50
+   49.84s	framing_settled	S06_L04 shot=S06_LensClose blending=False part=lens vp=(0.19,0.47) depth=1.21 visibleCentreDx=-0.12 sizeFrac=0.25 inView=True visible=True alpha=0.34 glow=0.50
+   50.68s	cue_end	S06_L04
+   50.84s	state	SupplementalCheck
+   50.93s	pointer-audit	Scene06_S06_Vitreous reachable=12 cumulativeFailures=0
+   51.02s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\063_Scene06_S06_Vitreous.png
+   51.02s	layout	Scene06_S06_Vitreous: controls=9 small=0 outside=0 size=1024x768
+   51.35s	pointer-audit	activity_acc_near reachable=12 cumulativeFailures=0
+   51.45s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\064_activity_acc_near.png
+   51.45s	layout	activity_acc_near: controls=9 small=0 outside=0 size=1024x768
+   51.45s	PASS	Quick checks have no Skip button
+   51.45s	activity	acc_near answered 'It becomes more curved'
+   52.14s	pointer-audit	activity_acc_near reachable=10 cumulativeFailures=0
+   52.24s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\065_activity_acc_near.png
+   52.24s	layout	activity_acc_near: controls=9 small=0 outside=0 size=1024x768
+   52.93s	pointer-audit	activity_acc_name reachable=12 cumulativeFailures=0
+   53.02s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\066_activity_acc_name.png
+   53.02s	layout	activity_acc_name: controls=9 small=0 outside=0 size=1024x768
+   53.02s	PASS	Quick checks have no Skip button
+   53.02s	activity	acc_name answered 'Accommodation'
+   53.69s	pointer-audit	activity_acc_name reachable=10 cumulativeFailures=0
+   53.78s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\067_activity_acc_name.png
+   53.78s	layout	activity_acc_name: controls=9 small=0 outside=0 size=1024x768
+   53.79s	state	Transitioning
+   53.81s	presenter_coverage	frames=1518 failures=0
+   53.81s	presence_coverage	frames=2813 failures=0 mouthSpeakingMean=0.554 mouthSilentMax=0.000
+   53.81s	perf	Scene06 avg 54.6 fps, worst frame 92 ms, main thread 18.3 ms, draw calls avg 10 max 534, SetPass 3, triangles 40k, system memory peak 549 MB, GC allocated/frame avg 31709 max 1183314 bytes (399 samples), GPU unavailable (counter registered, no usable timing samples)
+   53.81s	chapter	Scene07
+   53.81s	state	Entering
+   53.82s	state	Narrating
+   53.82s	cue_start	S07_L01 [Core] clip=ok
+   53.82s	framing	S07_L01 shot=S06_Vitreous blending=False part=vitreous vp=(0.44,0.58) depth=1.35 visibleCentreDx=+0.13 sizeFrac=0.66 inView=True visible=True alpha=0.10 glow=0.07
+   53.92s	framing_settled	S07_L01 shot=S07_Vitreous blending=False part=vitreous vp=(0.40,0.64) depth=0.99 visibleCentreDx=+0.09 sizeFrac=0.97 inView=True visible=True alpha=0.13 glow=0.47
+   54.32s	pointer-audit	Scene07_S07_Vitreous reachable=9 cumulativeFailures=0
+   54.42s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\068_Scene07_S07_Vitreous.png
+   54.42s	layout	Scene07_S07_Vitreous: controls=10 small=0 outside=0 size=1024x768
+   54.60s	cue_end	S07_L01
+   54.60s	cue_start	S07_L02 [Core] clip=ok
+   54.60s	framing	S07_L02 shot=S07_Vitreous blending=False part=retina vp=(0.58,0.21) depth=1.03 visibleCentreDx=+0.27 sizeFrac=1.00 inView=True visible=True alpha=1.00 glow=0.32
+   54.70s	framing_settled	S07_L02 shot=S07_Retina blending=False part=retina vp=(0.30,0.01) depth=0.76 visibleCentreDx=-0.02 sizeFrac=1.76 inView=True visible=True alpha=1.00 glow=0.55
+   54.85s	pointer-audit	Scene07_S07_Retina reachable=9 cumulativeFailures=0
+   54.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\069_Scene07_S07_Retina.png
+   54.94s	layout	Scene07_S07_Retina: controls=9 small=0 outside=0 size=1024x768
+   55.26s	cue_end	S07_L02
+   55.26s	cue_start	S07_L03 [Core] clip=ok
+   55.26s	framing	S07_L03 shot=S07_Retina blending=False part=retina vp=(0.30,0.01) depth=0.76 visibleCentreDx=-0.02 sizeFrac=1.76 inView=True visible=True alpha=1.00 glow=0.48
+   55.36s	framing_settled	S07_L03 shot=S07_RetinaCloser blending=False part=retina vp=(0.16,-0.40) depth=0.49 visibleCentreDx=-0.15 sizeFrac=3.59 inView=False visible=True alpha=1.00 glow=0.08
+   55.51s	pointer-audit	Scene07_S07_RetinaCloser reachable=9 cumulativeFailures=0
+   55.61s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\070_Scene07_S07_RetinaCloser.png
+   55.61s	layout	Scene07_S07_RetinaCloser: controls=9 small=0 outside=0 size=1024x768
+   55.70s	state	Transitioning
+   55.70s	cue_end	S07_L03
+   55.72s	presenter_coverage	frames=1619 failures=0
+   55.72s	presence_coverage	frames=2916 failures=0 mouthSpeakingMean=0.550 mouthSilentMax=0.000
+   55.72s	perf	Scene07 avg 53.8 fps, worst frame 87 ms, main thread 18.6 ms, draw calls avg 9 max 318, SetPass 3, triangles 34k, system memory peak 551 MB, GC allocated/frame avg 38822 max 1181853 bytes (103 samples), GPU unavailable (counter registered, no usable timing samples)
+   55.72s	chapter	Scene08
+   55.72s	state	Entering
+   55.73s	state	Cinematic
+   55.88s	state	Narrating
+   55.88s	cue_start	S08_L01 [Core] clip=ok
+   55.88s	framing	S08_L01 shot=S08_MicroWide blending=False part=rods vp=(0.19,0.41) depth=7.92 visibleCentreDx=-0.13 sizeFrac=0.27 inView=True visible=True alpha=1.00 glow=0.00
+   55.93s	pointer-audit	Scene08_S08_RetinaPush reachable=9 cumulativeFailures=0
+   55.99s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\071_Scene08_S08_RetinaPush.png
+   55.99s	layout	Scene08_S08_RetinaPush: controls=9 small=0 outside=0 size=1024x768
+   56.01s	framing_settled	S08_L01 shot=S08_MicroWide blending=False part=rods vp=(0.19,0.41) depth=7.92 visibleCentreDx=-0.13 sizeFrac=0.27 inView=True visible=True alpha=1.00 glow=0.00
+   56.21s	pointer-audit	Scene08_S08_MicroWide reachable=9 cumulativeFailures=0
+   56.26s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\072_Scene08_S08_MicroWide.png
+   56.26s	layout	Scene08_S08_MicroWide: controls=9 small=0 outside=0 size=1024x768
+   56.58s	cue_end	S08_L01
+   56.58s	cue_start	S08_L02 [Core] clip=ok
+   56.58s	framing	S08_L02 shot=S08_MicroWide blending=False part=rods vp=(0.19,0.41) depth=7.92 visibleCentreDx=-0.13 sizeFrac=0.27 inView=True visible=True alpha=1.00 glow=0.07
+   56.68s	framing_settled	S08_L02 shot=S08_Rods blending=False part=rods vp=(0.40,0.50) depth=3.34 visibleCentreDx=+0.09 sizeFrac=1.06 inView=True visible=True alpha=1.00 glow=0.47
+   56.82s	pointer-audit	Scene08_S08_Rods reachable=9 cumulativeFailures=0
+   56.88s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\073_Scene08_S08_Rods.png
+   56.88s	layout	Scene08_S08_Rods: controls=9 small=0 outside=0 size=1024x768
+   57.31s	cue_end	S08_L02
+   57.31s	cue_start	S08_L03 [Core] clip=ok
+   57.31s	framing	S08_L03 shot=S08_Rods blending=False part=rods vp=(0.40,0.50) depth=3.34 visibleCentreDx=+0.09 sizeFrac=1.06 inView=True visible=True alpha=1.00 glow=0.60
+   57.41s	framing_settled	S08_L03 shot=S08_Rods blending=False part=rods vp=(0.40,0.50) depth=3.34 visibleCentreDx=+0.09 sizeFrac=1.06 inView=True visible=True alpha=1.00 glow=0.60
+   57.85s	cue_end	S08_L03
+   57.85s	cue_start	S08_L04 [Core] clip=ok
+   57.85s	framing	S08_L04 shot=S08_Rods blending=False part=cones vp=(0.88,0.45) depth=3.36 visibleCentreDx=+0.57 sizeFrac=1.02 inView=False visible=True alpha=0.29 glow=0.07
+   57.95s	framing_settled	S08_L04 shot=S08_Cones blending=False part=cones vp=(0.40,0.50) depth=3.33 visibleCentreDx=+0.09 sizeFrac=1.03 inView=True visible=True alpha=0.69 glow=0.47
+   58.10s	pointer-audit	Scene08_S08_Cones reachable=9 cumulativeFailures=0
+   58.16s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\074_Scene08_S08_Cones.png
+   58.16s	layout	Scene08_S08_Cones: controls=9 small=0 outside=0 size=1024x768
+   58.54s	cue_end	S08_L04
+   58.54s	cue_start	S08_L05 [Core] clip=ok
+   58.54s	framing	S08_L05 shot=S08_Cones blending=False part=cones vp=(0.40,0.50) depth=3.33 visibleCentreDx=+0.09 sizeFrac=1.03 inView=True visible=True alpha=1.00 glow=0.53
+   58.64s	framing_settled	S08_L05 shot=S08_Transduce blending=False part=cones vp=(0.39,0.31) depth=4.68 visibleCentreDx=+0.07 sizeFrac=0.55 inView=True visible=True alpha=1.00 glow=0.13
+   58.79s	pointer-audit	Scene08_S08_Transduce reachable=9 cumulativeFailures=0
+   58.85s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\075_Scene08_S08_Transduce.png
+   58.85s	layout	Scene08_S08_Transduce: controls=14 small=0 outside=0 size=1024x768
+   59.29s	cue_end	S08_L05
+   59.29s	cue_start	S08_L06 [Core] clip=ok
+   59.29s	framing	S08_L06 shot=S08_Transduce blending=False part=rods vp=(0.10,0.34) depth=4.67 visibleCentreDx=-0.21 sizeFrac=0.57 inView=True visible=True alpha=1.00 glow=0.00
+   59.39s	framing_settled	S08_L06 shot=S08_Signals blending=False part=rods vp=(-0.25,0.22) depth=5.18 visibleCentreDx=-0.56 sizeFrac=0.51 inView=False visible=True alpha=1.00 glow=0.00
+   59.52s	pointer-audit	Scene08_S08_Signals reachable=9 cumulativeFailures=0
+   59.59s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\076_Scene08_S08_Signals.png
+   59.59s	layout	Scene08_S08_Signals: controls=16 small=0 outside=0 size=1024x768
+   59.89s	state	SupplementalCheck
+   59.89s	cue_end	S08_L06
+   60.24s	pointer-audit	activity_rc_colour reachable=11 cumulativeFailures=0
+   60.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\077_activity_rc_colour.png
+   60.30s	layout	activity_rc_colour: controls=9 small=0 outside=0 size=1024x768
+   60.30s	PASS	Quick checks have no Skip button
+   60.30s	activity	rc_colour answered 'Cones'
+   60.49s	pointer-audit	Scene08_S08_PullBack reachable=10 cumulativeFailures=0
+   60.54s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\078_Scene08_S08_PullBack.png
+   60.54s	layout	Scene08_S08_PullBack: controls=9 small=0 outside=0 size=1024x768
+   60.87s	pointer-audit	activity_rc_colour reachable=10 cumulativeFailures=0
+   60.93s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\079_activity_rc_colour.png
+   60.93s	layout	activity_rc_colour: controls=9 small=0 outside=0 size=1024x768
+   60.93s	state	Exploring
+   61.27s	free	photoreceptors
+   61.78s	pointer-reachable	sim-photo/sim-light-dim
+   61.78s	pointer-reachable	sim-photo/sim-light-bright
+   61.78s	pointer-audit	free_photoreceptors reachable=16 cumulativeFailures=0
+   61.84s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\080_free_photoreceptors.png
+   61.84s	layout	free_photoreceptors: controls=26 small=0 outside=0 size=1024x768
+   61.84s	cue_start	S08_L02 [Replay] clip=ok
+   61.84s	framing	S08_L02 shot=S08_PullBack blending=False part=rods vp=(0.23,0.46) depth=10.88 visibleCentreDx=-0.08 sizeFrac=0.17 inView=True visible=True alpha=1.00 glow=0.18
+   61.94s	framing_settled	S08_L02 shot=S08_PullBack blending=False part=rods vp=(0.23,0.46) depth=10.88 visibleCentreDx=-0.08 sizeFrac=0.17 inView=True visible=True alpha=1.00 glow=0.58
+   62.54s	cue_end	S08_L02
+   62.54s	cue_start	S08_L03 [Replay] clip=ok
+   62.54s	framing	S08_L03 shot=S08_PullBack blending=False part=rods vp=(0.23,0.46) depth=10.88 visibleCentreDx=-0.08 sizeFrac=0.17 inView=True visible=True alpha=1.00 glow=0.60
+   62.64s	framing_settled	S08_L03 shot=S08_PullBack blending=False part=rods vp=(0.23,0.46) depth=10.88 visibleCentreDx=-0.08 sizeFrac=0.17 inView=True visible=True alpha=1.00 glow=0.60
+   63.08s	cue_end	S08_L03
+   63.86s	pointer-audit	photoreceptors_dim reachable=16 cumulativeFailures=0
+   63.92s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\081_photoreceptors_dim.png
+   63.92s	layout	photoreceptors_dim: controls=26 small=0 outside=0 size=1024x768
+   64.59s	pointer-audit	photoreceptors_bright reachable=16 cumulativeFailures=0
+   64.66s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\082_photoreceptors_bright.png
+   64.66s	layout	photoreceptors_bright: controls=26 small=0 outside=0 size=1024x768
+   64.66s	action	continue from photoreceptors
+   64.67s	state	Transitioning
+   64.69s	presenter_coverage	frames=1923 failures=0
+   64.69s	presence_coverage	frames=3434 failures=0 mouthSpeakingMean=0.573 mouthSilentMax=0.000
+   64.69s	perf	Scene08 avg 57.7 fps, worst frame 56 ms, main thread 17.3 ms, draw calls avg 7 max 429, SetPass 3, triangles 5k, system memory peak 555 MB, GC allocated/frame avg 12305 max 477265 bytes (518 samples), GPU unavailable (counter registered, no usable timing samples)
+   64.69s	chapter	Scene09
+   64.69s	state	Entering
+   64.71s	state	Cinematic
+   64.84s	pointer-audit	cine_Scene09_064.8s reachable=2 cumulativeFailures=0
+   64.95s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\083_cine_Scene09_064.8s.png
+   64.95s	layout	cine_Scene09_064.8s: controls=12 small=0 outside=0 size=1024x768
+   65.00s	state	Narrating
+   65.00s	cue_start	S09_L01 [Core] clip=ok
+   65.00s	framing	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.15,0.61) depth=3.20 visibleCentreDx=-0.25 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+   65.10s	framing_settled	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.16,0.61) depth=3.20 visibleCentreDx=-0.27 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+   65.15s	pointer-audit	Scene09_S09_Follow reachable=2 cumulativeFailures=0
+   65.25s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\084_Scene09_S09_Follow.png
+   65.25s	layout	Scene09_S09_Follow: controls=2 small=0 outside=0 size=1024x768
+   65.66s	cue_end	S09_L01
+   65.67s	cue_start	S09_L02 [Core] clip=ok
+   65.67s	framing	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.56,0.63) depth=0.52 visibleCentreDx=+0.06 sizeFrac=0.18 inView=True visible=True alpha=1.00 glow=0.00
+   65.77s	framing_settled	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.56,0.63) depth=0.52 visibleCentreDx=+0.06 sizeFrac=0.18 inView=True visible=True alpha=1.00 glow=0.00
+   65.85s	pointer-audit	cine_Scene09_065.9s reachable=2 cumulativeFailures=0
+   65.94s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\085_cine_Scene09_065.9s.png
+   65.94s	layout	cine_Scene09_065.9s: controls=3 small=0 outside=0 size=1024x768
+   66.26s	cue_end	S09_L02
+   66.27s	cue_start	S09_L03 [Core] clip=ok
+   66.27s	framing	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.43,0.52) depth=1.73 visibleCentreDx=-0.07 sizeFrac=0.08 inView=True visible=True alpha=1.00 glow=0.86
+   66.37s	framing_settled	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.43,0.52) depth=1.73 visibleCentreDx=-0.07 sizeFrac=0.08 inView=True visible=True alpha=1.00 glow=0.86
+   66.94s	cue_end	S09_L03
+   66.94s	cue_start	S09_L04 [Core] clip=ok
+   66.94s	framing	S09_L04 shot=S09_Perception blending=False object=apple vp=(0.40,0.50) depth=1.26 sizeFrac=2.31 inView=True active=True retinalInset=[active=True,texture=bound,alpha=0.00] perceptionInset=[active=True,texture=bound,alpha=0.00]
+   66.94s	pointer-audit	Scene09_S09_Perception reachable=9 cumulativeFailures=0
+   67.02s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\086_Scene09_S09_Perception.png
+   67.02s	layout	Scene09_S09_Perception: controls=9 small=0 outside=0 size=1024x768
+   67.09s	framing_settled	S09_L04 shot=S09_Perception blending=False object=apple vp=(0.38,0.50) depth=1.26 sizeFrac=2.31 inView=True active=True retinalInset=[active=True,texture=bound,alpha=0.43] perceptionInset=[active=True,texture=bound,alpha=0.43]
+   68.62s	state	SupplementalCheck
+   68.62s	cue_end	S09_L04
+   68.97s	pointer-audit	activity_nerve_carries reachable=12 cumulativeFailures=0
+   69.06s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\087_activity_nerve_carries.png
+   69.06s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1024x768
+   69.06s	PASS	Quick checks have no Skip button
+   69.06s	activity	nerve_carries answered 'The optic nerve'
+   69.26s	pointer-audit	Scene09_S09_Wide reachable=10 cumulativeFailures=0
+   69.35s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\088_Scene09_S09_Wide.png
+   69.35s	layout	Scene09_S09_Wide: controls=9 small=0 outside=0 size=1024x768
+   69.68s	pointer-audit	activity_nerve_carries reachable=10 cumulativeFailures=0
+   69.78s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\089_activity_nerve_carries.png
+   69.78s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1024x768
+   70.44s	pointer-audit	activity_nerve_signals reachable=12 cumulativeFailures=0
+   70.53s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\090_activity_nerve_signals.png
+   70.53s	layout	activity_nerve_signals: controls=9 small=0 outside=0 size=1024x768
+   70.53s	PASS	Quick checks have no Skip button
+   70.53s	activity	nerve_signals answered 'Electrical signals carrying visual information'
+   71.22s	pointer-audit	activity_nerve_signals reachable=10 cumulativeFailures=0
+   71.32s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\091_activity_nerve_signals.png
+   71.32s	layout	activity_nerve_signals: controls=9 small=0 outside=0 size=1024x768
+   71.99s	pointer-audit	activity_img_orientation reachable=12 cumulativeFailures=0
+   72.10s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\092_activity_img_orientation.png
+   72.10s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1024x768
+   72.10s	PASS	Quick checks have no Skip button
+   72.10s	activity	img_orientation answered 'A real, inverted image'
+   72.77s	pointer-audit	activity_img_orientation reachable=10 cumulativeFailures=0
+   72.87s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\093_activity_img_orientation.png
+   72.87s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1024x768
+   73.56s	pointer-audit	activity_img_perception reachable=12 cumulativeFailures=0
+   73.65s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\094_activity_img_perception.png
+   73.65s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1024x768
+   73.65s	PASS	Quick checks have no Skip button
+   73.65s	activity	img_perception answered 'The brain processing the information carried by the signals'
+   74.32s	pointer-audit	activity_img_perception reachable=9 cumulativeFailures=0
+   74.41s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\095_activity_img_perception.png
+   74.41s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1024x768
+   74.41s	state	Transitioning
+   74.43s	presenter_coverage	frames=2128 failures=0
+   74.43s	presence_coverage	frames=3969 failures=0 mouthSpeakingMean=0.574 mouthSilentMax=0.000
+   74.43s	perf	Scene09 avg 54.9 fps, worst frame 92 ms, main thread 18.2 ms, draw calls avg 12 max 593, SetPass 3, triangles 41k, system memory peak 558 MB, GC allocated/frame avg 28061 max 1134342 bytes (535 samples), GPU unavailable (counter registered, no usable timing samples)
+   74.43s	chapter	Scene10
+   74.43s	state	Entering
+   74.45s	state	Narrating
+   74.45s	cue_start	S10_L01 [Core] clip=ok
+   74.45s	framing	S10_L01 shot=S09_Wide blending=False part=- (no structure named)
+   74.54s	framing_settled	S10_L01 shot=S10_Journey blending=False part=- (no structure named)
+   74.76s	cue_end	S10_L01
+   74.76s	cue_start	S10_L02 [Core] clip=ok
+   74.76s	framing	S10_L02 shot=S10_Journey blending=False part=- (no structure named)
+   74.86s	framing_settled	S10_L02 shot=S10_Journey blending=False part=- (no structure named)
+   74.94s	pointer-audit	Scene10_S10_Journey reachable=9 cumulativeFailures=0
+   75.04s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\096_Scene10_S10_Journey.png
+   75.04s	layout	Scene10_S10_Journey: controls=13 small=0 outside=0 size=1024x768
+   75.66s	cue_end	S10_L02
+   77.50s	pointer-audit	Scene10_S10_Overview reachable=9 cumulativeFailures=0
+   77.60s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\097_Scene10_S10_Overview.png
+   77.60s	layout	Scene10_S10_Overview: controls=17 small=0 outside=0 size=1024x768
+   78.97s	state	Transitioning
+   78.99s	presenter_coverage	frames=2197 failures=0
+   78.99s	presence_coverage	frames=4235 failures=0 mouthSpeakingMean=0.576 mouthSilentMax=0.000
+   78.99s	perf	Scene10 avg 58.4 fps, worst frame 80 ms, main thread 17.1 ms, draw calls avg 5 max 624, SetPass 1, triangles 15k, system memory peak 558 MB, GC allocated/frame avg 11357 max 1059942 bytes (266 samples), GPU unavailable (counter registered, no usable timing samples)
+   78.99s	chapter	Scene11
+   78.99s	state	Entering
+   79.00s	state	Cinematic
+   79.04s	state	Narrating
+   79.04s	cue_start	S11_L01 [Core] clip=ok
+   79.04s	framing	S11_L01 shot=S10_Complete blending=False part=- (no structure named)
+   79.13s	framing_settled	S11_L01 shot=S11_Eye blending=False part=- (no structure named)
+   79.18s	pointer-audit	Scene11_S10_Complete reachable=9 cumulativeFailures=0
+   79.27s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\098_Scene11_S10_Complete.png
+   79.27s	layout	Scene11_S10_Complete: controls=13 small=0 outside=0 size=1024x768
+   79.47s	pointer-audit	Scene11_S11_Eye reachable=9 cumulativeFailures=0
+   79.55s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\099_Scene11_S11_Eye.png
+   79.56s	layout	Scene11_S11_Eye: controls=9 small=0 outside=0 size=1024x768
+   79.76s	cue_end	S11_L01
+   79.76s	cue_start	S11_L02 [Core] clip=ok
+   79.76s	framing	S11_L02 shot=S11_Eye blending=False part=- (no structure named)
+   79.86s	framing_settled	S11_L02 shot=S11_NearFar blending=False part=- (no structure named)
+   79.99s	pointer-audit	Scene11_S11_NearFar reachable=9 cumulativeFailures=0
+   80.08s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\100_Scene11_S11_NearFar.png
+   80.08s	layout	Scene11_S11_NearFar: controls=9 small=0 outside=0 size=1024x768
+   80.50s	cue_end	S11_L02
+   80.50s	cue_start	S11_L03 [Core] clip=ok
+   80.50s	framing	S11_L03 shot=S11_NearFar blending=False part=- (no structure named)
+   80.60s	framing_settled	S11_L03 shot=S11_NearFar blending=False part=- (no structure named)
+   81.03s	cue_end	S11_L03
+   81.25s	pointer-audit	Scene11_S11_Closing reachable=9 cumulativeFailures=0
+   81.35s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\101_Scene11_S11_Closing.png
+   81.35s	layout	Scene11_S11_Closing: controls=9 small=0 outside=0 size=1024x768
+   82.12s	state	Complete
+   83.14s	pointer-reachable	Card/end-replay
+   83.14s	pointer-reachable	Card/end-review
+   83.14s	pointer-reachable	Card/end-menu-button
+   83.14s	pointer-reachable	Card/end-exit
+   83.14s	pointer-audit	end_menu reachable=12 cumulativeFailures=0
+   83.24s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-walk-1024\102_end_menu.png
+   83.24s	layout	end_menu: controls=13 small=0 outside=0 size=1024x768
+   83.24s	presenter_coverage	frames=2429 failures=0
+   83.24s	presence_coverage	frames=4472 failures=0 mouthSpeakingMean=0.578 mouthSilentMax=0.000
+   83.24s	perf	Scene11 avg 56.6 fps, worst frame 91 ms, main thread 17.7 ms, draw calls avg 9 max 540, SetPass 2, triangles 23k, system memory peak 560 MB, GC allocated/frame avg 21831 max 1064091 bytes (236 samples), GPU unavailable (counter registered, no usable timing samples)
+   83.24s	done	completed=Scene02,Scene03,Scene04,Scene05,Scene06,Scene07,Scene08,Scene09,Scene10,Scene11 cues=65 evidence=13

@@ -1,0 +1,28 @@
+    0.06s	audio	music:start chapter=menu state=Entering
+    0.06s	audio	ambience:amblab chapter=menu state=Entering
+    0.11s	audio_mix	Intro
+    2.19s	audio	open chapter=menu state=Entering
+    2.20s	audio	click chapter=menu state=Entering
+    2.21s	audio_mix	Paused
+    2.23s	PASS	Settings opens from menu
+    2.37s	audio	close chapter=menu state=Entering
+    2.37s	audio	click chapter=menu state=Entering
+    2.37s	audio_mix	Intro
+    2.40s	PASS	Settings closes
+    2.42s	audio	gatestart chapter=menu state=Entering
+    2.46s	audio	music:transition chapter=Scene02 state=Cinematic intro=0.0
+    2.47s	state	Cinematic
+    2.47s	audio_mix	Exploration
+    3.97s	audio	layerdone chapter=Scene02 state=Cinematic intro=1.5
+    5.37s	audio	organs chapter=Scene02 state=Cinematic intro=2.9
+    8.49s	audio	softwhoosh chapter=Scene02 state=Cinematic intro=6.0
+    8.49s	audio	music:lab chapter=Scene02 state=Cinematic intro=6.0
+    8.49s	audio	nikoappear chapter=Scene02 state=Cinematic intro=6.0
+   10.01s	state	Narrating
+   10.01s	cue_start	S02_L01 [Core] clip=ok
+   10.20s	audio_mix	NikoSpeaking
+   11.41s	check	intro finished: gate=1 niko=True shot=S02_NikoMedium
+   11.41s	audio_summary	cues=9 distinct=8 repeats=0 maxLoops=0 music=[start,transition,lab] ambience=[amblab]
+   11.41s	audio_unplayed	scan,whoosh,reveal,discovery,unlock,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,lightmove,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,gatescan,gateunlock,gateservo,gatewhoosh,gateentry,labsting,hologram,overview,ambeye,nikolisten,nikothink,nikoreply,nikoerror,complete,dissolve,crackle1,crackle2,layerreveal,eyeappear,eyezoom,dive,select,tick,isolate,hl_cornea,hl_iris,iris,hl_retina,cell,pupilwide,pupilnarrow,lensfocus,label,signaltravel,pulse,pulsetravel,pulsenear,signalarrive,brainreveal,brainrise,cortex,hover,tap,popup,popdown,skip,menu,confirm,deny,quizopen,quizcorrect,quizwrong,quizhint,quizcomplete
+   11.41s	perf	Scene02 avg 54.3 fps, worst frame 135 ms, main thread 18.4 ms, draw calls avg 8 max 610, SetPass 2, triangles 30k, system memory peak 556 MB, GC allocated/frame avg 29890 max 1585610 bytes (478 samples), GPU unavailable (counter registered, no usable timing samples)
+   11.41s	done	intro only

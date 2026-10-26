@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Passed" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 16:02:40Z" duration="229.1634053">
+  <test-suite type="TestSuite" id="1022" name="AI HUMAN EYE" fullname="AI HUMAN EYE" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 16:02:40Z" duration="229.163405" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1016" name="HumanEye.Tests.PlayMode.dll" fullname="C:/he-sandbox/AI-HUMAN-EYE/Library/ScriptAssemblies/HumanEye.Tests.PlayMode.dll" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 16:02:40Z" duration="229.154080" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="46740" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1017" name="HumanEye" fullname="HumanEye" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 16:02:40Z" duration="229.152376" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1018" name="Tests" fullname="HumanEye.Tests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 16:02:40Z" duration="229.151152" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="ActivityRecoveryTests" fullname="HumanEye.Tests.ActivityRecoveryTests" classname="HumanEye.Tests.ActivityRecoveryTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 15:58:55Z" duration="4.258149" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="RepeatedMissesDemonstrationAndRapidClicksRecover" fullname="HumanEye.Tests.ActivityRecoveryTests.RepeatedMissesDemonstrationAndRapidClicksRecover" methodname="RepeatedMissesDemonstrationAndRapidClicksRecover" classname="HumanEye.Tests.ActivityRecoveryTests" runstate="Runnable" seed="1199596642" result="Passed" start-time="2026-10-15 15:58:51Z" end-time="2026-10-15 15:58:55Z" duration="4.243385" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="90000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="AudioOverhaulTests" fullname="HumanEye.Tests.AudioOverhaulTests" classname="HumanEye.Tests.AudioOverhaulTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 15:58:55Z" end-time="2026-10-15 15:59:03Z" duration="7.655360" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="BedsDuckPauseMuteLoopsAndAmbience" fullname="HumanEye.Tests.AudioOverhaulTests.BedsDuckPauseMuteLoopsAndAmbience" methodname="BedsDuckPauseMuteLoopsAndAmbience" classname="HumanEye.Tests.AudioOverhaulTests" runstate="Runnable" seed="1771271320" result="Passed" start-time="2026-10-15 15:58:55Z" end-time="2026-10-15 15:59:03Z" duration="7.651042" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="30000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="CinematicControlTests" fullname="HumanEye.Tests.CinematicControlTests" classname="HumanEye.Tests.CinematicControlTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 15:59:03Z" end-time="2026-10-15 15:59:51Z" duration="47.928092" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1006" name="IntroPauseSettingsAndRepeatedSkipRestoreLesson" fullname="HumanEye.Tests.CinematicControlTests.IntroPauseSettingsAndRepeatedSkipRestoreLesson" methodname="IntroPauseSettingsAndRepeatedSkipRestoreLesson" classname="HumanEye.Tests.CinematicControlTests" runstate="Runnable" seed="737248128" result="Passed" start-time="2026-10-15 15:59:03Z" end-time="2026-10-15 15:59:51Z" duration="47.911998" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="180000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1007" name="CinematicTests" fullname="HumanEye.Tests.CinematicTests" classname="HumanEye.Tests.CinematicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:59:51Z" end-time="2026-10-15 16:00:40Z" duration="49.354635" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1009" name="EyeToBrainCinematicSyncsAndRestores" fullname="HumanEye.Tests.CinematicTests.EyeToBrainCinematicSyncsAndRestores" methodname="EyeToBrainCinematicSyncsAndRestores" classname="HumanEye.Tests.CinematicTests" runstate="Runnable" seed="1208211138" result="Passed" start-time="2026-10-15 15:59:51Z" end-time="2026-10-15 16:00:06Z" duration="15.009201" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="150000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+            <test-case id="1008" name="SkipReplaySingleScanAndNavigationRestoreOwnedState" fullname="HumanEye.Tests.CinematicTests.SkipReplaySingleScanAndNavigationRestoreOwnedState" methodname="SkipReplaySingleScanAndNavigationRestoreOwnedState" classname="HumanEye.Tests.CinematicTests" runstate="Runnable" seed="1716132534" result="Passed" start-time="2026-10-15 16:00:06Z" end-time="2026-10-15 16:00:40Z" duration="34.331790" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="120000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1010" name="IntroAudioTests" fullname="HumanEye.Tests.IntroAudioTests" classname="HumanEye.Tests.IntroAudioTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 16:00:40Z" end-time="2026-10-15 16:00:45Z" duration="4.682816" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1011" name="IntroMusicCrossfadeRespectsPauseMuteSkipAndRestart" fullname="HumanEye.Tests.IntroAudioTests.IntroMusicCrossfadeRespectsPauseMuteSkipAndRestart" methodname="IntroMusicCrossfadeRespectsPauseMuteSkipAndRestart" classname="HumanEye.Tests.IntroAudioTests" runstate="Runnable" seed="1713712813" result="Passed" start-time="2026-10-15 16:00:40Z" end-time="2026-10-15 16:00:45Z" duration="4.666424" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="15000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1012" name="NikoPresenterTests" fullname="HumanEye.Tests.NikoPresenterTests" classname="HumanEye.Tests.NikoPresenterTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 16:00:45Z" end-time="2026-10-15 16:00:46Z" duration="1.243778" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1013" name="ReplaysAnswersAndPauseKeepTheLivePresenter" fullname="HumanEye.Tests.NikoPresenterTests.ReplaysAnswersAndPauseKeepTheLivePresenter" methodname="ReplaysAnswersAndPauseKeepTheLivePresenter" classname="HumanEye.Tests.NikoPresenterTests" runstate="Runnable" seed="641095695" result="Passed" start-time="2026-10-15 16:00:45Z" end-time="2026-10-15 16:00:46Z" duration="1.227371" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="90000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1014" name="WalkthroughTests" fullname="HumanEye.Tests.WalkthroughTests" classname="HumanEye.Tests.WalkthroughTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 16:00:46Z" end-time="2026-10-15 16:02:40Z" duration="114.025677" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1015" name="FirstRunReachesFinalCuriosity" fullname="HumanEye.Tests.WalkthroughTests.FirstRunReachesFinalCuriosity" methodname="FirstRunReachesFinalCuriosity" classname="HumanEye.Tests.WalkthroughTests" runstate="Runnable" seed="2046569965" result="Passed" start-time="2026-10-15 16:00:46Z" end-time="2026-10-15 16:02:40Z" duration="114.009846" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Timeout" value="1200000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+Saving results to: C:/Users/ADMIN/AppData/LocalLow/DefaultCompany/AI HUMAN EYE\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

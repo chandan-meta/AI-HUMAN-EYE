@@ -1,0 +1,45 @@
+    0.06s	audio	music:start chapter=menu state=Entering
+    0.06s	audio	ambience:amblab chapter=menu state=Entering
+    0.11s	audio_mix	Intro
+    0.20s	audio	hover chapter=menu state=Entering
+    2.14s	audio	hover chapter=menu state=Entering
+    2.14s	audio	open chapter=menu state=Entering
+    2.15s	audio	click chapter=menu state=Entering
+    2.17s	audio_mix	Paused
+    2.18s	PASS	Settings opens from menu
+    2.32s	audio	close chapter=menu state=Entering
+    2.32s	audio	click chapter=menu state=Entering
+    2.32s	audio_mix	Intro
+    2.35s	PASS	Settings closes
+    2.37s	audio	gatestart chapter=menu state=Entering
+    2.42s	state	Cinematic
+    2.70s	audio	gatescan chapter=Scene02 state=Cinematic intro=0.3
+    3.40s	audio	gateunlock chapter=Scene02 state=Cinematic intro=1.0
+    3.41s	audio	gateservo (loop) chapter=Scene02 state=Cinematic intro=1.0
+    5.90s	audio	gatewhoosh chapter=Scene02 state=Cinematic intro=3.5
+    8.55s	audio	gateentry chapter=Scene02 state=Cinematic intro=6.2
+   11.41s	audio	labsting chapter=Scene02 state=Cinematic intro=9.0
+   17.44s	audio	gatescan chapter=Scene02 state=Cinematic intro=15.0
+   17.44s	audio	music:transition (score) chapter=Scene02 state=Cinematic intro=15.0
+   17.44s	audio_mix	Transition
+   19.51s	audio	dissolve chapter=Scene02 state=Cinematic intro=17.1
+   19.53s	audio	crackle1 (loop) chapter=Scene02 state=Cinematic intro=17.1
+   21.04s	audio	layerdone chapter=Scene02 state=Cinematic intro=18.6
+   22.41s	audio	music:lab chapter=Scene02 state=Cinematic intro=20.0
+   24.41s	audio	dissolve chapter=Scene02 state=Cinematic intro=22.0
+   24.42s	audio	crackle2 (loop) chapter=Scene02 state=Cinematic intro=22.0
+   26.00s	audio	organs chapter=Scene02 state=Cinematic intro=23.6
+   28.00s	audio	eyezoom chapter=Scene02 state=Cinematic intro=25.6
+   28.00s	audio_mix	Exploration
+   28.91s	audio	eyeappear chapter=Scene02 state=Cinematic intro=26.5
+   31.91s	audio	hologram chapter=Scene02 state=Cinematic intro=29.5
+   32.41s	audio	nikoappear chapter=Scene02 state=Cinematic intro=30.0
+   34.95s	audio	softwhoosh chapter=Scene02 state=Cinematic intro=32.4
+   34.96s	state	Narrating
+   34.96s	cue_start	S02_L01 [Core] clip=ok
+   35.15s	audio_mix	NikoSpeaking
+   36.31s	check	intro finished: gate=1 niko=True shot=S02_NikoMedium
+   36.32s	audio_summary	cues=25 distinct=21 repeats=0 maxLoops=1 music=[start,transition (score),lab] ambience=[amblab]
+   36.32s	audio_unplayed	scan,whoosh,reveal,discovery,unlock,ping,drone,riser,boom,clunk1,clunk2,clunk3,shimmer,materialise,lightmove,nikoscan,chapter,irisglow,approach,pupilenter,interior,lightsweep,gatelift,labreveal,wipe,xray,extract,titlehit,vortex,crackle,overview,ambeye,nikolisten,nikothink,nikoreply,nikoerror,complete,layerreveal,dive,select,tick,isolate,hl_cornea,hl_iris,iris,hl_retina,cell,pupilwide,pupilnarrow,lensfocus,label,signaltravel,pulse,pulsetravel,pulsenear,signalarrive,brainreveal,brainrise,cortex,tap,popup,popdown,skip,menu,confirm,deny,quizopen,quizcorrect,quizwrong,quizhint,quizcomplete
+   36.32s	perf	Scene02 avg 37.0 fps, worst frame 167 ms, main thread 27.0 ms, draw calls avg 64 max 960, SetPass 10, triangles 219k, system memory peak 583 MB, GC allocated/frame avg 143170 max 1941561 bytes (1252 samples), GPU unavailable (counter registered, no usable timing samples)
+   36.32s	done	intro only

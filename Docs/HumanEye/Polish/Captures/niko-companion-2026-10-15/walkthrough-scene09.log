@@ -1,0 +1,217 @@
+    0.01s	start	WindowsPlayer NVIDIA GeForce RTX 5060 Ti 1600x900 quality=PC fast=1
+    0.01s	perf-counters	GC allocated/frame supported=True; GPU frame counter supported=True unit=TimeNanoseconds; positive samples required before reporting GPU time; measurements include walkthrough and capture overhead
+    1.53s	pointer-reachable	start-actions/start-begin
+    1.53s	pointer-reachable	start-actions/start-help
+    1.53s	pointer-reachable	start-actions/start-chapters
+    1.53s	pointer-reachable	start-more/start-settings
+    1.53s	pointer-audit	start_screen reachable=4 cumulativeFailures=0
+    2.18s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\001_start_screen.png
+    2.18s	layout	start_screen: controls=4 small=0 outside=0 size=1600x900
+    2.23s	ui	Pointer clicked start-settings
+    2.23s	PASS	Settings opens from menu
+    2.23s	pointer-reachable	VisualElement/set-size-0
+    2.23s	pointer-reachable	VisualElement/set-size-1
+    2.23s	pointer-reachable	VisualElement/set-size-2
+    2.23s	pointer-reachable	VisualElement/set-size-3
+    2.23s	pointer-audit	menu_settings reachable=4 cumulativeFailures=0
+    2.34s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\002_menu_settings.png
+    2.34s	layout	menu_settings: controls=4 small=0 outside=0 size=1600x900
+    2.40s	ui	Pointer clicked settings-close
+    2.40s	PASS	Settings closes
+    2.40s	layout	menu: controls=4 small=0 outside=0 size=1600x900
+    2.40s	action	Start pressed
+    2.42s	chapter	Scene09
+    2.44s	state	Cinematic
+    3.86s	pointer-reachable	letterbox-bottom/btn-skip-intro
+    3.86s	pointer-reachable	top-buttons/btn-pause
+    3.86s	pointer-reachable	top-buttons/btn-settings
+    3.86s	pointer-audit	Scene09_S02_IntroThreshold reachable=3 cumulativeFailures=0
+    4.05s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\003_Scene09_S02_IntroThreshold.png
+    4.05s	layout	Scene09_S02_IntroThreshold: controls=3 small=0 outside=0 size=1600x900
+    4.05s	pointer-audit	cine_Scene09_004.1s reachable=3 cumulativeFailures=0
+    4.20s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\004_cine_Scene09_004.1s.png
+    4.20s	layout	cine_Scene09_004.1s: controls=3 small=0 outside=0 size=1600x900
+    4.58s	pointer-audit	Scene09_S09_Follow reachable=3 cumulativeFailures=0
+    4.71s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\005_Scene09_S09_Follow.png
+    4.71s	layout	Scene09_S09_Follow: controls=3 small=0 outside=0 size=1600x900
+    4.77s	pointer-audit	cine_Scene09_004.8s reachable=3 cumulativeFailures=0
+    4.89s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\006_cine_Scene09_004.8s.png
+    4.90s	layout	cine_Scene09_004.8s: controls=3 small=0 outside=0 size=1600x900
+    5.45s	state	Narrating
+    5.45s	cue_start	S09_L01 [Core] clip=ok
+    5.45s	framing	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    5.48s	pointer-audit	cine_Scene09_005.5s reachable=3 cumulativeFailures=0
+    5.63s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\007_cine_Scene09_005.5s.png
+    5.63s	layout	cine_Scene09_005.5s: controls=3 small=0 outside=0 size=1600x900
+    5.66s	framing_settled	S09_L01 shot=S09_Follow blending=False part=optic_nerve vp=(0.20,0.65) depth=3.12 visibleCentreDx=-0.30 sizeFrac=0.00 inView=True visible=False alpha=0.00 glow=0.00
+    6.18s	pointer-audit	cine_Scene09_006.2s reachable=3 cumulativeFailures=0
+    6.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\008_cine_Scene09_006.2s.png
+    6.30s	layout	cine_Scene09_006.2s: controls=3 small=0 outside=0 size=1600x900
+    6.89s	pointer-audit	cine_Scene09_006.9s reachable=3 cumulativeFailures=0
+    7.03s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\009_cine_Scene09_006.9s.png
+    7.03s	layout	cine_Scene09_006.9s: controls=3 small=0 outside=0 size=1600x900
+    7.60s	pointer-audit	cine_Scene09_007.6s reachable=3 cumulativeFailures=0
+    7.72s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\010_cine_Scene09_007.6s.png
+    7.72s	layout	cine_Scene09_007.6s: controls=3 small=0 outside=0 size=1600x900
+    8.30s	pointer-audit	cine_Scene09_008.3s reachable=3 cumulativeFailures=0
+    8.43s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\011_cine_Scene09_008.3s.png
+    8.43s	layout	cine_Scene09_008.3s: controls=3 small=0 outside=0 size=1600x900
+    9.02s	pointer-audit	cine_Scene09_009.0s reachable=3 cumulativeFailures=0
+    9.15s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\012_cine_Scene09_009.0s.png
+    9.15s	layout	cine_Scene09_009.0s: controls=3 small=0 outside=0 size=1600x900
+    9.48s	cue_end	S09_L01
+    9.73s	pointer-audit	cine_Scene09_009.7s reachable=3 cumulativeFailures=0
+    9.86s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\013_cine_Scene09_009.7s.png
+    9.86s	layout	cine_Scene09_009.7s: controls=3 small=0 outside=0 size=1600x900
+   10.43s	pointer-audit	cine_Scene09_010.4s reachable=3 cumulativeFailures=0
+   10.58s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\014_cine_Scene09_010.4s.png
+   10.58s	layout	cine_Scene09_010.4s: controls=3 small=0 outside=0 size=1600x900
+   11.13s	pointer-audit	cine_Scene09_011.1s reachable=3 cumulativeFailures=0
+   11.25s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\015_cine_Scene09_011.1s.png
+   11.25s	layout	cine_Scene09_011.1s: controls=3 small=0 outside=0 size=1600x900
+   11.84s	pointer-audit	cine_Scene09_011.8s reachable=3 cumulativeFailures=0
+   11.96s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\016_cine_Scene09_011.8s.png
+   11.96s	layout	cine_Scene09_011.8s: controls=3 small=0 outside=0 size=1600x900
+   11.98s	cue_start	S09_L02 [Core] clip=ok
+   11.98s	framing	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.49,0.51) depth=3.45 visibleCentreDx=-0.01 sizeFrac=0.01 inView=True visible=False alpha=0.00 glow=0.00
+   12.08s	framing_settled	S09_L02 shot=S09_Follow blending=False part=optic_nerve vp=(0.49,0.51) depth=3.45 visibleCentreDx=-0.01 sizeFrac=0.01 inView=True visible=False alpha=0.00 glow=0.00
+   12.55s	pointer-audit	cine_Scene09_012.5s reachable=3 cumulativeFailures=0
+   12.68s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\017_cine_Scene09_012.5s.png
+   12.68s	layout	cine_Scene09_012.5s: controls=3 small=0 outside=0 size=1600x900
+   13.26s	pointer-audit	cine_Scene09_013.3s reachable=3 cumulativeFailures=0
+   13.38s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\018_cine_Scene09_013.3s.png
+   13.38s	layout	cine_Scene09_013.3s: controls=4 small=0 outside=0 size=1600x900
+   13.96s	pointer-audit	cine_Scene09_014.0s reachable=3 cumulativeFailures=0
+   14.09s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\019_cine_Scene09_014.0s.png
+   14.09s	layout	cine_Scene09_014.0s: controls=4 small=0 outside=0 size=1600x900
+   14.67s	pointer-audit	cine_Scene09_014.7s reachable=3 cumulativeFailures=0
+   14.81s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\020_cine_Scene09_014.7s.png
+   14.81s	layout	cine_Scene09_014.7s: controls=5 small=0 outside=0 size=1600x900
+   15.38s	pointer-audit	cine_Scene09_015.4s reachable=3 cumulativeFailures=0
+   15.48s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\021_cine_Scene09_015.4s.png
+   15.48s	layout	cine_Scene09_015.4s: controls=4 small=0 outside=0 size=1600x900
+   15.53s	cue_end	S09_L02
+   16.08s	pointer-audit	cine_Scene09_016.1s reachable=3 cumulativeFailures=0
+   16.20s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\022_cine_Scene09_016.1s.png
+   16.20s	layout	cine_Scene09_016.1s: controls=4 small=0 outside=0 size=1600x900
+   16.78s	pointer-audit	cine_Scene09_016.8s reachable=3 cumulativeFailures=0
+   16.90s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\023_cine_Scene09_016.8s.png
+   16.90s	layout	cine_Scene09_016.8s: controls=4 small=0 outside=0 size=1600x900
+   17.49s	pointer-audit	cine_Scene09_017.5s reachable=3 cumulativeFailures=0
+   17.62s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\024_cine_Scene09_017.5s.png
+   17.62s	layout	cine_Scene09_017.5s: controls=5 small=0 outside=0 size=1600x900
+   18.19s	pointer-audit	cine_Scene09_018.2s reachable=3 cumulativeFailures=0
+   18.30s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\025_cine_Scene09_018.2s.png
+   18.30s	layout	cine_Scene09_018.2s: controls=4 small=0 outside=0 size=1600x900
+   18.90s	pointer-audit	cine_Scene09_018.9s reachable=3 cumulativeFailures=0
+   19.03s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\026_cine_Scene09_018.9s.png
+   19.03s	layout	cine_Scene09_018.9s: controls=4 small=0 outside=0 size=1600x900
+   19.05s	cue_start	S09_L03 [Core] clip=ok
+   19.05s	framing	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.42,0.56) depth=0.47 visibleCentreDx=-0.08 sizeFrac=0.24 inView=True visible=True alpha=1.00 glow=0.46
+   19.15s	framing_settled	S09_L03 shot=S09_Follow blending=False part=visual_area vp=(0.42,0.56) depth=0.47 visibleCentreDx=-0.08 sizeFrac=0.24 inView=True visible=True alpha=1.00 glow=0.32
+   19.62s	pointer-audit	cine_Scene09_019.6s reachable=3 cumulativeFailures=0
+   19.73s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\027_cine_Scene09_019.6s.png
+   19.73s	layout	cine_Scene09_019.6s: controls=3 small=0 outside=0 size=1600x900
+   20.33s	pointer-audit	cine_Scene09_020.3s reachable=3 cumulativeFailures=0
+   20.45s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\028_cine_Scene09_020.3s.png
+   20.45s	layout	cine_Scene09_020.3s: controls=3 small=0 outside=0 size=1600x900
+   21.03s	pointer-audit	cine_Scene09_021.0s reachable=3 cumulativeFailures=0
+   21.15s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\029_cine_Scene09_021.0s.png
+   21.15s	layout	cine_Scene09_021.0s: controls=3 small=0 outside=0 size=1600x900
+   21.73s	pointer-audit	cine_Scene09_021.7s reachable=3 cumulativeFailures=0
+   21.85s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\030_cine_Scene09_021.7s.png
+   21.85s	layout	cine_Scene09_021.7s: controls=3 small=0 outside=0 size=1600x900
+   22.44s	pointer-audit	cine_Scene09_022.4s reachable=3 cumulativeFailures=0
+   22.62s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\031_cine_Scene09_022.4s.png
+   22.62s	layout	cine_Scene09_022.4s: controls=3 small=0 outside=0 size=1600x900
+   23.10s	cue_end	S09_L03
+   23.15s	pointer-audit	cine_Scene09_023.2s reachable=3 cumulativeFailures=0
+   23.27s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\032_cine_Scene09_023.2s.png
+   23.27s	layout	cine_Scene09_023.2s: controls=3 small=0 outside=0 size=1600x900
+   23.85s	pointer-audit	cine_Scene09_023.9s reachable=3 cumulativeFailures=0
+   23.97s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\033_cine_Scene09_023.9s.png
+   23.97s	layout	cine_Scene09_023.9s: controls=3 small=0 outside=0 size=1600x900
+   24.57s	pointer-audit	cine_Scene09_024.6s reachable=3 cumulativeFailures=0
+   24.69s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\034_cine_Scene09_024.6s.png
+   24.69s	layout	cine_Scene09_024.6s: controls=3 small=0 outside=0 size=1600x900
+   25.27s	pointer-audit	cine_Scene09_025.3s reachable=3 cumulativeFailures=0
+   25.39s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\035_cine_Scene09_025.3s.png
+   25.39s	layout	cine_Scene09_025.3s: controls=3 small=0 outside=0 size=1600x900
+   25.97s	pointer-audit	cine_Scene09_026.0s reachable=3 cumulativeFailures=0
+   26.11s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\036_cine_Scene09_026.0s.png
+   26.11s	layout	cine_Scene09_026.0s: controls=3 small=0 outside=0 size=1600x900
+   26.37s	cue_start	S09_L04 [Core] clip=ok
+   26.37s	framing	S09_L04 shot=S09_Perception blending=False object=apple vp=(2.50,-0.84) depth=1.41 sizeFrac=1.36 inView=False active=True retinalInset=[active=True,texture=bound,alpha=0.00] perceptionInset=[active=True,texture=bound,alpha=0.00]
+   26.46s	framing_settled	S09_L04 shot=S09_Perception blending=False object=apple vp=(0.42,0.50) depth=1.26 sizeFrac=3.08 inView=True active=True retinalInset=[active=True,texture=bound,alpha=0.09] perceptionInset=[active=True,texture=bound,alpha=0.09]
+   26.76s	pointer-reachable	top-buttons/btn-home
+   26.76s	pointer-reachable	top-buttons/btn-chapters
+   26.76s	pointer-reachable	top-buttons/btn-replay-expl
+   26.76s	pointer-reachable	top-buttons/btn-help
+   26.76s	pointer-reachable	top-buttons/btn-review
+   26.76s	pointer-reachable	top-buttons/btn-sound
+   26.76s	pointer-reachable	safe/btn-ask
+   26.76s	pointer-audit	Scene09_S09_Perception reachable=9 cumulativeFailures=0
+   26.89s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\037_Scene09_S09_Perception.png
+   26.89s	layout	Scene09_S09_Perception: controls=9 small=0 outside=0 size=1600x900
+   36.50s	state	SupplementalCheck
+   36.50s	cue_end	S09_L04
+   38.89s	pointer-reachable	act-options/act-options 01
+   38.89s	pointer-reachable	act-options/act-options 02
+   38.89s	pointer-reachable	act-options/act-options 03
+   38.89s	pointer-audit	Scene09_S09_Wide reachable=12 cumulativeFailures=0
+   39.05s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\038_Scene09_S09_Wide.png
+   39.05s	layout	Scene09_S09_Wide: controls=9 small=0 outside=0 size=1600x900
+   40.05s	pointer-audit	activity_nerve_carries reachable=12 cumulativeFailures=0
+   40.20s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\039_activity_nerve_carries.png
+   40.21s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   40.21s	PASS	Quick checks have no Skip button
+   40.21s	activity	nerve_carries deliberate wrong answer 'The crystalline lens'
+   41.71s	pointer-audit	activity_hint_nerve_carries reachable=12 cumulativeFailures=0
+   41.84s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\040_activity_hint_nerve_carries.png
+   41.84s	layout	activity_hint_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   42.85s	pointer-audit	activity_nerve_carries reachable=12 cumulativeFailures=0
+   43.02s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\041_activity_nerve_carries.png
+   43.02s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   43.02s	PASS	Quick checks have no Skip button
+   43.02s	activity	nerve_carries answered 'The optic nerve'
+   45.02s	pointer-reachable	act-buttons/act-buttons 01
+   45.02s	pointer-audit	activity_nerve_carries reachable=10 cumulativeFailures=0
+   45.16s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\042_activity_nerve_carries.png
+   45.16s	layout	activity_nerve_carries: controls=9 small=0 outside=0 size=1600x900
+   47.17s	pointer-audit	activity_nerve_tap reachable=12 cumulativeFailures=0
+   47.31s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\043_activity_nerve_tap.png
+   47.31s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1600x900
+   47.31s	PASS	Quick checks have no Skip button
+   47.31s	activity	nerve_tap answered 'Optic nerve'
+   49.33s	pointer-audit	activity_nerve_tap reachable=10 cumulativeFailures=0
+   49.48s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\044_activity_nerve_tap.png
+   49.48s	layout	activity_nerve_tap: controls=9 small=0 outside=0 size=1600x900
+   51.50s	pointer-audit	activity_img_orientation reachable=12 cumulativeFailures=0
+   51.64s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\045_activity_img_orientation.png
+   51.64s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1600x900
+   51.64s	PASS	Quick checks have no Skip button
+   51.64s	activity	img_orientation answered 'A real, inverted image'
+   53.66s	pointer-audit	activity_img_orientation reachable=10 cumulativeFailures=0
+   53.80s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\046_activity_img_orientation.png
+   53.80s	layout	activity_img_orientation: controls=9 small=0 outside=0 size=1600x900
+   55.81s	pointer-audit	activity_img_perception reachable=12 cumulativeFailures=0
+   55.96s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\047_activity_img_perception.png
+   55.96s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1600x900
+   55.96s	PASS	Quick checks have no Skip button
+   55.96s	activity	img_perception answered 'The brain processing the information carried by the signals'
+   57.98s	pointer-audit	activity_img_perception reachable=10 cumulativeFailures=0
+   58.12s	capture	C:\he-sandbox\AI-HUMAN-EYE\Builds\Checks\bk-s09\048_activity_img_perception.png
+   58.12s	layout	activity_img_perception: controls=9 small=0 outside=0 size=1600x900
+   58.13s	state	Transitioning
+   58.15s	presenter_coverage	frames=1208 failures=0
+   58.15s	presence_coverage	frames=3064 failures=0 mouthSpeakingMean=0.519 mouthSilentMax=0.000
+   58.15s	perf	Scene09 avg 55.0 fps, worst frame 172 ms, main thread 18.2 ms, draw calls avg 9 max 1038, SetPass 2, triangles 31k, system memory peak 555 MB, GC allocated/frame avg 23605 max 1818666 bytes (3063 samples), GPU unavailable (counter registered, no usable timing samples)
+   58.15s	chapter	Scene10
+   58.15s	state	Entering
+   58.16s	state	Narrating
+   58.16s	cue_start	S10_L01 [Core] clip=ok
+   58.16s	framing	S10_L01 shot=S10_Journey blending=False part=- (no structure named)
+   59.13s	presenter_coverage	frames=1266 failures=0
+   59.13s	presence_coverage	frames=3123 failures=0 mouthSpeakingMean=0.525 mouthSilentMax=0.000
+   59.13s	perf	Scene10 avg 60.0 fps, worst frame 17 ms, main thread 16.7 ms, draw calls avg 0 max 0, SetPass 0, triangles 0k, system memory peak 555 MB, GC allocated/frame avg 8891 max 425642 bytes (59 samples), GPU unavailable (counter registered, no usable timing samples)
+   59.13s	done	stopped after 1 chapter(s); cues=4 evidence=5

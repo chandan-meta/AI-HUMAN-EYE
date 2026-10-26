@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Passed" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:27Z" duration="3.3349781">
+  <test-suite type="TestSuite" id="1000" name="AI HUMAN EYE" fullname="AI HUMAN EYE" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:27Z" duration="3.334978" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1037" name="HumanEye.Tests.EditMode.dll" fullname="C:/he-sandbox/AI-HUMAN-EYE/Library/ScriptAssemblies/HumanEye.Tests.EditMode.dll" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:27Z" duration="3.327389" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="58076" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1038" name="HumanEye" fullname="HumanEye" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:27Z" duration="3.326367" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1039" name="Tests" fullname="HumanEye.Tests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:27Z" duration="3.325706" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CanvasAuthoringTests" fullname="HumanEye.Tests.CanvasAuthoringTests" classname="HumanEye.Tests.CanvasAuthoringTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:25Z" duration="1.320430" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="SavedSceneContainsEditableBoundCanvasBeforePlay" fullname="HumanEye.Tests.CanvasAuthoringTests.SavedSceneContainsEditableBoundCanvasBeforePlay" methodname="SavedSceneContainsEditableBoundCanvasBeforePlay" classname="HumanEye.Tests.CanvasAuthoringTests" runstate="Runnable" seed="1418452285" result="Passed" start-time="2026-10-15 15:58:24Z" end-time="2026-10-15 15:58:25Z" duration="1.304353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1022" name="GeometryAndOpticsTests" fullname="HumanEye.Tests.GeometryAndOpticsTests" classname="HumanEye.Tests.GeometryAndOpticsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-15 15:58:25Z" end-time="2026-10-15 15:58:26Z" duration="0.673184" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+Failed to set the active render target, ensure that it is a valid render target.
+RenderTexture.Create failed
+RenderTexture.Create failed
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1026" name="AccommodationFocusesOnRetina" fullname="HumanEye.Tests.GeometryAndOpticsTests.AccommodationFocusesOnRetina" methodname="AccommodationFocusesOnRetina" classname="HumanEye.Tests.GeometryAndOpticsTests" runstate="Runnable" seed="1380416859" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.002050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="PupilIsAnOpening" fullname="HumanEye.Tests.GeometryAndOpticsTests.PupilIsAnOpening" methodname="PupilIsAnOpening" classname="HumanEye.Tests.GeometryAndOpticsTests" runstate="Runnable" seed="410035354" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.002740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="RevolvedShellNormalsPointOutward" fullname="HumanEye.Tests.GeometryAndOpticsTests.RevolvedShellNormalsPointOutward" methodname="RevolvedShellNormalsPointOutward" classname="HumanEye.Tests.GeometryAndOpticsTests" runstate="Runnable" seed="2534067" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.005543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="TriangulateSquare" fullname="HumanEye.Tests.GeometryAndOpticsTests.TriangulateSquare" methodname="TriangulateSquare" classname="HumanEye.Tests.GeometryAndOpticsTests" runstate="Runnable" seed="458092241" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1009" name="LearnerModelTests" fullname="HumanEye.Tests.LearnerModelTests" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.025449" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1011" name="AssistedAnswersAndExposureNeverProveMastery" fullname="HumanEye.Tests.LearnerModelTests.AssistedAnswersAndExposureNeverProveMastery" methodname="AssistedAnswersAndExposureNeverProveMastery" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="2054828568" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.002751" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="FirstTryCorrectSkipsSameLevelFollowUp" fullname="HumanEye.Tests.LearnerModelTests.FirstTryCorrectSkipsSameLevelFollowUp" methodname="FirstTryCorrectSkipsSameLevelFollowUp" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="2075389126" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.000519" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="NextNeverRepeatsLastItemAndStartsLow" fullname="HumanEye.Tests.LearnerModelTests.NextNeverRepeatsLastItemAndStartsLow" methodname="NextNeverRepeatsLastItemAndStartsLow" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="1550239458" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.004065" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="SecureTopicsGetOneNewSituationInsteadOfRepetition" fullname="HumanEye.Tests.LearnerModelTests.SecureTopicsGetOneNewSituationInsteadOfRepetition" methodname="SecureTopicsGetOneNewSituationInsteadOfRepetition" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="83372359" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001896" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="SupportTiers" fullname="HumanEye.Tests.LearnerModelTests.SupportTiers" methodname="SupportTiers" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="1307491593" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.000283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="TwoDistinctUnassistedCorrectMakeSecure" fullname="HumanEye.Tests.LearnerModelTests.TwoDistinctUnassistedCorrectMakeSecure" methodname="TwoDistinctUnassistedCorrectMakeSecure" classname="HumanEye.Tests.LearnerModelTests" runstate="Runnable" seed="1748153279" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.000255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="LedgerTests" fullname="HumanEye.Tests.LedgerTests" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.059175" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1007" name="CsvHasExactColumnsAndOrder" fullname="HumanEye.Tests.LedgerTests.CsvHasExactColumnsAndOrder" methodname="CsvHasExactColumnsAndOrder" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" seed="70621704" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.003983" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="FilenameRule" fullname="HumanEye.Tests.LedgerTests.FilenameRule" methodname="FilenameRule" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" seed="587829427" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.006129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="IntentionalRepeatsKeepSeparateIds" fullname="HumanEye.Tests.LedgerTests.IntentionalRepeatsKeepSeparateIds" methodname="IntentionalRepeatsKeepSeparateIds" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" seed="1229448877" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="SixtySixCuesWithSceneCounts" fullname="HumanEye.Tests.LedgerTests.SixtySixCuesWithSceneCounts" methodname="SixtySixCuesWithSceneCounts" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" seed="1764500528" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.002421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TextMatchesStoryboardExactly" fullname="HumanEye.Tests.LedgerTests.TextMatchesStoryboardExactly" methodname="TextMatchesStoryboardExactly" classname="HumanEye.Tests.LedgerTests" runstate="Runnable" seed="575084829" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.039232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1027" name="LessonAndModuleTests" fullname="HumanEye.Tests.LessonAndModuleTests" classname="HumanEye.Tests.LessonAndModuleTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.590933" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1030" name="GeneratedModuleValidates" fullname="HumanEye.Tests.LessonAndModuleTests.GeneratedModuleValidates" methodname="GeneratedModuleValidates" classname="HumanEye.Tests.LessonAndModuleTests" runstate="Runnable" seed="641138428" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.584478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+HUMAN_EYE_VALIDATION passed=72 warnings=0 errors=0
+
+]]></output>
+            </test-case>
+            <test-case id="1031" name="ObservatoryFloorFacesTheCameraAboveIt" fullname="HumanEye.Tests.LessonAndModuleTests.ObservatoryFloorFacesTheCameraAboveIt" methodname="ObservatoryFloorFacesTheCameraAboveIt" classname="HumanEye.Tests.LessonAndModuleTests" runstate="Runnable" seed="1321342784" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="ScheduledRoutineCancelsNestedWork" fullname="HumanEye.Tests.LessonAndModuleTests.ScheduledRoutineCancelsNestedWork" methodname="ScheduledRoutineCancelsNestedWork" classname="HumanEye.Tests.LessonAndModuleTests" runstate="Runnable" seed="374681973" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="StateRules" fullname="HumanEye.Tests.LessonAndModuleTests.StateRules" methodname="StateRules" classname="HumanEye.Tests.LessonAndModuleTests" runstate="Runnable" seed="748909958" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.002260" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1019" name="NikoGuideTests" fullname="HumanEye.Tests.NikoGuideTests" classname="HumanEye.Tests.NikoGuideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.022881" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1020" name="MapsRequestsToWhitelistedIntents" fullname="HumanEye.Tests.NikoGuideTests.MapsRequestsToWhitelistedIntents" methodname="MapsRequestsToWhitelistedIntents" classname="HumanEye.Tests.NikoGuideTests" runstate="Runnable" seed="282348236" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.003711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="UnsupportedAndInjectionTextMatchNothing" fullname="HumanEye.Tests.NikoGuideTests.UnsupportedAndInjectionTextMatchNothing" methodname="UnsupportedAndInjectionTextMatchNothing" classname="HumanEye.Tests.NikoGuideTests" runstate="Runnable" seed="1974184795" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.001843" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1032" name="NikoLipSyncTests" fullname="HumanEye.Tests.NikoLipSyncTests" classname="HumanEye.Tests.NikoLipSyncTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.043425" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1033" name="AlignmentBecomesMouthKeys" fullname="HumanEye.Tests.NikoLipSyncTests.AlignmentBecomesMouthKeys" methodname="AlignmentBecomesMouthKeys" classname="HumanEye.Tests.NikoLipSyncTests" runstate="Runnable" seed="1154279870" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.005411" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="AudioBecomesMouthKeys" fullname="HumanEye.Tests.NikoLipSyncTests.AudioBecomesMouthKeys" methodname="AudioBecomesMouthKeys" classname="HumanEye.Tests.NikoLipSyncTests" runstate="Runnable" seed="2106831599" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:26Z" duration="0.026346" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1035" name="RackBrainTests" fullname="HumanEye.Tests.RackBrainTests" classname="HumanEye.Tests.RackBrainTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:27Z" duration="0.570338" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1036" name="SavedBrainsHaveValidUvNormalsMaterialsAndWinding" fullname="HumanEye.Tests.RackBrainTests.SavedBrainsHaveValidUvNormalsMaterialsAndWinding" methodname="SavedBrainsHaveValidUvNormalsMaterialsAndWinding" classname="HumanEye.Tests.RackBrainTests" runstate="Runnable" seed="1368535884" result="Passed" start-time="2026-10-15 15:58:26Z" end-time="2026-10-15 15:58:27Z" duration="0.569215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Inconsistent counts in appended probe data: positions 278, bakedCoefficients 278, bakedLightOcclusion 0
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1016" name="SaveTests" fullname="HumanEye.Tests.SaveTests" classname="HumanEye.Tests.SaveTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:58:27Z" end-time="2026-10-15 15:58:27Z" duration="0.017298" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+SetConstantBuffer: The current renderer does not support constant buffers. This call will have no effect.
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawDepthNormalPrepass: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawOpaqueObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+DrawTransparentObjects: Unable to find surface for attachment 0
+EndRenderPass: Not inside a Renderpass
+BlitFinalToBackBuffer: Attachment 0 was created with 1 samples but 4 samples were requested.
+EndRenderPass: Not inside a Renderpass
+]]></output>
+            <test-case id="1017" name="CorruptSaveStartsFreshWithNotice" fullname="HumanEye.Tests.SaveTests.CorruptSaveStartsFreshWithNotice" methodname="CorruptSaveStartsFreshWithNotice" classname="HumanEye.Tests.SaveTests" runstate="Runnable" seed="1965580955" result="Passed" start-time="2026-10-15 15:58:27Z" end-time="2026-10-15 15:58:27Z" duration="0.000864" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="RoundTrip" fullname="HumanEye.Tests.SaveTests.RoundTrip" methodname="RoundTrip" classname="HumanEye.Tests.SaveTests" runstate="Runnable" seed="812470994" result="Passed" start-time="2026-10-15 15:58:27Z" end-time="2026-10-15 15:58:27Z" duration="0.000504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/ADMIN/AppData/LocalLow/DefaultCompany/AI HUMAN EYE\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

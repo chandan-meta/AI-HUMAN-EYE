@@ -1,0 +1,36 @@
+{
+  "samples": 204,
+  "recordingStartLogSeconds": 0.45,
+  "fps": 30,
+  "ledgerCues": 65,
+  "reportedNo": [],
+  "recoveredFramesForVisualReview": 1,
+  "coverage": [
+    "frames=2652 failures=0",
+    "frames=5513 failures=0",
+    "frames=6712 failures=0",
+    "frames=8340 failures=0",
+    "frames=9452 failures=0",
+    "frames=10135 failures=0",
+    "frames=12039 failures=0",
+    "frames=13336 failures=0",
+    "frames=13777 failures=0",
+    "frames=14789 failures=0"
+  ],
+  "performance": [
+    "Scene02 avg 59.9 fps, worst frame 84 ms, main thread 16.7 ms, draw calls avg 255 max 813, SetPass 49, triangles 756k, system memory peak 814 MB, GC allocated/frame avg 2726 max 1050426 bytes (5805 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene03 avg 60.0 fps, worst frame 27 ms, main thread 16.7 ms, draw calls avg 179 max 566, SetPass 47, triangles 411k, system memory peak 822 MB, GC allocated/frame avg 2297 max 437020 bytes (4005 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene04 avg 59.9 fps, worst frame 26 ms, main thread 16.7 ms, draw calls avg 200 max 552, SetPass 49, triangles 579k, system memory peak 825 MB, GC allocated/frame avg 2170 max 447218 bytes (1385 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene05 avg 60.0 fps, worst frame 20 ms, main thread 16.7 ms, draw calls avg 224 max 523, SetPass 57, triangles 704k, system memory peak 827 MB, GC allocated/frame avg 66793 max 623244 bytes (3246 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene06 avg 59.9 fps, worst frame 25 ms, main thread 16.7 ms, draw calls avg 186 max 431, SetPass 53, triangles 692k, system memory peak 839 MB, GC allocated/frame avg 2121 max 629656 bytes (2150 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene07 avg 59.7 fps, worst frame 30 ms, main thread 16.7 ms, draw calls avg 160 max 392, SetPass 44, triangles 584k, system memory peak 879 MB, GC allocated/frame avg 2505 max 430876 bytes (685 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene08 avg 59.6 fps, worst frame 34 ms, main thread 16.8 ms, draw calls avg 150 max 447, SetPass 49, triangles 109k, system memory peak 886 MB, GC allocated/frame avg 1992 max 428918 bytes (2591 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene09 avg 59.7 fps, worst frame 37 ms, main thread 16.7 ms, draw calls avg 247 max 1056, SetPass 53, triangles 843k, system memory peak 891 MB, GC allocated/frame avg 1808 max 430916 bytes (3093 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene10 avg 59.9 fps, worst frame 28 ms, main thread 16.7 ms, draw calls avg 308 max 738, SetPass 68, triangles 889k, system memory peak 889 MB, GC allocated/frame avg 1831 max 432548 bytes (2196 samples), GPU unavailable (counter registered, no usable timing samples)",
+    "Scene11 avg 59.9 fps, worst frame 26 ms, main thread 16.7 ms, draw calls avg 237 max 605, SetPass 51, triangles 615k, system memory peak 879 MB, GC allocated/frame avg 2133 max 434180 bytes (1463 samples), GPU unavailable (counter registered, no usable timing samples)"
+  ],
+  "done": [
+    "completed=Scene02,Scene03,Scene04,Scene05,Scene06,Scene07,Scene08,Scene09,Scene10,Scene11 cues=65 evidence=13"
+  ],
+  "note": "YES is the runtime visibility state. Inspect these recorded frames for visual occlusion."
+}
